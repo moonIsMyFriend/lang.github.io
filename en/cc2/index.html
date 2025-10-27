@@ -1,316 +1,421 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CSV 영문 단어 가리기 퀴즈</title>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --muted: #94a3b8;
-            --text: #e5e7eb;
-            --good: #34d399;
-            --bad: #f87171;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV 영문 단어 가리기 퀴즈</title>
+  <style>
+    :root{ --bg:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --good:#34d399; --bad:#f87171; }
+    html,body{height:100%}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text);}    
+    .wrap{max-width:1000px; margin:0 auto; padding:24px}
+    .card{background:#0b1220; border:1px solid #1f2937; border-radius:20px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.35);}    
+    h1{font-size:28px; margin:0 0 14px}
+    p.sub{margin:0 0 18px; color:var(--muted)}
+    .grid{display:grid; gap:16px}
+    .g2{grid-template-columns:1fr 1fr}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    input[type="file"]{padding:8px 10px; background:#0b1220; border:1px dashed #334155; border-radius:12px; color:var(--muted)}
+    button{appearance:none; border:none; padding:10px 14px; border-radius:12px; font-weight:600; cursor:pointer; background:#1f2937; color:#e5e7eb; border:1px solid #374151}
+    button.primary{background:linear-gradient(180deg,#2563eb,#1d4ed8); border-color:#1d4ed8}
+    button.ghost{background:transparent; border-color:#334155}
+    button:disabled{opacity:.6; cursor:not-allowed}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#0b1220; border:1px solid #1f2937; color:#cbd5e1; font-size:12px}
+    .badge{font-weight:700; color:#93c5fd}
+    .box{background:#0b1220; border:1px solid #1f2937; border-radius:16px; padding:16px}
+    .big{font-size:20px; line-height:1.6}
+    .muted{color:var(--muted)}
+    .hint{color:#a7f3d0}
+    .id{font-variant-numeric:tabular-nums}
+    .range{accent-color:#60a5fa}
+    .footer{margin-top:22px; color:#94a3b8; font-size:12px}
+    .kbd{border:1px solid #334155; background:#0b1220; padding:2px 6px; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px}
+    details{background:#0b1220; border:1px solid #1f2937; border-radius:16px;}
+    details>summary{padding:12px 16px; cursor:pointer; list-style:none; font-weight:700}
+    details[open]>summary{border-bottom:1px solid #1f2937}
+    .content{padding:16px}
 
-        html,
-        body {
-            height: 100%
-        }
-
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .wrap {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 24px
-        }
-
-        .card {
-            background: #0b1220;
-            border: 1px solid #1f2937;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-        }
-
-        h1 {
-            font-size: 28px;
-            margin: 0 0 14px
-        }
-
-        p.sub {
-            margin: 0 0 18px;
-            color: var(--muted)
-        }
-
-        .grid {
-            display: grid;
-            gap: 16px
-        }
-
-        .g2 {
-            grid-template-columns: 1fr 1fr
-        }
-
-        .row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap
-        }
-
-        input[type="file"] {
-            padding: 8px 10px;
-            background: #0b1220;
-            border: 1px dashed #334155;
-            border-radius: 12px;
-            color: var(--muted)
-        }
-
-        button {
-            appearance: none;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            background: #1f2937;
-            color: #e5e7eb;
-            border: 1px solid #374151
-        }
-
-        button.primary {
-            background: linear-gradient(180deg, #2563eb, #1d4ed8);
-            border-color: #1d4ed8
-        }
-
-        button.ghost {
-            background: transparent;
-            border-color: #334155
-        }
-
-        button:disabled {
-            opacity: .6;
-            cursor: not-allowed
-        }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #0b1220;
-            border: 1px solid #1f2937;
-            color: #cbd5e1;
-            font-size: 12px
-        }
-
-        .badge {
-            font-weight: 700;
-            color: #93c5fd
-        }
-
-        .box {
-            background: #0b1220;
-            border: 1px solid #1f2937;
-            border-radius: 16px;
-            padding: 16px
-        }
-
-        .big {
-            font-size: 20px;
-            line-height: 1.6
-        }
-
-        .muted {
-            color: var(--muted)
-        }
-
-        .hint {
-            color: #a7f3d0
-        }
-
-        .id {
-            font-variant-numeric: tabular-nums
-        }
-
-        .range {
-            accent-color: #60a5fa
-        }
-
-        .footer {
-            margin-top: 22px;
-            color: #94a3b8;
-            font-size: 12px
-        }
-
-        .kbd {
-            border: 1px solid #334155;
-            background: #0b1220;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 12px
-        }
-
-        details {
-            background: #0b1220;
-            border: 1px solid #1f2937;
-            border-radius: 16px;
-        }
-
-        details>summary {
-            padding: 12px 16px;
-            cursor: pointer;
-            list-style: none;
-            font-weight: 700
-        }
-
-        details[open]>summary {
-            border-bottom: 1px solid #1f2937
-        }
-
-        .content {
-            padding: 16px
-        }
-
-        /* 입력형 빈칸/채점 스타일 */
-        .blank {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 0 2px
-        }
-
-        .blank .first {
-            min-width: 0.6em;
-            text-align: center
-        }
-
-        .blank input {
-            background: #0b1220;
-            border: 1px solid #334155;
-            color: #e5e7eb;
-            border-radius: 8px;
-            padding: 2px 6px;
-            font-size: 18px;
-            line-height: 1.4;
-            width: auto
-        }
-
-        .blank input.good {
-            border-color: var(--good);
-            box-shadow: 0 0 0 2px rgba(52, 211, 153, .15) inset
-        }
-
-        .blank input.bad {
-            border-color: var(--bad);
-            box-shadow: 0 0 0 2px rgba(248, 113, 113, .12) inset
-        }
-
-        .score {
-            font-weight: 700
-        }
-
-        @media (max-width:760px) {
-            .g2 {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .hidden {
-            display: none
-        }
-
-        .screen-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px
-        }
-    </style>
+    /* 입력형 빈칸/채점 스타일 */
+    .blank{display:inline-flex; align-items:center; gap:6px; margin:0 2px}
+    .blank .first{min-width:0.6em; text-align:center}
+    .blank input{background:#0b1220; border:1px solid #334155; color:#e5e7eb; border-radius:8px; padding:2px 6px; font-size:18px; line-height:1.4; width:auto}
+    .blank input.good{border-color:var(--good); box-shadow:0 0 0 2px rgba(52,211,153,.15) inset}
+    .blank input.bad{border-color:var(--bad); box-shadow:0 0 0 2px rgba(248,113,113,.12) inset}
+    .score{font-weight:700}
+    @media (max-width:760px){.g2{grid-template-columns:1fr}}
+    .hidden{display:none}
+    .screen-title{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  </style>
 </head>
-
 <body>
-    <div class="wrap">
-        <div class="card"> <!-- 공통 헤더 -->
-            <div class="screen-title">
-                <h1>CSV 영문 단어 가리기 퀴즈</h1>
-                <div class="row"> <span class="pill">총 문장 수: <span id="totalCnt">0</span></span> </div>
-            </div>
-            <p class="sub">동일 폴더에 <span class="badge">test.csv</span>가 있으면 자동으로 로드합니다. 없으면 CSV를 직접 선택하세요. 헤더: <span
-                    class="kbd">일련번호</span>, <span class="kbd">영문</span>, <span class="kbd">번역</span> (또는 <span
-                    class="kbd">id</span>, <span class="kbd">english</span>, <span class="kbd">translation</span>).</p>
-            <!-- # 화면 1: 시작 화면 -->
-            <section id="screen1">
-                <div class="grid g2">
-                    <div class="box">
-                        <div class="row"> <input id="csvFile" type="file" accept=".csv" /> <button id="btnDemo"
-                                class="ghost">데모 로드</button> </div>
-                        <div class="row" style="margin-top:10px"> <label for="level">가리기 난이도: <span id="levelLabel"
-                                    class="hint">30%</span></label> <input id="level" class="range" type="range"
-                                min="10" max="80" step="5" value="30" /> </div>
-                        <div class="row" style="margin-top:6px"> <label><input id="keepFirst" type="checkbox" checked />
-                                단어 첫 글자는 보이기</label> <label style="margin-left:14px"><input id="minLen" type="number"
-                                    min="1" max="10" value="3" style="width:64px;"> 글자 이상만 가리기</label> </div>
-                    </div>
-                    <div class="box">
-                        <div class="row"> <button id="btnPick" class="primary" disabled>문제 내기</button> </div>
-                    </div>
-                </div>
-                <div style="height:14px"></div>
-                <details>
-                    <summary>사용법</summary>
-                    <div class="content">
-                        <ol>
-                            <li>동일 폴더의 <b>test.csv</b>가 있으면 자동으로 로드됩니다. 없다면 파일을 직접 선택하거나 <b>데모 로드</b>를 사용하세요.</li>
-                            <li>설정을 조정한 뒤 <b>문제 내기</b>를 눌러 퀴즈 화면으로 이동합니다.</li>
-                        </ol>
-                        <p class="footer">CSV는 UTF-8 권장. 헤더 자동 인식(한/영).</p>
-                    </div>
-                </details>
-            </section> <!-- # 화면 2: 퀴즈 화면 -->
-            <section id="screen2" class="hidden">
-                <div class="box">
-                    <div class="row"> <button id="btnGrade" disabled>채점</button> <button id="btnReveal" disabled>정답
-                            보기</button> <button id="btnNext" class="primary" disabled>다음 문제</button> <button
-                            id="btnHome" class="ghost">첫화면으로</button> </div>
-                    <div class="row" style="margin-top:6px"> <span class="pill">선택된 일련번호: <span id="selId"
-                                class="id">—</span></span> <span class="pill">정답: <span id="scoreCorrect"
-                                class="score">0</span>/<span id="scoreTotal">0</span></span> </div>
-                </div>
-                <div style="height:14px"></div>
-                <details open>
-                    <summary>문제 영역</summary>
-                    <div class="content">
-                        <div>
-                            <div class="muted">번역(힌트)</div>
-                            <div id="ko" class="big">—</div>
-                        </div>
-                        <div style="height:12px"></div>
-                        <div>
-                            <div class="muted">영문(빈칸 채우기)</div>
-                            <div id="enMask" class="big">—</div>
-                        </div>
-                        <div id="answerWrap" style="display:none; margin-top:12px">
-                            <div class="muted">정답(원문 영문)</div>
-                            <div id="enFull" class="big"></div>
-                        </div>
-                    </div>
-                </details>
-                <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
-            </section>
-        </div>
-    </div>
-    <script> (function () { const $ = sel => document.querySelector(sel); const state = { rows: [], cols: { id: "일련번호", en: "영문", ko: "번역" }, current: null }; // 화면 전환 const screen1 = $('#screen1'); const screen2 = $('#screen2'); function showScreen(which){ if(which===1){ screen1.classList.remove('hidden'); screen2.classList.add('hidden'); } else { screen2.classList.remove('hidden'); screen1.classList.add('hidden'); } } // 요소 참조 const csvInput = $('#csvFile'); const btnDemo = $('#btnDemo'); const btnPick = $('#btnPick'); const btnReveal = $('#btnReveal'); const btnNext = $('#btnNext'); const btnGrade = $('#btnGrade'); const btnHome = $('#btnHome'); const ko = $('#ko'); const enMask = $('#enMask'); const enFull = $('#enFull'); const level = $('#level'); const levelLabel = $('#levelLabel'); const keepFirst = $('#keepFirst'); const minLen = $('#minLen'); const selId = $('#selId'); const totalCnt = $('#totalCnt'); const answerWrap = $('#answerWrap'); const scoreCorrect = $('#scoreCorrect'); const scoreTotal = $('#scoreTotal'); level.addEventListener('input', () => levelLabel.textContent = level.value + '%'); // 파일 선택 핸들러 csvInput.addEventListener('change', async (e)=>{ const file = e.target.files?.[0]; if(!file) return; const text = await file.text(); handleCSV(text); }); // 동일 폴더의 test.csv 자동 로드 시도 window.addEventListener('DOMContentLoaded', async ()=>{ try{ const res = await fetch('./test.csv', {cache:'no-store'}); if(res.ok){ const txt = await res.text(); if(/,/.test(txt)){ handleCSV(txt); toast('./test.csv 자동 로드됨'); } } }catch(err){ /* 파일 없으면 무시 */ } }); // 엔터키로 채점: 마지막 입력칸이면 gradeCurrent(), 아니면 다음칸 포커스 document.querySelector('#enMask').addEventListener('keydown', (e)=>{ if(e.key !== 'Enter') return; const t = e.target; if(!(t instanceof HTMLInputElement)) return; if(!t.matches('input[data-ans]')) return; e.preventDefault(); // 폼 제출/개행 방지 const inputs = Array.from(document.querySelectorAll('input[data-ans]')); const idx = inputs.indexOf(t); if(idx === inputs.length - 1){ showAnswer(); gradeCurrent(); // 🔹마지막 칸이면 채점 실행 document.activeElement.blur(); }else if(idx > -1){ inputs[idx + 1].focus(); // 다음 칸으로 이동 } }); // 데모 로드 btnDemo.addEventListener('click', ()=>{ const demo = 일련번호,영문,번역 1,"Learning a new language takes time and practice.","새 언어를 배우려면 시간과 연습이 필요해요." 2,"Consistency beats intensity when building habits.","습관을 만들 때는 강도보다 꾸준함이 더 중요해요." 3,"Failure is not the opposite of success; it is part of success.","실패는 성공의 반대가 아니라 성공의 일부예요." 4,"Small daily improvements lead to stunning long-term results.","작은 일상의 개선이 놀라운 장기적 성과로 이어집니다."; handleCSV(demo); }); // 화면1: 문제 내기 → 퀴즈 화면 전환 btnPick.addEventListener('click', ()=>{ if(!state.rows.length){ toast('먼저 CSV를 로드하세요'); return; } pickQuestion(); showScreen(2); }); // 화면2: 다음/정답/채점/첫화면으로 btnNext.addEventListener('click', pickQuestion); //btnReveal.addEventListener('click', ()=>{ // if(!state.current) return; // enFull.textContent = state.current[state.cols.en] || ''; // answerWrap.style.display = 'block'; //}); btnReveal.addEventListener('click', showAnswer); btnGrade.addEventListener('click', gradeCurrent); btnHome.addEventListener('click', ()=>{ showScreen(1); }); // CSV 로드 처리 function handleCSV(text){ try{ const rows = parseCSV(text); if(!rows.length) throw new Error('빈 CSV'); // 헤더 매핑 (한국어 기본, 영문 대안 허용) const header = Object.keys(rows[0]); const norm = h => h.replace(/\s+/g,'').toLowerCase(); const byNorm = Object.fromEntries(header.map(h=>[norm(h), h])); const idKey = byNorm['일련번호'] || byNorm['id'] || header[0]; const enKey = byNorm['영문'] || byNorm['english'] || header[1]; const koKey = byNorm['번역'] || byNorm['translation'] || header[2]; state.cols = { id: idKey, en: enKey, ko: koKey }; state.rows = rows.filter(r=> (r[enKey]??'').toString().trim() ); totalCnt.textContent = state.rows.length; btnPick.disabled = !state.rows.length; // 화면2 버튼 초기화 btnNext.disabled = !state.rows.length; btnReveal.disabled = true; btnGrade.disabled = true; // 문제 영역 초기화 ko.textContent = '—'; enMask.textContent = '—'; enFull.textContent = ''; answerWrap.style.display = 'none'; selId.textContent = '—'; scoreCorrect.textContent = '0'; scoreTotal.textContent = '0'; toast(불러오기 완료: ${state.rows.length}건); }catch(err){ alert('CSV 파싱 오류: ' + err.message); } } function showAnswer(){ if(!state.current) return; enFull.textContent = state.current[state.cols.en] || ''; answerWrap.style.display = 'block'; } // 문제 생성 function pickQuestion(){ if(!state.rows.length) return; const idx = Math.floor(Math.random() * state.rows.length); const row = state.rows[idx]; state.current = row; const idv = row[state.cols.id] ?? (idx+1); const en = (row[state.cols.en]||'').toString(); const koText = (row[state.cols.ko]||'').toString(); const maskedInfo = maskEnglish(en, { ratio: Number(level.value)/100, keepFirst: keepFirst.checked, minLen: Math.max(1, Number(minLen.value)||1) }); ko.textContent = koText; enMask.innerHTML = maskedInfo.html; // 입력 포함된 HTML enFull.textContent = ''; answerWrap.style.display = 'none'; selId.textContent = idv; // 스코어 초기화 scoreCorrect.textContent = '0'; scoreTotal.textContent = String(maskedInfo.totalBlanks); btnReveal.disabled = false; btnGrade.disabled = maskedInfo.totalBlanks === 0; btnNext.disabled = false; // 첫 번째 빈칸 포커스 const firstBlank = document.querySelector('input[data-ans]'); if(firstBlank) firstBlank.focus(); } // 채점 function gradeCurrent(){ const inputs = Array.from(document.querySelectorAll('input[data-ans]')); if(inputs.length===0){ toast('채점할 빈칸이 없습니다'); return; } let correct = 0; for(const inp of inputs){ const ans = inp.getAttribute('data-ans') || ''; const keep = inp.getAttribute('data-keepfirst')==='1'; const user = (inp.value||'').trim(); const fullUser = keep ? ((ans[0]||'') + user) : user; if(fullUser.localeCompare(ans, undefined, {sensitivity:'accent'})===0){ inp.classList.remove('bad'); inp.classList.add('good'); correct++; }else{ inp.classList.remove('good'); inp.classList.add('bad'); } } scoreCorrect.textContent = String(correct); scoreTotal.textContent = String(inputs.length); } // 마스킹 로직 function maskEnglish(sentence, opt){ const {ratio, keepFirst, minLen} = opt; // 토큰을 단어/공백/구두점으로 분리 const tokens = sentence.match(/\w+|\s+|[^\w\s]/g) || [sentence]; const wordsIdx = tokens .map((t,i)=>(/^[A-Za-z][A-Za-z\d']*$/i.test(t) && t.length>=minLen ? i : -1)) .filter(i=>i>=0); const hideCount = Math.max(1, Math.floor(wordsIdx.length * ratio)); shuffle(wordsIdx); const hideSet = new Set(wordsIdx.slice(0, hideCount)); let blanks = 0; const out = tokens.map((t,i)=>{ if(!hideSet.has(i)) return escapeHTML(t); blanks++; const first = keepFirst ? t[0] : ''; const expectLen = keepFirst ? Math.max(1, t.length-1) : t.length; return <span class="blank"><span class="first">${escapeHTML(first)}</span><input type="text" data-ans="${escapeHTML(t)}" data-keepfirst="${keepFirst?1:0}" size="${Math.min(24, Math.max(2, expectLen))}" autocomplete="off" spellcheck="false"/></span>; }); return { html: out.join(''), totalBlanks: blanks }; } // 유틸 function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } } function escapeHTML(s){ return s.replace(/[&<>\"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;','\'':'&#39;'}[c]) ); } // CSV 파서 function parseCSV(text){ const lines = text.replace(/\uFEFF/, '').split(/\r?\n/).filter(l=>l.trim().length>0); if(lines.length===0) return []; const header = splitCSVLine(lines[0]); const rows = []; for(let i=1;i<lines.length;i++){ const cols = splitCSVLine(lines[i]); const obj = {}; for(let j=0;j<header.length;j++) obj[header[j]] = cols[j] ?? ''; rows.push(obj); } return rows; } function splitCSVLine(line){ const out = []; let cur = ''; let inQ = false; for(let i=0;i<line.length;i++){ const ch = line[i]; if(inQ){ if(ch=='"'){ if(line[i+1]=='"'){ cur+='"'; i++; } else { inQ=false; } } else cur+=ch; } else { if(ch=='"') inQ = true; else if(ch==','){ out.push(cur); cur=''; } else cur+=ch; } } out.push(cur); return out.map(s=>s.trim()); } // 토스트 function toast(msg){ const el=document.createElement('div'); el.textContent=msg; el.style.position='fixed'; el.style.left='50%'; el.style.top='18px'; el.style.transform='translateX(-50%)'; el.style.background='#0b1220'; el.style.border='1px solid #1f2937'; el.style.padding='8px 12px'; el.style.borderRadius='10px'; el.style.color='#cbd5e1'; el.style.boxShadow='0 10px 20px rgba(0,0,0,.35)'; document.body.appendChild(el); setTimeout(()=>{ el.remove(); }, 1600); } })(); </script>
-</body>
+  <div class="wrap">
+    <div class="card">
 
+      <!-- 공통 헤더 -->
+      <div class="screen-title">
+        <h1>CSV 영문 단어 가리기 퀴즈</h1>
+        <div class="row">
+          <span class="pill">총 문장 수: <span id="totalCnt">0</span></span>
+        </div>
+      </div>
+      <p class="sub">동일 폴더에 <span class="badge">test.csv</span>가 있으면 자동으로 로드합니다. 없으면 CSV를 직접 선택하세요. 헤더: <span class="kbd">일련번호</span>, <span class="kbd">영문</span>, <span class="kbd">번역</span> (또는 <span class="kbd">id</span>, <span class="kbd">english</span>, <span class="kbd">translation</span>).</p>
+
+      <!-- # 화면 1: 시작 화면 -->
+      <section id="screen1">
+        <div class="grid g2">
+          <div class="box">
+            <div class="row">
+              <input id="csvFile" type="file" accept=".csv" />
+              <button id="btnDemo" class="ghost">데모 로드</button>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
+              <input id="level" class="range" type="range" min="10" max="80" step="5" value="30"/>
+            </div>
+            <div class="row" style="margin-top:6px">
+              <label><input id="keepFirst" type="checkbox" checked/> 단어 첫 글자는 보이기</label>
+              <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3" style="width:64px;"> 글자 이상만 가리기</label>
+            </div>
+          </div>
+          <div class="box">
+            <div class="row">
+              <button id="btnPick" class="primary" disabled>문제 내기</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+        <details>
+          <summary>사용법</summary>
+          <div class="content">
+            <ol>
+              <li>동일 폴더의 <b>test.csv</b>가 있으면 자동으로 로드됩니다. 없다면 파일을 직접 선택하거나 <b>데모 로드</b>를 사용하세요.</li>
+              <li>설정을 조정한 뒤 <b>문제 내기</b>를 눌러 퀴즈 화면으로 이동합니다.</li>
+            </ol>
+            <p class="footer">CSV는 UTF-8 권장. 헤더 자동 인식(한/영).</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- # 화면 2: 퀴즈 화면 -->
+      <section id="screen2" class="hidden">
+        <div class="box">
+          <div class="row">
+            <button id="btnGrade" disabled>채점</button>
+            <button id="btnReveal" disabled>정답 보기</button>
+            <button id="btnNext" class="primary" disabled>다음 문제</button>
+            <button id="btnHome" class="ghost">첫화면으로</button>
+          </div>
+          <div class="row" style="margin-top:6px">
+            <span class="pill">선택된 일련번호: <span id="selId" class="id">—</span></span>
+            <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span id="scoreTotal">0</span></span>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <details open>
+          <summary>문제 영역</summary>
+          <div class="content">
+            <div>
+              <div class="muted">번역(힌트)</div>
+              <div id="ko" class="big">—</div>
+            </div>
+            <div style="height:12px"></div>
+            <div>
+              <div class="muted">영문(빈칸 채우기)</div>
+              <div id="enMask" class="big">—</div>
+            </div>
+            <div id="answerWrap" style="display:none; margin-top:12px">
+              <div class="muted">정답(원문 영문)</div>
+              <div id="enFull" class="big"></div>
+            </div>
+          </div>
+        </details>
+        <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
+      </section>
+
+    </div>
+  </div>
+
+<script>
+(function(){
+  const $ = sel => document.querySelector(sel);
+  const state = { rows: [], cols: {id:"일련번호", en:"영문", ko:"번역"}, current: null };
+
+  // 화면 전환
+  const screen1 = $('#screen1');
+  const screen2 = $('#screen2');
+  function showScreen(which){
+    if(which===1){ screen1.classList.remove('hidden'); screen2.classList.add('hidden'); }
+    else { screen2.classList.remove('hidden'); screen1.classList.add('hidden'); }
+  }
+
+  // 요소 참조
+  const csvInput = $('#csvFile');
+  const btnDemo = $('#btnDemo');
+  const btnPick = $('#btnPick');
+  const btnReveal = $('#btnReveal');
+  const btnNext = $('#btnNext');
+  const btnGrade = $('#btnGrade');
+  const btnHome = $('#btnHome');
+  const ko = $('#ko');
+  const enMask = $('#enMask');
+  const enFull = $('#enFull');
+  const level = $('#level');
+  const levelLabel = $('#levelLabel');
+  const keepFirst = $('#keepFirst');
+  const minLen = $('#minLen');
+  const selId = $('#selId');
+  const totalCnt = $('#totalCnt');
+  const answerWrap = $('#answerWrap');
+  const scoreCorrect = $('#scoreCorrect');
+  const scoreTotal = $('#scoreTotal');
+
+  level.addEventListener('input', () => levelLabel.textContent = level.value + '%');
+
+  // 파일 선택 핸들러
+  csvInput.addEventListener('change', async (e)=>{
+    const file = e.target.files?.[0];
+    if(!file) return;
+    const text = await file.text();
+    handleCSV(text);
+  });
+
+  // 엔터키로 채점: 마지막 입력칸이면 gradeCurrent(), 아니면 다음칸 포커스
+document.querySelector('#enMask').addEventListener('keydown', (e)=>{
+  if(e.key !== 'Enter') return;
+  const t = e.target;
+  if(!(t instanceof HTMLInputElement)) return;
+  if(!t.matches('input[data-ans]')) return;
+
+  e.preventDefault(); // 폼 제출/개행 방지
+  const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
+  const idx = inputs.indexOf(t);
+  if(idx === inputs.length - 1){
+    document.activeElement.blur();
+    gradeCurrent();                 // 🔹마지막 칸이면 채점 실행
+  }else if(idx > -1){
+    inputs[idx + 1].focus();        // 다음 칸으로 이동
+  }
+});
+
+  // 동일 폴더의 test.csv 자동 로드 시도
+  window.addEventListener('DOMContentLoaded', async ()=>{
+    try{
+      const res = await fetch('./test.csv', {cache:'no-store'});
+      if(res.ok){
+        const txt = await res.text();
+        if(/,/.test(txt)){
+          handleCSV(txt);
+          toast('./test.csv 자동 로드됨');
+        }
+      }
+    }catch(err){ /* 파일 없으면 무시 */ }
+  });
+
+  // 데모 로드
+  btnDemo.addEventListener('click', ()=>{
+    const demo = `일련번호,영문,번역
+1,"Learning a new language takes time and practice.","새 언어를 배우려면 시간과 연습이 필요해요."
+2,"Consistency beats intensity when building habits.","습관을 만들 때는 강도보다 꾸준함이 더 중요해요."
+3,"Failure is not the opposite of success; it is part of success.","실패는 성공의 반대가 아니라 성공의 일부예요."
+4,"Small daily improvements lead to stunning long-term results.","작은 일상의 개선이 놀라운 장기적 성과로 이어집니다."`;
+    handleCSV(demo);
+  });
+
+  // 화면1: 문제 내기 → 퀴즈 화면 전환
+  btnPick.addEventListener('click', ()=>{
+    if(!state.rows.length){ toast('먼저 CSV를 로드하세요'); return; }
+    pickQuestion();
+    showScreen(2);
+  });
+
+  // 화면2: 다음/정답/채점/첫화면으로
+  btnNext.addEventListener('click', pickQuestion);
+  btnReveal.addEventListener('click', showAnswer);
+  btnGrade.addEventListener('click', gradeCurrent);
+  btnHome.addEventListener('click', ()=>{ showScreen(1); });
+
+  function showAnswer(){
+    if(!state.current) return;
+    enFull.textContent = state.current[state.cols.en] || '';
+    answerWrap.style.display = 'block';
+  }
+
+  // CSV 로드 처리
+  function handleCSV(text){
+    try{
+      const rows = parseCSV(text);
+      if(!rows.length) throw new Error('빈 CSV');
+
+      // 헤더 매핑 (한국어 기본, 영문 대안 허용)
+      const header = Object.keys(rows[0]);
+      const norm = h => h.replace(/\s+/g,'').toLowerCase();
+      const byNorm = Object.fromEntries(header.map(h=>[norm(h), h]));
+      const idKey = byNorm['일련번호'] || byNorm['id'] || header[0];
+      const enKey = byNorm['영문'] || byNorm['english'] || header[1];
+      const koKey = byNorm['번역'] || byNorm['translation'] || header[2];
+
+      state.cols = { id: idKey, en: enKey, ko: koKey };
+      state.rows = rows.filter(r=> (r[enKey]??'').toString().trim() );
+
+      totalCnt.textContent = state.rows.length;
+      btnPick.disabled = !state.rows.length;
+
+      // 화면2 버튼 초기화
+      btnNext.disabled = !state.rows.length;
+      btnReveal.disabled = true;
+      btnGrade.disabled = true;
+
+      // 문제 영역 초기화
+      ko.textContent = '—';
+      enMask.textContent = '—';
+      enFull.textContent = '';
+      answerWrap.style.display = 'none';
+      selId.textContent = '—';
+      scoreCorrect.textContent = '0';
+      scoreTotal.textContent = '0';
+
+      toast(`불러오기 완료: ${state.rows.length}건`);
+    }catch(err){
+      alert('CSV 파싱 오류: ' + err.message);
+    }
+  }
+
+  // 문제 생성
+  function pickQuestion(){
+    if(!state.rows.length) return;
+    const idx = Math.floor(Math.random() * state.rows.length);
+    const row = state.rows[idx];
+    state.current = row;
+
+    const idv = row[state.cols.id] ?? (idx+1);
+    const en = (row[state.cols.en]||'').toString();
+    const koText = (row[state.cols.ko]||'').toString();
+
+    const maskedInfo = maskEnglish(en, { 
+      ratio: Number(level.value)/100, 
+      keepFirst: keepFirst.checked, 
+      minLen: Math.max(1, Number(minLen.value)||1)
+    });
+
+    ko.textContent = koText;
+    enMask.innerHTML = maskedInfo.html; // 입력 포함된 HTML
+    enFull.textContent = '';
+    answerWrap.style.display = 'none';
+    selId.textContent = idv;
+
+    // 스코어 초기화
+    scoreCorrect.textContent = '0';
+    scoreTotal.textContent = String(maskedInfo.totalBlanks);
+
+    btnReveal.disabled = false;
+    btnGrade.disabled = maskedInfo.totalBlanks === 0;
+    btnNext.disabled = false;
+
+    // 첫 번째 빈칸 포커스
+    const firstBlank = document.querySelector('input[data-ans]');
+    if(firstBlank) firstBlank.focus();
+  }
+
+  // 채점
+  function gradeCurrent(){
+    const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
+    if(inputs.length===0){ toast('채점할 빈칸이 없습니다'); return; }
+    let correct = 0;
+    for(const inp of inputs){
+      const ans = inp.getAttribute('data-ans') || '';
+      const keep = inp.getAttribute('data-keepfirst')==='1';
+      const user = (inp.value||'').trim();
+      const fullUser = keep ? ((ans[0]||'') + user) : user;
+      if(fullUser.localeCompare(ans, undefined, {sensitivity:'accent'})===0){
+        inp.classList.remove('bad');
+        inp.classList.add('good');
+        correct++;
+      }else{
+        inp.classList.remove('good');
+        inp.classList.add('bad');
+      }
+    }
+    scoreCorrect.textContent = String(correct);
+    scoreTotal.textContent = String(inputs.length);
+  }
+
+  // 마스킹 로직
+  function maskEnglish(sentence, opt){
+    const {ratio, keepFirst, minLen} = opt;
+    // 토큰을 단어/공백/구두점으로 분리
+    const tokens = sentence.match(/\w+|\s+|[^\w\s]/g) || [sentence];
+    const wordsIdx = tokens
+      .map((t,i)=>(/^[A-Za-z][A-Za-z\d']*$/i.test(t) && t.length>=minLen ? i : -1))
+      .filter(i=>i>=0);
+
+    const hideCount = Math.max(1, Math.floor(wordsIdx.length * ratio));
+    shuffle(wordsIdx);
+    const hideSet = new Set(wordsIdx.slice(0, hideCount));
+
+    let blanks = 0;
+    const out = tokens.map((t,i)=>{
+      if(!hideSet.has(i)) return escapeHTML(t);
+      blanks++;
+      const first = keepFirst ? t[0] : '';
+      const expectLen = keepFirst ? Math.max(1, t.length-1) : t.length;
+      return `<span class="blank"><span class="first">${escapeHTML(first)}</span><input type="text" data-ans="${escapeHTML(t)}" data-keepfirst="${keepFirst?1:0}" size="${Math.min(24, Math.max(2, expectLen))}" autocomplete="off" spellcheck="false"/></span>`;
+    });
+
+    return { html: out.join(''), totalBlanks: blanks };
+  }
+
+  // 유틸
+  function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } }
+  function escapeHTML(s){ return s.replace(/[&<>\"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;','\'':'&#39;'}[c]) ); }
+
+  // CSV 파서
+  function parseCSV(text){
+    const lines = text.replace(/\uFEFF/, '').split(/\r?\n/).filter(l=>l.trim().length>0);
+    if(lines.length===0) return [];
+    const header = splitCSVLine(lines[0]);
+    const rows = [];
+    for(let i=1;i<lines.length;i++){
+      const cols = splitCSVLine(lines[i]);
+      const obj = {};
+      for(let j=0;j<header.length;j++) obj[header[j]] = cols[j] ?? '';
+      rows.push(obj);
+    }
+    return rows;
+  }
+
+  function splitCSVLine(line){
+    const out = [];
+    let cur = '';
+    let inQ = false;
+    for(let i=0;i<line.length;i++){
+      const ch = line[i];
+      if(inQ){
+        if(ch=='"'){
+          if(line[i+1]=='"'){ cur+='"'; i++; } else { inQ=false; }
+        } else cur+=ch;
+      } else {
+        if(ch=='"') inQ = true;
+        else if(ch==','){ out.push(cur); cur=''; }
+        else cur+=ch;
+      }
+    }
+    out.push(cur);
+    return out.map(s=>s.trim());
+  }
+
+  // 토스트
+  function toast(msg){
+    const el=document.createElement('div');
+    el.textContent=msg;
+    el.style.position='fixed'; el.style.left='50%'; el.style.top='18px'; el.style.transform='translateX(-50%)';
+    el.style.background='#0b1220'; el.style.border='1px solid #1f2937'; el.style.padding='8px 12px'; el.style.borderRadius='10px'; el.style.color='#cbd5e1'; el.style.boxShadow='0 10px 20px rgba(0,0,0,.35)';
+    document.body.appendChild(el);
+    setTimeout(()=>{ el.remove(); }, 1600);
+  }
+})();
+</script>
+</body>
 </html>
