@@ -430,7 +430,7 @@
             // 화면2: 다음/정답/채점/첫화면으로
             btnNext.addEventListener('click', pickQuestion);
             btnReveal.addEventListener('click', showAnswer);
-            btnGrade.addEventListener('click', gradeCurrent);
+            btnGrade.addEventListener('click',() => { gradeCurrent; showAnswer();});
             btnHome.addEventListener('click', () => { showScreen(1); });
 
             function showAnswer() {
@@ -536,8 +536,6 @@
                 }
                 scoreCorrect.textContent = String(correct);
                 scoreTotal.textContent = String(inputs.length);
-
-                showAnswer();
             }
 
             // 마스킹 로직
