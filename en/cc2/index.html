@@ -391,7 +391,6 @@
                 if (idx === inputs.length - 1) {
                     document.activeElement.blur();
                     gradeCurrent();                 // 🔹마지막 칸이면 채점 실행
-                    showAnswer();
                 } else if (idx > -1) {
                     inputs[idx + 1].focus();        // 다음 칸으로 이동
                 }
@@ -537,6 +536,8 @@
                 }
                 scoreCorrect.textContent = String(correct);
                 scoreTotal.textContent = String(inputs.length);
+
+                showAnswer();
             }
 
             // 마스킹 로직
