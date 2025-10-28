@@ -1,9 +1,11 @@
+/* === 모바일 우선 기본값 === */
 :root {
     --bg: #0f172a;
     --muted: #94a3b8;
     --text: #e5e7eb;
     --good: #34d399;
     --bad: #f87171;
+    --radius: 20px;
 }
 
 html,
@@ -16,39 +18,45 @@ body {
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    /* 터치 강조 제거 */
 }
 
 .wrap {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 24px
+    padding: 16px
 }
 
+/* ⬅ 모바일 패딩 줄임 */
 .card {
     background: #0b1220;
     border: 1px solid #1f2937;
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: var(--radius);
+    padding: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
 }
 
 h1 {
-    font-size: 28px;
-    margin: 0 0 14px
+    font-size: 22px;
+    margin: 0 0 12px
 }
 
+/* ⬅ 모바일 타이틀 크기 */
 p.sub {
-    margin: 0 0 18px;
-    color: var(--muted)
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 14px
 }
 
 .grid {
     display: grid;
-    gap: 16px
+    gap: 12px
 }
 
+/* ⬅ 모바일은 1열 */
 .g2 {
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr
 }
 
 .row {
@@ -59,23 +67,31 @@ p.sub {
 }
 
 input[type="file"] {
-    padding: 8px 10px;
+    padding: 10px 12px;
     background: #0b1220;
     border: 1px dashed #334155;
     border-radius: 12px;
-    color: var(--muted)
+    color: var(--muted);
+    width: 100%;
+    /* ⬅ 터치 영역 넓게 */
+    min-height: 44px;
 }
 
+/* 버튼을 모바일에서는 가로폭 꽉 차게 */
 button {
     appearance: none;
     border: none;
-    padding: 10px 14px;
+    padding: 12px 14px;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     background: #1f2937;
     color: #e5e7eb;
-    border: 1px solid #374151
+    border: 1px solid #374151;
+    flex: 1 1 calc(50% - 8px);
+    /* 2열 그리드처럼 줄바꿈 */
+    min-height: 44px;
+    /* 터치 최소 높이 권장 */
 }
 
 button.primary {
@@ -114,14 +130,15 @@ button:disabled {
     background: #0b1220;
     border: 1px solid #1f2937;
     border-radius: 16px;
-    padding: 16px
+    padding: 14px
 }
 
 .big {
-    font-size: 20px;
-    line-height: 1.6
+    font-size: 18px;
+    line-height: 1.7
 }
 
+/* ⬅ 가독성 향상 */
 .muted {
     color: var(--muted)
 }
@@ -135,11 +152,12 @@ button:disabled {
 }
 
 .range {
-    accent-color: #60a5fa
+    accent-color: #60a5fa;
+    width: 100%
 }
 
 .footer {
-    margin-top: 22px;
+    margin-top: 18px;
     color: #94a3b8;
     font-size: 12px
 }
@@ -171,10 +189,10 @@ details[open]>summary {
 }
 
 .content {
-    padding: 16px
+    padding: 12px
 }
 
-/* 입력형 빈칸/채점 스타일 */
+/* 입력형 빈칸/채점 스타일 (터치 최적화) */
 .blank {
     display: inline-flex;
     align-items: center;
@@ -183,7 +201,7 @@ details[open]>summary {
 }
 
 .blank .first {
-    min-width: 0.6em;
+    min-width: 0.7em;
     text-align: center
 }
 
@@ -191,11 +209,18 @@ details[open]>summary {
     background: #0b1220;
     border: 1px solid #334155;
     color: #e5e7eb;
-    border-radius: 8px;
-    padding: 2px 6px;
+    border-radius: 10px;
+    padding: 8px 10px;
     font-size: 18px;
     line-height: 1.4;
-    width: auto
+    width: auto;
+    min-width: 44px;
+    min-height: 40px;
+}
+
+.blank input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, .35)
 }
 
 .blank input.good {
@@ -212,12 +237,6 @@ details[open]>summary {
     font-weight: 700
 }
 
-@media (max-width:760px) {
-    .g2 {
-        grid-template-columns: 1fr
-    }
-}
-
 .hidden {
     display: none
 }
@@ -226,5 +245,61 @@ details[open]>summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px
+    gap: 8px
+}
+
+/* 퀴즈 화면 상단 버튼 줄을 모바일에서 보기 좋게 정렬 */
+#screen2 .box .row:first-child {
+    justify-content: space-between
+}
+
+#screen2 .box .row:first-child button {
+    flex: 1 1 calc(50% - 8px)
+}
+
+/* 2열 배치 */
+
+/* iOS 안전영역 대응 */
+@supports(padding:max(0px)) {
+    body {
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+}
+
+/* === 넓은 화면(태블릿/데스크톱)에서 확장 === */
+@media (min-width: 760px) {
+    .wrap {
+        padding: 24px
+    }
+
+    h1 {
+        font-size: 28px
+    }
+
+    .g2 {
+        grid-template-columns: 1fr 1fr
+    }
+
+    button {
+        flex: 0 0 auto;
+        min-width: auto
+    }
+
+    #screen2 .box .row:first-child button {
+        flex: 0 0 auto
+    }
+
+    .big {
+        font-size: 20px
+    }
+}
+
+/* 작은 화면에서만 하단 고정 액션바 */
+@media (max-width: 759px){
+  #screen2 .box .row:first-child{
+    position: sticky; bottom: -1px;   /* iOS 렌더링 버그 회피용 -1px */
+    background: #0b1220;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 5;
+  }
 }
