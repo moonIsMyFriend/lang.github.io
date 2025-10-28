@@ -297,7 +297,7 @@ details[open]>summary {
 /* 작은 화면에서만 하단 고정 액션바 */
 @media (max-width: 759px){
   #screen2 .box .row:first-child{
-    position: sticky; bottom: -1px;   /* iOS 렌더링 버그 회피용 -1px */
+    position: fixed; left:0; right:0; bottom:0;   /* iOS 렌더링 버그 회피용 -1px */
     background: #0b1220;
     padding-bottom: max(12px, env(safe-area-inset-bottom));
     z-index: 5;

@@ -97,7 +97,7 @@ export function initQuizApp(){
   // 화면2 버튼
   btnNext.addEventListener('click', pickQuestion);
   btnReveal.addEventListener('click', showAnswer);
-  btnGrade.addEventListener('click', () => {gradeCurrent; showAnswer;});
+  btnGrade.addEventListener('click', () => {showAnswer; gradeCurrent;});
   btnHome.addEventListener('click', ()=>{ showScreen(1); });
 
   // CSV 처리
