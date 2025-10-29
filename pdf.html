@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>이미지 + PDF 통합 병합기 (클라이언트 전용)</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#111827; --muted:#9ca3af; --text:#e5e7eb; --accent:#60a5fa;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Helvetica,Arial,sans-serif}
+  h1{font-size:1.2rem;margin:0 0 .5rem}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px}
+  .toolbar{
+    display:grid;gap:8px;grid-template-columns:repeat(7, minmax(120px,1fr));align-items:end;
+    background:var(--panel);padding:12px;border-radius:14px;box-shadow:0 10px 24px rgba(0,0,0,.25)
+  }
+  .control{display:flex;flex-direction:column;gap:6px}
+  label{font-size:.85rem;color:var(--muted)}
+  select,input[type="number"]{width:100%;padding:8px 10px;border-radius:10px;border:1px solid #1f2937;background:#0b1220;color:var(--text)}
+  .btn{appearance:none;border:none;padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#0b1220}
+  .btn-ghost{background:#0b1220;color:var(--text);border:1px solid #1f2937}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .drop{
+    margin-top:12px;background:#0b1220;border:2px dashed #1f2937;border-radius:14px;padding:20px;text-align:center;color:var(--muted)
+  }
+  .drop.drag{border-color:var(--accent);color:var(--accent)}
+  .list{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill, minmax(240px,1fr));gap:14px}
+  .item{
+    background:#0b1220;border:1px solid #1f2937;border-radius:14px;overflow:hidden;position:relative;display:flex;flex-direction:column
+  }
+  .thumb{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:#111827;overflow:hidden}
+  .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+  .thumb .pdf{
+    font-weight:700;background:#111827;color:#e5e7eb;display:flex;align-items:center;justify-content:center;width:100%;height:100%;
+  }
+  .bar{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:8px 10px;border-top:1px solid #1f2937}
+  .name{font-size:.85rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%}
+  .handle{cursor:grab;font-size:.85rem;color:var(--muted)}
+  .danger{color:#f87171;cursor:pointer}
+  .tips{color:var(--muted);font-size:.85rem;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>이미지 + PDF → 하나의 PDF</h1>
+
+  <div class="toolbar">
+    <div class="control">
+      <label for="paper">용지 (이미지 페이지)</label>
+      <select id="paper">
+        <option value="a4">A4 (595×842pt)</option>
+        <option value="letter">Letter (612×792pt)</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="orient">방향 (이미지 페이지)</label>
+      <select id="orient">
+        <option value="portrait">세로</option>
+        <option value="landscape">가로</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="margin">여백 (mm → pt)</label>
+      <select id="margin">
+        <option value="0">0 mm</option>
+        <option value="5">5 mm</option>
+        <option value="10" selected>10 mm</option>
+        <option value="15">15 mm</option>
+        <option value="20">20 mm</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="fit">이미지 맞춤</label>
+      <select id="fit">
+        <option value="contain" selected>맞춤(잘리지 않음)</option>
+        <option value="cover">가득 채우기(잘릴 수 있음)</option>
+        <option value="actual">원본 크기(축소 없음)</option>
+      </select>
+    </div>
+    <div class="control">
+      <label>파일 올리기</label>
+      <input type="file" id="picker" multiple accept="image/*,application/pdf" />
+    </div>
+    <div class="control">
+      <button class="btn btn-ghost" id="clearBtn">목록 비우기</button>
+    </div>
+    <div class="control">
+      <button class="btn btn-primary" id="mergeBtn">하나의 PDF로 저장</button>
+    </div>
+  </div>
+
+  <div class="drop" id="drop">
+    <strong>이미지/ PDF 파일을 드래그&드롭</strong> 하거나 위의 파일 선택으로 추가하세요.<br/>
+    아래 카드들을 드래그해 **순서를 바꾸면 그 순서대로** 병합됩니다.
+  </div>
+
+  <div class="list" id="list"></div>
+  <p class="tips">※ PDF 파일은 기본적으로 <em>원본 페이지 크기</em>를 유지해 병합합니다(서로 다른 규격 섞여도 OK).<br>
+  이미지 페이지는 선택한 용지/방향/여백/맞춤 옵션을 적용합니다.</p>
+</div>
+
+<!-- pdf-lib 로드 -->
+<script type="module">
+import { PDFDocument, StandardFonts } from "https://cdn.skypack.dev/pdf-lib@1.17.1";
+
+const mmToPt = mm => (mm / 25.4) * 72; // 1in=25.4mm, 1pt=1/72in
+const PAPER = {
+  a4: { portrait:[595.28, 841.89], landscape:[841.89, 595.28] },   // 표준 A4 pt
+  letter: { portrait:[612, 792], landscape:[792, 612] }
+};
+
+const state = { items: [] }; // {id, name, type:'image'|'pdf', file, url}
+const el = {
+  picker: document.getElementById('picker'),
+  drop: document.getElementById('drop'),
+  list: document.getElementById('list'),
+  mergeBtn: document.getElementById('mergeBtn'),
+  clearBtn: document.getElementById('clearBtn'),
+  paper: document.getElementById('paper'),
+  orient: document.getElementById('orient'),
+  margin: document.getElementById('margin'),
+  fit: document.getElementById('fit')
+};
+
+function addFiles(files){
+  const arr = Array.from(files || []);
+  for(const f of arr){
+    const ext = (f.name.split('.').pop()||'').toLowerCase();
+    const isPdf = f.type === 'application/pdf' || ext === 'pdf';
+    const isImg = f.type.startsWith('image/') || ['jpg','jpeg','png','gif','webp','bmp'].includes(ext);
+    if(!isPdf && !isImg) continue;
+    const id = crypto.randomUUID();
+    const url = URL.createObjectURL(f);
+    state.items.push({id, name:f.name, type:isPdf?'pdf':'image', file:f, url});
+  }
+  renderList();
+}
+
+el.picker.addEventListener('change', e => addFiles(e.target.files));
+['dragenter','dragover'].forEach(t=>{
+  el.drop.addEventListener(t, e=>{
+    e.preventDefault(); e.stopPropagation();
+    el.drop.classList.add('drag');
+  });
+});
+['dragleave','drop'].forEach(t=>{
+  el.drop.addEventListener(t, e=>{
+    e.preventDefault(); e.stopPropagation();
+    if(t==='drop') addFiles(e.dataTransfer.files);
+    el.drop.classList.remove('drag');
+  });
+});
+
+function renderList(){
+  el.list.innerHTML = '';
+  state.items.forEach((it, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'item';
+    card.draggable = true;
+    card.dataset.id = it.id;
+
+    const th = document.createElement('div');
+    th.className = 'thumb';
+    if(it.type==='image'){
+      const img = document.createElement('img');
+      img.src = it.url;
+      img.alt = it.name;
+      th.appendChild(img);
+    }else{
+      const div = document.createElement('div');
+      div.className='pdf';
+      div.textContent = 'PDF 문서';
+      th.appendChild(div);
+    }
+
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const name = document.createElement('div');
+    name.className = 'name';
+    name.title = it.name;
+    name.textContent = `#${idx+1} · ${it.name}`;
+    const right = document.createElement('div');
+    const handle = document.createElement('span');
+    handle.className = 'handle';
+    handle.textContent = '↕︎ 드래그';
+    const del = document.createElement('span');
+    del.className = 'danger';
+    del.textContent = '삭제';
+    del.addEventListener('click', ()=>{
+      const i = state.items.findIndex(x=>x.id===it.id);
+      if(i>=0){
+        URL.revokeObjectURL(state.items[i].url);
+        state.items.splice(i,1);
+        renderList();
+      }
+    });
+    right.append(handle, del);
+    bar.append(name, right);
+    card.append(th, bar);
+    el.list.appendChild(card);
+  });
+  enableDragSort();
+}
+
+function enableDragSort(){
+  let dragId = null;
+  el.list.querySelectorAll('.item').forEach(card=>{
+    card.addEventListener('dragstart', e=>{
+      dragId = card.dataset.id;
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragover', e=>{
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    card.addEventListener('drop', e=>{
+      e.preventDefault();
+      const targetId = card.dataset.id;
+      if(dragId && targetId && dragId!==targetId){
+        const fromIdx = state.items.findIndex(x=>x.id===dragId);
+        const toIdx = state.items.findIndex(x=>x.id===targetId);
+        const [moved] = state.items.splice(fromIdx,1);
+        state.items.splice(toIdx,0,moved);
+        renderList();
+      }
+      dragId = null;
+    });
+  });
+}
+
+el.clearBtn.addEventListener('click', ()=>{
+  state.items.forEach(it=>URL.revokeObjectURL(it.url));
+  state.items = [];
+  renderList();
+});
+
+el.mergeBtn.addEventListener('click', async ()=>{
+  if(state.items.length===0) return alert('먼저 파일을 추가하세요.');
+
+  const merged = await PDFDocument.create();
+  const font = await merged.embedFont(StandardFonts.Helvetica); // (옵션) 텍스트 필요시
+
+  // 이미지 페이지 설정
+  const paperKey = el.paper.value;  // 'a4' | 'letter'
+  const orientKey = el.orient.value; // 'portrait' | 'landscape'
+  const [baseW, baseH] = PAPER[paperKey][orientKey];
+  const marginPt = mmToPt(parseFloat(el.margin.value)||0);
+  const fitMode = el.fit.value; // contain | cover | actual
+
+  for(const it of state.items){
+    if(it.type==='pdf'){
+      // === PDF 페이지 복사 (원본 크기 유지) ===
+      const bytes = await it.file.arrayBuffer();
+      const src = await PDFDocument.load(bytes);
+      const pages = await merged.copyPages(src, src.getPageIndices());
+      pages.forEach(p => merged.addPage(p));
+      // 만약 "모든 PDF 페이지를 선택 용지 크기로 통일"하고 싶다면:
+      // 1) copyPages 대신 각 페이지를 drawPage로 새 페이지에 그리는 방식 필요(주석).
+      continue;
+    }
+
+    // === 이미지 → 새 페이지 생성 후 배치 ===
+    const fileBytes = await it.file.arrayBuffer();
+    let img, iw, ih;
+    const ext = (it.name.split('.').pop()||'').toLowerCase();
+    if(it.file.type==='image/png' || ext==='png'){
+      img = await merged.embedPng(fileBytes);
+    }else{
+      img = await merged.embedJpg(fileBytes); // webp/gif/bmp도 jpg로 시도(대부분 동작)
+    }
+    iw = img.width;
+    ih = img.height;
+
+    // 새 페이지 (이미지용) 만들기
+    const page = merged.addPage([baseW, baseH]);
+
+    const pageW = baseW, pageH = baseH;
+    const availW = Math.max(0, pageW - 2*marginPt);
+    const availH = Math.max(0, pageH - 2*marginPt);
+
+    let scale = 1, drawW = iw, drawH = ih;
+    if(fitMode==='contain'){
+      scale = Math.min(availW/iw, availH/ih);
+    }else if(fitMode==='cover'){
+      scale = Math.max(availW/iw, availH/ih);
+    }else{ // actual : 축소/확대 없음 (너무 크면 잘려 보일 수 있음)
+      scale = 1;
+    }
+    drawW = iw * scale;
+    drawH = ih * scale;
+
+    // 중앙 배치
+    const x = (pageW - drawW)/2;
+    const y = (pageH - drawH)/2;
+
+    page.drawImage(img, { x, y, width: drawW, height: drawH });
+    // (옵션) 파일명 워터마크 등:
+    // page.drawText(it.name, { x: marginPt, y: marginPt/2, size: 8, font, color: rgb(0.4,0.4,0.4) });
+  }
+
+  const bytes = await merged.save();
+  const blob = new Blob([bytes], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'merged.pdf';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
