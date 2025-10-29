@@ -16,7 +16,7 @@ export function initQuizApp(){
   const csvInput = $('#csvFile');
   const btnDemo = $('#btnDemo');
   const btnPick = $('#btnPick');
-  const btnReveal = $('#btnReveal');
+  // const btnReveal = $('#btnReveal');
   const btnNext = $('#btnNext');
   const btnGrade = $('#btnGrade');
   const btnHome = $('#btnHome');
@@ -96,7 +96,7 @@ export function initQuizApp(){
 
   // 화면2 버튼
   btnNext.addEventListener('click', pickQuestion);
-  btnReveal.addEventListener('click', showAnswer);
+  // btnReveal.addEventListener('click', showAnswer);
   btnGrade.addEventListener('click', () => {showAnswer; gradeCurrent;});
   btnHome.addEventListener('click', ()=>{ showScreen(1); });
 
@@ -121,7 +121,7 @@ export function initQuizApp(){
 
       // 화면2 버튼 초기화
       btnNext.disabled = !state.rows.length;
-      btnReveal.disabled = true;
+      // btnReveal.disabled = true;
       btnGrade.disabled = true;
 
       // 문제 영역 초기화
@@ -173,7 +173,7 @@ export function initQuizApp(){
     scoreCorrect.textContent = '0';
     scoreTotal.textContent = String(maskedInfo.totalBlanks);
 
-    btnReveal.disabled = false;
+    // btnReveal.disabled = false;
     btnGrade.disabled = maskedInfo.totalBlanks === 0;
     btnNext.disabled = false;
 
