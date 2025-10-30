@@ -78,7 +78,19 @@ export function maskEnglish(sentence, opt){
     blanks++;
     const first = keepFirst ? t[0] : '';
     const expectLen = keepFirst ? Math.max(1, t.length-1) : t.length;
-    return `<span class="blank"><span class="first">${escapeHTML(first)}</span><input type="text" data-ans="${escapeHTML(t)}" data-keepfirst="${keepFirst?1:0}" size="${Math.min(24, Math.max(2, expectLen))}" autocomplete="off" spellcheck="false"/></span>`;
+    // return `<span class="blank"><span class="first">${escapeHTML(first)}</span><input type="text" data-ans="${escapeHTML(t)}" data-keepfirst="${keepFirst?1:0}" size="${Math.min(24, Math.max(2, expectLen))}" autocomplete="off" spellcheck="false"/></span>`;
+
+    return `<span class="blank"><input 
+    type="text" 
+    data-ans="${escapeHTML(t)}" 
+    data-keepfirst="${keepFirst?1:0}" 
+    placeholder="${keepFirst ? escapeHTML(first) : ''}" 
+    size="${Math.min(24, Math.max(2, expectLen))}" 
+    autocomplete="off" 
+    spellcheck="false"
+  /></span>`;
+
+
   });
 
   return { html: out.join(''), totalBlanks: blanks };

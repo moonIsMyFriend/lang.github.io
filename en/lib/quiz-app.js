@@ -203,7 +203,25 @@ export function initQuizApp(){
       const ans = inp.getAttribute('data-ans') || '';
       const keep = inp.getAttribute('data-keepfirst')==='1';
       const user = (inp.value||'').trim();
-      const fullUser = keep ? ((ans[0]||'') + user) : user;
+      //const fullUser = keep ? ((ans[0]||'') + user) : user;
+
+      let fullUser = user;
+
+      if(keep){
+        const first = ans[0] || '';
+        if(first){
+          // 사용자가 첫 글자를 이미 썼다면 그대로 비교,
+          // 안 썼다면 자동으로 첫 글자를 보태서 비교
+          if(user.length === 0){
+            fullUser = first;                 // 빈 입력도 최소 첫 글자와 비교
+          } else if (user[0].localeCompare(first, undefined, {sensitivity:'accent'}) !== 0){
+            fullUser = first + user;       // 앞글자 안 썼으면 보태기
+          } // 앞글자 썼으면 그대로
+        }
+      }
+
+
+      
       if(fullUser.localeCompare(ans, undefined, {sensitivity:'accent'})===0){
         inp.classList.remove('bad'); inp.classList.add('good'); correct++;
       }else{
