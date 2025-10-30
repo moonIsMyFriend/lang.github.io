@@ -2,7 +2,12 @@
 import { $, toast, parseCSV, maskEnglish } from './quiz-core.js';
 
 export function initQuizApp(){
-  const state = { rows: [], cols: {id:"일련번호", en:"영문", ko:"번역"}, current: null };
+  const state = {
+  rows: [],
+  cols: { id:"일련번호", en:"영문", ko:"번역" },
+  current: null,
+  session: null  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
+};
 
   // 화면 전환
   const screen1 = $('#screen1');
@@ -32,6 +37,25 @@ export function initQuizApp(){
   const answerWrap = $('#answerWrap');
   const scoreCorrect = $('#scoreCorrect');
   const scoreTotal = $('#scoreTotal');
+  const progressNow  = $('#progressNow');
+  const progressTotal = $('#progressTotal');
+  const screen3 = $('#screen3');
+  const finalLine = $('#finalLine');
+  const btnRestart = $('#btnRestart');
+  const btnHome2 = $('#btnHome2');
+
+  if(btnRestart){
+    btnRestart.addEventListener('click', ()=>{
+      if(!state.rows.length){ showScreen(1); return; }
+      startSession(20);
+      showScreen(2);
+      renderCurrent();
+    });
+  }
+
+  if(btnHome2){
+    btnHome2.addEventListener('click', ()=>{ showScreen(1); });
+  }
 
   level.addEventListener('input', () => levelLabel.textContent = level.value + '%');
 
@@ -97,13 +121,37 @@ export function initQuizApp(){
       //   return;
       // }
     } else{
-      pickQuestion();
+      //pickQuestion();
+      startSession(20);          // 🔹20문제 세션 시작
       showScreen(2);
+      renderCurrent();           // 첫 문제 출력
     }
   });
 
   // 화면2 버튼
-  btnNext.addEventListener('click', pickQuestion);
+  //btnNext.addEventListener('click', pickQuestion);
+  btnNext.addEventListener('click', ()=>{
+    const s = state.session;
+    if(!s) return;
+
+    if(s.idx < s.total - 1){
+      s.idx += 1;
+      renderCurrent();
+    }else{
+      showResults();     // 🔹마지막 문제 다음 → 결과 화면
+    }
+  });
+
+  function showResults(){
+    const s = state.session;
+    const total = s?.total || 0;
+    const correct = s?.correctCount || 0;
+    finalLine.textContent = `총 ${total}문제 중 ${correct}문제를 맞혔습니다.`;
+    screen1.classList.add('hidden');
+    screen2.classList.add('hidden');
+    screen3.classList.remove('hidden');
+  }
+
   // btnReveal.addEventListener('click', showAnswer);
   btnGrade.addEventListener('click', () => {
     toast('btnGrade');
@@ -111,6 +159,66 @@ export function initQuizApp(){
     gradeCurrent(); 
     document.activeElement.blur();});
   btnHome.addEventListener('click', ()=>{ showScreen(1); state.rows = [];});
+
+
+  function startSession(n){
+    const N = state.rows.length;
+    const total = Math.min(n, N);
+    const order = sampleWithoutReplacement(N, total);
+    state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0 };
+    progressTotal.textContent = String(total);
+    progressNow.textContent = '1';
+  }
+
+  function sampleWithoutReplacement(N, k){
+    // 피셔-예이츠에서 k개만 뽑기
+    const arr = Array.from({length:N}, (_,i)=>i);
+    for(let i=0;i<k;i++){
+      const j = i + Math.floor(Math.random()*(N - i));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr.slice(0, k);
+  }
+
+  function renderCurrent(){
+    const s = state.session;
+    if(!s) return;
+    const rowIdx = s.order[s.idx];
+    const row = state.rows[rowIdx];
+    state.current = row;
+
+    const idv = row[state.cols.id] ?? (rowIdx+1);
+    const en = (row[state.cols.en]||'').toString();
+    const koText = (row[state.cols.ko]||'').toString();
+
+    const maskedInfo = maskEnglish(en, { 
+      ratio: Number(level.value)/100, 
+      keepFirst: keepFirst.checked, 
+      minLen: Math.max(1, Number(minLen.value)||1)
+    });
+
+    ko.textContent = koText;
+    enMask.innerHTML = maskedInfo.html;
+    enFull.textContent = '';
+    answerWrap.style.display = 'none';
+    selId.textContent = idv;
+
+    // 스코어(문장 내 빈칸 개수)
+    scoreCorrect.textContent = '0';
+    scoreTotal.textContent = String(maskedInfo.totalBlanks);
+
+    // 🔹다음 버튼은 '채점 전'엔 비활성화 (채점해야 넘어갈 수 있게)
+    btnReveal.disabled = false;
+    btnGrade.disabled = maskedInfo.totalBlanks === 0 ? false : false;
+    btnNext.disabled  = true;
+
+    // 진행도
+    progressNow.textContent = String(s.idx + 1);
+
+    const firstBlank = document.querySelector('input[data-ans]');
+    if(firstBlank) firstBlank.focus();
+  }
+
 
   // CSV 처리
   function handleCSV(text){
@@ -230,5 +338,20 @@ export function initQuizApp(){
     }
     scoreCorrect.textContent = String(correct);
     scoreTotal.textContent = String(inputs.length);
+
+    // 🔹정답 집계: 모든 빈칸을 맞춘 경우에만 그 문제를 '정답' 처리
+    const s = state.session;
+    if(s){
+      const isAllCorrect = (correct === inputs.length);
+      // 같은 문제에서 여러 번 눌러도 '처음 정답 처리'만 1점 반영
+      if(isAllCorrect && !s.scored[s.idx]){
+        s.correctCount += 1;
+        s.scored[s.idx] = true;
+      }
+    }
+
+    // 채점 후 다음 문제 이동 가능
+    btnNext.disabled = false;
+
   }
 }
