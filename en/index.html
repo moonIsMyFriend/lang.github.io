@@ -74,6 +74,10 @@
                         <span class="pill">선택된 일련번호: <span id="selId" class="id">—</span></span>
                         <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span
                                 id="scoreTotal">0</span></span>
+                    
+                        <!-- 진행도 -->
+                        <span class="pill">진행: <span id="progressNow">0</span>/<span id="progressTotal">0</span></span>
+
                     </div>
                 </div>
 
@@ -98,6 +102,19 @@
                     </div>
                 </details>
                 <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
+            </section>
+
+
+            <!-- # 화면 3: 결과 화면 -->
+            <section id="screen3" class="hidden">
+            <div class="box">
+                <h2 style="margin-top:0">결과</h2>
+                <p class="big" id="finalLine">—</p>
+                <div class="row" style="margin-top:10px">
+                <button id="btnRestart" class="primary">다시 20문제 풀기</button>
+                <button id="btnHome2" class="ghost">첫화면으로</button>
+                </div>
+            </div>
             </section>
 
         </div>
