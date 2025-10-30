@@ -89,16 +89,28 @@ export function initQuizApp(){
 
   // 화면1: 문제 내기 → 화면2
   btnPick.addEventListener('click', ()=>{
-    if(!state.rows.length){ toast('먼저 CSV를 로드하세요'); return; }
-    pickQuestion();
-    showScreen(2);
+    if(!state.rows.length){ 
+      tryAutoload();
+      // if(!state.rows.length){ 
+      //   console.log('csv')
+      //   toast('먼저 CSV를 로드하세요'); 
+      //   return;
+      // }
+    } else{
+      pickQuestion();
+      showScreen(2);
+    }
   });
 
   // 화면2 버튼
   btnNext.addEventListener('click', pickQuestion);
   // btnReveal.addEventListener('click', showAnswer);
-  btnGrade.addEventListener('click', () => {showAnswer; gradeCurrent;});
-  btnHome.addEventListener('click', ()=>{ showScreen(1); });
+  btnGrade.addEventListener('click', () => {
+    toast('btnGrade');
+    showAnswer(); 
+    gradeCurrent(); 
+    document.activeElement.blur();});
+  btnHome.addEventListener('click', ()=>{ showScreen(1); state.rows = [];});
 
   // CSV 처리
   function handleCSV(text){
@@ -117,12 +129,12 @@ export function initQuizApp(){
       state.rows = rows.filter(r=> (r[enKey]??'').toString().trim() );
 
       totalCnt.textContent = state.rows.length;
-      btnPick.disabled = !state.rows.length;
+      btnPick.disabled = false; //!state.rows.length;
 
       // 화면2 버튼 초기화
       btnNext.disabled = !state.rows.length;
       // btnReveal.disabled = true;
-      btnGrade.disabled = true;
+      btnGrade.disabled = false;
 
       // 문제 영역 초기화
       ko.textContent = '—';
@@ -174,7 +186,7 @@ export function initQuizApp(){
     scoreTotal.textContent = String(maskedInfo.totalBlanks);
 
     // btnReveal.disabled = false;
-    btnGrade.disabled = maskedInfo.totalBlanks === 0;
+    btnGrade.disabled = false; //maskedInfo.totalBlanks === 0;
     btnNext.disabled = false;
 
     // 첫 번째 빈칸 포커스
