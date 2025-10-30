@@ -250,11 +250,15 @@ details[open]>summary {
 
 /* 퀴즈 화면 상단 버튼 줄을 모바일에서 보기 좋게 정렬 */
 #screen2 .box .row:first-child {
-    justify-content: space-between
+    justify-content: flex-start;   /* 🔸 좌측 정렬 */
+    gap: 10px;                     /* 버튼 간격 */
+    flex-wrap: nowrap;             /* 필요시 한 줄 고정 */
+    position: static;              /* 혹시라도 고정 안 되게 */
+    padding: 0;
 }
 
 #screen2 .box .row:first-child button {
-    flex: 1 1 calc(50% - 8px)
+    flex: 0 0 auto;                /* 🔸 버튼 너비 고정 */
 }
 
 /* 2열 배치 */
@@ -297,9 +301,20 @@ details[open]>summary {
 /* 작은 화면에서만 하단 고정 액션바 */
 @media (max-width: 759px){
   #screen2 .box .row:first-child{
-    position: fixed; left:0; right:0; bottom:0;   /* iOS 렌더링 버그 회피용 -1px */
+    justify-content: space-between;          /* 🔸 모바일에서만 좌우 벌리기 */
+    position: fixed; left:0; right:0; bottom:0;
     background: #0b1220;
+    padding: 8px 12px;
     padding-bottom: max(12px, env(safe-area-inset-bottom));
     z-index: 5;
   }
+
+  #screen2 .box .row:first-child button{
+    flex: 1 1 calc(50% - 8px);               /* 2열 배치 */
+  }
+
+  /* 버튼 바가 화면을 가리지 않도록 본문 여백 추가 */
+  .wrap { padding-bottom: 90px; }
 }
+
+.blank input::placeholder { color: #475569; opacity: 0.7; }  /* 어두운 회색 계열 */
