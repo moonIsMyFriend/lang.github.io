@@ -83,18 +83,20 @@ export function initQuizApp(){
   });
 
   // 자동 로드
-  window.addEventListener('DOMContentLoaded', tryAutoload);
+  // window.addEventListener('DOMContentLoaded', tryAutoload);
   async function tryAutoload(){
     try{
-      const res = await fetch('./test.csv', {cache:'no-store'});
-      if(res.ok){
-        const txt = await res.text();
-        if(/,/.test(txt)){
-          handleCSV(txt);
-          toast('데이터 로드됨');
-        }
-      }
-    }catch(err){ /* 없음 */ }
+      const res = await fetch('./test.csv', { cache: 'no-store' });
+      if(!res.ok) return false;
+      const txt = await res.text();
+      if(!/,/.test(txt)) return false;
+
+      handleCSV(txt);                   // ← 이 안에서 state.rows 채워짐
+      toast('데이터 로드됨');
+      return true;                      // ✅ 성공 여부 반환
+    }catch(err){
+      return false;                     // 실패
+    }
   }
 
   // 엔터키: 마지막 입력칸이면 정답/채점 + 포커스 해제
@@ -127,20 +129,25 @@ export function initQuizApp(){
   });
 
   // 화면1: 문제 내기 → 화면2
-  btnPick.addEventListener('click', ()=>{
-    if(!state.rows.length){ 
-      tryAutoload();
-      // if(!state.rows.length){ 
-      //   console.log('csv')
-      //   toast('먼저 CSV를 로드하세요'); 
-      //   return;
-      // }
-    } else{
-      //pickQuestion();
-      startSession(20);          // 🔹20문제 세션 시작
-      showScreen(2);
-      renderCurrent();           // 첫 문제 출력
+  btnPick.addEventListener('click', async ()=>{
+    // 중복 클릭 방지(선택)
+    btnPick.disabled = true;
+
+    // 아직 로드 안 됐으면 test.csv 자동 시도
+    if(!state.rows.length){
+      const ok = await tryAutoload();   // ✅ 로드 끝날 때까지 대기
+      if(!ok){
+        toast('CSV를 먼저 불러오세요 (파일 선택 또는 데모 로드)');
+        btnPick.disabled = false;
+        return;
+      }
     }
+
+    // 여기까지 왔으면 state.rows가 채워진 상태
+    startSession(20);
+    showScreen(2);
+    renderCurrent();
+    // (화면 전환되니 굳이 다시 활성화할 필요 없음)
   });
 
   // 화면2 버튼
