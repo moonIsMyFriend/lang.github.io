@@ -87,7 +87,7 @@ export function initQuizApp(){
         const txt = await res.text();
         if(/,/.test(txt)){
           handleCSV(txt);
-          toast('./test.csv 자동 로드됨');
+          toast('데이터 로드됨');
         }
       }
     }catch(err){ /* 없음 */ }
@@ -144,6 +144,8 @@ export function initQuizApp(){
   btnNext.addEventListener('click', ()=>{
     const s = state.session;
     if(!s) return;
+    
+    gradeCurrent(); 
 
     if(s.idx < s.total - 1){
       s.idx += 1;
@@ -163,7 +165,6 @@ export function initQuizApp(){
 
   // btnReveal.addEventListener('click', showAnswer);
   btnGrade.addEventListener('click', () => {
-    toast('btnGrade');
     showAnswer(); 
     gradeCurrent(); 
     document.activeElement.blur();});
@@ -171,6 +172,7 @@ export function initQuizApp(){
 
 
   function startSession(n){
+    console.log('startSession')
     const N = state.rows.length;
     const total = Math.min(n, N);
     const order = sampleWithoutReplacement(N, total);
