@@ -177,6 +177,8 @@ export function initQuizApp(){
     const total = Math.min(n, N);
     const order = sampleWithoutReplacement(N, total);
     state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0 };
+    scoreTotal.textContent = String(total);
+    scoreCorrect.textContent = '0';
     progressTotal.textContent = String(total);
     progressNow.textContent = '1';
   }
@@ -215,13 +217,16 @@ export function initQuizApp(){
     selId.textContent = idv;
 
     // 스코어(문장 내 빈칸 개수)
-    scoreCorrect.textContent = '0';
-    scoreTotal.textContent = String(maskedInfo.totalBlanks);
+    // scoreCorrect.textContent = '0';
+    // scoreTotal.textContent = String(maskedInfo.totalBlanks);
+    const correct = s?.correctCount || 0;
+    scoreCorrect.textContent = String(correct);
+    
 
     // 🔹다음 버튼은 '채점 전'엔 비활성화 (채점해야 넘어갈 수 있게)
-    btnReveal.disabled = false;
+    //btnReveal.disabled = false;
     btnGrade.disabled = maskedInfo.totalBlanks === 0 ? false : false;
-    btnNext.disabled  = true;
+    btnNext.disabled  = false;
 
     // 진행도
     progressNow.textContent = String(s.idx + 1);
@@ -301,8 +306,8 @@ export function initQuizApp(){
     selId.textContent = idv;
 
     // 스코어 초기화
-    scoreCorrect.textContent = '0';
-    scoreTotal.textContent = String(maskedInfo.totalBlanks);
+    // scoreCorrect.textContent = '0';
+    //scoreTotal.textContent = String(maskedInfo.totalBlanks);
 
     // btnReveal.disabled = false;
     btnGrade.disabled = false; //maskedInfo.totalBlanks === 0;
@@ -347,8 +352,8 @@ export function initQuizApp(){
         inp.classList.remove('good'); inp.classList.add('bad');
       }
     }
-    scoreCorrect.textContent = String(correct);
-    scoreTotal.textContent = String(inputs.length);
+    // scoreCorrect.textContent = String(correct);
+    //scoreTotal.textContent = String(inputs.length);
 
     // 🔹정답 집계: 모든 빈칸을 맞춘 경우에만 그 문제를 '정답' 처리
     const s = state.session;
