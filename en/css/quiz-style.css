@@ -210,12 +210,12 @@ details[open]>summary {
     border: 1px solid #334155;
     color: #e5e7eb;
     border-radius: 10px;
-    padding: 8px 10px;
-    font-size: 18px;
+    padding: 4px 6px;
+    font-size: 16px;
     line-height: 1.4;
     width: auto;
-    min-width: 44px;
-    min-height: 40px;
+    min-width: 32px;
+    min-height: 28px; 
 }
 
 .blank input:focus {
