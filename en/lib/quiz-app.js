@@ -245,9 +245,9 @@ export function initQuizApp(){
       const header = Object.keys(rows[0]);
       const norm = h => h.replace(/\s+/g,'').toLowerCase();
       const byNorm = Object.fromEntries(header.map(h=>[norm(h), h]));
-      const idKey = byNorm['일련번호'] || byNorm['id'] || header[0];
-      const enKey = byNorm['영문'] || byNorm['english'] || header[1];
-      const koKey = byNorm['번역'] || byNorm['translation'] || header[2];
+      const idKey =  byNorm['no'] || byNorm['일련번호'] || byNorm['id'] || header[0];
+      const enKey = byNorm['original'] || byNorm['원문'] || header[1];
+      const koKey = byNorm['trans'] || byNorm['번역'] || byNorm['translation'] || header[2];
 
       state.cols = { id: idKey, en: enKey, ko: koKey };
       state.rows = rows.filter(r=> (r[enKey]??'').toString().trim() );
@@ -269,7 +269,7 @@ export function initQuizApp(){
       scoreCorrect.textContent = '0';
       scoreTotal.textContent = '0';
 
-      toast(`불러오기 완료: ${state.rows.length}건`);
+      //toast(`불러오기 완료: ${state.rows.length}건`);
     }catch(err){
       alert('CSV 파싱 오류: ' + err.message);
     }

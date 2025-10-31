@@ -19,9 +19,15 @@
                     <span class="pill">총 문장 수: <span id="totalCnt">0</span></span>
                 </div>
             </div>
-            <p class="sub">동일 폴더에 <span class="badge">test.csv</span>가 있으면 자동으로 로드합니다. 없으면 CSV를 직접 선택하세요. 헤더: <span
-                    class="kbd">일련번호</span>, <span class="kbd">영문</span>, <span class="kbd">번역</span> (또는 <span
-                    class="kbd">id</span>, <span class="kbd">english</span>, <span class="kbd">translation</span>).</p>
+            <p class="sub">
+                원하는 문장이나 단어가 담긴 CSV 파일을 불러오면 나만의 퀴즈 만들 수 있어요.
+                단, CSV 파일의 헤더는 다음 형식을 권장합니다: 
+                <span class="kbd">no</span>, 
+                <span class="kbd">original</span>, 
+                <span class="kbd">trans</span>, 
+                <span class="kbd">pron</span>, 
+                <span class="kbd">commet</span>.
+            </p>
 
             <!-- # 화면 1: 시작 화면 -->
             <section id="screen1">
@@ -43,7 +49,7 @@
                     </div>
                     <div class="box">
                         <div class="row">
-                            <button id="btnPick" class="primary" >문제 내기</button>
+                            <button id="btnPick" class="primary" >Start</button>
                         </div>
                     </div>
                 </div>
@@ -53,10 +59,10 @@
                     <summary>사용법</summary>
                     <div class="content">
                         <ol>
-                            <li>동일 폴더의 <b>test.csv</b>가 있으면 자동으로 로드됩니다. 없다면 파일을 직접 선택하거나 <b>데모 로드</b>를 사용하세요.</li>
-                            <li>설정을 조정한 뒤 <b>문제 내기</b>를 눌러 퀴즈 화면으로 이동합니다.</li>
+                            <li>자동으로 로드되는 데이터를 이용하거나 파일을 직접 선택하세요.</li>
+                            <li>퀴즈 설정을 조정한 뒤 <b>Start</b>를 눌러 퀴즈 화면으로 이동합니다.</li>
                         </ol>
-                        <p class="footer">CSV는 UTF-8 권장. 헤더 자동 인식(한/영).</p>
+                        <p class="footer">CSV는 UTF-8 권장.</p>
                     </div>
                 </details>
             </section>
@@ -65,13 +71,13 @@
             <section id="screen2" class="hidden">
                 <div class="box">
                     <div class="row">
-                        <button id="btnGrade" disabled>채점</button>
+                        <button id="btnHome" class="ghost">Home</button>
+                        <button id="btnGrade" disabled>Check</button>
                         <!-- <button id="btnReveal" disabled>정답 보기</button> -->
-                        <button id="btnNext" class="primary" disabled>다음 문제</button>
-                        <button id="btnHome" class="ghost">첫화면으로</button>
+                        <button id="btnNext" class="primary" disabled>Next</button>
                     </div>
                     <div class="row" style="margin-top:6px">
-                        <span class="pill">선택된 일련번호: <span id="selId" class="id">—</span></span>
+                        <span class="pill">no. <span id="selId" class="id">—</span></span>
                         <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span
                                 id="scoreTotal">0</span></span>
                     
