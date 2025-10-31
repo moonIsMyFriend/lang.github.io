@@ -14,9 +14,9 @@
 
             <!-- 공통 헤더 -->
             <div class="screen-title">
-                <h1>CSV 영문 단어 가리기 퀴즈</h1>
+                <h1>빈킨 채우기 게임</h1>
                 <div class="row">
-                    <span class="pill">총 문장 수: <span id="totalCnt">0</span></span>
+                    <span class="pill">rows: <span id="totalCnt">0</span></span>
                 </div>
             </div>
             <p class="sub">
@@ -35,7 +35,7 @@
                     <div class="box">
                         <div class="row">
                             <input id="csvFile" type="file" accept=".csv" />
-                            <button id="btnDemo" class="ghost">데모 로드</button>
+                            <button id="btnDemo" class="ghost" hidden>데모 로드</button>
                         </div>
                         <div class="row" style="margin-top:10px">
                             <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
@@ -114,11 +114,11 @@
             <!-- # 화면 3: 결과 화면 -->
             <section id="screen3" class="hidden">
             <div class="box">
-                <h2 style="margin-top:0">결과</h2>
+                <h2 style="margin-top:0">Result</h2>
                 <p class="big" id="finalLine">—</p>
                 <div class="row" style="margin-top:10px">
-                <button id="btnRestart" class="primary">다시 20문제 풀기</button>
-                <button id="btnHome2" class="ghost">첫화면으로</button>
+                <button id="btnRestart" class="primary">Retry</button>
+                <button id="btnHome2" class="ghost">Home</button>
                 </div>
             </div>
             </section>
