@@ -12,9 +12,21 @@ export function initQuizApp(){
   // 화면 전환
   const screen1 = $('#screen1');
   const screen2 = $('#screen2');
+  const screen3 = $('#screen3');
+
   function showScreen(which){
-    if(which===1){ screen1.classList.remove('hidden'); screen2.classList.add('hidden'); }
-    else { screen2.classList.remove('hidden'); screen1.classList.add('hidden'); }
+    // 모두 숨기고 필요한 화면만 표시
+    screen1.classList.add('hidden');
+    screen2.classList.add('hidden');
+    screen3.classList.add('hidden');
+
+    if(which === 1){
+      screen1.classList.remove('hidden');
+    } else if(which === 2){
+      screen2.classList.remove('hidden');
+    } else if(which === 3){
+      screen3.classList.remove('hidden');
+    }
   }
 
   // 요소
@@ -39,7 +51,6 @@ export function initQuizApp(){
   const scoreTotal = $('#scoreTotal');
   const progressNow  = $('#progressNow');
   const progressTotal = $('#progressTotal');
-  const screen3 = $('#screen3');
   const finalLine = $('#finalLine');
   const btnRestart = $('#btnRestart');
   const btnHome2 = $('#btnHome2');
@@ -147,9 +158,7 @@ export function initQuizApp(){
     const total = s?.total || 0;
     const correct = s?.correctCount || 0;
     finalLine.textContent = `총 ${total}문제 중 ${correct}문제를 맞혔습니다.`;
-    screen1.classList.add('hidden');
-    screen2.classList.add('hidden');
-    screen3.classList.remove('hidden');
+    showScreen(3);
   }
 
   // btnReveal.addEventListener('click', showAnswer);
