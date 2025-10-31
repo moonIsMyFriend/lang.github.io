@@ -13,6 +13,7 @@ export function initQuizApp(){
   const screen1 = $('#screen1');
   const screen2 = $('#screen2');
   const screen3 = $('#screen3');
+  const sub = document.querySelector('.sub');
 
   function showScreen(which){
     // 모두 숨기고 필요한 화면만 표시
@@ -22,10 +23,13 @@ export function initQuizApp(){
 
     if(which === 1){
       screen1.classList.remove('hidden');
+      sub.style.display = '';
     } else if(which === 2){
       screen2.classList.remove('hidden');
+      sub.style.display = 'none';
     } else if(which === 3){
       screen3.classList.remove('hidden');
+      sub.style.display = 'none';
     }
   }
 
