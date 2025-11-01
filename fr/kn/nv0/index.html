@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>빈킨 채우기 게임</title>
+    <link rel="stylesheet" href="../../../en/css/quiz-style.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card">
+
+            <!-- 공통 헤더 -->
+            <div class="screen-title">
+                <h1>빈킨 채우기 게임</h1>
+                <div class="row">
+                    <span class="pill">rows: <span id="totalCnt">0</span></span>
+                </div>
+            </div>
+            <p class="sub">
+                원하는 문장이나 단어가 담긴 CSV 파일을 불러오면 나만의 퀴즈 만들 수 있어요.
+                단, CSV 파일의 헤더는 다음 형식을 권장합니다: 
+                <span class="kbd">no</span>, 
+                <span class="kbd">original</span>, 
+                <span class="kbd">trans</span>, 
+                <span class="kbd">pron</span>, 
+                <span class="kbd">commet</span>.
+            </p>
+
+            <!-- # 화면 1: 시작 화면 -->
+            <section id="screen1">
+                <div class="grid g2">
+                    <div class="box">
+                        <div class="row">
+                            <input id="csvFile" type="file" accept=".csv" />
+                            <button id="btnDemo" class="ghost" hidden>데모 로드</button>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
+                            <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
+                        </div>
+                        <div class="row" style="margin-top:6px">
+                            <label><input id="keepFirst" type="checkbox" checked /> 단어 첫 글자는 보이기</label>
+                            <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
+                                    style="width:64px;"> 글자 이상만 가리기</label>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="row">
+                            <button id="btnPick" class="primary" >Start</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height:14px"></div>
+                <details>
+                    <summary>사용법</summary>
+                    <div class="content">
+                        <ol>
+                            <li>자동으로 로드되는 데이터를 이용하거나 파일을 직접 선택하세요.</li>
+                            <li>퀴즈 설정을 조정한 뒤 <b>Start</b>를 눌러 퀴즈 화면으로 이동합니다.</li>
+                        </ol>
+                        <p class="footer">CSV는 UTF-8 권장.</p>
+                    </div>
+                </details>
+            </section>
+
+            <!-- # 화면 2: 퀴즈 화면 -->
+            <section id="screen2" class="hidden">
+                <div class="box">
+                    <div class="row">
+                        <button id="btnHome" class="ghost">Home</button>
+                        <button id="btnGrade" disabled>Check</button>
+                        <!-- <button id="btnReveal" disabled>정답 보기</button> -->
+                        <button id="btnNext" class="primary" disabled>Next</button>
+                    </div>
+                    <div class="row" style="margin-top:6px">
+                        <span class="pill">no. <span id="selId" class="id">—</span></span>
+                        <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span
+                                id="scoreTotal">0</span></span>
+                    
+                        <!-- 진행도 -->
+                        <span class="pill">진행: <span id="progressNow">0</span>/<span id="progressTotal">0</span></span>
+
+                    </div>
+                </div>
+
+                <div style="height:14px"></div>
+
+                <details open>
+                    <summary>문제 영역</summary>
+                    <div class="content">
+                        <div>
+                            <div class="muted">번역(힌트)</div>
+                            <div id="ko" class="big">—</div>
+                        </div>
+                        <div style="height:12px"></div>
+                        <div>
+                            <div class="muted">영문(빈칸 채우기)</div>
+                            <div id="enMask" class="big">—</div>
+                        </div>
+                        <div id="answerWrap" style="display:none; margin-top:12px">
+                            <div class="muted">정답(원문 영문)</div>
+                            <div id="enFull" class="big"></div>
+                        </div>
+                    </div>
+                </details>
+                <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
+            </section>
+
+
+            <!-- # 화면 3: 결과 화면 -->
+            <section id="screen3" class="hidden">
+            <div class="box">
+                <h2 style="margin-top:0">Result</h2>
+                <p class="big" id="finalLine">—</p>
+                <div class="row" style="margin-top:10px">
+                <button id="btnRestart" class="primary">Retry</button>
+                <button id="btnHome2" class="ghost">Home</button>
+                </div>
+            </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script type="module">
+      import { initQuizApp } from '../../../en/lib/quiz-app.js';
+      // 페이지 로드 후 앱 초기화
+      window.addEventListener('DOMContentLoaded', () => {
+        initQuizApp();
+      });
+    </script>
+
+</body>
+
+</html>
