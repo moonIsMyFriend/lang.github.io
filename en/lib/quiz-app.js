@@ -4,7 +4,7 @@ import { $, toast, parseCSV, maskEnglish } from './quiz-core.js';
 export function initQuizApp(){
   const state = {
   rows: [],
-  cols: { id:"일련번호", en:"영문", ko:"번역" },
+  cols: { id:"일련번호", en:"영문", ko:"번역", pron:"발음" },
   current: null,
   session: null  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
 };
@@ -259,8 +259,12 @@ export function initQuizApp(){
       const idKey =  byNorm['no'] || byNorm['일련번호'] || byNorm['id'] || header[0];
       const enKey = byNorm['original'] || byNorm['원문'] || header[1];
       const koKey = byNorm['trans'] || byNorm['번역'] || byNorm['translation'] || header[2];
+      const groupKey   = byNorm['group']     || byNorm['그룹']     || header[3];
+      const speakerKey = byNorm['speaker']   || byNorm['화자']     || header[4];
+      const pronKey    = byNorm['pron']      || byNorm['발음']     || header[5];
 
-      state.cols = { id: idKey, en: enKey, ko: koKey };
+
+      state.cols = { id: idKey, en: enKey, ko: koKey, group:groupKey, speaker: speakerKey, pron: pronKey };
       state.rows = rows.filter(r=> (r[enKey]??'').toString().trim() );
 
       totalCnt.textContent = state.rows.length;
@@ -286,10 +290,25 @@ export function initQuizApp(){
     }
   }
 
+  // // 정답 표시
+  // function showAnswer(){
+  //   if(!state.current) return;
+  //   enFull.innerHTML  = state.current[state.cols.en] +'<br><div style="color:#94a3b8; font-size:14px; margin-top:6px; line-height:1.5; font-style:italic;">[' + state.current[state.cols.pron] + ']</div>' || '';
+  //   answerWrap.style.display = 'block';
+  // }
   // 정답 표시
   function showAnswer(){
     if(!state.current) return;
-    enFull.textContent = state.current[state.cols.en] || '';
+
+    const en = state.current[state.cols.en] || '';
+    const pron = state.current[state.cols.pron] || '';
+
+    // pron이 있을 때만 발음 div 추가
+    const pronHtml = pron 
+      ? `<div style="color:#94a3b8; font-size:14px; margin-top:6px; line-height:1.5; font-style:italic;">[${pron}]</div>`
+      : '';
+
+    enFull.innerHTML = en + pronHtml;
     answerWrap.style.display = 'block';
   }
 
