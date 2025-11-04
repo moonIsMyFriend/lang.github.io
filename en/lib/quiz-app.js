@@ -58,6 +58,7 @@ export function initQuizApp(){
   const finalLine = $('#finalLine');
   const btnRestart = $('#btnRestart');
   const btnHome2 = $('#btnHome2');
+  const btnSample = document.querySelector('#btnSample');
 
   if(btnRestart){
     btnRestart.addEventListener('click', ()=>{
@@ -70,6 +71,28 @@ export function initQuizApp(){
 
   if(btnHome2){
     btnHome2.addEventListener('click', ()=>{ showScreen(1); });
+  }
+
+  if (btnSample) {
+    btnSample.addEventListener('click', async ()=>{
+      try{
+        const res = await fetch('./test.csv', {cache:'no-store'});
+        if(!res.ok) throw new Error('파일 없음');
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'test.csv';   // 다운로드 파일명
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        toast('test.csv 다운로드 완료');
+      }catch(err){
+        toast('⚠️ test.csv 파일을 찾을 수 없습니다');
+      }
+    });
   }
 
   level.addEventListener('input', () => levelLabel.textContent = level.value + '%');
