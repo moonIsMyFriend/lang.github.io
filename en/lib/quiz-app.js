@@ -161,11 +161,12 @@ export function initQuizApp(){
       const ok = await tryAutoload();   // ✅ 로드 끝날 때까지 대기
       if(!ok){
         toast('CSV를 먼저 불러오세요 (파일 선택 또는 데모 로드)');
-        btnPick.disabled = false;
+        // btnPick.disabled = false;
         return;
       }
     }
-
+    
+    btnPick.disabled = false
     // 여기까지 왔으면 state.rows가 채워진 상태
     startSession(20);
     showScreen(2);
