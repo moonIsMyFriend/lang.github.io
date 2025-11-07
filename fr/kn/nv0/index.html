@@ -38,6 +38,13 @@
                             <button id="btnDemo" class="ghost" hidden>데모 로드</button>
                             <button id="btnSample" class="ghost">샘플 CSV 다운로드</button>
                         </div>
+
+                        <div class="row" style="margin-top:10px">
+                            <span class="muted">문제 출제 방식:</span>
+                            <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
+                            <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
+                        </div>
+
                         <div class="row" style="margin-top:10px">
                             <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
                             <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />

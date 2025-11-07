@@ -59,11 +59,14 @@ export function initQuizApp(){
   const btnRestart = $('#btnRestart');
   const btnHome2 = $('#btnHome2');
   const btnSample = document.querySelector('#btnSample');
+  const modeRandom = document.querySelector('#modeRandom');
+  const modeSeq = document.querySelector('#modeSeq');
 
   if(btnRestart){
     btnRestart.addEventListener('click', ()=>{
       if(!state.rows.length){ showScreen(1); return; }
-      startSession(20);
+      const mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
+      startSession(20, mode);
       showScreen(2);
       renderCurrent();
     });
@@ -164,11 +167,12 @@ export function initQuizApp(){
         // btnPick.disabled = false;
         return;
       }
+      
     }
     
     btnPick.disabled = false
-    // 여기까지 왔으면 state.rows가 채워진 상태
-    startSession(20);
+    const mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
+    startSession(20, mode);     // 🔸 모드 전달
     showScreen(2);
     renderCurrent();
     // (화면 전환되니 굳이 다시 활성화할 필요 없음)
@@ -188,6 +192,7 @@ export function initQuizApp(){
     }else{
       showResults();     // 🔹마지막 문제 다음 → 결과 화면
     }
+
   });
 
   function showResults(){
@@ -206,12 +211,21 @@ export function initQuizApp(){
   btnHome.addEventListener('click', ()=>{ showScreen(1); state.rows = [];});
 
 
-  function startSession(n){
+  function startSession(n, mode='random'){
     console.log('startSession')
     const N = state.rows.length;
-    const total = Math.min(n, N);
-    const order = sampleWithoutReplacement(N, total);
-    state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0 };
+    let total = Math.min(n, N);
+    let order;
+    if(mode === 'seq'){
+      // 순차: 앞에서부터 total개
+      total = state.rows.length;     // ✅ 전체 문장 수
+      order = Array.from({length:N}, (_,i)=> i).slice(0, total);
+    }else{
+      // 랜덤: 중복 없이 무작위 total개
+      order = sampleWithoutReplacement(N, total);
+    }
+
+    state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0, mode };
     scoreTotal.textContent = String(total);
     scoreCorrect.textContent = '0';
     progressTotal.textContent = String(total);
