@@ -61,6 +61,8 @@ export function initQuizApp(){
   const btnSample = document.querySelector('#btnSample');
   const modeRandom = document.querySelector('#modeRandom');
   const modeSeq = document.querySelector('#modeSeq');
+const practiceQuiz  = document.querySelector('#practiceQuiz');
+const practiceStudy = document.querySelector('#practiceStudy');
 
   if(btnRestart){
     btnRestart.addEventListener('click', ()=>{
@@ -169,7 +171,11 @@ export function initQuizApp(){
       }
       
     }
-    
+
+    // 🔸 연습 모드: quiz | study
+    state.practice = (practiceStudy && practiceStudy.checked) ? 'study' : 'quiz';
+    // state.practice = 'quiz';
+
     btnPick.disabled = false
     const mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
     startSession(20, mode);     // 🔸 모드 전달
@@ -252,6 +258,7 @@ export function initQuizApp(){
     const idv = row[state.cols.id] ?? (rowIdx+1);
     const en = (row[state.cols.en]||'').toString();
     const koText = (row[state.cols.ko]||'').toString();
+    const pr  = String(row[state.cols.pron] ?? '');
 
     const maskedInfo = maskEnglish(en, { 
       ratio: Number(level.value)/100, 
@@ -265,23 +272,44 @@ export function initQuizApp(){
     answerWrap.style.display = 'none';
     selId.textContent = idv;
 
-    // 스코어(문장 내 빈칸 개수)
-    // scoreCorrect.textContent = '0';
-    // scoreTotal.textContent = String(maskedInfo.totalBlanks);
-    const correct = s?.correctCount || 0;
-    scoreCorrect.textContent = String(correct);
-    
+    if(state.practice === 'study'){
+      // 🔹 학습 모드: 빈칸 없음, 정답/발음만 표시
+      enMask.innerHTML = '';  // 마스킹 없이 원문 그대로
+      const pronHtml = pr ? `<div style="color:#94a3b8; font-size:14px; margin-top:6px; line-height:1.5; font-style:italic;">[${pr}]</div>` : '';
+      enFull.innerHTML = en + pronHtml;   // 정답 영역도 같은 내용(원문+발음)
+      answerWrap.style.display = 'block';
 
-    // 🔹다음 버튼은 '채점 전'엔 비활성화 (채점해야 넘어갈 수 있게)
-    //btnReveal.disabled = false;
-    btnGrade.disabled = maskedInfo.totalBlanks === 0 ? false : false;
-    btnNext.disabled  = false;
+      // 버튼 상태
+      btnReveal.disabled = true;  // 정답보기 불필요
+      btnGrade.disabled  = true;  // 채점 없음
+      btnNext.disabled   = false; // 다음으로 이동 가능
 
-    // 진행도
-    progressNow.textContent = String(s.idx + 1);
+      // 스코어(이 문제의 빈칸 수는 0)
+      scoreCorrect.textContent = '0';
+      scoreTotal.textContent   = '0';
 
-    const firstBlank = document.querySelector('input[data-ans]');
-    if(firstBlank) firstBlank.focus();
+    } else {
+
+
+        // 스코어(문장 내 빈칸 개수)
+        // scoreCorrect.textContent = '0';
+        // scoreTotal.textContent = String(maskedInfo.totalBlanks);
+        const correct = s?.correctCount || 0;
+        scoreCorrect.textContent = String(correct);
+        
+
+        // 🔹다음 버튼은 '채점 전'엔 비활성화 (채점해야 넘어갈 수 있게)
+        //btnReveal.disabled = false;
+        btnGrade.disabled = maskedInfo.totalBlanks === 0 ? false : false;
+        btnNext.disabled  = false;
+
+        // 진행도
+        progressNow.textContent = String(s.idx + 1);
+        progressTotal.textConten = String(s.total);
+
+        const firstBlank = document.querySelector('input[data-ans]');
+        if(firstBlank) firstBlank.focus();
+    }
   }
 
 
@@ -337,7 +365,8 @@ export function initQuizApp(){
   // 정답 표시
   function showAnswer(){
     if(!state.current) return;
-
+    if(state.practice === 'study') return; // 학습 모드에선 의미 없음
+    
     const en = state.current[state.cols.en] || '';
     const pron = state.current[state.cols.pron] || '';
 

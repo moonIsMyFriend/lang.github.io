@@ -44,6 +44,15 @@
                             <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
                             <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
                         </div>
+                            <div class="row">
+                                <span class="muted">모드 선택:</span>
+                            </div>
+                            <div>
+                                <label style="margin-left:12px"><input type="radio" name="practice" id="practiceQuiz" value="quiz" checked> 퀴즈(빈칸 채우기)</label>
+                            </div>
+                            <div>
+                                <label style="margin-left:12px"><input type="radio" name="practice" id="practiceStudy" value="study"> 학습(번역/정답/발음)</label>
+                            </div>
 
                         <div class="row" style="margin-top:10px">
                             <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
@@ -108,7 +117,7 @@
                             <div id="enMask" class="big">—</div>
                         </div>
                         <div id="answerWrap" style="display:none; margin-top:12px">
-                            <div class="muted">정답</div>
+                            <div class="muted">원문</div>
                             <div id="enFull" class="big"></div>
                         </div>
                     </div>
