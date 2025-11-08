@@ -302,7 +302,8 @@ details[open]>summary {
 @media (max-width: 759px){
   #screen2 .box .row:first-child{
     justify-content: space-between;          /* 🔸 모바일에서만 좌우 벌리기 */
-    position: fixed; left:0; right:0; bottom:0;
+    /* position: fixed; left:0; right:0; bottom:0; */
+    position: sticky; bottom: -1px;   /* iOS 렌더링 버그 회피용 -1px */
     background: #0b1220;
     padding: 8px 12px;
     padding-bottom: max(12px, env(safe-area-inset-bottom));
