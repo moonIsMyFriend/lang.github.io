@@ -301,13 +301,14 @@ details[open]>summary {
 /* 작은 화면에서만 하단 고정 액션바 */
 @media (max-width: 759px){
   #screen2 .box .row:first-child{
-    justify-content: space-between;          /* 🔸 모바일에서만 좌우 벌리기 */
-    /* position: fixed; left:0; right:0; bottom:0; */
-    position: sticky; bottom: -1px;   /* iOS 렌더링 버그 회피용 -1px */
+   position: fixed;
+    left: 0; right: 0; bottom: 0;           /* 기본은 화면 맨 아래 */
+    z-index: 1000;
     background: #0b1220;
-    padding: 8px 12px;
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
-    z-index: 5;
+    border-top: 1px solid #1f2937;
+    padding: 10px 12px;
+    display: flex; gap: 8px; justify-content: space-between;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
   }
 
   #screen2 .box .row:first-child button{
