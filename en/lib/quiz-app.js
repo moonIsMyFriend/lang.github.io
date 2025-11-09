@@ -445,7 +445,9 @@ export function initQuizApp(){
   // 채점
   function gradeCurrent(){
     const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
-    if(inputs.length===0){ toast('채점할 빈칸이 없습니다'); return; }
+    if(inputs.length===0){ //toast('채점할 빈칸이 없습니다');
+      return; 
+    }
     let correct = 0;
     for(const inp of inputs){
       const ans = inp.getAttribute('data-ans') || '';
