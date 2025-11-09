@@ -51,18 +51,40 @@ export function initQuizApp(){
   const selId = $('#selId');
   const totalCnt = $('#totalCnt');
   const answerWrap = $('#answerWrap');
-  const scoreCorrect = $('#scoreCorrect');
+  // const scoreCorrect = $('#scoreCorrect');
   const scoreTotal = $('#scoreTotal');
-  const progressNow  = $('#progressNow');
-  const progressTotal = $('#progressTotal');
+  // const progressNow  = $('#progressNow');
   const finalLine = $('#finalLine');
   const btnRestart = $('#btnRestart');
   const btnHome2 = $('#btnHome2');
   const btnSample = document.querySelector('#btnSample');
-  const modeRandom = document.querySelector('#modeRandom');
   const modeSeq = document.querySelector('#modeSeq');
-const practiceQuiz  = document.querySelector('#practiceQuiz');
-const practiceStudy = document.querySelector('#practiceStudy');
+  const practiceStudy = document.querySelector('#practiceStudy');
+  const barUnified   = document.querySelector('#barUnified');
+  const barProgress  = document.querySelector('#barProgress');
+  const barCorrect   = document.querySelector('#barCorrect');
+  const barLabel    = document.querySelector('#barLabel');
+  const barTotal    = document.querySelector('#barTotal');
+
+
+  function updateUnifiedBar(){
+    const s = state.session;
+    if(!s) return;
+
+    const progressPct = Math.round(((s.idx + 1) / s.total) * 100);     // 진행 퍼센트
+    const correctPct  = Math.round((s.correctCount / s.total) * 100);  // 정답 퍼센트
+
+    if(barProgress) barProgress.style.width = progressPct + '%';
+    if(barCorrect)  barCorrect.style.width  = correctPct  + '%';
+
+    // ✅ 바 내부: 정답수
+    if(barLabel) barLabel.textContent = String(s.correctCount);
+
+    // ✅ 바 오른쪽: 전체 문항수
+    if(barTotal) barTotal.textContent = String(s.idx+1) + '/' + String(s.total);
+
+    if(barUnified)  barUnified.setAttribute('aria-valuenow', progressPct);
+  }
 
   if(btnRestart){
     btnRestart.addEventListener('click', ()=>{
@@ -195,6 +217,7 @@ const practiceStudy = document.querySelector('#practiceStudy');
     if(s.idx < s.total - 1){
       s.idx += 1;
       renderCurrent();
+      updateUnifiedBar();
     }else{
       showResults();     // 🔹마지막 문제 다음 → 결과 화면
     }
@@ -232,10 +255,12 @@ const practiceStudy = document.querySelector('#practiceStudy');
     }
 
     state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0, mode };
-    scoreTotal.textContent = String(total);
-    scoreCorrect.textContent = '0';
-    progressTotal.textContent = String(total);
-    progressNow.textContent = '1';
+    // scoreTotal.textContent = String(total);
+    // scoreCorrect.textContent = '0';
+    // progressTotal.textContent = String(total);
+    // progressNow.textContent = '1';
+
+    updateUnifiedBar();
   }
 
   function sampleWithoutReplacement(N, k){
@@ -272,6 +297,8 @@ const practiceStudy = document.querySelector('#practiceStudy');
     answerWrap.style.display = 'none';
     selId.textContent = idv;
 
+    updateUnifiedBar();
+
     if(state.practice === 'study'){
       // 🔹 학습 모드: 빈칸 없음, 정답/발음만 표시
       enMask.innerHTML = '';  // 마스킹 없이 원문 그대로
@@ -280,13 +307,13 @@ const practiceStudy = document.querySelector('#practiceStudy');
       answerWrap.style.display = 'block';
 
       // 버튼 상태
-      btnReveal.disabled = true;  // 정답보기 불필요
+      // btnReveal.disabled = true;  // 정답보기 불필요
       btnGrade.disabled  = true;  // 채점 없음
       btnNext.disabled   = false; // 다음으로 이동 가능
 
       // 스코어(이 문제의 빈칸 수는 0)
-      scoreCorrect.textContent = '0';
-      scoreTotal.textContent   = '0';
+      // scoreCorrect.textContent = '0';
+      // scoreTotal.textContent   = '0';
 
     } else {
 
@@ -294,8 +321,8 @@ const practiceStudy = document.querySelector('#practiceStudy');
         // 스코어(문장 내 빈칸 개수)
         // scoreCorrect.textContent = '0';
         // scoreTotal.textContent = String(maskedInfo.totalBlanks);
-        const correct = s?.correctCount || 0;
-        scoreCorrect.textContent = String(correct);
+        // const correct = s?.correctCount || 0;
+        // scoreCorrect.textContent = String(correct);
         
 
         // 🔹다음 버튼은 '채점 전'엔 비활성화 (채점해야 넘어갈 수 있게)
@@ -304,8 +331,8 @@ const practiceStudy = document.querySelector('#practiceStudy');
         btnNext.disabled  = false;
 
         // 진행도
-        progressNow.textContent = String(s.idx + 1);
-        progressTotal.textConten = String(s.total);
+        // progressNow.textContent = String(s.idx + 1);
+        // progressTotal.textConten = String(s.total);
 
         const firstBlank = document.querySelector('input[data-ans]');
         if(firstBlank) firstBlank.focus();
@@ -347,8 +374,8 @@ const practiceStudy = document.querySelector('#practiceStudy');
       enFull.textContent = '';
       answerWrap.style.display = 'none';
       selId.textContent = '—';
-      scoreCorrect.textContent = '0';
-      scoreTotal.textContent = '0';
+      // scoreCorrect.textContent = '0';
+      // scoreTotal.textContent = '0';
 
       //toast(`불러오기 완료: ${state.rows.length}건`);
     }catch(err){
@@ -465,6 +492,7 @@ const practiceStudy = document.querySelector('#practiceStudy');
 
     // 채점 후 다음 문제 이동 가능
     btnNext.disabled = false;
+    updateUnifiedBar(); 
 
   }
 }

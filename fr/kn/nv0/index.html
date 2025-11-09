@@ -93,15 +93,42 @@
                         <!-- <button id="btnReveal" disabled>정답 보기</button> -->
                         <button id="btnNext" class="primary" disabled>Next</button>
                     </div>
-                    <div class="row" style="margin-top:6px">
+                    <!-- <div class="row" style="margin-top:6px">
                         <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span
                                 id="scoreTotal">0</span></span>
                     
-                        <!-- 진행도 -->
+                         진행도
                         <span class="pill">진행: <span id="progressNow">0</span>/<span id="progressTotal">0</span></span>
 
+                    </div> -->
+
+                   <!-- 통합 프로그레스바 + 우측 전체 문항수 -->
+                    <div id="barWrap" style="display:flex; align-items:center; gap:8px; margin-top:10px;">
+                    <div role="progressbar" aria-label="Progress"
+                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                        id="barUnified"
+                        style="position:relative; height:12px; flex:1; background:#111827; border:1px solid #334155; border-radius:999px; overflow:hidden;">
+                        <!-- 진행(회색) -->
+                        <div id="barProgress"
+                            style="position:absolute; left:0; top:0; height:100%; width:0%; background:#334155; transition:width .25s;"></div>
+                        <!-- 정답(녹색) -->
+                        <div id="barCorrect"
+                            style="position:absolute; left:0; top:0; height:100%; width:0%; background:var(--good); transition:width .25s;"></div>
+                        <!-- ✅ 바 내부 정답수 라벨 -->
+                        <div id="barLabel"
+                            style="position:absolute; left:8px; top:50%; transform:translateY(-50%); font-size:12px; font-weight:700; color:#e5e7eb; text-shadow:0 1px 2px rgba(0,0,0,.5); pointer-events:none;">
+                        0
+                        </div>
+                    </div>
+
+                    <!-- ✅ 바 오른쪽 전체 문항수 -->
+                    <span id="barTotal"
+                            style="min-width:36px; text-align:right; color:#94a3b8; font-variant-numeric:tabular-nums;">
+                        0
+                    </span>
                     </div>
                 </div>
+                
 
                 <div style="height:14px"></div>
 
