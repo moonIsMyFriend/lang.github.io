@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CSV 목차</title>
+<style>
+  :root{ --bg:#0f172a; --card:#0b1220; --bd:#1f2937; --muted:#94a3b8; --text:#e5e7eb; }
+  body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text)}
+  .wrap{max-width:1000px; margin:0 auto; padding:16px}
+  h1{font-size:22px; margin:0 0 12px}
+  .card{background:var(--card); border:1px solid var(--bd); border-radius:16px; padding:14px}
+  .muted{color:var(--muted)}
+  .folder{margin:14px 0}
+  .folder > .title{font-weight:700; margin:8px 0}
+  ul{list-style:none; padding:0; margin:6px 0}
+  li{margin:4px 0; display:flex; justify-content:space-between; gap:8px; align-items:center}
+  a{color:#93c5fd; text-decoration:none}
+  .path{color:#cbd5e1; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px}
+  .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .search input{width:100%; padding:10px 12px; border-radius:12px; border:1px solid #334155; background:#0b1220; color:#e5e7eb}
+  .pill{border:1px solid #334155; padding:3px 8px; border-radius:999px; font-size:12px; color:#cbd5e1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>CSV 목차</h1>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="row">
+      <div class="search" style="flex:1">
+        <input id="q" type="search" placeholder="검색: 폴더/파일명">
+      </div>
+      <span class="pill">클릭 → 학습 페이지</span>
+    </div>
+    <p class="muted" style="margin:8px 0 0">목록은 <code>catalog.json</code>에서 읽습니다. (배포 전 생성)</p>
+  </div>
+
+  <div id="list" class="card"></div>
+  <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
+</div>
+
+<script>
+(async function(){
+  const $ = s => document.querySelector(s);
+  const list = $('#list');
+  const empty = $('#empty');
+  const q = $('#q');
+
+  /** catalog.json 형식: [{dir:"fr", name:"fr.csv", path:"fr/fr.csv"}, ...] */
+  let data = [];
+  try{
+    const res = await fetch('./catalog.json', {cache:'no-store'});
+    data = await res.json();
+  }catch(e){
+    list.innerHTML = '<div class="muted">catalog.json을 불러오지 못했습니다.</div>';
+    return;
+  }
+
+  // 그룹핑: dir 별로 묶기
+  function groupByDir(arr){
+    const map = new Map();
+    for(const it of arr){
+      const key = it.dir || '(루트)';
+      if(!map.has(key)) map.set(key, []);
+      map.get(key).push(it);
+    }
+    // 폴더/파일 정렬
+    for(const [k, v] of map) v.sort((a,b)=> a.name.localeCompare(b.name));
+    return Array.from(map.entries()).sort((a,b)=> a[0].localeCompare(b[0]));
+  }
+
+  let view = data.slice();
+  render(view);
+
+  q.addEventListener('input', ()=>{
+    const term = q.value.trim().toLowerCase();
+    view = data.filter(it=>{
+      const hay = ((it.dir||'') + '/' + it.name).toLowerCase();
+      return hay.includes(term);
+    });
+    render(view);
+  });
+
+  function render(arr){
+    if(!arr.length){ list.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+
+    const groups = groupByDir(arr);
+    const frag = document.createDocumentFragment();
+
+    for(const [dir, files] of groups){
+      const box = document.createElement('div');
+      box.className='folder';
+      box.innerHTML = `
+        <div class="title">${escapeHTML(dir)}</div>
+        <ul></ul>
+      `;
+      const ul = box.querySelector('ul');
+
+      for(const f of files){
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <a href="#" data-path="${encodeURI(f.path)}">${escapeHTML(f.name)}</a>
+          <span class="path">${escapeHTML(f.path)}</span>
+        `;
+        li.querySelector('a').addEventListener('click', (e)=>{
+          e.preventDefault();
+          openStudy(f.path);
+        });
+        ul.appendChild(li);
+      }
+      frag.appendChild(box);
+    }
+    list.innerHTML='';
+    list.appendChild(frag);
+  }
+
+  // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
+  function openStudy(relPath){
+    const u = new URL('./quiz.html', location.href);
+    u.searchParams.set('file', relPath);
+    u.searchParams.set('mode', 'study');  // 학습 모드
+    // 필요시 언어 추정: 폴더/파일명에 'fr','eng' 등이 포함되면 표시용으로 넘길 수 있음
+    location.href = u.toString();
+  }
+
+  function escapeHTML(s=''){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+})();
+</script>
+</body>
+</html>

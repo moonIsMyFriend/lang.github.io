@@ -66,6 +66,14 @@ export function initQuizApp(){
   const barLabel    = document.querySelector('#barLabel');
   const barTotal    = document.querySelector('#barTotal');
 
+  // URL 파라미터
+  const url  = new URL(location.href);
+  const file = url.searchParams.get('file') || './test.csv';
+  const modeParam = url.searchParams.get('mode');
+  state.practice = (modeParam === 'study') ? 'study' : 'quiz';
+
+
+
 
   function updateUnifiedBar(){
     const s = state.session;
@@ -136,7 +144,12 @@ export function initQuizApp(){
   // window.addEventListener('DOMContentLoaded', tryAutoload);
   async function tryAutoload(){
     try{
-      const res = await fetch('./test.csv', { cache: 'no-store' });
+      // const res = await fetch('./test.csv', { cache: 'no-store' });
+
+      // 파일 로드
+      const res = await fetch(file, { cache:'no-store' });
+
+
       if(!res.ok) return false;
       const txt = await res.text();
       if(!/,/.test(txt)) return false;
