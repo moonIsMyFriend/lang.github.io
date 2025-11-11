@@ -510,4 +510,32 @@ export function initQuizApp(){
     updateUnifiedBar(); 
 
   }
+
+  async function startWith({ file, mode = 'study', count = 'all' } = {}){
+    // 1) CSV 로드
+    const res = await fetch(file, { cache:'no-store' });
+    const csvText = await res.text();
+    handleCSV(csvText);
+
+    // 2) 모드 세팅
+    // 🔸 연습 모드: quiz | study
+    state.practice = (practiceStudy && practiceStudy.checked) ? 'study' : 'quiz';
+    // state.practice = (mode === 'study') ? 'study' : 'quiz';
+    mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
+
+    // 3) 문제 개수 결정
+    const total = (count && count !== 'all') ? Math.min(Number(count), state.rows.length)
+                                             : state.rows.length;
+
+    // 4) 세션 시작 + 화면 전환
+    startSession(total, mode); 
+    showScreen(2);
+    renderCurrent();
+  }
+
+  // 페이지 외부에서 호출할 수 있게 반환
+  return {
+    startWith,
+    // 필요시 다른 메서드도 노출 가능
+  };
 }

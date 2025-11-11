@@ -202,10 +202,20 @@
     <script type="module">
         import { initQuizApp } from '../../../en/lib/quiz-app.js';
         // 페이지 로드 후 앱 초기화
+        let app;
         window.addEventListener('DOMContentLoaded', () => {
-            initQuizApp();
+            app = initQuizApp();
+            window.quizApp = app; // 다른 스크립트에서도 접근 가능하도록(선택)
         });
 
+        /**
+        // 브라우저 뒤로가기 대응(선택)
+        window.addEventListener('popstate', async (e)=>{
+        const st = e.state;
+        if (st && st.file) {
+            await window.quizApp?.startWith({ file: st.file, mode: st.mode || 'study', count: 'all' });
+        }
+        });**/
 
         (async function () {
             const $ = s => document.querySelector(s);
@@ -266,10 +276,8 @@
 
                     for (const f of files) {
                         const li = document.createElement('li');
-                        li.innerHTML = `
-                <a href="#" data-path="${encodeURI(f.path)}">${escapeHTML(f.name)}</a>
-                <span class="path">${escapeHTML(f.path)}</span>
-                `;
+                        const display = f.name.replace(/\.csv$/i, ''); // 확장자 제거
+                        li.innerHTML = `<a href="#" class="csv-link" data-path="${encodeURI(f.path)}">${escapeHTML(display)}</a>`;
                         li.querySelector('a').addEventListener('click', (e) => {
                             e.preventDefault();
                             openStudy(f.path);
@@ -283,19 +291,28 @@
             }
 
             // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
-            function openStudy(relPath) {
-                const u = new URL('./quiz.html', location.href);
-                u.searchParams.set('file', relPath);
-                u.searchParams.set('mode', 'study');  // 학습 모드
-                // 필요시 언어 추정: 폴더/파일명에 'fr','eng' 등이 포함되면 표시용으로 넘길 수 있음
-                location.href = u.toString();
-            }
+            async function openStudy(relPath){
+                if (window.quizApp && typeof window.quizApp.startWith === 'function') {
+                    // 깜박임 없이 바로 시작
+                    await window.quizApp.startWith({ file: relPath, mode: 'study', count: 'all' });
+
+                    // 주소창만 업데이트(새로고침 없음)
+                    const u = new URL(location.href);
+                    u.searchParams.set('file', relPath);
+                    u.searchParams.set('mode', 'study');
+                    u.searchParams.delete('n');
+                    history.pushState({ file: relPath, mode: 'study' }, '', u.toString());
+                } else {
+                    // 폴백: 컨트롤러가 없으면 기존 방식으로 이동
+                    const u = new URL('./quiz.html', location.href);
+                    u.searchParams.set('file', relPath);
+                    u.searchParams.set('mode', 'study');
+                    location.href = u.toString();
+                }
+                }
 
             function escapeHTML(s = '') { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
         })();
-
-
-
 
     </script>
 
