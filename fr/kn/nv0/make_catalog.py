@@ -32,6 +32,9 @@ for root, dirs, files in os.walk(BASE_DIR):
         print(fname)
         if fname.startswith('.'): 
             continue
+        if 'test.csv' in fname: 
+            continue
+        
         rel_path = (rel_dir + "/" + fname).lstrip("/")
         catalog.append({
             "dir": rel_dir,         # 예: "", "fr", "eng/set1"
@@ -46,3 +49,5 @@ with open(OUTPUT, "w", encoding="utf-8") as f:
     json.dump(catalog, f, ensure_ascii=False, indent=2)
 
 print(f"완료: {OUTPUT} (총 {len(catalog)}개 CSV)")
+
+

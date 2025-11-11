@@ -6,7 +6,18 @@
     --good: #34d399;
     --bad: #f87171;
     --radius: 20px;
+    --card:#0b1220;
+    --bd:#1f2937;
 }
+
+.folder{margin:14px 0}
+.folder > .title{font-weight:700; margin:8px 0}
+ul{list-style:none; padding:0; margin:6px 0}
+/* li{margin:4px 0; display:flex; justify-content:space-between; gap:8px; align-items:center} */
+a{color:#93c5fd; text-decoration:none}
+.path{color:#cbd5e1; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px}
+.search input{width:100%; padding:10px 12px; border-radius:12px; border:1px solid #334155; background:#0b1220; color:#e5e7eb}
+
 
 html,
 body {
