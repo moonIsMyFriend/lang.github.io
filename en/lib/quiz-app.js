@@ -381,8 +381,12 @@ export function initQuizApp() {
 
 
     // 경로 규칙: ./mp3/<csv파일명>/<id>.mp3  (csv파일명에 .csv 포함)
-    const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv" 제거
-    const src = `./mp3/${csvBase}/${itemId}.mp3`;
+    const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv"
+    const padItemId = String(itemId).padStart(3, '0');
+    toast(padItemId);
+
+    //  제거
+    const src = `./mp3/${csvBase}/${padItemId}.mp3`;
     // const src = `./mp3/251027/161.mp3`;
     // toast(src)
 
