@@ -350,7 +350,62 @@ export function initQuizApp(){
         const firstBlank = document.querySelector('input[data-ans]');
         if(firstBlank) firstBlank.focus();
     }
+
+
+    // ✅ 현재 행의 id 구하기 (없으면 행 인덱스+1)
+  const idKey = state.cols?.id;
+  const itemId = (idKey && row[idKey] != null && row[idKey] !== '')
+      ? String(row[idKey]).trim()
+      : String(rowIdx + 1);
+
+  selId.textContent = itemId;
+
+  // ... (퀴즈/학습 모드 분기 및 마스킹/표시 코드)
+
+  // ✅ 오디오 준비
+  prepareAudioFor(itemId);
   }
+
+
+  async function prepareAudioFor(itemId){
+  if(!audioPlayer || !btnAudio) return;
+
+  // 문제 전환 시 재생 중이면 정지
+  if(!audioPlayer.paused) {
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+  }
+  btnAudio.textContent = '🔊 듣기';
+
+
+
+  // 경로 규칙: ./mp3/<csv파일명>/<id>.mp3  (csv파일명에 .csv 포함)
+  const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv" 제거
+  const src = `./mp3/${csvBase}/${itemId}.mp3`;
+  // const src = `./mp3/251027/161.mp3`;
+  toast(src)
+
+      const res = await fetch(src, { method: 'HEAD', cache: 'no-store' });
+    if(res.ok){ 
+          
+      audioPlayer.src = src;
+      btnAudio.disabled = false;
+    }else{
+      btnAudio.disabled = true;
+    }
+}
+
+function togglePlayCurrent(){
+  if(!audioPlayer) return;
+  // src가 비어있거나 로드 안된 경우 방어
+  if(!audioPlayer.src){ toast('오디오가 준비되지 않았어요.'); return; }
+
+  if(audioPlayer.paused){
+    audioPlayer.play().catch(()=> toast('오디오를 재생할 수 없어요.'));
+  }else{
+    audioPlayer.pause();
+  }
+}
 
 
   // CSV 처리
@@ -511,6 +566,23 @@ export function initQuizApp(){
 
   }
 
+
+
+  const btnAudio    = document.querySelector('#btnAudio');
+const audioPlayer = document.querySelector('#audioPlayer');
+
+if (btnAudio) {
+  btnAudio.addEventListener('click', togglePlayCurrent);
+}
+if (audioPlayer) {
+  audioPlayer.addEventListener('ended', ()=> { btnAudio.textContent = '🔊 듣기'; });
+  audioPlayer.addEventListener('pause', ()=> { btnAudio.textContent = '🔊 듣기'; });
+  audioPlayer.addEventListener('play',  ()=> { btnAudio.textContent = '⏸ 일시정지'; });
+  audioPlayer.onerror = ()=> toast('오디오 파일을 찾을 수 없어요.');
+}
+
+
+
   async function startWith({ file, mode = 'study', count = 'all' } = {}){
     // 1) CSV 로드
     const res = await fetch(file, { cache:'no-store' });
@@ -526,6 +598,15 @@ export function initQuizApp(){
     // 3) 문제 개수 결정
     const total = (count && count !== 'all') ? Math.min(Number(count), state.rows.length)
                                              : state.rows.length;
+
+
+                                                 // URL 파라미터
+  // const url  = new URL(location.href);
+const csvFilePath = file || './test.csv';
+// 폴더명에 'csv파일명'을 그대로 쓴다 했으므로 확장자 포함 파일명 그대로 사용
+const csvFileName = csvFilePath.split('/').pop(); // ex) "fr.csv"
+state.csvFileName = csvFileName;
+
 
     // 4) 세션 시작 + 화면 전환
     startSession(total, mode); 
