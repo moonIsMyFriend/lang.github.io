@@ -383,7 +383,7 @@ export function initQuizApp(){
   const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv" 제거
   const src = `./mp3/${csvBase}/${itemId}.mp3`;
   // const src = `./mp3/251027/161.mp3`;
-  toast(src)
+  // toast(src)
 
       const res = await fetch(src, { method: 'HEAD', cache: 'no-store' });
     if(res.ok){ 
