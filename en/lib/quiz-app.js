@@ -588,7 +588,7 @@ export function initQuizApp() {
 
 
 
-  async function startWith({ file, mode = 'study', count = 'all' } = {}) {
+  async function startWith({ file, count = 'all' } = {}) {
     // 1) CSV 로드
     const res = await fetch(file, { cache: 'no-store' });
     const csvText = await res.text();
@@ -598,7 +598,11 @@ export function initQuizApp() {
     // 🔸 연습 모드: quiz | study
     state.practice = (practiceStudy && practiceStudy.checked) ? 'study' : 'quiz';
     // state.practice = (mode === 'study') ? 'study' : 'quiz';
-    mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
+    const mode = (modeSeq && modeSeq.checked) ? 'seq' : 'random';
+
+    if (mode == 'random'){
+      count = 20
+    }
 
     // 3) 문제 개수 결정
     const total = (count && count !== 'all') ? Math.min(Number(count), state.rows.length)
