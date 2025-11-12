@@ -1,5 +1,5 @@
 ﻿no,group,speaker,original,pron,trans,comment
-1,1,,Le général de Gaulle est né à Lille ?,르 제네랄 드 골 에 네 아 릴?,샤를 드골 장군은 릴에서 태어났나요?,교정: Marseille → Lille
+1,1,,Le général de Gaulle est né à Lille ?,르 제네할 드 골 에 네 아 릴?,샤를 드골 장군은 릴에서 태어났나요?,교정: Marseille → Lille
 2,1,,Timothée Chalamet est né à New York.,띠모테 샬라메 에 네 아 뉴요크.,티모테 샬라메는 뉴욕에서 태어났어요.,"철자 교정: Thimothée→Timothée, New Yoik→New York"
 3,1,,Il est né à New York.,일 에 네 아 뉴요크.,그는 뉴욕에서 태어났어요.,
 4,1,,Il est né aux États-Unis ?,일 에 네 오 제타쥬니?,그는 미국에서 태어났나요?,
@@ -10,39 +10,39 @@
 9,1,,Tu es née à Séoul ?,튀 에 네 아 세울?,너는 서울에서 태어났어? (상대 여성),성별 일치
 10,1,,"Non, je ne suis pas né à Séoul.","농, 즈 느 쉬 빠 네 아 세울.","아니요, 저는 서울에서 태어나지 않았어요. (남성)",부정어 ne...pas
 11,1,,"Non, je ne suis pas née à Séoul.","농, 즈 느 쉬 빠 네 아 세울.","아니요, 저는 서울에서 태어나지 않았어요. (여성)",부정어 ne...pas
-12,1,,Pourquoi ?,푸르꽈?,왜요?,
+12,1,,Pourquoi ?,푸흐꽈?,왜요?,
 13,1,,Depuis quand ?,드뿌이 꺙?,언제부터요?,
 14,1,,Tu habites à Séoul depuis toujours ?,튀 아빗 아 세울 드뿌이 투주르?,너는 줄곧 서울에서 살아왔어?,
-15,1,,Tu aimes quoi ?,튀 엠 꿰?,너는 무엇을 좋아해?,어순: 동사+quoi(구어)
-16,1,,"J’aime le sport, le café et le cinéma.","쟘 르 스뽀르, 르 카페 에 르 시네마.","나는 스포츠, 커피, 그리고 영화를 좋아해.",쉼표 사용
-17,1,,J’aime l’escrime.,쟘 레스크림.,나는 펜싱을 좋아해.,정관사 l’
+15,1,,Tu aimes quoi ?,튀 엠 꾸아?,너는 무엇을 좋아해?,어순: 동사+quoi(구어)
+16,1,,"J’aime le sport, le café et le cinéma.","쟘 르 스뽀흐, 르 카페 에 르 시네마.","나는 스포츠, 커피, 그리고 영화를 좋아해.",쉼표 사용
+17,1,,J’aime l’escrime.,쟘 레스크힘.,나는 펜싱을 좋아해.,정관사 l’
 18,1,,Depuis cinq ans.,드뿌이 쌍껑.,5년 전부터 / 5년째예요.,기간 표현
-19,1,,Tu parles quelles langues ?,튀 빨 껠 롱그?,너는 어떤 언어들을 말해?,복수 명사
-20,1,,Je parle français depuis trois mois.,즈 팔 프랑쎄 드뿌이 트루아 무아.,나는 3개월째 프랑스어를 하고 있어요.,현재+depuis
-21,1,,Tu étudies le français où ?,튀 에튀디 르 프랑쎄 우?,너는 프랑스어를 어디에서 공부해?,의문사 위치(구어)
-22,1,,Depuis le deuxième semestre.,드뿌이 르 되지엠 스메스트르.,2학기부터.,
-23,1,,Depuis ce semestre.,드뿌이 스 스메스트르.,이번 학기부터.,
-24,1,,J’étudie le français à la KNOU.,제튀디 르 프랑쎄 아 라 케이엔오우.,저는 KNOU에서 프랑스어를 공부해요.,여성명사 취급: à la
+19,1,,Tu parles quelles langues ?,튀 빠흘 껠 롱그?,너는 어떤 언어들을 말해?,복수 명사
+20,1,,Je parle français depuis trois mois.,즈 파흘 프항쎄 드뿌이 트후아 무아.,나는 3개월째 프랑스어를 하고 있어요.,현재+depuis
+21,1,,Tu étudies le français où ?,튀 에튀디 르 프항쎄 우?,너는 프랑스어를 어디에서 공부해?,의문사 위치(구어)
+22,1,,Depuis le deuxième semestre.,드뿌이 르 되지엠 스메스트흐.,2학기부터.,
+23,1,,Depuis ce semestre.,드뿌이 스 스메스트흐.,이번 학기부터.,
+24,1,,J’étudie le français à la KNOU.,제튀디 르 프항쎄 아 라 케이엔오우.,저는 KNOU에서 프랑스어를 공부해요.,여성명사 취급: à la
 25,1,,Et toi ?,에 뜨와?,그럼 너는? / 너는 어때?,대화 연결
-26,1,,langues,롱그,언어들 / 외국어들,단어
-27,1,,Je parle japonais.,즈 팔 자포네.,나는 일본어를 말해요.,
+26,1,,langues,롱위,언어들 / 외국어들,단어
+27,1,,Je parle japonais.,즈 파흘 자포네.,나는 일본어를 말해요.,
 28,1,,Il y a dix ans.,일 리 아 디 쌍.,10년 전에.,경과 과거 표현
-29,1,,toujours,투주르,항상 / 언제나,"단어, 철자 교정"
-30,1,,À cause du travail.,아 코즈 뒤 트라바이.,일 때문에.,원인: 부정적 뉘앙스
-31,1,,En 2023.,앙 되밀뵙트뤼앵뜨루아.,2023년에.,연도 표현
+29,1,,toujours,투주흐,항상 / 언제나,"단어, 철자 교정"
+30,1,,À cause du travail.,아 코즈 뒤 트하바이.,일 때문에.,원인: 부정적 뉘앙스
+31,1,,En 2023.,앙 두밀방뜨후아.,2023년에.,연도 표현
 32,1,,licence,리쌍스,학사 과정 / 면허,단어
-33,1,,Depuis toute petite.,드뿌이 투뜨쁘띠뜨.,(여성) 아주 어릴 때부터.,성별 일치
-34,1,,Depuis tout petit.,투 쁘띠.,(남성) 아주 어릴 때부터.,성별 일치
+33,1,,Depuis toute petite.,드뿌이 퉅쁘띠뜨.,(여성) 아주 어릴 때부터.,성별 일치
+34,1,,Depuis tout petit.,드쀠뚜 쁘띠.,(남성) 아주 어릴 때부터.,성별 일치
 35,1,,Depuis que je suis né.,드뿌이 껴 즈 쉬 네.,내가 태어난 이후로. (남성),관계절
 36,1,,Depuis que je suis née.,드뿌이 껴 즈 쉬 네.,내가 태어난 이후로. (여성),관계절
 37,1,,Depuis que chuis né.,드뿌이 껴 쉬 네.,(구어) 내가 태어난 이후로.,구어체: chuis = je suis
-38,1,,À cause de mon travail.,아 코즈 드 몽 트라바이.,내 일 때문에.,소유형용사 일치
-39,1,,J’habite à Séoul à cause de mon travail.,쟈빗 아 세울 아 코즈 드 몽 트라바이.,일 때문에 서울에 살아요.,
+38,1,,À cause de mon travail.,아 코즈 드 몽 트하바이.,내 일 때문에.,소유형용사 일치
+39,1,,J’habite à Séoul à cause de mon travail.,쟈빗 아 세울 아 코즈 드 몽 트하바이.,일 때문에 서울에 살아요.,
 40,1,,allé,알레,(남성형) ‘가다’의 과거분사.,단어
 41,1,,allée,알레,(여성형) ‘가다’의 과거분사.,단어
-42,1,,Je suis allé en Australie il y a un an.,즈 쉬 알레 앙 노스트랄리 일 리 아 앙 낭.,나는 1년 전에 호주에 갔었어요. (남성),과거 시제+경과
-43,1,,Je suis allée en Australie il y a un an.,즈 쉬 알레 앙 노스트랄리 일 리 아 앙 낭.,나는 1년 전에 호주에 갔었어요. (여성),과거 시제+경과
-44,1,,En 2024.,앙 되밀뵈캉뜨꽈뜨르.,2024년에.,연도 표현
-45,1,,En 2022.,앙 되밀뵈뙤.,2022년에.,연도 표현
+42,1,,Je suis allé en Australie il y a un an.,즈 쉬 알레 앙 노스트할리 일 리 아 앙 낭.,나는 1년 전에 호주에 갔었어요. (남성),과거 시제+경과
+43,1,,Je suis allée en Australie il y a un an.,즈 쉬 알레 앙 노스트할리 일 리 아 앙 낭.,나는 1년 전에 호주에 갔었어요. (여성),과거 시제+경과
+44,1,,En 2024.,앙 두밀방꺄뜨흐.,2024년에.,연도 표현
+45,1,,En 2022.,앙 두밀방뜨.,2022년에.,연도 표현
 46,1,,"C’est vrai ou faux ?","쎄 브헤 우 포?","그게 참이야, 거짓이야?",
 47,1,,"Répondez : vrai ou faux.","레뽕데: 브헤 우 포.","답하세요: 참 또는 거짓.",
