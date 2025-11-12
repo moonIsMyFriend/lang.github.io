@@ -25,11 +25,9 @@
                 <div class="box">
                     <h1>Index</h1>
 
-                    <div class="card" style="margin-bottom:12px">
-                        <div class="row">
-                            <div class="search" style="flex:1">
-                                <input id="q" type="search" placeholder="검색: 폴더/파일명">
-                            </div>
+                    <div class="row">
+                        <div class="search" style="flex:1">
+                            <input id="q" type="search" placeholder="검색: 폴더/파일명">
                         </div>
                     </div>
 
@@ -58,15 +56,15 @@
                             </div>
 
                             <div style="height:14px"></div>
-                <div class="row">
-                    <button id="btnPick" class="primary">Start</button>
-                </div>
-                
+                            <div class="row">
+                                <button id="btnPick" class="primary">Start</button>
+                            </div>
+
                         </div>
                     </details>
 
                 </div>
-                
+
 
                 <div style="height:14px"></div>
                 <details>
@@ -167,12 +165,12 @@
                 <div style="height:14px"></div>
 
                 <details open>
-                    <summary><span class="pill">no. 
-                        <span id="selId" class="id">—</span></span> 
+                    <summary><span class="pill">no.
+                            <span id="selId" class="id">—</span></span>
                         <button id="btnAudio" class="ghost" disabled>🔊 듣기</button>
                         <audio id="audioPlayer" preload="metadata"></audio>
                     </summary>
-                    
+
                     <div class="content">
                         <div>
                             <div class="muted"></div>
@@ -299,7 +297,7 @@
             }
 
             // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
-            async function openStudy(relPath){
+            async function openStudy(relPath) {
                 if (window.quizApp && typeof window.quizApp.startWith === 'function') {
                     // 깜박임 없이 바로 시작
                     await window.quizApp.startWith({ file: relPath, mode: 'study', count: 'all' });
@@ -317,7 +315,7 @@
                     u.searchParams.set('mode', 'study');
                     location.href = u.toString();
                 }
-                }
+            }
 
             function escapeHTML(s = '') { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
         })();
