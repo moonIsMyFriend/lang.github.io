@@ -241,7 +241,12 @@ export function initQuizApp() {
     const s = state.session;
     const total = s?.total || 0;
     const correct = s?.correctCount || 0;
-    finalLine.textContent = `총 ${total}문제 중 ${correct}문제를 맞혔습니다.`;
+    if (state.practice == 'study'){
+      finalLine.textContent = `총 ${total}문장을 학습했습니다.`;
+    }else{
+      finalLine.textContent = `총 ${total}문제 중 ${correct}문제를 맞혔습니다.`;
+    }
+    
     showScreen(3);
   }
 
