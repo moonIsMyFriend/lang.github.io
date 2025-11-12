@@ -242,7 +242,7 @@
             function groupByDir(arr) {
                 const map = new Map();
                 for (const it of arr) {
-                    const key = it.dir || '(루트)';
+                    const key = it.dir || '';
                     if (!map.has(key)) map.set(key, []);
                     map.get(key).push(it);
                 }
