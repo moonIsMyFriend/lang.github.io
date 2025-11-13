@@ -4,11 +4,11 @@
 3,2,B,Je suis développeur et étudiant.,즈 스위 디벨로뻬흐 에 에뛰디앙,나는 개발자이자 학생이에요.,남성형
 4,2,B,Je suis développeuse et étudiante.,즈 스위 디벨로뻬우즈 에 에뛰디안뜨,나는 개발자이자 학생이에요.,여성형
 5,2,B,Je suis dev et étudiant.,즈 스위 데브 에 에뛰디앙,나 개발자이자 학생이야.,비격식 줄임
-6,2,B,Je travaille comme développeur et j’étudie à l’université.,즈 뜨라바이 꼼 디벨로뻬흐 에 쥬에튀디 알뤼니베흐시떼,나는 개발자로 일하면서 대학에서 공부해요.,comme = ~로서
-7,2,B,Je suis à la fois développeur et étudiant en informatique.,즈 스위 알라 프와 디벨로뻬흐 에 에뛰디앙 앙 앙포르마틱,나는 동시에 개발자이자 정보공학을 공부하는 학생이에요.,à la fois = 동시에
-8,3,A,Tu aimes les films d’horreur ?,튜 엠 레 필름 도흐뢰흐,너 공포영화 좋아해?,호불호 묻는 표현
-9,3,B,"Oui, j’aime les films d’horreur.","위, 젬 레 필름 도흐뢰흐","응, 공포영화 좋아해.",
-10,3,B,"Non, je n’aime pas les films d’horreur.","농, 져 넴 빠 레 필름 도흐뢰흐","아니, 공포영화 안 좋아해.",부정형 ne...pas
+6,2,B,Je travaille comme développeur et j’étudie à l’université.,즈 뜨하바이 꼼 디벨로뻬흐 에 쥬에튀디 알뤼니베흐시떼,나는 개발자로 일하면서 대학에서 공부해요.,comme = ~로서
+7,2,B,Je suis à la fois développeur et étudiant en informatique.,즈 스위 알라 프와 디벨로뻬흐 에 에뛰디앙 앙 앙포흐마틱,나는 동시에 개발자이자 정보공학을 공부하는 학생이에요.,à la fois = 동시에
+8,3,A,Tu aimes les films d’horreur ?,튜 엠 레 필름 도허흐,너 공포영화 좋아해?,호불호 묻는 표현
+9,3,B,"Oui, j’aime les films d’horreur.","위, 젬 레 필름 도허흐","응, 공포영화 좋아해.",
+10,3,B,"Non, je n’aime pas les films d’horreur.","농, 져 넴 빠 레 필름 도허흐","아니, 공포영화 안 좋아해.",부정형 ne...pas
 11,3,A,Tu aimes quel genre de film ?,튜 엠 껠 쟝흐 드 필름,어떤 장르 영화 좋아해?,
 12,3,B,J’aime les films d’action.,젬 레 필름 닥시옹,나는 액션 영화를 좋아해.,
 13,3,B,J’aime les comédies.,젬 레 꼬메디,나는 코미디를 좋아해.,
@@ -21,17 +21,17 @@
 20,3,A,Tu aimes quoi manger ?,튜 엠 꿔 몽제,뭐 먹는 거 좋아해?,
 21,3,B,J’aime le café et les films d’animation.,젬 르 카페 에 레 필름 다니마시옹,나는 커피랑 애니메이션 영화 좋아해.,
 22,4,A,Tu étudies quoi ?,튜 에튀디 꿔,너 뭐 공부해?,étudier = 공부하다
-23,4,B,J’étudie l’informatique.,쥬에튀디 랭포르마틱,나는 정보공학을 공부해.,
+23,4,B,J’étudie l’informatique.,쥬에튀디 랭포흐마틱,나는 정보공학을 공부해.,
 24,4,B,J’étudie la logistique.,쥬에튀디 라 로지스틱,나는 물류학을 공부해.,
 25,4,B,J’étudie le français.,쥬에튀디 르 프헝세,나는 프랑스어를 공부해.,
 26,4,B,J’étudie l’économie.,쥬에튀디 레코노미,나는 경제학을 공부해.,
 27,4,B,J’étudie la musique.,쥬에튀디 라 뮈지끄,나는 음악을 공부해.,
-28,4,A,Tu parles quelles langues ?,튜 빨 껠 랑그,너 무슨 언어 할 줄 알아?,langue = 언어(여성명사)
-29,4,B,Je parle coréen et un peu français.,즈 빨 꼬레엥 에 엉 뻬 프헝세,나는 한국어랑 프랑스어 조금 해.,
-30,4,B,"Je parle anglais, coréen et japonais.","즈 빨 앙글레, 꼬레엥 에 자빠네","나는 영어, 한국어, 일본어 해.",
-31,4,A,Tu parles français ?,튜 빨 프헝세,프랑스어 할 줄 알아?,
-32,4,A,Tu parles anglais ?,튜 빨 앙글레,영어 할 줄 알아?,
-33,4,A,Tu parles bien français !,튜 빨 비엥 프헝세,프랑스어 잘하네!,칭찬 표현
+28,4,A,Tu parles quelles langues ?,튜 빠흘 껠 랑그,너 무슨 언어 할 줄 알아?,langue = 언어(여성명사)
+29,4,B,Je parle coréen et un peu français.,즈 빠흘 꼬헤엥 에 엉 뻬 프헝세,나는 한국어랑 프랑스어 조금 해.,
+30,4,B,"Je parle anglais, coréen et japonais.","즈 빠흘 앙글레, 꼬헤엥 에 자빠네","나는 영어, 한국어, 일본어 해.",
+31,4,A,Tu parles français ?,튜 빠흘 프헝세,프랑스어 할 줄 알아?,
+32,4,A,Tu parles anglais ?,튜 빠흘 앙글레,영어 할 줄 알아?,
+33,4,A,Tu parles bien français !,튜 빠흘 비엥 프헝세,프랑스어 잘하네!,칭찬 표현
 34,5,A,Tu habites où ?,튜 아빗 우,너 어디 살아?,habiter = 살다
 35,5,B,J’habite à 전주.,자빗 아 전주,나는 전주에 살아.,도시 앞에는 à 사용
 36,5,A,Tu habites au Japon ?,튜 아빗 오 자뽕,너 일본에 살아?,남성국가 → au
@@ -44,7 +44,7 @@
 43,5,B,"Oui, j’habite à 전주.","위, 자빗 아 전주","응, 전주에 살아.",긍정형
 44,5,B,"Non, j’habite pas à 전주.","농, 자빗 빠 아 전주","아니, 전주에 안 살아.",부정형
 45,5,A,C’est 이효리.,쎄 이효리,이효리예요.,C’est = ~이다
-46,5,B,Elle est coréenne.,엘 에 꼬레엔느,그녀는 한국인이에요.,여성형
+46,5,B,Elle est coréenne.,엘 에 꼬헤엔느,그녀는 한국인이에요.,여성형
 47,5,B,Elle habite à Séoul.,엘 아빗 아 세울,그녀는 서울에 살아요.,
 48,5,B,Elle est née le 10 mai 1979.,엘 에 네 르 디 메 밀네퐁 쏘와쌍 디스뇌프,그녀는 1979년 5월 10일에 태어났어요.,être né(e) = 태어나다
 49,5,A,"Non, elle n’est pas à Busan.","농, 엘 넷 빠 아 부산","아니요, 그녀는 부산에 있지 않아요.",부정형 ne...pas
@@ -52,17 +52,17 @@
 51,5,A,"Non, elle n’est pas à Séoul.","농, 엘 넷 빠 아 세울","아니요, 서울에 있지 않아요.",
 52,5,B,Elle habite à Jeju.,엘 아빗 아 제주,그녀는 제주에 살아요.,
 53,5,A,Tu es né en Espagne.,튀 에 네 앙 에스빠뉴,너 스페인에서 태어났어?,여성국가 → en
-54,5,A,Tu es né en Corée ?,튀 에 네 앙 꼬레,너 한국에서 태어났어?,
+54,5,A,Tu es né en Corée ?,튀 에 네 앙 꼬헤,너 한국에서 태어났어?,
 55,5,A,Tu es né au Japon ?,튀 에 네 오 자뽕,너 일본에서 태어났어?,남성국가 → au
 56,5,A,Tu es né aux États-Unis ?,튀 에 네 오제따쥬니,너 미국에서 태어났어?,복수국가 → aux
 57,5,A,Tu es né à Paris ?,튀 에 네 아 빠히,너 파리에서 태어났어?,도시 앞 à
 58,5,B,Je suis né à Paris.,즈 스위 네 아 빠히,나는 파리에서 태어났어요.,남성형
 59,5,B,Je suis né à Séoul.,즈 스위 네 아 세울,나는 서울에서 태어났어요.,남성형
 60,5,B,Je suis née à Busan.,즈 스위 네 아 부산,나는 부산에서 태어났어요.,여성형
-61,5,B,Je suis prête.,즈 스위 프렛,나 준비됐어(여성).,여성형
-62,5,B,Je suis prêt !,즈 스위 프레,나 준비됐어(남성).,남성형
-63,5,A,Tu es prêt ?,튜 에 프레,너 준비됐어?(남자에게),
-64,5,A,Tu es prête ?,튜 에 프렛,너 준비됐어?(여자에게),
+61,5,B,Je suis prête.,즈 스위 프헷,나 준비됐어(여성).,여성형
+62,5,B,Je suis prêt !,즈 스위 프헤,나 준비됐어(남성).,남성형
+63,5,A,Tu es prêt ?,튜 에 프헤,너 준비됐어?(남자에게),
+64,5,A,Tu es prête ?,튜 에 프헷,너 준비됐어?(여자에게),
 65,5,,l’Europe,러호프,유럽,여성명사 → l’ 사용
 66,5,,en Europe,앙 너호프,"유럽에서, 유럽에",전치사 en 사용
 67,5,,de l’Europe,드 러호프,유럽의,
@@ -76,22 +76,22 @@
 75,5,B,Je suis né à Valenciennes.,즈 스위 네 아 발랑씨엔느,나는 발랑시엔에서 태어났어요.,
 76,5,B,Je suis née à Valenciennes.,즈 스위 네 아 발랑씨엔느,나는 발랑시엔에서 태어났어요.(여성),
 77,6,A,Tu habites à 성남 depuis quand ?,튜 아빗 아 성남 드뿌이 껑,성남에 언제부터 살고 있어?,depuis quand = 언제부터
-78,6,B,J’habite à 성남 depuis 2 ans.,자빗 아 성남 드뿌이 되쌍,나는 2년 전부터 성남에 살고 있어요.,현재시제와 함께 사용
+78,6,B,J’habite à 성남 depuis 2 ans.,자빗 아 성남 드뿌이 두쌍,나는 2년 전부터 성남에 살고 있어요.,현재시제와 함께 사용
 79,6,,depuis,드뿌이,"~이래로, ~부터",시작 시점을 나타냄
 80,6,,depuis quand ?,드뿌이 껑,언제부터?,질문형
-81,6,,depuis 2 ans,드뿌이 되쌍,2년 전부터,기간
+81,6,,depuis 2 ans,드뿌이 두쌍,2년 전부터,기간
 82,6,,depuis 3 mois,드뿌이 트후와 무아,3개월 전부터,
 83,6,,depuis une semaine,드뿌이 윤 쓰멘느,일주일 전부터,
 84,6,,depuis mars,드뿌이 마흐스,3월부터,시점
-85,6,,depuis 2009,드뿌이 되밀뇌프,2009년부터,
-86,6,B,J’habite à Séoul depuis 2009.,자빗 아 세울 드뿌이 되밀뇌프,나는 2009년부터 서울에 살고 있어요.,depuis + 시점
-87,6,,depuis 2~3 mois,드뿌이 되 트후와 무아,2~3개월째,
+85,6,,depuis 2009,드뿌이 두밀뇌프,2009년부터,
+86,6,B,J’habite à Séoul depuis 2009.,자빗 아 세울 드뿌이 두밀뇌프,나는 2009년부터 서울에 살고 있어요.,depuis + 시점
+87,6,,depuis 2~3 mois,드뿌이 두 트후와 무아,2~3개월째,
 88,6,,depuis 5 ans,드뿌이 쌍쌍,5년째,
 89,6,,depuis longtemps,드뿌이 롱땅,오랫동안부터,
 90,6,B,J’apprends le français depuis 3 mois.,자프헝 르 프헝세 드뿌이 트후와 무아,나는 3개월째 프랑스어를 배우고 있어요.,현재진행 강조
 91,6,B,J’habite à Séoul depuis 5 ans.,자빗 아 세울 드뿌이 쌍쌍,나는 5년 전부터 서울에 살고 있어요.,
 92,6,A,Pourquoi ?,푸흐꾸아,왜?,의문사
-93,6,A,Pourquoi tu es triste ?,푸흐꾸아 튜 에 트흐리스트,왜 슬퍼?,
+93,6,A,Pourquoi tu es triste ?,푸흐꾸아 튜 에 트흐이스트,왜 슬퍼?,
 94,6,A,Je pars demain.,져 빠흐 드맹,나 내일 떠나.,
 95,6,B,Pourquoi ?,푸흐꾸아,왜?,반응
 96,6,B,Parce que je suis fatigué.,빠흐스 끄 즈 스위 파띠게,왜냐하면 피곤하거든요.,parce que = 왜냐하면
@@ -108,7 +108,7 @@
 107,6,B,J’aime les chiens.,젬 레 시엥,나는 개들을 좋아해.,
 108,6,B,J’aime les chats.,젬 레 샤,나는 고양이를 좋아해.,
 109,6,B,J’aime beaucoup les animaux.,젬 보꾸 레 자니모,나는 동물을 아주 좋아해.,
-110,6,B,"J’aime les gâteaux, les pâtisseries.","젬 레 가또, 레 빠띠쓰흐리",나는 케이크랑 페이스트리를 좋아해.,"gâteau = 케이크, pâtisserie = 제과류"
+110,6,B,"J’aime les gâteaux, les pâtisseries.","젬 레 가또, 레 빠띠쓰흐이",나는 케이크랑 페이스트리를 좋아해.,"gâteau = 케이크, pâtisserie = 제과류"
 111,6,B,un macaron,엉 마까홍,마카롱 하나,남성명사
 112,6,B,J’aime les macarons.,젬 레 마까홍,나는 마카롱을 좋아해요.,복수형
 113,6,B,Je veux un macaron au chocolat.,즈 브 앙 마까홍 오 쇼꼴라,초콜릿 마카롱 하나 주세요.,
@@ -123,28 +123,28 @@
 122,6,B,Je joue du piano depuis le collège.,즈 주 뒤 피아노 드뿌이 르 꼴레쥬,나는 중학교 때부터 피아노를 쳐요.,
 123,6,B,Je fais du sport depuis le lycée.,즈 페 뒤 스뽀흐 드뿌이 르 리쎄,나는 고등학교 때부터 운동을 해요.,
 124,6,B,J’apprends le japonais depuis l’université.,자프헝 르 자뽀네 드뿌이 뤼니베흐시떼,나는 대학교 때부터 일본어를 배워요.,
-125,6,A,Tu parles quelles langues ? Anglais et un peu français ?,튜 빨 껠 랑그? 앙글레 에 엉 뻬 프헝세?,너 어떤 언어 해? 영어랑 프랑스어 조금?,
+125,6,A,Tu parles quelles langues ? Anglais et un peu français ?,튜 빠흘 껠 랑그? 앙글레 에 엉 뻬 프헝세?,너 어떤 언어 해? 영어랑 프랑스어 조금?,
 126,6,B,Anglais et un peu français.,앙글레 에 엉 뻬 프헝세,영어랑 프랑스어 조금.,
-127,6,B,Je parle anglais et un peu français.,즈 빨 앙글레 에 엉 뻬 프헝세,나는 영어랑 프랑스어 조금 해요.,
-128,6,B,"Je parle coréen, anglais et un peu français.","즈 빨 꼬레엥, 앙글레 에 엉 뻬 프헝세","나는 한국어, 영어, 프랑스어 조금 해요.",
+127,6,B,Je parle anglais et un peu français.,즈 빠흘 앙글레 에 엉 뻬 프헝세,나는 영어랑 프랑스어 조금 해요.,
+128,6,B,"Je parle coréen, anglais et un peu français.","즈 빠흘 꼬헤엥, 앙글레 에 엉 뻬 프헝세","나는 한국어, 영어, 프랑스어 조금 해요.",
 129,6,,depuis 1 mois,드뿌이 앙 무아,"한 달째, 한 달 전부터",
 130,6,B,J’habite à Séoul depuis 1 mois.,자빗 아 세울 드뿌이 앙 무아,나는 한 달 전부터 서울에 살고 있어요.,
 131,6,B,J’apprends le français depuis 1 mois.,자프헝 르 프헝세 드뿌이 앙 무아,나는 프랑스어를 배운 지 한 달 됐어요.,
-132,6,B,Je travaille ici depuis 1 mois.,즈 뜨라봐이 이씨 드뿌이 앙 무아,나는 여기서 일한 지 한 달 됐어요.,
+132,6,B,Je travaille ici depuis 1 mois.,즈 뜨하봐이 이씨 드뿌이 앙 무아,나는 여기서 일한 지 한 달 됐어요.,
 133,6,,depuis lundi,드뿌이 렁디,월요일부터,
 134,6,,depuis janvier,드뿌이 쟝비에,1월부터,
 135,6,,depuis un an,드뿌이 앙 낭,1년 전부터,
 136,6,A,Tu étudies le français où ?,튜 에튀디 르 프헝세 우,너 어디서 프랑스어 공부해?,
 137,6,B,J’étudie le français à l’université.,쥬에튀디 르 프헝세 알뤼니베흐시떼,나는 대학교에서 프랑스어를 공부해요.,
 138,6,B,J’étudie le français à la maison.,쥬에튀디 르 프헝세 알라 메종,나는 집에서 프랑스어를 공부해요.,
-139,6,B,J’étudie le français avec une prof en ligne.,쥬에튀디 르 프헝세 아벡 윤 프로프 엉 릉뉴,나는 온라인으로 선생님이랑 프랑스어를 공부해요.,
+139,6,B,J’étudie le français avec une prof en ligne.,쥬에튀디 르 프헝세 아벡 윤 프호프 엉 릉뉴,나는 온라인으로 선생님이랑 프랑스어를 공부해요.,
 140,6,B,J’étudie le français à 방송대.,쥬에튀디 르 프헝세 아 방송대,나는 방송대에서 프랑스어를 공부해요.,한국 학교명 그대로 사용 가능
 141,6,B,J’étudie le français à l’Université Ouverte de Corée.,쥬에튀디 르 프헝세 알뤼니베흐시떼 우베흐 드 꼬헤,나는 한국 방송대학교에서 프랑스어를 공부해요.,공식 번역명
 142,6,A,Tu étudies le français depuis quand ?,튜 에튀디 르 프헝세 드뿌이 껑,너 언제부터 프랑스어 공부하고 있어?,
 143,6,B,Depuis un mois.,드뿌이 앙 무아,한 달 전부터.,
 144,6,B,Depuis trois ans.,드뿌이 트후와 쌍,3년 전부터.,
 145,6,B,Depuis le lycée.,드뿌이 르 리쎄,고등학교 때부터.,
-146,6,B,Depuis 2024.,드뿌이 되밀꽈뜨흐,2024년부터.,
+146,6,B,Depuis 2024.,드뿌이 두밀꽈뜨흐,2024년부터.,
 147,6,B,J’étudie le français depuis un an.,쥬에튀디 르 프헝세 드뿌이 앙 낭,나는 프랑스어를 공부한 지 1년 됐어요.,현재형 사용
 148,7,A,Tu es fatigué ?,튜 에 파띠게,너 피곤해?,남성형
 149,7,B,"Oui, un peu.","위, 앙 뻬","응, 조금.",
@@ -171,7 +171,7 @@
 170,7,B,Je suis désolée.,즈 스위 데졸레,미안해요.(여성),
 171,7,A,Je suis heureux.,즈 스위 즈흐흐,나는 행복해요.(남성),
 172,7,B,Je suis heureuse.,즈 스위 즈흐흐즈,나는 행복해요.(여성),
-173,7,A,Tu es triste ?,튜 에 트흐리스트,슬퍼?,감정 묻기
+173,7,A,Tu es triste ?,튜 에 트흐이스트,슬퍼?,감정 묻기
 174,7,B,Un peu...,앙 뻬,조금...,
 175,7,A,Courage !,쿠하주,힘내!,격려 표현
 176,7,B,"Merci, ça va aller.",메흐씨 싸 바 알레,"고마워, 괜찮을 거야.",위로 표현
