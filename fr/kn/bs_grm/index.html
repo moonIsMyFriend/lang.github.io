@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Français bs gmr</title>
+    <link rel="stylesheet" href="../../../en/css/quiz-style.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card">
+
+            <!-- 공통 헤더 -->
+            <div class="screen-title">
+                <h1>Français bs gmr</h1>
+                <div class="row">
+                    <span class="pill">rows: <span id="totalCnt">0</span></span>
+                </div>
+            </div>
+
+            <!-- # 화면 1: 시작 화면 -->
+            <section id="screen1">
+                <div class="box">
+                    <h1>Index</h1>
+
+                    <div class="row">
+                        <div class="search" style="flex:1">
+                            <input id="q" type="search" placeholder="검색: 폴더/파일명">
+                        </div>
+                    </div>
+                    <div style="height:12px"></div>
+                    
+                    <div id="list" class="card"></div>
+                    <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
+                    <div style="height:12px"></div>
+
+                    <details>
+                        <summary>사용자 CSV 파일</summary>
+                        <div class="content">
+                            <p class="sub">
+                                원하는 문장이나 단어가 담긴 CSV 파일을 불러오면 나만의 퀴즈 만들 수 있어요.
+                                단, CSV 파일의 헤더는 다음 형식을 권장합니다:
+                                <span class="kbd">no</span>,
+                                <span class="kbd">original</span>,
+                                <span class="kbd">trans</span>,
+                                <span class="kbd">pron</span>,
+                                <span class="kbd">commet</span>.
+                            </p>
+                            <div class="row">
+                                <input id="csvFile" type="file" accept=".csv" />
+                                <button id="btnDemo" class="ghost" hidden>데모 로드</button>
+                                <div style="text-align:right; width:100%; padding:0;">
+                                    <button id="btnSample" class="ghost">샘플 CSV 다운로드</button>
+                                </div>
+                            </div>
+
+                            <div style="height:14px"></div>
+                            <div class="row">
+                                <button id="btnPick" class="primary">Start</button>
+                            </div>
+
+                        </div>
+                    </details>
+
+                </div>
+
+
+                <div style="height:14px"></div>
+                <details>
+                    <summary>학습 설정</summary>
+
+                    <div class="box">
+                        <div class="row" style="margin-top:10px">
+                            <span class="muted">문제 출제 방식:</span>
+                            <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
+                            <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq">
+                                순차</label>
+                        </div>
+                        <div class="row">
+                            <span class="muted">모드 선택:</span>
+                        </div>
+                        <div>
+                            <label style="margin-left:12px"><input type="radio" name="practice" id="practiceQuiz"
+                                    value="quiz"> 퀴즈(빈칸 채우기)</label>
+                        </div>
+                        <div>
+                            <label style="margin-left:12px"><input type="radio" name="practice" id="practiceStudy"
+                                    value="study" checked> 학습(번역/정답/발음)</label>
+                        </div>
+
+                        <div class="row" style="margin-top:10px">
+                            <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
+                            <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
+                        </div>
+                        <div class="row" style="margin-top:6px">
+                            <label><input id="keepFirst" type="checkbox" checked /> 단어 첫 글자는 보이기</label>
+                            <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
+                                    style="width:64px;"> 글자 이상만 가리기</label>
+                        </div>
+                    </div>
+
+                </details>
+
+                <div style="height:14px"></div>
+                <details>
+                    <summary>사용법</summary>
+                    <div class="content">
+                        <ol>
+                            <li>자동으로 로드되는 데이터를 이용하거나 파일을 직접 선택하세요.</li>
+                            <li>학습 설정을 조정한 뒤 <b>Start</b>를 눌러 학습 화면으로 이동합니다.</li>
+                        </ol>
+                        <p class="footer">CSV는 UTF-8 권장.</p>
+                    </div>
+                </details>
+            </section>
+
+            <!-- # 화면 2: 퀴즈 화면 -->
+            <section id="screen2" class="hidden">
+                <div class="box">
+                    <div class="row">
+                        <button id="btnHome" class="ghost">Home</button>
+                        <button id="btnGrade" disabled>Check</button>
+                        <!-- <button id="btnReveal" disabled>정답 보기</button> -->
+                        <button id="btnNext" class="primary" disabled>Next</button>
+                    </div>
+                    <!-- <div class="row" style="margin-top:6px">
+                        <span class="pill">정답: <span id="scoreCorrect" class="score">0</span>/<span
+                                id="scoreTotal">0</span></span>
+                    
+                         진행도
+                        <span class="pill">진행: <span id="progressNow">0</span>/<span id="progressTotal">0</span></span>
+
+                    </div> -->
+
+                    <!-- 통합 프로그레스바 + 우측 전체 문항수 -->
+                    <div id="barWrap" style="display:flex; align-items:center; gap:8px; margin-top:10px;">
+                        <div role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100"
+                            aria-valuenow="0" id="barUnified"
+                            style="position:relative; height:12px; flex:1; background:#111827; border:1px solid #334155; border-radius:999px; overflow:hidden;">
+                            <!-- 진행(회색) -->
+                            <div id="barProgress"
+                                style="position:absolute; left:0; top:0; height:100%; width:0%; background:#334155; transition:width .25s;">
+                            </div>
+                            <!-- 정답(녹색) -->
+                            <div id="barCorrect"
+                                style="position:absolute; left:0; top:0; height:100%; width:0%; background:var(--good); transition:width .25s;">
+                            </div>
+                            <!-- ✅ 바 내부 정답수 라벨 -->
+                            <div id="barLabel"
+                                style="position:absolute; left:8px; top:50%; transform:translateY(-50%); font-size:12px; font-weight:700; color:#e5e7eb; text-shadow:0 1px 2px rgba(0,0,0,.5); pointer-events:none;">
+                                0
+                            </div>
+                        </div>
+
+                        <!-- ✅ 바 오른쪽 전체 문항수 -->
+                        <span id="barTotal"
+                            style="min-width:36px; text-align:right; color:#94a3b8; font-variant-numeric:tabular-nums;">
+                            0
+                        </span>
+                    </div>
+                </div>
+
+
+                <div style="height:14px"></div>
+
+                <details open>
+                    <summary><span class="pill">no.
+                            <span id="selId" class="id">—</span></span>
+                        <button id="btnAudio" class="ghost" disabled>🔊 듣기</button>
+                        <audio id="audioPlayer" preload="metadata"></audio>
+                    </summary>
+
+                    <div class="content">
+                        <div>
+                            <div class="muted"></div>
+                            <div id="ko" class="big">—</div>
+                        </div>
+                        <div style="height:12px"></div>
+                        <div>
+                            <div id="enMask" class="big">—</div>
+                        </div>
+                        <div id="answerWrap" style="display:none; margin-top:12px">
+                            <div class="muted">원문</div>
+                            <div id="enFull" class="big"></div>
+                        </div>
+                    </div>
+                </details>
+                <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
+            </section>
+
+
+            <!-- # 화면 3: 결과 화면 -->
+            <section id="screen3" class="hidden">
+                <div class="box">
+                    <h2 style="margin-top:0">Result</h2>
+                    <p class="big" id="finalLine">—</p>
+                    <div class="row" style="margin-top:10px">
+                        <button id="btnRestart" class="primary">Retry</button>
+                        <button id="btnHome2" class="ghost">Home</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script type="module">
+        import { initQuizApp } from '../../../en/lib/quiz-app.js';
+        // 페이지 로드 후 앱 초기화
+        let app;
+        window.addEventListener('DOMContentLoaded', () => {
+            app = initQuizApp();
+            window.quizApp = app; // 다른 스크립트에서도 접근 가능하도록(선택)
+        });
+
+        /**
+        // 브라우저 뒤로가기 대응(선택)
+        window.addEventListener('popstate', async (e)=>{
+        const st = e.state;
+        if (st && st.file) {
+            await window.quizApp?.startWith({ file: st.file, mode: st.mode || 'study', count: 'all' });
+        }
+        });**/
+
+        (async function () {
+            const $ = s => document.querySelector(s);
+            const list = $('#list');
+            const empty = $('#empty');
+            const q = $('#q');
+
+            /** catalog.json 형식: [{dir:"fr", name:"fr.csv", path:"fr/fr.csv"}, ...] */
+            let data = [];
+            try {
+                const res = await fetch('./catalog.json', { cache: 'no-store' });
+                data = await res.json();
+            } catch (e) {
+                list.innerHTML = '<div class="muted">catalog.json을 불러오지 못했습니다.</div>';
+                return;
+            }
+
+            // 그룹핑: dir 별로 묶기
+            function groupByDir(arr) {
+                const map = new Map();
+                for (const it of arr) {
+                    const key = it.dir || '';
+                    if (!map.has(key)) map.set(key, []);
+                    map.get(key).push(it);
+                }
+                // 폴더/파일 정렬
+                for (const [k, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
+                return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+            }
+
+            let view = data.slice();
+            render(view);
+
+            q.addEventListener('input', () => {
+                const term = q.value.trim().toLowerCase();
+                view = data.filter(it => {
+                    const hay = ((it.dir || '') + '/' + it.name).toLowerCase();
+                    return hay.includes(term);
+                });
+                render(view);
+            });
+
+            function render(arr) {
+                if (!arr.length) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+                empty.style.display = 'none';
+
+                const groups = groupByDir(arr);
+                const frag = document.createDocumentFragment();
+
+                for (const [dir, files] of groups) {
+                    const box = document.createElement('div');
+                    box.className = 'folder';
+                    box.innerHTML = `
+                <div class="title">${escapeHTML(dir)}</div>
+                <ul></ul>
+            `;
+                    const ul = box.querySelector('ul');
+
+                    for (const f of files) {
+                        const li = document.createElement('li');
+                        const display = f.name.replace(/\.csv$/i, ''); // 확장자 제거
+                        li.innerHTML = `<a href="#" class="csv-link" data-path="${encodeURI(f.path)}">${escapeHTML(display)}</a>`;
+                        li.querySelector('a').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            openStudy(f.path);
+                        });
+                        ul.appendChild(li);
+                    }
+                    frag.appendChild(box);
+                }
+                list.innerHTML = '';
+                list.appendChild(frag);
+            }
+
+            // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
+            async function openStudy(relPath) {
+                if (window.quizApp && typeof window.quizApp.startWith === 'function') {
+                    // 깜박임 없이 바로 시작
+                    await window.quizApp.startWith({ file: relPath, count: 'all' });
+
+                    // 주소창만 업데이트(새로고침 없음)
+                    const u = new URL(location.href);
+                    u.searchParams.set('file', relPath);
+                    u.searchParams.set('mode', 'study');
+                    u.searchParams.delete('n');
+                    history.pushState({ file: relPath, mode: 'study' }, '', u.toString());
+                } else {
+                    // 폴백: 컨트롤러가 없으면 기존 방식으로 이동
+                    const u = new URL('./index.html', location.href);
+                    u.searchParams.set('file', relPath);
+                    u.searchParams.set('mode', 'study');
+                    location.href = u.toString();
+                }
+            }
+
+            function escapeHTML(s = '') { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+        })();
+
+    </script>
+
+</body>
+
+</html>
