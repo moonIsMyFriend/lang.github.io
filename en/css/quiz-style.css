@@ -10,6 +10,31 @@
     --radius: 20px;
 }
 
+body.dark {
+    --bg: #0f172a;
+    --text: #f5f5f5;
+    --muted: #bfc4d1;
+    --card: #0b1220;
+    --bd: #1f2937;
+}
+
+body.dark, 
+body.dark .card,
+body.dark .box,
+body.dark input,
+body.dark button,
+body.dark details {
+    color: var(--text);
+    background: #0f172a; /* 기존 다크 배경 유지 */
+    border-color: #1e2633;
+}
+
+body.dark .row {
+    background: #1f2937 !important;
+    color: #e5e7eb !important;
+    border-color: #374151 !important;
+}
+
 /* 인덱스/목차 리스트 */
 .folder { margin:8px 0 }
 .folder > .title {
@@ -172,7 +197,7 @@ button:disabled {
 .big {
     font-size:18px;
     line-height:1.7;
-    color:#333333;
+    color: var(--text);
 }
 
 .muted {

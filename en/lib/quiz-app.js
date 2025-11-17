@@ -141,6 +141,21 @@ export function initQuizApp() {
     handleCSV(text);
   });
 
+
+  const themeToggle = document.querySelector('#themeToggle');
+
+  // 기본: 밝은 모드이므로 체크 안 됨
+  themeToggle.checked = false;
+
+  themeToggle.addEventListener('change', () => {
+      if(themeToggle.checked){
+          document.body.classList.add('dark');
+      } else {
+          document.body.classList.remove('dark');
+      }
+  });
+
+
   // 자동 로드
   // window.addEventListener('DOMContentLoaded', tryAutoload);
   async function tryAutoload() {
