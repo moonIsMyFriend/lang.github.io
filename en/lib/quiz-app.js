@@ -7,6 +7,7 @@ export function initQuizApp() {
     cols: { id: "일련번호", en: "영문", ko: "번역", pron: "발음" },
     current: null,
     session: null  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
+    audioLoop: false    // 🔹 반복 여부 추가
   };
 
   // 화면 전환
@@ -383,6 +384,11 @@ export function initQuizApp() {
     }
     btnAudio.textContent = '🔊 듣기';
 
+    // 반복 여부 저장
+    const loopCheck = document.querySelector('#audioLoop');
+    if (loopCheck) {
+        state.audioLoop = loopCheck.checked;
+    }
 
 
     // 경로 규칙: ./mp3/<csv파일명>/<id>.mp3  (csv파일명에 .csv 포함)
@@ -407,6 +413,10 @@ export function initQuizApp() {
 
   function togglePlayCurrent() {
     if (!audioPlayer) return;
+
+    // 반복 설정 적용
+    audioPlayer.loop = state.audioLoop;
+
     // src가 비어있거나 로드 안된 경우 방어
     if (!audioPlayer.src) { toast('오디오가 준비되지 않았어요.'); return; }
 
