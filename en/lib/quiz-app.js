@@ -247,6 +247,12 @@ export function initQuizApp() {
       s.idx += 1;
       renderCurrent();
       updateUnifiedBar();
+
+      // 🔥 자동재생
+      if (state.audioLoop){
+        togglePlayCurrent();
+      }
+
     } else {
       showResults();     // 🔹마지막 문제 다음 → 결과 화면
     }
@@ -421,6 +427,11 @@ export function initQuizApp() {
 
       audioPlayer.src = src;
       btnAudio.disabled = false;
+
+      if (state.audioLoop){
+        // 🔥 자동재생 가능
+        audioPlayer.play().catch(()=>{});
+      }
     } else {
       btnAudio.disabled = true;
     }
