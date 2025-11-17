@@ -6,7 +6,7 @@ export function initQuizApp() {
     rows: [],
     cols: { id: "일련번호", en: "영문", ko: "번역", pron: "발음" },
     current: null,
-    session: null  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
+    session: null,  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
     audioLoop: false    // 🔹 반복 여부 추가
   };
 
