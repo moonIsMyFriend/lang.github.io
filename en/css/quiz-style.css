@@ -35,6 +35,13 @@ body.dark .row {
     border-color: #374151 !important;
 }
 
+/* 다크 모드일 때 pill 색 덮어쓰기 */
+body.dark .pill {
+    background: #0b1220;
+    border-color: #1f2937;
+    color: #e5e7eb;
+}
+
 /* 인덱스/목차 리스트 */
 .folder { margin:8px 0 }
 .folder > .title {
