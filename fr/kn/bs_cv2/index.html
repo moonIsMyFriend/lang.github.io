@@ -14,7 +14,7 @@
 
             <!-- 공통 헤더 -->
             <div class="screen-title">
-                <h1>Français bs gmr</h1>
+                <h1 id="pageTitle">Français bs gmr</h1>
                 <div class="row">
                     <span class="pill">rows: <span id="totalCnt">0</span></span>
                 </div>
@@ -99,6 +99,21 @@
                             <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
                                     style="width:64px;"> 글자 이상만 가리기</label>
                         </div>
+
+                        <div class="row" style="margin-top:10px">
+                            <label>
+                                <input type="checkbox" id="audioLoop" />
+                                자동 반복 재생
+                            </label>
+                        </div>
+
+                        <div class="row" style="margin-bottom:10px">
+                            <label>
+                                <input type="checkbox" id="themeToggle">
+                                다크 모드
+                            </label>
+                        </div>
+
                     </div>
 
                 </details>
@@ -119,7 +134,7 @@
             <!-- # 화면 2: 퀴즈 화면 -->
             <section id="screen2" class="hidden">
                 <div class="box">
-                    <div class="row">
+                    <div class="row" class="card">
                         <button id="btnHome" class="ghost">Home</button>
                         <button id="btnGrade" disabled>Check</button>
                         <!-- <button id="btnReveal" disabled>정답 보기</button> -->
@@ -182,12 +197,10 @@
                             <div id="enMask" class="big">—</div>
                         </div>
                         <div id="answerWrap" style="display:none; margin-top:12px">
-                            <div class="muted">원문</div>
                             <div id="enFull" class="big"></div>
                         </div>
                     </div>
                 </details>
-                <div class="footer">단일 HTML 파일로 오프라인에서도 동작합니다.</div>
             </section>
 
 
@@ -208,6 +221,8 @@
 
     <script type="module">
         import { initQuizApp } from '../../../en/lib/quiz-app.js';
+        import { loadPageTitle } from '../../../en/lib/title.js';
+        loadPageTitle();
         // 페이지 로드 후 앱 초기화
         let app;
         window.addEventListener('DOMContentLoaded', () => {
