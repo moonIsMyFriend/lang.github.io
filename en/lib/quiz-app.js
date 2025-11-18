@@ -254,6 +254,7 @@ export function initQuizApp() {
       }
 
     } else {
+      audioPlayer.pause();
       showResults();     // 🔹마지막 문제 다음 → 결과 화면
     }
 
@@ -278,7 +279,11 @@ export function initQuizApp() {
     gradeCurrent();
     document.activeElement.blur();
   });
-  btnHome.addEventListener('click', () => { showScreen(1); state.rows = []; });
+  btnHome.addEventListener('click', () => { 
+    audioPlayer.pause();
+    showScreen(1); state.rows = [];
+   }
+  );
 
 
   function startSession(n, mode = 'random') {
