@@ -3,7 +3,7 @@ from gtts import gTTS
 from pathlib import Path
 from shutil import make_archive
 
-title = '08'
+title = 'test'
 print('making', title)
 CSV_PATH = f"./{title}.csv"          # 파일 경로(필요시 절대경로로 수정)
 OUT_DIR  = Path(f"./mp3/{title}")              # 출력 폴더
@@ -24,7 +24,7 @@ for _, row in df.iterrows():
     fname = OUT_DIR / f"{no:03d}.mp3"
     print(fname)
     # lang='fr'로 프랑스어, tld='fr'로 프랑스식 발음 엔진 선택
-    tts = gTTS(text=text, lang="fr", tld="fr", slow=True)
+    tts = gTTS(text=text, lang="en", tld="us", slow=False)
     tts.save(str(fname))
 
 # ZIP으로 묶기 (선택)
