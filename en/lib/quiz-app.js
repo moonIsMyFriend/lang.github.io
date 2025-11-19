@@ -314,7 +314,7 @@ export function initQuizApp() {
   });
   btnHome.addEventListener('click', () => { 
     // audioPlayer.pause();
-     stopAudio(); 
+    stopAudio(); 
     showScreen(1); state.rows = [];
    }
   );
