@@ -32,7 +32,27 @@ export function initQuizApp() {
       screen3.classList.remove('hidden');
       sub.style.display = 'none';
     }
+
+    updatePageTitle(which);
   }
+
+  function updatePageTitle(whichScreen){
+    const baseTitle = state.pageBaseTitle || document.title;   // title.txt에서 불러온 기본 제목
+    const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv"
+
+    const h1 = document.querySelector('#pageTitle');
+    if (h1) { 
+      if(whichScreen === 1){
+          h1.textContent = baseTitle;           // 화면1에서는 원래 제목만
+      } 
+      else if(whichScreen === 2){
+          h1.textContent = `${baseTitle} ${csvBase}`;  // 화면2: CSV명 추가
+      }
+      else if(whichScreen === 3){
+          h1.textContent = `${baseTitle} ${csvBase} (Result)`; // 화면3: CSV명 추가
+      }
+    }
+}
 
   // 요소
   const csvInput = $('#csvFile');
