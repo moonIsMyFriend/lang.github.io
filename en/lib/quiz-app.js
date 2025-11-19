@@ -74,7 +74,19 @@ export function initQuizApp() {
   state.practice = (modeParam === 'study') ? 'study' : 'quiz';
 
 
+  // 🔊 화면이 안 보이게 될 때(홈버튼, 앱 전환, 탭 전환 등) 오디오 정지
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      stopAudio();
+    }
+  });
 
+  // 🔙 뒤로 가기(히스토리 이동) / 페이지 떠날 때도 오디오 정지
+  window.addEventListener('pagehide', stopAudio);
+  window.addEventListener('beforeunload', stopAudio);
+
+  // (선택) history.back 같은 popstate 상황도 잡고 싶으면
+  window.addEventListener('popstate', stopAudio);
 
   function updateUnifiedBar() {
     const s = state.session;
@@ -254,7 +266,8 @@ export function initQuizApp() {
       }
 
     } else {
-      audioPlayer.pause();
+      // audioPlayer.pause();
+      stopAudio(); 
       showResults();     // 🔹마지막 문제 다음 → 결과 화면
     }
 
@@ -280,7 +293,8 @@ export function initQuizApp() {
     document.activeElement.blur();
   });
   btnHome.addEventListener('click', () => { 
-    audioPlayer.pause();
+    // audioPlayer.pause();
+     stopAudio(); 
     showScreen(1); state.rows = [];
    }
   );
@@ -631,6 +645,19 @@ export function initQuizApp() {
     audioPlayer.addEventListener('play', () => { btnAudio.textContent = '⏸ 일시정지'; });
     audioPlayer.onerror = () => toast('오디오 파일을 찾을 수 없어요.');
   }
+
+  function stopAudio(){
+  if (!audioPlayer) return;
+
+  if (!audioPlayer.paused) {
+    audioPlayer.pause();
+  }
+  audioPlayer.currentTime = 0;
+
+  if (btnAudio) {
+    btnAudio.textContent = '🔊 듣기';
+  }
+}
 
 
 
