@@ -3,8 +3,10 @@ from gtts import gTTS
 from pathlib import Path
 from shutil import make_archive
 
-CSV_PATH = "./08.csv"          # 파일 경로(필요시 절대경로로 수정)
-OUT_DIR  = Path("mp3_fr")              # 출력 폴더
+title = '13'
+print('making', title)
+CSV_PATH = f"./{title}.csv"          # 파일 경로(필요시 절대경로로 수정)
+OUT_DIR  = Path(f"./mp3/{title}")              # 출력 폴더
 OUT_DIR.mkdir(exist_ok=True)
 
 df = pd.read_csv(CSV_PATH)
@@ -20,6 +22,7 @@ for _, row in df.iterrows():
         continue
     no = int(row["no"])
     fname = OUT_DIR / f"{no:03d}.mp3"
+    print(fname)
     # lang='fr'로 프랑스어, tld='fr'로 프랑스식 발음 엔진 선택
     tts = gTTS(text=text, lang="fr", tld="fr", slow=True)
     tts.save(str(fname))
@@ -27,6 +30,9 @@ for _, row in df.iterrows():
 # ZIP으로 묶기 (선택)
 # make_archive("fr_dialogue_mp3", "zip", OUT_DIR)
 # print("완료:", OUT_DIR, "→ fr_dialogue_mp3.zip 생성")
+
+
+print('end')
 
 
 
