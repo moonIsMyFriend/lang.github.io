@@ -24,7 +24,6 @@ for _, row in df.iterrows():
     no = int(row["no"])
     fname = OUT_DIR / f"{no:03d}.mp3"
     print(fname)
-    # lang='fr'로 프랑스어, tld='fr'로 프랑스식 발음 엔진 선택
     tts = gTTS(text=text, lang="en", tld="co.uk")
     tts.save(str(fname))
 
