@@ -363,6 +363,7 @@ export function initQuizApp() {
     const idv = row[state.cols.id] ?? (rowIdx + 1);
     const en = (row[state.cols.en] || '').toString();
     const koText = (row[state.cols.ko] || '').toString();
+    const comment = (row[state.cols.comment] || '').toString();
     const pr = String(row[state.cols.pron] ?? '');
 
     const maskedInfo = maskEnglish(en, {
@@ -371,7 +372,11 @@ export function initQuizApp() {
       minLen: Math.max(1, Number(minLen.value) || 1)
     });
 
-    ko.textContent = koText;
+    if (comment){
+        ko.textContent = koText +'\n:' + comment;
+    } else {
+        ko.textContent = koText;
+    }
     enMask.innerHTML = maskedInfo.html;
     enFull.textContent = '';
     answerWrap.style.display = 'none';
@@ -508,9 +513,9 @@ export function initQuizApp() {
       const groupKey = byNorm['group'] || byNorm['그룹'] || header[3];
       const speakerKey = byNorm['speaker'] || byNorm['화자'] || header[4];
       const pronKey = byNorm['pron'] || byNorm['발음'] || header[5];
+      const commentKey = byNorm['comment'] || byNorm['비고'] || header[6];
 
-
-      state.cols = { id: idKey, en: enKey, ko: koKey, group: groupKey, speaker: speakerKey, pron: pronKey };
+      state.cols = { id: idKey, en: enKey, ko: koKey, group: groupKey, speaker: speakerKey, pron: pronKey, comment: commentKey };
       state.rows = rows.filter(r => (r[enKey] ?? '').toString().trim());
 
       totalCnt.textContent = state.rows.length;

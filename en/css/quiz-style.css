@@ -278,6 +278,10 @@ details > summary:hover{
     padding:12px;
 }
 
+#ko {
+    white-space: pre-line;
+}
+
 /* 입력형 빈칸/채점 스타일 */
 .blank {
     display:inline-flex;
