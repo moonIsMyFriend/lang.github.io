@@ -3,7 +3,7 @@ from gtts import gTTS
 from pathlib import Path
 from shutil import make_archive
 
-title = 'w1'
+title = 'rd_hk_basic'
 print('making', title)
 CSV_PATH = f"./{title}.csv"          # 파일 경로(필요시 절대경로로 수정)
 OUT_DIR  = Path(f"./mp3/{title}")              # 출력 폴더
