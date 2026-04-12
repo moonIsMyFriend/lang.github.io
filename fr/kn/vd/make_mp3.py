@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import make_archive
 
 titles = ['00.num.0_20', '01.num.21_40', '02.num.41_60', '03.num.61_80', '04.num.81_100', '15']
-titles = ['08_2']
+titles = ['04_all']
 print('making', titles)
 
 
@@ -34,7 +34,7 @@ for title in titles:
         fname = OUT_DIR / f"{no:03d}.mp3"
         print(fname)
         # lang='fr'로 프랑스어, tld='fr'로 프랑스식 발음 엔진 선택
-        tts = gTTS(text=text, lang="fr", tld="fr", slow=True)
+        tts = gTTS(text=text, lang="fr", tld="fr", slow=False)
         tts.save(str(fname))
 
 # ZIP으로 묶기 (선택)
