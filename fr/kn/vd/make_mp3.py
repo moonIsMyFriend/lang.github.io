@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import make_archive
 
 titles = ['00.num.0_20', '01.num.21_40', '02.num.41_60', '03.num.61_80', '04.num.81_100', '15']
-titles = ['05_1', '05_2']
+titles = ['08_2']
 print('making', titles)
 
 
