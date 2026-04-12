@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import make_archive
 
 titles = ['00.num.0_20', '01.num.21_40', '02.num.41_60', '03.num.61_80', '04.num.81_100', '15']
-titles = ['01']
+titles = ['06']
 print('making', titles)
 
 
@@ -21,6 +21,9 @@ for title in titles:
 
     df = pd.read_csv(CSV_PATH)
     for _, row in df.iterrows():
+        if row['no'] < 17:
+            continue
+
         text = str(row["original"]).strip()
         if not text or text.lower() == "nan":
             continue
