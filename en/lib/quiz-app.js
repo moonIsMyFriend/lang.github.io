@@ -101,9 +101,15 @@ export function initQuizApp() {
   let pronounceChunks = [];
   let pronounceStream = null;
   let suppressPronounceUpload = false;
+  /** Auto-stop recording after this many ms (prevents huge uploads). */
+  let pronounceMaxDurationTimer = null;
 
   /** Production pronunciation API (no URL input in UI). */
   const PRONOUNCE_API_BASE = 'https://learnlang-4fm6.onrender.com';
+  /** Max upload size for /api/pronounce (bytes). ~3MB is safe for small hosts / multipart limits. */
+  const PRONOUNCE_MAX_BYTES = 3 * 1024 * 1024;
+  /** Hard cap on recording length so blobs stay small even without manual stop. */
+  const PRONOUNCE_MAX_DURATION_MS = 45 * 1000;
 
   function getPronounceBase() {
     return PRONOUNCE_API_BASE.replace(/\/+$/, '').replace(/\/api\/pronounce$/i, '');
@@ -177,6 +183,10 @@ export function initQuizApp() {
         if (ev.data?.size) pronounceChunks.push(ev.data);
       };
       pronounceRecorder.onstop = async () => {
+        if (pronounceMaxDurationTimer) {
+          clearTimeout(pronounceMaxDurationTimer);
+          pronounceMaxDurationTimer = null;
+        }
         const canceled = suppressPronounceUpload;
         suppressPronounceUpload = false;
         try {
@@ -200,8 +210,16 @@ export function initQuizApp() {
         }
       };
       pronounceRecorder.start();
+      pronounceMaxDurationTimer = window.setTimeout(() => {
+        if (pronounceRecorder && pronounceRecorder.state === 'recording') {
+          toast(`최대 녹음 시간(${PRONOUNCE_MAX_DURATION_MS / 1000}초)에 도달해 자동으로 전송합니다.`);
+          pronounceRecorder.stop();
+        }
+      }, PRONOUNCE_MAX_DURATION_MS);
       btnPronounceRecord.textContent = '녹음 정지 · 전송';
-      if (pronounceStatus) pronounceStatus.textContent = '녹음 중… 끝나면 같은 버튼으로 정지합니다.';
+      if (pronounceStatus) {
+        pronounceStatus.textContent = `녹음 중… 최대 ${PRONOUNCE_MAX_DURATION_MS / 1000}초. 끝나면 같은 버튼으로 정지합니다.`;
+      }
     } catch (e) {
       pronounceStream?.getTracks().forEach((t) => t.stop());
       pronounceStream = null;
@@ -211,7 +229,21 @@ export function initQuizApp() {
     }
   }
 
+  /** Browser does not distinguish CORS vs offline; use fetch failure message heuristics. */
+  function isLikelyNetworkOrCorsFailure(err) {
+    const m = String((err && err.message) || err || '');
+    return /failed to fetch|load failed|networkerror|network request failed|fetch.*abort/i.test(m);
+  }
+
   async function postPronounce(blob, caption, mimeType) {
+    if (blob.size > PRONOUNCE_MAX_BYTES) {
+      const mb = (blob.size / (1024 * 1024)).toFixed(2);
+      const maxMb = (PRONOUNCE_MAX_BYTES / (1024 * 1024)).toFixed(1);
+      toast(`녹음 파일이 너무 큽니다 (${mb}MB). 최대 약 ${maxMb}MB까지 전송할 수 있어요. 더 짧게 녹음해 주세요.`);
+      if (pronounceStatus) pronounceStatus.textContent = '';
+      return;
+    }
+
     const base = getPronounceBase();
     const engine = 'google';
     if (pronounceStatus) pronounceStatus.textContent = '서버에서 인식 중…';
@@ -270,6 +302,10 @@ export function initQuizApp() {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
       if (pronounceOutcome) pronounceOutcome.innerHTML = '';
       if (pronounceStatus) pronounceStatus.textContent = '';
+      if (isLikelyNetworkOrCorsFailure(e)) {
+        toast('허가된 사용자가 아닙니다. 관리자에게 확인해 주세요.');
+        return;
+      }
       toast(`발음 검사 오류: ${e.message || e}`);
     }
   }
@@ -873,6 +909,10 @@ export function initQuizApp() {
   }
 
   function stopPronounceRecording() {
+    if (pronounceMaxDurationTimer) {
+      clearTimeout(pronounceMaxDurationTimer);
+      pronounceMaxDurationTimer = null;
+    }
     const hadSession = !!(pronounceRecorder || pronounceStream);
     if (!hadSession) {
       suppressPronounceUpload = false;
