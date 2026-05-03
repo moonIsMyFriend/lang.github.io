@@ -202,6 +202,30 @@
                         <div id="answerWrap" style="display:none; margin-top:12px">
                             <div id="enFull" class="big"></div>
                         </div>
+                        <div id="pronouncePanel" style="margin-top:14px">
+                            <div class="row pron-row">
+                                <span id="pronounceApiKeyWrap" class="pronounce-key-wrap">
+                                <input type="password" id="pronounceApiKey"
+                                    placeholder="이용 발급 key"
+                                    autocomplete="off"
+                                    title="관리자에게 받은 이용 발급 key가 있을 때만 입력하세요. 이 브라우저에만 저장됩니다."
+                                    style="flex:1; min-width:140px;max-width:220px;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);background:#FDFBF4;color:#333" />
+                                </span>
+                                <select id="pronounceLocale" title="Recognition language (Speech API locale)">
+                                    <option value="fr-FR" selected>프랑스어 fr-FR</option>
+                                    <option value="en-US">영어 en-US</option>
+                                    <option value="en-GB">영어 en-GB</option>
+                                    <option value="ko-KR">한국어 ko-KR</option>
+                                    <option value="ja-JP">일본어 ja-JP</option>
+                                    <option value="es-ES">스페인어 es-ES</option>
+                                    <option value="de-DE">독일어 de-DE</option>
+                                    <option value="zh-CN">중국어(간체) zh-CN</option>
+                                </select>
+                                <button type="button" id="btnPronounceRecord" class="ghost">발음 녹음</button>
+                            </div>
+                            <div id="pronounceStatus" class="muted" style="margin-top:8px;font-size:13px;"></div>
+                            <div id="pronounceOutcome" class="pronounce-outcome"></div>
+                        </div>
                     </div>
                 </details>
             </section>

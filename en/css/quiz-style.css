@@ -42,6 +42,49 @@ body.dark .pill {
     color: #e5e7eb;
 }
 
+body.dark #pronounceApiKey {
+    background:#0b1220 !important;
+    color:#e5e7eb !important;
+    border-color:#374151 !important;
+}
+
+.pron-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.pronounce-key-wrap {
+    flex: 1;
+    min-width: 140px;
+    max-width: 220px;
+    display: inline-flex;
+}
+
+#pronounceLocale {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--bd);
+    background: var(--card);
+    color: var(--text);
+}
+
+.pronounce-outcome {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.55;
+}
+
+.pronounce-outcome .pron-meta {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.pronounce-outcome font {
+    font-weight: 600;
+}
+
 /* 인덱스/목차 리스트 */
 .folder { margin:8px 0 }
 .folder > .title {

@@ -87,6 +87,202 @@ export function initQuizApp() {
   const barLabel = document.querySelector('#barLabel');
   const barTotal = document.querySelector('#barTotal');
 
+  const pronounceApiKeyEl = document.querySelector('#pronounceApiKey');
+  const pronounceLocaleEl = document.querySelector('#pronounceLocale');
+  const btnPronounceRecord = document.querySelector('#btnPronounceRecord');
+  const pronounceStatus = document.querySelector('#pronounceStatus');
+  const pronounceOutcome = document.querySelector('#pronounceOutcome');
+  const LS_PRON_API_KEY = 'learnlang_pronounce_api_key';
+  /** Set after at least one successful /api/pronounce; cleared on 401 (e.g. rotated server key). */
+  const LS_PRON_KEY_VERIFIED = 'learnlang_pronounce_key_verified';
+  const LS_PRON_LOCALE = 'learnlang_pronounce_locale';
+
+  let pronounceRecorder = null;
+  let pronounceChunks = [];
+  let pronounceStream = null;
+  let suppressPronounceUpload = false;
+
+  /** Production pronunciation API (no URL input in UI). */
+  const PRONOUNCE_API_BASE = 'https://learnlang-4fm6.onrender.com';
+
+  function getPronounceBase() {
+    return PRONOUNCE_API_BASE.replace(/\/+$/, '').replace(/\/api\/pronounce$/i, '');
+  }
+
+  const pronounceApiKeyWrapEl = document.querySelector('#pronounceApiKeyWrap');
+
+  function setPronounceApiKeyWrapVisible(visible) {
+    if (!pronounceApiKeyWrapEl) return;
+    pronounceApiKeyWrapEl.style.display = visible ? 'inline-flex' : 'none';
+  }
+
+  if (pronounceApiKeyEl) {
+    const savedKey = localStorage.getItem(LS_PRON_API_KEY);
+    if (savedKey) pronounceApiKeyEl.value = savedKey;
+    pronounceApiKeyEl.addEventListener('change', () => {
+      localStorage.setItem(LS_PRON_API_KEY, pronounceApiKeyEl.value.trim());
+      localStorage.removeItem(LS_PRON_KEY_VERIFIED);
+      setPronounceApiKeyWrapVisible(true);
+    });
+    if (localStorage.getItem(LS_PRON_KEY_VERIFIED) === '1') {
+      setPronounceApiKeyWrapVisible(false);
+    }
+  }
+
+  if (pronounceLocaleEl) {
+    const savedLoc = localStorage.getItem(LS_PRON_LOCALE);
+    if (savedLoc && [...pronounceLocaleEl.options].some((o) => o.value === savedLoc)) {
+      pronounceLocaleEl.value = savedLoc;
+    }
+    pronounceLocaleEl.addEventListener('change', () => {
+      localStorage.setItem(LS_PRON_LOCALE, pronounceLocaleEl.value.trim());
+    });
+  }
+
+  async function togglePronounceRecord() {
+    if (!btnPronounceRecord) return;
+    if (!state.current) {
+      toast('문장이 선택되지 않았습니다.');
+      return;
+    }
+    if (pronounceRecorder && pronounceRecorder.state === 'recording') {
+      suppressPronounceUpload = false;
+      pronounceRecorder.stop();
+      return;
+    }
+    const pronounceCaption = String(state.current[state.cols.en] || '').trim();
+    if (!pronounceCaption) {
+      toast('점수를 낼 원문이 없습니다.');
+      return;
+    }
+
+    try {
+      pronounceStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) {
+      toast('마이크 접근에 실패했습니다.');
+      return;
+    }
+
+    let mimeType = '';
+    try {
+      if (MediaRecorder.isTypeSupported?.('audio/webm;codecs=opus')) {
+        mimeType = 'audio/webm;codecs=opus';
+      } else if (MediaRecorder.isTypeSupported?.('audio/webm')) {
+        mimeType = 'audio/webm';
+      }
+      pronounceChunks = [];
+      pronounceRecorder = mimeType ? new MediaRecorder(pronounceStream, { mimeType }) : new MediaRecorder(pronounceStream);
+      const finalMime = pronounceRecorder.mimeType || mimeType || 'audio/webm';
+      pronounceRecorder.ondataavailable = (ev) => {
+        if (ev.data?.size) pronounceChunks.push(ev.data);
+      };
+      pronounceRecorder.onstop = async () => {
+        const canceled = suppressPronounceUpload;
+        suppressPronounceUpload = false;
+        try {
+          pronounceStream?.getTracks().forEach((t) => t.stop());
+          pronounceStream = null;
+        } finally {
+          pronounceRecorder = null;
+          btnPronounceRecord.disabled = false;
+          btnPronounceRecord.textContent = '발음 녹음';
+          if (canceled) {
+            if (pronounceStatus) pronounceStatus.textContent = '';
+            return;
+          }
+          if (!pronounceChunks.length) {
+            if (pronounceStatus) pronounceStatus.textContent = '';
+            toast('녹음 데이터가 비어 있습니다.');
+            return;
+          }
+          const blob = new Blob(pronounceChunks, { type: finalMime });
+          await postPronounce(blob, pronounceCaption, finalMime);
+        }
+      };
+      pronounceRecorder.start();
+      btnPronounceRecord.textContent = '녹음 정지 · 전송';
+      if (pronounceStatus) pronounceStatus.textContent = '녹음 중… 끝나면 같은 버튼으로 정지합니다.';
+    } catch (e) {
+      pronounceStream?.getTracks().forEach((t) => t.stop());
+      pronounceStream = null;
+      pronounceRecorder = null;
+      btnPronounceRecord.textContent = '발음 녹음';
+      toast('녹음을 시작할 수 없습니다.');
+    }
+  }
+
+  async function postPronounce(blob, caption, mimeType) {
+    const base = getPronounceBase();
+    const engine = 'google';
+    if (pronounceStatus) pronounceStatus.textContent = '서버에서 인식 중…';
+
+    const fd = new FormData();
+    fd.append('caption', caption);
+    fd.append('engine', engine);
+    const loc = (pronounceLocaleEl?.value || 'fr-FR').trim();
+    fd.append('locale', loc || 'fr-FR');
+    const ext = /\.webm/i.test(blob.type || mimeType) ? 'webm' : (/mpeg|mp3/i.test(blob.type || '') ? 'mp3' : 'webm');
+    fd.append('audio', blob, `clip.${ext}`);
+
+    try {
+      const headers = {};
+      const apiKey = (pronounceApiKeyEl?.value || '').trim();
+      if (apiKey) headers['X-API-Key'] = apiKey;
+
+      const res = await fetch(`${base}/api/pronounce`, {
+        method: 'POST',
+        headers,
+        body: fd
+      });
+      const text = await res.text();
+      let data;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = null;
+      }
+      if (!res.ok) {
+        if (res.status === 401) {
+          localStorage.removeItem(LS_PRON_KEY_VERIFIED);
+          setPronounceApiKeyWrapVisible(true);
+          if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+          if (pronounceStatus) pronounceStatus.textContent = '';
+          toast('이용 발급 key가 맞지 않거나 만료되었습니다. 다시 입력해 주세요.');
+          throw new Error('__pronounce_auth_toast_shown__');
+        }
+        const detail = (data && data.detail) ? JSON.stringify(data.detail) : text || res.statusText;
+        throw new Error(detail);
+      }
+
+      localStorage.setItem(LS_PRON_KEY_VERIFIED, '1');
+      setPronounceApiKeyWrapVisible(false);
+
+      const score = typeof data.score === 'number' ? data.score : '—';
+      const said = escapeHTML_(data.best_user_said || '(인식 없음)');
+      const colored = data.colored_caption ?? '';
+      if (pronounceOutcome) {
+        pronounceOutcome.innerHTML = `${colored || escapeHTML_(caption)}
+          <div class="pron-meta">점수 ${score}% · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
+      }
+      if (pronounceStatus) pronounceStatus.textContent = '';
+      toast(`발음 점수: ${score}%`);
+    } catch (e) {
+      if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
+      if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+      if (pronounceStatus) pronounceStatus.textContent = '';
+      toast(`발음 검사 오류: ${e.message || e}`);
+    }
+  }
+
+  /** local escape when server returns transcript for meta line */
+  function escapeHTML_(s) {
+    return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  if (btnPronounceRecord) {
+    btnPronounceRecord.addEventListener('click', () => togglePronounceRecord());
+  }
+
   // URL 파라미터
   const url = new URL(location.href);
   const file = url.searchParams.get('file') || './test.csv';
@@ -98,15 +294,16 @@ export function initQuizApp() {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
       stopAudio();
+      stopPronounceRecording();
     }
   });
 
   // 🔙 뒤로 가기(히스토리 이동) / 페이지 떠날 때도 오디오 정지
-  window.addEventListener('pagehide', stopAudio);
-  window.addEventListener('beforeunload', stopAudio);
+  window.addEventListener('pagehide', () => { stopAudio(); stopPronounceRecording(); });
+  window.addEventListener('beforeunload', () => { stopAudio(); stopPronounceRecording(); });
 
   // (선택) history.back 같은 popstate 상황도 잡고 싶으면
-  window.addEventListener('popstate', stopAudio);
+  window.addEventListener('popstate', () => { stopAudio(); stopPronounceRecording(); });
 
   function updateUnifiedBar() {
     const s = state.session;
@@ -314,6 +511,7 @@ export function initQuizApp() {
   });
   btnHome.addEventListener('click', () => { 
     // audioPlayer.pause();
+    stopPronounceRecording();
     stopAudio(); 
     showScreen(1); state.rows = [];
    }
@@ -436,6 +634,9 @@ export function initQuizApp() {
 
     // ✅ 오디오 준비
     prepareAudioFor(itemId);
+
+    if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+    if (pronounceStatus) pronounceStatus.textContent = '';
   }
 
 
@@ -669,6 +870,25 @@ export function initQuizApp() {
     audioPlayer.addEventListener('pause', () => { btnAudio.textContent = '🔊 듣기'; });
     audioPlayer.addEventListener('play', () => { btnAudio.textContent = '⏸ 일시정지'; });
     audioPlayer.onerror = () => toast('오디오 파일을 찾을 수 없어요.');
+  }
+
+  function stopPronounceRecording() {
+    const hadSession = !!(pronounceRecorder || pronounceStream);
+    if (!hadSession) {
+      suppressPronounceUpload = false;
+      return;
+    }
+    suppressPronounceUpload = true;
+    try {
+      pronounceStream?.getTracks().forEach((t) => t.stop());
+    } catch (_) {}
+    try {
+      if (pronounceRecorder && pronounceRecorder.state === 'recording') {
+        pronounceRecorder.stop();
+      }
+    } catch (_) {}
+    pronounceStream = null;
+    pronounceChunks = [];
   }
 
   function stopAudio(){
