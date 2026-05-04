@@ -248,7 +248,8 @@ export function initQuizApp() {
 
     const base = getPronounceBase();
     const engine = 'google';
-    if (pronounceStatus) pronounceStatus.textContent = '서버에서 인식 중…';
+    // 서버 인식 중 
+    if (pronounceStatus) pronounceStatus.textContent = 'Gabrielle이 채점 중입니다...';
 
     const fd = new FormData();
     fd.append('caption', caption);
