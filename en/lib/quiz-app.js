@@ -112,6 +112,9 @@ export function initQuizApp() {
   const PRONOUNCE_MAX_BYTES = 3 * 1024 * 1024;
   /** Hard cap on recording length so blobs stay small even without manual stop. */
   const PRONOUNCE_MAX_DURATION_MS = 45 * 1000;
+  const PRONOUNCE_BUSY_MESSAGE = '채점자가 바쁩니다. 3분정도 뒤에 다시 시도 해주세요';
+  /** Max wait for /api/pronounce (e.g. cold start after idle spin-down). */
+  const PRONOUNCE_FETCH_TIMEOUT_MS = 3 * 60 * 1000;
 
   const PRONOUNCE_SVG_MIC =
     '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>';
@@ -285,6 +288,17 @@ export function initQuizApp() {
     return /failed to fetch|load failed|networkerror|network request failed|fetch.*abort/i.test(m);
   }
 
+  function isPronounceNoResponseError(err) {
+    if (!err) return false;
+    if (err.name === 'AbortError') return true;
+    return isLikelyNetworkOrCorsFailure(err);
+  }
+
+  function showPronounceServerBusy() {
+    if (pronounceStatus) pronounceStatus.textContent = PRONOUNCE_BUSY_MESSAGE;
+    toast(PRONOUNCE_BUSY_MESSAGE);
+  }
+
   async function postPronounce(blob, caption, mimeType) {
     if (blob.size > PRONOUNCE_MAX_BYTES) {
       const mb = (blob.size / (1024 * 1024)).toFixed(2);
@@ -312,11 +326,19 @@ export function initQuizApp() {
       const apiKey = (pronounceApiKeyEl?.value || '').trim();
       if (apiKey) headers['X-API-Key'] = apiKey;
 
-      const res = await fetch(`${base}/api/pronounce`, {
-        method: 'POST',
-        headers,
-        body: fd
-      });
+      const ac = new AbortController();
+      const tid = setTimeout(() => ac.abort(), PRONOUNCE_FETCH_TIMEOUT_MS);
+      let res;
+      try {
+        res = await fetch(`${base}/api/pronounce`, {
+          method: 'POST',
+          headers,
+          body: fd,
+          signal: ac.signal
+        });
+      } finally {
+        clearTimeout(tid);
+      }
       const text = await res.text();
       let data;
       try {
@@ -332,6 +354,11 @@ export function initQuizApp() {
           if (pronounceStatus) pronounceStatus.textContent = '';
           toast('이용 발급 key가 맞지 않거나 만료되었습니다. 다시 입력해 주세요.');
           throw new Error('__pronounce_auth_toast_shown__');
+        }
+        if ([502, 503, 504, 524].includes(res.status)) {
+          if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+          showPronounceServerBusy();
+          return;
         }
         const detail = (data && data.detail) ? JSON.stringify(data.detail) : text || res.statusText;
         throw new Error(detail);
@@ -352,11 +379,11 @@ export function initQuizApp() {
     } catch (e) {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
       if (pronounceOutcome) pronounceOutcome.innerHTML = '';
-      if (pronounceStatus) pronounceStatus.textContent = '';
-      if (isLikelyNetworkOrCorsFailure(e)) {
-        toast('허가된 사용자가 아닙니다. 관리자에게 확인해 주세요.');
+      if (isPronounceNoResponseError(e)) {
+        showPronounceServerBusy();
         return;
       }
+      if (pronounceStatus) pronounceStatus.textContent = '';
       toast(`발음 검사 오류: ${e.message || e}`);
     }
   }
