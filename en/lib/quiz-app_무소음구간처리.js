@@ -110,6 +110,10 @@ export function initQuizApp() {
   const PRONOUNCE_MAX_BYTES = 3 * 1024 * 1024;
   /** Hard cap on recording length so blobs stay small even without manual stop. */
   const PRONOUNCE_MAX_DURATION_MS = 45 * 1000;
+  /** dBFS 이하(더 조용한) 구간은 전송 전에 제거. rms dBFS ≈ 20·log10(rms). */
+  const PRONOUNCE_GATE_DBFS = -20;
+  /** 게이트 분석 창 길이(ms). */
+  const PRONOUNCE_GATE_WINDOW_MS = 10;
 
   function getPronounceBase() {
     return PRONOUNCE_API_BASE.replace(/\/+$/, '').replace(/\/api\/pronounce$/i, '');
@@ -207,8 +211,14 @@ export function initQuizApp() {
             toast('녹음 데이터가 비어 있습니다.');
             return;
           }
-          const blob = new Blob(pronounceChunks, { type: finalMime });
-          await postPronounce(blob, pronounceCaption, finalMime);
+          const rawBlob = new Blob(pronounceChunks, { type: finalMime });
+          const blob = await trimPronounceRecording(rawBlob, finalMime);
+          if (!blob) {
+            if (pronounceStatus) pronounceStatus.textContent = '';
+            return;
+          }
+          const sendMime = blob.type || finalMime;
+          await postPronounce(blob, pronounceCaption, sendMime);
         }
       };
       pronounceRecorder.start();
@@ -228,6 +238,132 @@ export function initQuizApp() {
       pronounceRecorder = null;
       btnPronounceRecord.textContent = '발음 녹음';
       toast('녹음을 시작할 수 없습니다.');
+    }
+  }
+
+  /**
+   * RMS 기준 dBFS 이하인 분석 창을 버리고 남은 구간만 이어붙입니다.
+   * @returns {AudioBuffer | null} 전부 잘리면 null
+   */
+  function trimAudioBufferDbGate(buf, thresholdDbfs) {
+    const sr = buf.sampleRate;
+    const ch = buf.numberOfChannels;
+    const n = buf.length;
+    if (!n || !ch) return null;
+    const win = Math.max(128, Math.floor((PRONOUNCE_GATE_WINDOW_MS / 1000) * sr));
+    const channels = [];
+    for (let c = 0; c < ch; c++) channels.push(buf.getChannelData(c));
+
+    const active = [];
+    for (let start = 0; start < n; start += win) {
+      const end = Math.min(start + win, n);
+      let sumSq = 0;
+      let count = 0;
+      for (let i = start; i < end; i++) {
+        let s = 0;
+        for (let c = 0; c < ch; c++) s += channels[c][i];
+        s /= ch;
+        sumSq += s * s;
+        count++;
+      }
+      const rms = Math.sqrt(sumSq / Math.max(count, 1));
+      const db = 20 * Math.log10(Math.max(rms, 1e-10));
+      active.push(db > thresholdDbfs);
+    }
+
+    const ranges = [];
+    let w = 0;
+    const numWin = active.length;
+    while (w < numWin) {
+      if (!active[w]) {
+        w++;
+        continue;
+      }
+      const rs = w * win;
+      while (w < numWin && active[w]) w++;
+      const re = Math.min(w * win, n);
+      if (re > rs) ranges.push([rs, re]);
+    }
+    if (!ranges.length) return null;
+
+    let newLen = 0;
+    for (const [a, b] of ranges) newLen += b - a;
+    if (newLen < 64) return null;
+
+    const ac = new AudioContext({ sampleRate: sr });
+    const out = ac.createBuffer(ch, newLen, sr);
+    ac.close().catch(() => {});
+    let off = 0;
+    for (const [a, b] of ranges) {
+      const len = b - a;
+      for (let c = 0; c < ch; c++) {
+        out.getChannelData(c).set(channels[c].subarray(a, b), off);
+      }
+      off += len;
+    }
+    return out;
+  }
+
+  async function audioBufferToRecordedBlob(audioBuffer, hintMime) {
+    const pickMime = () => {
+      if (MediaRecorder.isTypeSupported?.('audio/webm;codecs=opus')) return 'audio/webm;codecs=opus';
+      if (MediaRecorder.isTypeSupported?.('audio/webm')) return 'audio/webm';
+      return '';
+    };
+    const base = (hintMime || '').split(';')[0];
+    const mime =
+      base && MediaRecorder.isTypeSupported?.(hintMime || '')
+        ? hintMime
+        : pickMime();
+    let ctx;
+    try {
+      ctx = new AudioContext({ sampleRate: audioBuffer.sampleRate });
+    } catch {
+      ctx = new AudioContext();
+    }
+    const dest = ctx.createMediaStreamDestination();
+    const rec = mime ? new MediaRecorder(dest.stream, { mimeType: mime }) : new MediaRecorder(dest.stream);
+    const outType = rec.mimeType || mime || 'audio/webm';
+    const chunks = [];
+    rec.ondataavailable = (ev) => {
+      if (ev.data?.size) chunks.push(ev.data);
+    };
+
+    return new Promise((resolve, reject) => {
+      rec.onstop = () => {
+        ctx.close().catch(() => {});
+        resolve(new Blob(chunks, { type: outType }));
+      };
+      const src = ctx.createBufferSource();
+      src.buffer = audioBuffer;
+      src.connect(dest);
+      rec.start();
+      src.start(0);
+      src.onended = () => {
+        try {
+          rec.stop();
+        } catch (e) {
+          reject(e);
+        }
+      };
+    });
+  }
+
+  /** 조용한 구간 제거 실패 시 원본 blob 그대로 반환 */
+  async function trimPronounceRecording(blob, mimeHint) {
+    try {
+      const ab = await blob.arrayBuffer();
+      const ctx = new AudioContext();
+      const decoded = await ctx.decodeAudioData(ab.slice(0));
+      ctx.close().catch(() => {});
+      const trimmed = trimAudioBufferDbGate(decoded, PRONOUNCE_GATE_DBFS);
+      if (!trimmed) {
+        toast('녹음이 너무 조용해 전송할 수 없습니다. 다시 시도해 주세요.');
+        return null;
+      }
+      return await audioBufferToRecordedBlob(trimmed, mimeHint);
+    } catch {
+      return blob;
     }
   }
 
