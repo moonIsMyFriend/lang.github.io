@@ -85,6 +85,44 @@ body.dark #pronounceApiKey {
     font-weight: 600;
 }
 
+.pronounce-rec-wrap {
+    margin-top: 8px;
+    font-size: 13px;
+}
+.pronounce-rec-bar-track {
+    height: 7px;
+    border-radius: 4px;
+    background: var(--bd);
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+.pronounce-rec-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #5a8fc7, var(--good));
+    transition: width 0.12s linear;
+}
+.pronounce-rec-label {
+    color: var(--muted);
+}
+body.dark .pronounce-rec-bar-track {
+    background: #374151;
+}
+
+#btnPronounceRecord {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.5rem;
+    padding: 0.35rem 0.45rem;
+    line-height: 0;
+}
+#btnPronounceRecord svg {
+    display: block;
+    flex-shrink: 0;
+}
+
 /* 인덱스/목차 리스트 */
 .folder { margin:8px 0 }
 .folder > .title {
