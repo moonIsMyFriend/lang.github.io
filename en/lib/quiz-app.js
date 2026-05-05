@@ -109,6 +109,8 @@ export function initQuizApp() {
   let pronounceMaxDurationTimer = null;
   let pronounceProgressTimer = null;
   let pronounceRecordStart = 0;
+  /** 첫 발음 인식 요청 여부(새로고침 전까지 유지). */
+  let pronounceRequestedOnce = false;
 
   /** Production pronunciation API (no URL input in UI). */
   const PRONOUNCE_API_BASE = 'https://learnlang-4fm6.onrender.com';
@@ -362,8 +364,13 @@ export function initQuizApp() {
 
     const base = getPronounceBase();
     const engine = 'google';
-    // 서버 인식 중 
-    if (pronounceStatus) pronounceStatus.textContent = 'Gabrielle이 채점 중입니다...';
+    // 첫 요청은 "요청중", 이후에는 기존 "채점 중" 문구 표시
+    if (pronounceStatus) {
+      pronounceStatus.textContent = pronounceRequestedOnce
+        ? 'Gabrielle이 채점 중입니다...'
+        : 'Gabrielle에게 요청중입니다...';
+    }
+    pronounceRequestedOnce = true;
 
     const fd = new FormData();
     fd.append('caption', caption);
