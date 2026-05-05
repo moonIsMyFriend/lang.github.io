@@ -6,6 +6,8 @@
     --muted: #666666;    /* 보조 텍스트 */
     --text: #333333;     /* 본문 텍스트 */
     --good: #7DA87B;     /* 정답 표시용 부드러운 초록 */
+    /* 발음 결과 맞춤 단어: 회색 캡션 옆에서도 잘 보이게 채도 높은 녹색 */
+    --pron-match: #047857;
     --bad: #D46A6A;      /* 오답 표시용 부드러운 빨강 */
     --radius: 20px;
 }
@@ -16,6 +18,7 @@ body.dark {
     --muted: #bfc4d1;
     --card: #0b1220;
     --bd: #1f2937;
+    --pron-match: #34d399;
 }
 
 body.dark, 
@@ -73,11 +76,14 @@ body.dark #pronounceApiKey {
     margin-top: 10px;
     font-size: 18px;
     line-height: 1.55;
-    /* 틀린·미일치 단어(태그 없는 구간): 본문(--text)보다 옅은 회색 */
+}
+
+/* 틀린·미일치 단어만 옅은 회색 (맞은 단어는 아래 font 규칙으로 녹색) */
+.pronounce-outcome .pronounce-caption-text {
     color: #6b7280;
 }
 
-body.dark .pronounce-outcome {
+body.dark .pronounce-outcome .pronounce-caption-text {
     color: #9ca3af;
 }
 
@@ -102,14 +108,16 @@ body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
     color: #6b7280;
 }
 
-.pronounce-outcome font {
-    font-weight: 600;
+.pronounce-outcome .pronounce-caption-text font {
+    font-weight: 700;
 }
 
-/* 서버/클라이언트가 붙인 맞춤 단어만 녹색 유지 */
-.pronounce-outcome font[color="green"],
-.pronounce-outcome font[color='green'] {
-    color: var(--good) !important;
+/* 맞춤 단어: 캡션 회색과 대비되는 진한 녹색 */
+.pronounce-outcome .pronounce-caption-text font[color="green"],
+.pronounce-outcome .pronounce-caption-text font[color='green'],
+.pronounce-outcome .pronounce-caption-text font[color="GREEN"],
+.pronounce-outcome .pronounce-caption-text font[color='GREEN'] {
+    color: var(--pron-match) !important;
 }
 
 .pronounce-rec-wrap {

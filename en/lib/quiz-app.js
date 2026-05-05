@@ -414,7 +414,8 @@ export function initQuizApp() {
           : escapeHTML_(String(score));
       const scoreToast = typeof score === 'number' ? `${score}점` : String(score);
       if (pronounceOutcome) {
-        pronounceOutcome.innerHTML = `${colored || escapeHTML_(caption)}
+        const cap = colored || escapeHTML_(caption);
+        pronounceOutcome.innerHTML = `<div class="pronounce-caption-text">${cap}</div>
           <div class="pron-meta">점수 ${scoreHtml} · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
