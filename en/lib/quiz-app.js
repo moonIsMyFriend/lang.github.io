@@ -103,6 +103,8 @@ export function initQuizApp() {
   let pronounceChunks = [];
   let pronounceStream = null;
   let suppressPronounceUpload = false;
+  /** 서버 발음 채점(fetch) 중 — 연속 클릭·중복 전송 방지 */
+  let pronouncePosting = false;
   /** Auto-stop recording after this many ms (prevents huge uploads). */
   let pronounceMaxDurationTimer = null;
   let pronounceProgressTimer = null;
@@ -209,6 +211,10 @@ export function initQuizApp() {
       pronounceRecorder.stop();
       return;
     }
+    if (pronouncePosting) {
+      toast('발음 채점 중입니다. 잠시만 기다려 주세요.');
+      return;
+    }
     const pronounceCaption = String(state.current[state.cols.en] || '').trim();
     if (!pronounceCaption) {
       toast('점수를 낼 원문이 없습니다.');
@@ -247,22 +253,32 @@ export function initQuizApp() {
         suppressPronounceUpload = false;
         try {
           pronounceStream?.getTracks().forEach((t) => t.stop());
-          pronounceStream = null;
-        } finally {
-          pronounceRecorder = null;
+        } catch (_) {}
+        pronounceStream = null;
+        pronounceRecorder = null;
+
+        if (canceled) {
+          if (pronounceStatus) pronounceStatus.textContent = '';
           btnPronounceRecord.disabled = false;
           setPronounceRecordButton(false);
-          if (canceled) {
-            if (pronounceStatus) pronounceStatus.textContent = '';
-            return;
-          }
-          if (!pronounceChunks.length) {
-            if (pronounceStatus) pronounceStatus.textContent = '';
-            toast('녹음 데이터가 비어 있습니다.');
-            return;
-          }
-          const blob = new Blob(pronounceChunks, { type: finalMime });
+          return;
+        }
+        if (!pronounceChunks.length) {
+          if (pronounceStatus) pronounceStatus.textContent = '';
+          toast('녹음 데이터가 비어 있습니다.');
+          btnPronounceRecord.disabled = false;
+          setPronounceRecordButton(false);
+          return;
+        }
+
+        btnPronounceRecord.disabled = true;
+        setPronounceRecordButton(false);
+
+        const blob = new Blob(pronounceChunks, { type: finalMime });
+        try {
           await postPronounce(blob, pronounceCaption, finalMime);
+        } finally {
+          btnPronounceRecord.disabled = false;
         }
       };
       pronounceRecorder.start();
@@ -333,6 +349,9 @@ export function initQuizApp() {
   }
 
   async function postPronounce(blob, caption, mimeType) {
+    if (pronouncePosting) return;
+    pronouncePosting = true;
+    try {
     if (blob.size > PRONOUNCE_MAX_BYTES) {
       const mb = (blob.size / (1024 * 1024)).toFixed(2);
       const maxMb = (PRONOUNCE_MAX_BYTES / (1024 * 1024)).toFixed(1);
@@ -431,6 +450,9 @@ export function initQuizApp() {
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
       toast(`발음 검사 오류: ${e.message || e}`);
+    }
+    } finally {
+      pronouncePosting = false;
     }
   }
 
