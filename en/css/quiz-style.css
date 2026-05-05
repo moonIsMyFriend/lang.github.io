@@ -323,6 +323,18 @@ button:disabled {
     color: var(--text);
 }
 
+/* 학습 화면 텍스트 크기 분리: 해석/코멘트는 작게, 원문은 크게 */
+#ko {
+    font-size:16px;
+    line-height:1.65;
+}
+
+#enMask,
+#enFull {
+    font-size:22px;
+    line-height:1.75;
+}
+
 .muted {
     color:var(--muted);
 }
@@ -493,6 +505,9 @@ details > summary:hover{
         flex:0 0 auto;
     }
     .big { font-size:20px; }
+    #ko { font-size:18px; }
+    #enMask,
+    #enFull { font-size:24px; }
 }
 
 /* === 작은 화면에서 하단 고정 액션바 === */
