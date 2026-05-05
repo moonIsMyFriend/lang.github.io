@@ -7,7 +7,9 @@ export function initQuizApp() {
     cols: { id: "일련번호", en: "영문", ko: "번역", pron: "발음" },
     current: null,
     session: null,  // 🔹{ order: number[], idx: 0, total: 20, scored: boolean[], correctCount: 0 }
-    audioLoop: false    // 🔹 반복 여부 추가
+    audioLoop: false, // 🔹 반복 여부 추가
+    /** 로컬 파일 선택·URL 등으로 불러온 CSV 파일명 (mp3/폴더명과 맞춤; 없으면 test.csv 기준) */
+    csvFileName: null
   };
 
   // 화면 전환
@@ -38,7 +40,7 @@ export function initQuizApp() {
 
   function updatePageTitle(whichScreen){
     const baseTitle = state.pageBaseTitle || document.title;   // title.txt에서 불러온 기본 제목
-    const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv"
+    const csvBase = (state.csvFileName || 'test.csv').replace(/\.csv$/i, '');  // ".csv"
 
     const h1 = document.querySelector('#pageTitle');
     if (h1) { 
@@ -445,6 +447,7 @@ export function initQuizApp() {
   // URL 파라미터
   const url = new URL(location.href);
   const file = url.searchParams.get('file') || './test.csv';
+  state.csvFileName = decodeURIComponent(file.split('/').pop().split('?')[0] || 'test.csv');
   const modeParam = url.searchParams.get('mode');
   state.practice = (modeParam === 'study') ? 'study' : 'quiz';
 
@@ -525,6 +528,7 @@ export function initQuizApp() {
   csvInput.addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    state.csvFileName = file.name;
     const text = await file.text();
     handleCSV(text);
   });
@@ -559,6 +563,7 @@ export function initQuizApp() {
       if (!/,/.test(txt)) return false;
 
       handleCSV(txt);                   // ← 이 안에서 state.rows 채워짐
+      state.csvFileName = String(file).split('/').pop().split('?')[0] || 'test.csv';
       toast('데이터 로드됨');
       return true;                      // ✅ 성공 여부 반환
     } catch (err) {
@@ -593,6 +598,7 @@ export function initQuizApp() {
 3,"Failure is not the opposite of success; it is part of success.","실패는 성공의 반대가 아니라 성공의 일부예요."
 4,"Small daily improvements lead to stunning long-term results.","작은 일상의 개선이 놀라운 장기적 성과로 이어집니다."`;
     handleCSV(demo);
+    state.csvFileName = 'test.csv';
   });
 
   // 화면1: 문제 내기 → 화면2
@@ -799,8 +805,11 @@ export function initQuizApp() {
   }
 
 
+  let prepareAudioGeneration = 0;
+
   async function prepareAudioFor(itemId) {
     if (!audioPlayer || !btnAudio) return;
+    const gen = ++prepareAudioGeneration;
 
     // 문제 전환 시 재생 중이면 정지
     if (!audioPlayer.paused) {
@@ -816,29 +825,33 @@ export function initQuizApp() {
     }
 
 
-    // 경로 규칙: ./mp3/<csv파일명>/<id>.mp3  (csv파일명에 .csv 포함)
-    const csvBase = state.csvFileName.replace(/\.csv$/i, '');  // ".csv"
+    // 경로 규칙: ./mp3/<csv파일명에서 .csv 제거>/<id>.mp3 (폴더·파일명은 URL 인코딩)
+    const csvBase = String(state.csvFileName || 'test.csv').replace(/\.csv$/i, '');
     const padItemId = String(itemId).padStart(3, '0');
-    // toast(padItemId);
+    const src = `./mp3/${encodeURIComponent(csvBase)}/${encodeURIComponent(`${padItemId}.mp3`)}`;
 
-    //  제거
-    const src = `./mp3/${csvBase}/${padItemId}.mp3`;
-    // const src = `./mp3/251027/161.mp3`;
-    // toast(src)
-
-    const res = await fetch(src, { method: 'HEAD', cache: 'no-store' });
-    if (res.ok) {
-
-      audioPlayer.src = src;
+    btnAudio.disabled = true;
+    const onReady = () => {
+      if (gen !== prepareAudioGeneration) return;
       btnAudio.disabled = false;
-
-      if (state.audioLoop){
-        // 🔥 자동재생 가능
-        audioPlayer.play().catch(()=>{});
-      }
-    } else {
+      if (state.audioLoop) audioPlayer.play().catch(() => {});
+      audioPlayer.removeEventListener('canplay', onReady);
+      audioPlayer.removeEventListener('error', onFail);
+    };
+    const onFail = () => {
+      if (gen !== prepareAudioGeneration) return;
       btnAudio.disabled = true;
-    }
+      try {
+        audioPlayer.removeAttribute('src');
+      } catch (_) {}
+      audioPlayer.removeEventListener('canplay', onReady);
+      audioPlayer.removeEventListener('error', onFail);
+    };
+    audioPlayer.removeEventListener('canplay', onReady);
+    audioPlayer.removeEventListener('error', onFail);
+    audioPlayer.addEventListener('canplay', onReady, { once: true });
+    audioPlayer.addEventListener('error', onFail, { once: true });
+    audioPlayer.src = src;
   }
 
   function togglePlayCurrent() {
