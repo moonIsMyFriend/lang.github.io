@@ -299,6 +299,37 @@ export function initQuizApp() {
     toast(PRONOUNCE_BUSY_MESSAGE);
   }
 
+  /**
+   * CSV trans(아라비아 숫자)와 같을 때만 만점 보정.
+   * 발음 인식문 전체가 **수치(아라비아 숫자)만**일 때만 적용.
+   */
+  function pronounceAsrDigitsMatchTrans(trans, bestUserSaid) {
+    const t = String(trans ?? '').trim();
+    if (!/^\d+$/.test(t)) return false;
+    const want = Number(t);
+    const s = String(bestUserSaid ?? '').trim();
+    if (!/^\d+$/.test(s)) return false;
+    return Number(s) === want;
+  }
+
+  /** 서버 `colored_caption`과 같은 방식: 공백 기준 토큰마다 녹색 (HTML 이스케이프) */
+  function pronounceCaptionMatchWordsGreenHtml(caption) {
+    const esc = (x) =>
+      String(x ?? '').replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+      );
+    const s = String(caption ?? '');
+    if (!s) return '';
+    return s
+      .split(/(\s+)/)
+      .map((part) => {
+        if (!part) return '';
+        if (/^\s+$/.test(part)) return esc(part);
+        return `<font color='green'>${esc(part)}</font>`;
+      })
+      .join('');
+  }
+
   async function postPronounce(blob, caption, mimeType) {
     if (blob.size > PRONOUNCE_MAX_BYTES) {
       const mb = (blob.size / (1024 * 1024)).toFixed(2);
@@ -367,9 +398,16 @@ export function initQuizApp() {
       localStorage.setItem(LS_PRON_KEY_VERIFIED, '1');
       setPronounceApiKeyWrapVisible(false);
 
-      const score = typeof data.score === 'number' ? data.score : '—';
+      const transRow = state.current ? String(state.current[state.cols.ko] ?? '').trim() : '';
+      let score = typeof data.score === 'number' ? data.score : '—';
+      let colored = data.colored_caption ?? '';
+      if (pronounceAsrDigitsMatchTrans(transRow, data.best_user_said)) {
+        score = 100;
+        colored = pronounceCaptionMatchWordsGreenHtml(caption);
+      } else if (typeof data.score === 'number' && data.score === 100 && !String(colored || '').trim()) {
+        colored = pronounceCaptionMatchWordsGreenHtml(caption);
+      }
       const said = escapeHTML_(data.best_user_said || '(인식 없음)');
-      const colored = data.colored_caption ?? '';
       if (pronounceOutcome) {
         pronounceOutcome.innerHTML = `${colored || escapeHTML_(caption)}
           <div class="pron-meta">점수 ${score}% · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
@@ -923,11 +961,28 @@ export function initQuizApp() {
       return;
     }
     let correct = 0;
+    const trans = state.current
+      ? String(state.current[state.cols.ko] ?? '').trim()
+      : '';
+
     for (const inp of inputs) {
       const ans = inp.getAttribute('data-ans') || '';
       const keep = inp.getAttribute('data-keepfirst') === '1';
       const user = (inp.value || '').trim();
       //const fullUser = keep ? ((ans[0]||'') + user) : user;
+
+      // 숫자만 입력했을 때: 번역(trans) 열의 아라비아 숫자와 같으면 정답 (예: 정답 douze, trans "12" ↔ "12")
+      if (
+        /^\d+$/.test(user) &&
+        /^\d+$/.test(trans) &&
+        Number(user) === Number(trans) &&
+        !/^\d+$/.test(ans)
+      ) {
+        inp.classList.remove('bad');
+        inp.classList.add('good');
+        correct++;
+        continue;
+      }
 
       let fullUser = user;
 

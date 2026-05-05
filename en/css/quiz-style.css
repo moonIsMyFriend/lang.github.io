@@ -73,6 +73,12 @@ body.dark #pronounceApiKey {
     margin-top: 10px;
     font-size: 18px;
     line-height: 1.55;
+    /* 틀린·미일치 단어(태그 없는 구간): 본문(--text)보다 옅은 회색 */
+    color: #6b7280;
+}
+
+body.dark .pronounce-outcome {
+    color: #9ca3af;
 }
 
 .pronounce-outcome .pron-meta {
@@ -83,6 +89,12 @@ body.dark #pronounceApiKey {
 
 .pronounce-outcome font {
     font-weight: 600;
+}
+
+/* 서버/클라이언트가 붙인 맞춤 단어만 녹색 유지 */
+.pronounce-outcome font[color="green"],
+.pronounce-outcome font[color='green'] {
+    color: var(--good) !important;
 }
 
 .pronounce-rec-wrap {
