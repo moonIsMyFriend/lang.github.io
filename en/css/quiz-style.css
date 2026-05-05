@@ -87,6 +87,21 @@ body.dark .pronounce-outcome {
     margin-top: 8px;
 }
 
+/* 발음 점수: 실제 점수 굵게·본문색, /100점은 옅은 회색 */
+.pronounce-outcome .pron-meta .pron-score-num {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.pronounce-outcome .pron-meta .pron-score-suffix {
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
+    color: #6b7280;
+}
+
 .pronounce-outcome font {
     font-weight: 600;
 }

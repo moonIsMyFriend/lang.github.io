@@ -408,12 +408,17 @@ export function initQuizApp() {
         colored = pronounceCaptionMatchWordsGreenHtml(caption);
       }
       const said = escapeHTML_(data.best_user_said || '(인식 없음)');
+      const scoreHtml =
+        typeof score === 'number'
+          ? `<span class="pron-score-num">${score}점</span><span class="pron-score-suffix">(/100점)</span>`
+          : escapeHTML_(String(score));
+      const scoreToast = typeof score === 'number' ? `${score}점` : String(score);
       if (pronounceOutcome) {
         pronounceOutcome.innerHTML = `${colored || escapeHTML_(caption)}
-          <div class="pron-meta">점수 ${score}% · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
+          <div class="pron-meta">점수 ${scoreHtml} · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
-      toast(`발음 점수: ${score}%`);
+      toast(`발음 점수: ${scoreToast}`);
     } catch (e) {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
       if (pronounceOutcome) pronounceOutcome.innerHTML = '';
