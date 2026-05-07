@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import make_archive
 
 titles = ['00.num.0_20', '01.num.21_40', '02.num.41_60', '03.num.61_80', '04.num.81_100', '15']
-titles = ['04. 모음 e, ɛ, ɑ, a', '05. 모음 ø, œ, o, ɔ']
+titles = ['06 모음 i, y, u', '07. 비강모음 ɑ̃, ɔ̃, ɛ̃', '08. 반모음(반자음) j, w, ɥ', '09. 프랑스어 자음의 특징과 h의 발음', '10. 자음 b,v,p,f,m']
 print('making', titles)
 
 
