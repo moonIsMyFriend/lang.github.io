@@ -348,38 +348,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     for (const f of files) {
                         const li = document.createElement('li');
                         const display = f.name.replace(/\.csv$/i, ''); // 확장자 제거
-                        li.innerHTML = `<a href="#" class="csv-link" data-path="${encodeURI(f.path)}">${escapeHTML(display)}</a>`;
-                        li.querySelector('a').addEventListener('click', (e) => {
-                            e.preventDefault();
-                            openStudy(f.path);
-                        });
+                        let orderQs = '';
+                        try {
+                            const m = localStorage.getItem('learnlang_quiz_mode');
+                            if (m === 'seq') orderQs = '&order=seq';
+                        } catch (_) {}
+                        const studyUrl = `./study.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
+                        li.innerHTML = `<a href="${studyUrl}" class="csv-link">${escapeHTML(display)}</a>`;
                         ul.appendChild(li);
                     }
                     frag.appendChild(box);
                 }
                 list.innerHTML = '';
                 list.appendChild(frag);
-            }
-
-            // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
-            async function openStudy(relPath) {
-                if (window.quizApp && typeof window.quizApp.startWith === 'function') {
-                    // 깜박임 없이 바로 시작
-                    await window.quizApp.startWith({ file: relPath, count: 'all' });
-
-                    // 주소창만 업데이트(새로고침 없음)
-                    const u = new URL(location.href);
-                    u.searchParams.set('file', relPath);
-                    u.searchParams.set('mode', 'study');
-                    u.searchParams.delete('n');
-                    history.pushState({ file: relPath, mode: 'study' }, '', u.toString());
-                } else {
-                    // 폴백: 컨트롤러가 없으면 기존 방식으로 이동
-                    const u = new URL('./index.html', location.href);
-                    u.searchParams.set('file', relPath);
-                    u.searchParams.set('mode', 'study');
-                    location.href = u.toString();
-                }
             }
 
             function escapeHTML(s = '') { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }

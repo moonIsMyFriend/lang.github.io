@@ -223,12 +223,34 @@ export function initQuizApp() {
       return;
     }
 
+    if (!navigator.mediaDevices?.getUserMedia) {
+      const insecure =
+        typeof window !== 'undefined' &&
+        window.isSecureContext === false;
+      toast(
+        insecure
+          ? '마이크는 HTTPS 또는 localhost(127.0.0.1) 페이지에서만 사용할 수 있습니다. 파일을 직접 연 경우 로컬 서버로 열어 주세요.'
+          : '이 브라우저에서는 마이크 API를 사용할 수 없습니다.'
+      );
+      return;
+    }
+
     try {
       pronounceStream = await navigator.mediaDevices.getUserMedia({
         audio: { channelCount: { ideal: 1 } },
       });
     } catch (e) {
-      toast('마이크 접근에 실패했습니다.');
+      const name = e && e.name;
+      let msg = '마이크 접근에 실패했습니다.';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg =
+          '마이크 권한이 없습니다. 주소창 자물쇠(ⓘ) → 사이트 설정에서 마이크를 허용하거나, 브라우저 설정에서 이 사이트의 마이크를 허용해 주세요.';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '마이크를 찾을 수 없습니다. 마이크 연결과 시스템 입력 장치 설정을 확인해 주세요.';
+      } else if (name === 'NotReadableError' || name === 'TrackStartError') {
+        msg = '마이크를 사용할 수 없습니다. 다른 앱이 마이크를 쓰는지 확인해 주세요.';
+      }
+      toast(msg);
       return;
     }
 
@@ -526,7 +548,14 @@ export function initQuizApp() {
   }
 
   if (btnHome2) {
-    btnHome2.addEventListener('click', () => { showScreen(1); });
+    btnHome2.addEventListener('click', () => {
+      const homeUrl = (typeof document !== 'undefined' && document.body?.dataset?.quizHomeUrl) || '';
+      if (homeUrl) {
+        location.href = homeUrl;
+        return;
+      }
+      showScreen(1);
+    });
   }
 
   if (btnSample) {
@@ -671,10 +700,7 @@ export function initQuizApp() {
       renderCurrent();
       updateUnifiedBar();
 
-      // 🔥 자동재생
-      if (state.audioLoop){
-        togglePlayCurrent();
-      }
+      // 다음 문항 오디오는 prepareAudioFor → canplay 에서 자동 재생(state.audioLoop)
 
     } else {
       // audioPlayer.pause();
@@ -703,13 +729,17 @@ export function initQuizApp() {
     gradeCurrent();
     document.activeElement.blur();
   });
-  btnHome.addEventListener('click', () => { 
-    // audioPlayer.pause();
+  btnHome.addEventListener('click', () => {
     stopPronounceRecording();
-    stopAudio(); 
-    showScreen(1); state.rows = [];
-   }
-  );
+    stopAudio();
+    const homeUrl = (typeof document !== 'undefined' && document.body?.dataset?.quizHomeUrl) || '';
+    if (homeUrl) {
+      location.href = homeUrl;
+      return;
+    }
+    showScreen(1);
+    state.rows = [];
+  });
 
 
   function startSession(n, mode = 'random') {
@@ -863,6 +893,7 @@ export function initQuizApp() {
     const onReady = () => {
       if (gen !== prepareAudioGeneration) return;
       btnAudio.disabled = false;
+      audioPlayer.loop = state.audioLoop;
       if (state.audioLoop) audioPlayer.play().catch(() => {});
       audioPlayer.removeEventListener('canplay', onReady);
       audioPlayer.removeEventListener('error', onFail);
@@ -1088,6 +1119,81 @@ export function initQuizApp() {
     audioPlayer.addEventListener('pause', () => { btnAudio.textContent = '🔊 듣기'; });
     audioPlayer.addEventListener('play', () => { btnAudio.textContent = '⏸ 일시정지'; });
     audioPlayer.onerror = () => toast('오디오 파일을 찾을 수 없어요.');
+  }
+
+  const LS_AUDIO_LOOP = 'learnlang_audio_loop';
+  const audioLoopEl = document.querySelector('#audioLoop');
+  if (audioLoopEl) {
+    try {
+      const saved = localStorage.getItem(LS_AUDIO_LOOP);
+      if (saved === '1') audioLoopEl.checked = true;
+      if (saved === '0') audioLoopEl.checked = false;
+    } catch (_) {}
+    state.audioLoop = !!audioLoopEl.checked;
+    audioLoopEl.addEventListener('change', () => {
+      state.audioLoop = audioLoopEl.checked;
+      try {
+        localStorage.setItem(LS_AUDIO_LOOP, audioLoopEl.checked ? '1' : '0');
+      } catch (_) {}
+      if (audioPlayer) audioPlayer.loop = state.audioLoop;
+    });
+    if (audioPlayer) audioPlayer.loop = state.audioLoop;
+  }
+
+  const LS_QUIZ_MODE = 'learnlang_quiz_mode';
+  const modeRandomEl = document.querySelector('#modeRandom');
+  const modeSeqEl = document.querySelector('#modeSeq');
+  if (modeRandomEl && modeSeqEl) {
+    try {
+      const urlOrder =
+        typeof location !== 'undefined' ? new URLSearchParams(location.search).get('order') : null;
+      if (urlOrder === 'seq') {
+        modeSeqEl.checked = true;
+        modeRandomEl.checked = false;
+      } else if (urlOrder === 'random') {
+        modeRandomEl.checked = true;
+        modeSeqEl.checked = false;
+      } else {
+        const savedMode = localStorage.getItem(LS_QUIZ_MODE);
+        if (savedMode === 'seq') {
+          modeSeqEl.checked = true;
+          modeRandomEl.checked = false;
+        } else if (savedMode === 'random') {
+          modeRandomEl.checked = true;
+          modeSeqEl.checked = false;
+        }
+      }
+    } catch (_) {}
+    const persistQuizMode = () => {
+      try {
+        localStorage.setItem(LS_QUIZ_MODE, modeSeqEl.checked ? 'seq' : 'random');
+      } catch (_) {}
+    };
+    modeRandomEl.addEventListener('change', persistQuizMode);
+    modeSeqEl.addEventListener('change', persistQuizMode);
+  }
+
+  const LS_PRACTICE_MODE = 'learnlang_practice_mode';
+  const practiceQuizEl = document.querySelector('#practiceQuiz');
+  const practiceStudyEl = document.querySelector('#practiceStudy');
+  if (practiceQuizEl && practiceStudyEl) {
+    try {
+      const sp = localStorage.getItem(LS_PRACTICE_MODE);
+      if (sp === 'quiz') {
+        practiceQuizEl.checked = true;
+        practiceStudyEl.checked = false;
+      } else if (sp === 'study') {
+        practiceStudyEl.checked = true;
+        practiceQuizEl.checked = false;
+      }
+    } catch (_) {}
+    const persistPractice = () => {
+      try {
+        localStorage.setItem(LS_PRACTICE_MODE, practiceStudyEl.checked ? 'study' : 'quiz');
+      } catch (_) {}
+    };
+    practiceQuizEl.addEventListener('change', persistPractice);
+    practiceStudyEl.addEventListener('change', persistPractice);
   }
 
   function stopPronounceRecording() {
