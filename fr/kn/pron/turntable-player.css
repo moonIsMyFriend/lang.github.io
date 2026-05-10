@@ -725,7 +725,8 @@ body.dark.turntable-quiz-page #pronounceLocale {
     height: auto !important;
     min-height: 0;
     overflow: visible;
-    padding: 0 8px;
+    --tp-device-pad-x: 8px;
+    padding: 0 var(--tp-device-pad-x);
     box-sizing: border-box;
   }
 
@@ -812,6 +813,7 @@ body.dark.turntable-quiz-page #pronounceLocale {
     flex-wrap: nowrap;
   }
 
+  /* 기기 좌우 padding을 상쇄해 버튼 줄이 본체(테두리 안) 전폭과 같게 */
   .turntable-quiz-page .bottom-buttons {
     grid-column: 1 / -1;
     grid-row: 4;
@@ -820,7 +822,11 @@ body.dark.turntable-quiz-page #pronounceLocale {
     right: auto !important;
     bottom: auto !important;
     margin-top: 0;
-    width: 100%;
+    margin-left: calc(-1 * var(--tp-device-pad-x, 8px));
+    margin-right: calc(-1 * var(--tp-device-pad-x, 8px));
+    width: calc(100% + 2 * var(--tp-device-pad-x, 8px));
+    max-width: none;
+    box-sizing: border-box;
   }
 }
 
