@@ -229,6 +229,10 @@ h1 {
     color:#222222;
 }
 
+#pageTitle {
+    white-space: pre-line;
+}
+
 p.sub {
     margin: 0 0 14px;
     color: var(--muted);

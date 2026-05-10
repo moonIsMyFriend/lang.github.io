@@ -9,6 +9,68 @@
   font-family: Arial, Helvetica, sans-serif;
   background: radial-gradient(circle at top, #f8f8f6, #d8d8d6 55%, #bfc0bd);
   color: #222;
+  /* 프로그레스 줄 너비 = .device 가로(--tp-w)와 동일 규칙 */
+  --tp-strip-w: min(720px, 88vw);
+}
+
+/* 통합 프로그레스바: 기기(.device)와 같은 가로폭 */
+.turntable-quiz-page .tp-bar-wrap {
+  width: var(--tp-strip-w);
+  max-width: 100%;
+  margin: 10px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.turntable-quiz-page .tp-bar-unified {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 12px;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.turntable-quiz-page .tp-bar-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: #334155;
+  transition: width 0.25s;
+}
+
+.turntable-quiz-page .tp-bar-correct {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--good);
+  transition: width 0.25s;
+}
+
+.turntable-quiz-page .tp-bar-label {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  color: #e5e7eb;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.turntable-quiz-page .tp-bar-total {
+  min-width: 36px;
+  text-align: right;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
 }
 
 .turntable-quiz-page .tp-main.app {
@@ -471,6 +533,10 @@ body.dark.turntable-quiz-page #pronounceLocale {
 }
 
 @media (max-width: 980px) {
+  .turntable-quiz-page {
+    --tp-strip-w: min(94vw, 640px);
+  }
+
   .turntable-quiz-page .device {
     --tp-w: min(94vw, 640px);
     --tp-pad-h: 108px;
@@ -539,6 +605,10 @@ body.dark.turntable-quiz-page #pronounceLocale {
 }
 
 @media (max-width: 520px) {
+  .turntable-quiz-page {
+    --tp-strip-w: 96vw;
+  }
+
   .turntable-quiz-page .device {
     --tp-w: 96vw;
     --tp-pad-h: 96px;

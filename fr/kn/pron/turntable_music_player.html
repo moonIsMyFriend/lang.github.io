@@ -30,13 +30,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="wrap">
-
+            <!-- quiz-app용 카운터(화면 비표시) -->
+            <span id="totalCnt" class="sr-only" aria-hidden="true">0</span>
+            <span id="selId" class="sr-only" aria-hidden="true">—</span>
 
             <div class="screen-title">
                 <h1 id="pageTitle">Français pronunciation practice</h1>
-                <div class="row">
-                    <span class="pill">rows: <span id="totalCnt">0</span></span>
-                </div>
             </div>
 
             <section id="screen1" class="hidden" hidden aria-hidden="true" style="display:none">
@@ -67,30 +66,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </section>
 
             <section id="screen2" class="hidden">
-                    <div class="row card">
-                        <button id="btnNext" class="primary" type="button" disabled>Next</button>
-                        <span class="pill">no. <span id="selId" class="id">—</span></span>
-                    </div>
+                    <!-- quiz-app 전용(패드 다음 트리거). 화면에는 turntable 하단 ▶▶ 만 사용 -->
+                    <button type="button" id="btnNext" class="primary sr-only" disabled tabindex="-1" aria-hidden="true">Next</button>
 
-                    <div id="barWrap" style="display:flex; align-items:center; gap:8px; margin-top:10px;">
+                    <div id="barWrap" class="tp-bar-wrap">
                         <div role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100"
-                            aria-valuenow="0" id="barUnified"
-                            style="position:relative; height:12px; flex:1; background:#111827; border:1px solid #334155; border-radius:999px; overflow:hidden;">
-                            <div id="barProgress"
-                                style="position:absolute; left:0; top:0; height:100%; width:0%; background:#334155; transition:width .25s;">
-                            </div>
-                            <div id="barCorrect"
-                                style="position:absolute; left:0; top:0; height:100%; width:0%; background:var(--good); transition:width .25s;">
-                            </div>
-                            <div id="barLabel"
-                                style="position:absolute; left:8px; top:50%; transform:translateY(-50%); font-size:12px; font-weight:700; color:#e5e7eb; text-shadow:0 1px 2px rgba(0,0,0,.5); pointer-events:none;">
-                                0
-                            </div>
+                            aria-valuenow="0" id="barUnified" class="tp-bar-unified">
+                            <div id="barProgress" class="tp-bar-progress"></div>
+                            <div id="barCorrect" class="tp-bar-correct"></div>
+                            <div id="barLabel" class="tp-bar-label"></div>
                         </div>
-                        <span id="barTotal"
-                            style="min-width:36px; text-align:right; color:#94a3b8; font-variant-numeric:tabular-nums;">
-                            0
-                        </span>
+                        <span id="barTotal" class="tp-bar-total">0</span>
                     </div>
 
                 <main class="app tp-main">

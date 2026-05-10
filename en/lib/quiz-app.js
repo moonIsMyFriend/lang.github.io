@@ -48,10 +48,10 @@ export function initQuizApp() {
           h1.textContent = baseTitle;           // 화면1에서는 원래 제목만
       } 
       else if(whichScreen === 2){
-          h1.textContent = `${baseTitle} ${csvBase}`;  // 화면2: CSV명 추가
+          h1.textContent = `${baseTitle}\n${csvBase}`; // 화면2: CSV명은 다음 줄
       }
       else if(whichScreen === 3){
-          h1.textContent = `${baseTitle} ${csvBase} (Result)`; // 화면3: CSV명 추가
+          h1.textContent = `${baseTitle}\n${csvBase} (Result)`;
       }
     }
 }
@@ -556,12 +556,34 @@ export function initQuizApp() {
 
     const progressPct = Math.round(((s.idx + 1) / s.total) * 100);     // 진행 퍼센트
     const correctPct = Math.round((s.correctCount / s.total) * 100);  // 정답 퍼센트
+    /** 퀴즈(채점) 버튼이 없거나 활성일 때만 바 안에 정답 막대·점수 표시 */
+    const showScoreInBar = !btnGrade || !btnGrade.disabled;
 
     if (barProgress) barProgress.style.width = progressPct + '%';
-    if (barCorrect) barCorrect.style.width = correctPct + '%';
 
-    // ✅ 바 내부: 정답수
-    if (barLabel) barLabel.textContent = String(s.correctCount);
+    if (barCorrect) {
+      if (showScoreInBar) {
+        barCorrect.style.width = correctPct + '%';
+        barCorrect.style.visibility = '';
+      } else {
+        barCorrect.style.width = '0%';
+        barCorrect.style.visibility = 'hidden';
+      }
+    }
+
+    if (barLabel) {
+      if (!showScoreInBar) {
+        barLabel.textContent = '';
+        barLabel.style.visibility = 'hidden';
+      } else if (s.correctCount > 0) {
+        barLabel.textContent = String(s.correctCount);
+        barLabel.style.visibility = '';
+      } else {
+        /* 퀴즈에서도 0점일 땐 숫자 미표시 */
+        barLabel.textContent = '';
+        barLabel.style.visibility = 'hidden';
+      }
+    }
 
     // ✅ 바 오른쪽: 전체 문항수
     if (barTotal) barTotal.textContent = String(s.idx + 1) + '/' + String(s.total);
@@ -793,8 +815,7 @@ export function initQuizApp() {
     // scoreCorrect.textContent = '0';
     // progressTotal.textContent = String(total);
     // progressNow.textContent = '1';
-
-    updateUnifiedBar();
+    /* 진행바는 renderCurrent 끝에서 updateUnifiedBar (btnGrade 상태 반영 후) */
   }
 
   function sampleWithoutReplacement(N, k) {
@@ -836,8 +857,6 @@ export function initQuizApp() {
     answerWrap.style.display = 'none';
     selId.textContent = idv;
 
-    updateUnifiedBar();
-
     if (state.practice === 'study') {
       // 🔹 학습 모드: 빈칸 없음, 정답/발음만 표시
       enMask.innerHTML = '';  // 마스킹 없이 원문 그대로
@@ -877,6 +896,7 @@ export function initQuizApp() {
       if (firstBlank) firstBlank.focus();
     }
 
+    updateUnifiedBar();
 
     // ✅ 현재 행의 id 구하기 (없으면 행 인덱스+1)
     const idKey = state.cols?.id;
