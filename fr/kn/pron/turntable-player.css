@@ -143,7 +143,7 @@ body.dark.turntable-quiz-page .screen-title #pageTitle .page-title-csv {
    긴 뜻·comment만 각각 max-height 안에서 스크롤 */
 .turntable-quiz-page .display.study-display {
   position: absolute;
-  top: 16px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
   width: 500px;
@@ -154,11 +154,14 @@ body.dark.turntable-quiz-page .screen-title #pageTitle .page-title-csv {
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 5;
-  border-radius: 10px;
+  border-radius: 9px;
   background: #050505;
   color: #f4f4f4;
-  padding: 8px 10px 26px 10px;
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.16), 0 5px 12px rgba(0, 0, 0, 0.28);
+  padding: 10px 12px 28px 12px;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  filter: none;
 }
 
 .turntable-quiz-page .study-row {
@@ -176,29 +179,29 @@ body.dark.turntable-quiz-page .screen-title #pageTitle .page-title-csv {
   line-height: 1.3;
 }
 
-/* 발음·뜻·comment: 공통 스크롤 영역(한 스크롤바). 기준 글자 = 예전 뜻 줄과 동일 */
+/* 발음·뜻·comment: 공통 스크롤 영역(한 스크롤바).
+   글자 크기는 .study-val 11px 기준 비율을 그대로(px 계산) — 컨테이너에 큰 font-size 두고 1em 쓰면 커져 보임 */
 .turntable-quiz-page .study-meta-scroll {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: min(12em, 34vh);
+  max-height: min(198px, 34vh);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  font-size: calc(11px * 1.5);
 }
 
-/* 발음: 기존과 동일 비율(11px 기준 1.3배) */
+/* 발음: study-val 11px 기준 1.3배 */
 .turntable-quiz-page .study-meta-scroll #tpPron {
-  font-size: calc(1em * 13 / 15);
+  font-size: calc(11px * 1.3);
   line-height: 1.35;
   color: #e5e7eb;
 }
 
-/* 뜻·comment */
+/* 뜻·comment: study-val 11px 기준 1.5배 (예전과 동일) */
 .turntable-quiz-page #tpMean,
 .turntable-quiz-page #tpComment {
-  font-size: 1em;
+  font-size: calc(11px * 1.5);
   line-height: 1.35;
   color: #94a3b8;
 }
@@ -622,8 +625,16 @@ body.dark.turntable-quiz-page #pronounceLocale {
   }
 
   .turntable-quiz-page .study-meta-scroll {
+    max-height: min(176px, 28vh);
+  }
+
+  .turntable-quiz-page .study-meta-scroll #tpPron {
+    font-size: calc(10px * 1.3);
+  }
+
+  .turntable-quiz-page #tpMean,
+  .turntable-quiz-page #tpComment {
     font-size: calc(10px * 1.5);
-    max-height: min(11em, 28vh);
   }
 
   .turntable-quiz-page #tpExpr {
@@ -697,15 +708,6 @@ body.dark.turntable-quiz-page #pronounceLocale {
     height: auto;
   }
 
-  .turntable-quiz-page .study-meta-scroll {
-    font-size: calc(10px * 1.5);
-    max-height: min(10.5em, 26vh);
-  }
-
-  .turntable-quiz-page #tpExpr {
-    font-size: calc(10px * 1.5 * 1.5);
-  }
-
   .turntable-quiz-page .bottom-buttons {
     grid-template-columns: repeat(3, 1fr) 56px;
   }
@@ -768,6 +770,29 @@ body.dark.turntable-quiz-page #pronounceLocale {
     min-height: 80px;
     max-height: min(240px, 40vh);
     height: auto;
+    padding: 8px 10px 22px 10px;
+  }
+
+  /* 모바일: 디스플레이 글자 축소 (≤980px의 10px 기준보다 한 단계 작게) */
+  .turntable-quiz-page .study-val {
+    font-size: 9px;
+  }
+
+  .turntable-quiz-page .study-meta-scroll {
+    max-height: min(156px, 34vh);
+  }
+
+  .turntable-quiz-page .study-meta-scroll #tpPron {
+    font-size: calc(9px * 1.3);
+  }
+
+  .turntable-quiz-page #tpMean,
+  .turntable-quiz-page #tpComment {
+    font-size: calc(9px * 1.5);
+  }
+
+  .turntable-quiz-page #tpExpr {
+    font-size: calc(9px * 1.5 * 1.5);
   }
 
   .turntable-quiz-page .orange-tab {
@@ -855,6 +880,30 @@ body.dark.turntable-quiz-page #pronounceLocale {
   }
 }
 
+/* 좁은 모바일: 디스플레이 글자 한 단계 더 축소 */
+@media (max-width: 520px) {
+  .turntable-quiz-page .study-val {
+    font-size: 8px;
+  }
+
+  .turntable-quiz-page .study-meta-scroll {
+    max-height: min(148px, 30vh);
+  }
+
+  .turntable-quiz-page .study-meta-scroll #tpPron {
+    font-size: calc(8px * 1.3);
+  }
+
+  .turntable-quiz-page #tpMean,
+  .turntable-quiz-page #tpComment {
+    font-size: calc(8px * 1.5);
+  }
+
+  .turntable-quiz-page #tpExpr {
+    font-size: calc(8px * 1.5 * 1.5);
+  }
+}
+
 @keyframes tp7-spin-mobile {
   from {
     transform: rotate(0deg);
@@ -890,7 +939,7 @@ body.dark.turntable-quiz-page #tpComment {
   }
 
   .turntable-quiz-page .study-meta-scroll {
-    max-height: min(9em, 24vh);
+    max-height: min(140px, 24vh);
   }
 }
 
@@ -910,4 +959,12 @@ body.dark.turntable-quiz-page .device {
     inset 2px 2px 6px rgba(255, 255, 255, 0.05),
     inset 0 -5px 14px rgba(0, 0, 0, 0.42),
     inset -2px -3px 10px rgba(0, 0, 0, 0.35);
+}
+
+body.dark.turntable-quiz-page .display.study-display {
+  background: #0a0a0a;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  filter: none;
 }
