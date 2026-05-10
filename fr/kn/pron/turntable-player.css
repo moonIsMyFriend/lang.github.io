@@ -9,13 +9,30 @@
   font-family: Arial, Helvetica, sans-serif;
   background: radial-gradient(circle at top, #f8f8f6, #d8d8d6 55%, #bfc0bd);
   color: #222;
-  /* 프로그레스 줄 너비 = .device 가로(--tp-w)와 동일 규칙 */
-  --tp-strip-w: min(720px, 88vw);
+  overflow-x: clip;
 }
 
-/* 통합 프로그레스바: 기기(.device)와 같은 가로폭 */
+/* vw 너비 + .wrap 패딩 때문에 모바일에서 가로 넘침 → 부모 안에서는 100% 기준 */
+.turntable-quiz-page .wrap {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.turntable-quiz-page .screen-title {
+  margin-bottom: 10px;
+}
+
+.turntable-quiz-page .screen-title #pageTitle {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 통합 프로그레스바 — 기기 .device 가로와 동일 규칙(px/vw만 사용, % 넣으면 height:calc 깨짐) */
 .turntable-quiz-page .tp-bar-wrap {
-  width: var(--tp-strip-w);
+  width: min(720px, 88vw);
   max-width: 100%;
   margin: 10px auto 0;
   display: flex;
@@ -75,6 +92,7 @@
 
 .turntable-quiz-page .tp-main.app {
   width: min(720px, 96vw);
+  max-width: 100%;
   margin: 0 auto;
   display: block;
 }
@@ -84,6 +102,9 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  width: min(720px, 88vw);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* 하단 패드 높이와 동일한 값 — 위쪽 본체 영역 = 정사각형 (가로 = 세로) */
@@ -533,12 +554,15 @@ body.dark.turntable-quiz-page #pronounceLocale {
 }
 
 @media (max-width: 980px) {
-  .turntable-quiz-page {
-    --tp-strip-w: min(94vw, 640px);
+  .turntable-quiz-page .tp-main.app,
+  .turntable-quiz-page .tp-bar-wrap,
+  .turntable-quiz-page .device-wrap {
+    width: min(640px, calc(100vw - 32px));
+    max-width: 100%;
   }
 
   .turntable-quiz-page .device {
-    --tp-w: min(94vw, 640px);
+    --tp-w: min(640px, calc(100vw - 32px));
     --tp-pad-h: 108px;
     width: var(--tp-w);
     height: calc(var(--tp-w) + var(--tp-pad-h));
@@ -605,12 +629,15 @@ body.dark.turntable-quiz-page #pronounceLocale {
 }
 
 @media (max-width: 520px) {
-  .turntable-quiz-page {
-    --tp-strip-w: 96vw;
+  .turntable-quiz-page .tp-main.app,
+  .turntable-quiz-page .tp-bar-wrap,
+  .turntable-quiz-page .device-wrap {
+    width: calc(100vw - 32px);
+    max-width: 100%;
   }
 
   .turntable-quiz-page .device {
-    --tp-w: 96vw;
+    --tp-w: min(720px, calc(100vw - 32px));
     --tp-pad-h: 96px;
     width: var(--tp-w);
     height: calc(var(--tp-w) + var(--tp-pad-h));
@@ -656,11 +683,48 @@ body.dark.turntable-quiz-page #pronounceLocale {
   .turntable-quiz-page .record-dot {
     font-size: 32px;
   }
+
+  .turntable-quiz-page .tp-device-nav {
+    left: 10px;
+    gap: 6px;
+  }
+
+  .turntable-quiz-page .tp-home-btn,
+  .turntable-quiz-page .tp-grade-device-btn {
+    min-width: 42px;
+    min-height: 42px;
+    padding: 4px;
+  }
+
+  .turntable-quiz-page .tp-home-icon {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 body.dark.turntable-quiz-page #tpMean,
 body.dark.turntable-quiz-page #tpComment {
   color: #78808d;
+}
+
+/* 발음 줄 flex에서 입력·셀렉트가 뷰포트 밖으로 밀림 방지 */
+.turntable-quiz-page #pronouncePanel .pronounce-key-wrap {
+  min-width: 0;
+}
+
+/* quiz-style 모바일 하단 고정바용 padding-bottom — 턴테이블 화면에는 해당 줄 없음 → 여백만 과하게 생김 */
+@media (max-width: 759px) {
+  body.turntable-quiz-page .wrap {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* 세로가 짧은 폰(가로 모드 등): 디스플레이가 원판과 겹쳐 보이지 않게 상한 축소 */
+@media (max-height: 640px) and (max-width: 900px) {
+  .turntable-quiz-page .display.study-display {
+    max-height: min(220px, 38vh);
+    min-height: 90px;
+  }
 }
 
 body.dark.turntable-quiz-page {
