@@ -275,13 +275,13 @@ export function initTurntableQuizUi() {
       expr = (enMask.innerText || enMask.textContent || '').trim() || '—';
     }
 
-    const set = (el, v) => {
-      if (el) el.textContent = v && String(v).trim() ? v : '—';
+    const set = (el, v, empty = '—') => {
+      if (el) el.textContent = v && String(v).trim() ? v : empty;
     };
     set(tpExpr, expr);
     set(tpPron, pron);
     set(tpMean, mean);
-    set(tpComment, com);
+    set(tpComment, com, '');
   }
 
   const mo = new MutationObserver(syncLines);

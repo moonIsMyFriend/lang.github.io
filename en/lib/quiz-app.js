@@ -1,5 +1,5 @@
 // lib/quiz-app.js
-import { $, toast, parseCSV, maskEnglish } from './quiz-core.js';
+import { $, toast, parseCSV, maskEnglish, escapeHTML } from './quiz-core.js';
 
 export function initQuizApp() {
   const state = {
@@ -43,15 +43,17 @@ export function initQuizApp() {
     const csvBase = (state.csvFileName || 'test.csv').replace(/\.csv$/i, '');  // ".csv"
 
     const h1 = document.querySelector('#pageTitle');
-    if (h1) { 
-      if(whichScreen === 1){
-          h1.textContent = baseTitle;           // 화면1에서는 원래 제목만
-      } 
-      else if(whichScreen === 2){
-          h1.textContent = `${baseTitle}\n${csvBase}`; // 화면2: CSV명은 다음 줄
-      }
-      else if(whichScreen === 3){
-          h1.textContent = `${baseTitle}\n${csvBase} (Result)`;
+    if (h1) {
+      if (whichScreen === 1) {
+        h1.textContent = baseTitle; // 화면1에서는 원래 제목만
+      } else if (whichScreen === 2) {
+        const b = escapeHTML(baseTitle);
+        const c = escapeHTML(csvBase);
+        h1.innerHTML = `<span class="page-title-base">${b}</span><br><span class="page-title-csv">${c}</span>`;
+      } else if (whichScreen === 3) {
+        const b = escapeHTML(baseTitle);
+        const c = escapeHTML(`${csvBase} (Result)`);
+        h1.innerHTML = `<span class="page-title-base">${b}</span><br><span class="page-title-csv">${c}</span>`;
       }
     }
 }
