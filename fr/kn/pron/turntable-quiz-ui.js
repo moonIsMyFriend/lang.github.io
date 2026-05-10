@@ -122,21 +122,45 @@ export function initTurntableQuizUi() {
   }
   setPlaying(!!audio && !audio.paused);
 
-  function flashRound(btn) {
+  /** 볼륨 버튼: 포인터·키보드로 눌린 동안 `.pressed` 유지 → CSS 3D 눌림 */
+  function bindVolumePressFx(btn) {
     if (!btn) return;
-    btn.classList.add('pressed');
-    setTimeout(() => btn.classList.remove('pressed'), 140);
+    const press = () => btn.classList.add('pressed');
+    const release = () => btn.classList.remove('pressed');
+
+    btn.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      try {
+        btn.setPointerCapture(e.pointerId);
+      } catch (_) {}
+      press();
+    });
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointercancel', release);
+    btn.addEventListener('lostpointercapture', release);
+    btn.addEventListener('blur', release);
+
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        press();
+      }
+    });
+    btn.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') release();
+    });
   }
+
+  bindVolumePressFx(volUp);
+  bindVolumePressFx(volDown);
 
   volUp?.addEventListener('click', () => {
     if (!audio) return;
     audio.volume = Math.min(1, audio.volume + 0.1);
-    flashRound(volUp);
   });
   volDown?.addEventListener('click', () => {
     if (!audio) return;
     audio.volume = Math.max(0, audio.volume - 0.1);
-    flashRound(volDown);
   });
 
   let audioContext;
