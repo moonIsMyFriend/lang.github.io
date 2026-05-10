@@ -353,7 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             const m = localStorage.getItem('learnlang_quiz_mode');
                             if (m === 'seq') orderQs = '&order=seq';
                         } catch (_) {}
-                        const studyUrl = `./study.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
+                        const studyUrl = `./turntable_music_player.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
                         li.innerHTML = `<a href="${studyUrl}" class="csv-link">${escapeHTML(display)}</a>`;
                         ul.appendChild(li);
                     }

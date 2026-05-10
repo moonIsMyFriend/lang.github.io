@@ -94,6 +94,12 @@ export function initQuizApp() {
   const btnPronounceRecord = document.querySelector('#btnPronounceRecord');
   const pronounceStatus = document.querySelector('#pronounceStatus');
   const pronounceOutcome = document.querySelector('#pronounceOutcome');
+  /** turntable `#tpExpr` 등에서 표현 줄을 CSV 기준으로 다시 채움 (발음 하이라이트 제거) */
+  function dispatchTpExprResync() {
+    try {
+      document.dispatchEvent(new CustomEvent('learnlang-reset-tp-expr'));
+    } catch (_) {}
+  }
   const LS_PRON_API_KEY = 'learnlang_pronounce_api_key';
   /** Set after at least one successful /api/pronounce; cleared on 401 (e.g. rotated server key). */
   const LS_PRON_KEY_VERIFIED = 'learnlang_pronounce_key_verified';
@@ -130,13 +136,13 @@ export function initQuizApp() {
   function setPronounceRecordButton(recording) {
     if (!btnPronounceRecord) return;
     if (recording) {
-      btnPronounceRecord.innerHTML = PRONOUNCE_SVG_STOP;
       btnPronounceRecord.setAttribute('aria-label', '마이크 비활성 · 녹음 종료 및 전송');
       btnPronounceRecord.title = '마이크 비활성 · 녹음 종료 및 전송';
+      btnPronounceRecord.innerHTML = PRONOUNCE_SVG_STOP;
     } else {
-      btnPronounceRecord.innerHTML = PRONOUNCE_SVG_MIC;
       btnPronounceRecord.setAttribute('aria-label', '마이크 활성 · 녹음 시작');
       btnPronounceRecord.title = '마이크 활성 · 녹음 시작';
+      btnPronounceRecord.innerHTML = PRONOUNCE_SVG_MIC;
     }
   }
 
@@ -197,15 +203,24 @@ export function initQuizApp() {
     if (savedLoc && [...pronounceLocaleEl.options].some((o) => o.value === savedLoc)) {
       pronounceLocaleEl.value = savedLoc;
     }
-    pronounceLocaleEl.addEventListener('change', () => {
+    function persistPronounceLocale() {
       localStorage.setItem(LS_PRON_LOCALE, pronounceLocaleEl.value.trim());
-    });
+    }
+    pronounceLocaleEl.addEventListener('change', persistPronounceLocale);
+    pronounceLocaleEl.addEventListener('input', persistPronounceLocale);
+  }
+
+  function dispatchPronounceUiAbort() {
+    try {
+      document.dispatchEvent(new CustomEvent('learnlang-pronounce-mic-failed'));
+    } catch (_) {}
   }
 
   async function togglePronounceRecord() {
     if (!btnPronounceRecord) return;
     if (!state.current) {
       toast('문장이 선택되지 않았습니다.');
+      dispatchPronounceUiAbort();
       return;
     }
     if (pronounceRecorder && pronounceRecorder.state === 'recording') {
@@ -215,11 +230,13 @@ export function initQuizApp() {
     }
     if (pronouncePosting) {
       toast('발음 채점 중입니다. 잠시만 기다려 주세요.');
+      dispatchPronounceUiAbort();
       return;
     }
     const pronounceCaption = String(state.current[state.cols.en] || '').trim();
     if (!pronounceCaption) {
       toast('점수를 낼 원문이 없습니다.');
+      dispatchPronounceUiAbort();
       return;
     }
 
@@ -232,6 +249,7 @@ export function initQuizApp() {
           ? '마이크는 HTTPS 또는 localhost(127.0.0.1) 페이지에서만 사용할 수 있습니다. 파일을 직접 연 경우 로컬 서버로 열어 주세요.'
           : '이 브라우저에서는 마이크 API를 사용할 수 없습니다.'
       );
+      dispatchPronounceUiAbort();
       return;
     }
 
@@ -251,8 +269,12 @@ export function initQuizApp() {
         msg = '마이크를 사용할 수 없습니다. 다른 앱이 마이크를 쓰는지 확인해 주세요.';
       }
       toast(msg);
+      dispatchPronounceUiAbort();
       return;
     }
+
+    /* 마이크 스트림 직후 녹음 UI 표시 — MediaRecorder 준비 전이라도 눌림 상태가 끊기지 않게 */
+    setPronounceRecordButton(true);
 
     let mimeType = '';
     try {
@@ -312,7 +334,6 @@ export function initQuizApp() {
           pronounceRecorder.stop();
         }
       }, PRONOUNCE_MAX_DURATION_MS);
-      setPronounceRecordButton(true);
       beginPronounceRecordingProgress();
     } catch (e) {
       clearPronounceRecordingProgress();
@@ -320,6 +341,7 @@ export function initQuizApp() {
       pronounceStream = null;
       pronounceRecorder = null;
       setPronounceRecordButton(false);
+      dispatchPronounceUiAbort();
       toast('녹음을 시작할 수 없습니다.');
     }
   }
@@ -397,7 +419,8 @@ export function initQuizApp() {
     const fd = new FormData();
     fd.append('caption', caption);
     fd.append('engine', engine);
-    const loc = (pronounceLocaleEl?.value || 'fr-FR').trim();
+    const locEl = document.querySelector('#pronounceLocale');
+    const loc = (locEl?.value ?? pronounceLocaleEl?.value ?? 'fr-FR').trim();
     fd.append('locale', loc || 'fr-FR');
     const ext = /\.webm/i.test(blob.type || mimeType) ? 'webm' : (/mpeg|mp3/i.test(blob.type || '') ? 'mp3' : 'webm');
     fd.append('audio', blob, `clip.${ext}`);
@@ -432,12 +455,14 @@ export function initQuizApp() {
           localStorage.removeItem(LS_PRON_KEY_VERIFIED);
           setPronounceApiKeyWrapVisible(true);
           if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+          dispatchTpExprResync();
           if (pronounceStatus) pronounceStatus.textContent = '';
           toast('이용 발급 key가 맞지 않거나 만료되었습니다. 다시 입력해 주세요.');
           throw new Error('__pronounce_auth_toast_shown__');
         }
         if ([502, 503, 504, 524].includes(res.status)) {
           if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+          dispatchTpExprResync();
           showPronounceServerBusy();
           return;
         }
@@ -463,16 +488,23 @@ export function initQuizApp() {
           ? `<span class="pron-score-num">${score}점</span><span class="pron-score-suffix">(/100점)</span>`
           : escapeHTML_(String(score));
       const scoreToast = typeof score === 'number' ? `${score}점` : String(score);
+      const cap = colored || escapeHTML_(caption);
+      const metaBlock = `<div class="pron-meta">점수 ${scoreHtml} · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
+      const tpExprEl = document.querySelector('#tpExpr');
+      if (tpExprEl) {
+        tpExprEl.innerHTML = cap;
+      }
       if (pronounceOutcome) {
-        const cap = colored || escapeHTML_(caption);
-        pronounceOutcome.innerHTML = `<div class="pronounce-caption-text">${cap}</div>
-          <div class="pron-meta">점수 ${scoreHtml} · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
+        pronounceOutcome.innerHTML = tpExprEl
+          ? metaBlock
+          : `<span class="pron-caption-body">${cap}</span>${metaBlock}`;
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
       toast(`발음 점수: ${scoreToast}`);
     } catch (e) {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
       if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+      dispatchTpExprResync();
       if (isPronounceNoResponseError(e)) {
         showPronounceServerBusy();
         return;
@@ -861,6 +893,7 @@ export function initQuizApp() {
 
     if (pronounceOutcome) pronounceOutcome.innerHTML = '';
     if (pronounceStatus) pronounceStatus.textContent = '';
+    dispatchTpExprResync();
   }
 
 

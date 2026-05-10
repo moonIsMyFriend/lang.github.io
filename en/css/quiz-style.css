@@ -70,6 +70,8 @@ body.dark #pronounceApiKey {
     border: 1px solid var(--bd);
     background: var(--card);
     color: var(--text);
+    min-width: 12rem;
+    flex: 0 1 auto;
 }
 
 .pronounce-outcome {
@@ -79,11 +81,13 @@ body.dark #pronounceApiKey {
 }
 
 /* 틀린·미일치 단어만 옅은 회색 (맞은 단어는 아래 font 규칙으로 녹색) */
-.pronounce-outcome .pronounce-caption-text {
+.pronounce-outcome .pronounce-caption-text,
+.pronounce-outcome .pron-caption-body {
     color: #6b7280;
 }
 
-body.dark .pronounce-outcome .pronounce-caption-text {
+body.dark .pronounce-outcome .pronounce-caption-text,
+body.dark .pronounce-outcome .pron-caption-body {
     color: #9ca3af;
 }
 
@@ -108,7 +112,8 @@ body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
     color: #6b7280;
 }
 
-.pronounce-outcome .pronounce-caption-text font {
+.pronounce-outcome .pronounce-caption-text font,
+.pronounce-outcome .pron-caption-body font {
     font-weight: 700;
 }
 
@@ -116,7 +121,11 @@ body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
 .pronounce-outcome .pronounce-caption-text font[color="green"],
 .pronounce-outcome .pronounce-caption-text font[color='green'],
 .pronounce-outcome .pronounce-caption-text font[color="GREEN"],
-.pronounce-outcome .pronounce-caption-text font[color='GREEN'] {
+.pronounce-outcome .pronounce-caption-text font[color='GREEN'],
+.pronounce-outcome .pron-caption-body font[color="green"],
+.pronounce-outcome .pron-caption-body font[color='green'],
+.pronounce-outcome .pron-caption-body font[color="GREEN"],
+.pronounce-outcome .pron-caption-body font[color='GREEN'] {
     color: var(--pron-match) !important;
 }
 
@@ -472,8 +481,8 @@ details > summary:hover{
     gap:8px;
 }
 
-/* 퀴즈 화면 상단 버튼 줄 정렬 */
-#screen2 .box .row:first-child {
+/* 퀴즈 화면 상단 버튼 줄 정렬 (#pronouncePanel 제외 — 발음 언어 줄이 걸리면 모바일에서 고정바·클릭 충돌) */
+#screen2 .box:not(#pronouncePanel) .row:first-child {
     justify-content:flex-start;
     gap:10px;
     flex-wrap:nowrap;
@@ -481,7 +490,7 @@ details > summary:hover{
     padding:0;
 }
 
-#screen2 .box .row:first-child button {
+#screen2 .box:not(#pronouncePanel) .row:first-child button {
     flex:0 0 auto;
 }
 
@@ -501,7 +510,7 @@ details > summary:hover{
         flex:0 0 auto;
         min-width:auto;
     }
-    #screen2 .box .row:first-child button {
+    #screen2 .box:not(#pronouncePanel) .row:first-child button {
         flex:0 0 auto;
     }
     .big { font-size:20px; }
@@ -512,7 +521,7 @@ details > summary:hover{
 
 /* === 작은 화면에서 하단 고정 액션바 === */
 @media (max-width:759px){
-  #screen2 .box .row:first-child{
+  #screen2 .box:not(#pronouncePanel) .row:first-child{
     position:fixed;
     left:0; right:0; bottom:0;
     z-index:1000;
@@ -525,7 +534,7 @@ details > summary:hover{
     padding-bottom:max(10px, env(safe-area-inset-bottom));
   }
 
-  #screen2 .box .row:first-child button{
+  #screen2 .box:not(#pronouncePanel) .row:first-child button{
     flex:1 1 calc(50% - 8px);
   }
 
