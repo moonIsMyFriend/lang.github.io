@@ -277,6 +277,8 @@ export function initQuizApp() {
 
     /* 마이크 스트림 직후 녹음 UI 표시 — MediaRecorder 준비 전이라도 눌림 상태가 끊기지 않게 */
     setPronounceRecordButton(true);
+    /* 녹음과 동시에 예문 오디오 재생 중지(턴테이블 등 #audioPlayer) */
+    stopAudio();
 
     let mimeType = '';
     try {
@@ -746,6 +748,7 @@ export function initQuizApp() {
   // 화면2 버튼
   //btnNext.addEventListener('click', pickQuestion);
   btnNext.addEventListener('click', () => {
+    stopPronounceRecording();
     const s = state.session;
     if (!s) return;
 
@@ -970,6 +973,7 @@ export function initQuizApp() {
   }
 
   function togglePlayCurrent() {
+    stopPronounceRecording();
     if (!audioPlayer) return;
 
     // 반복 설정 적용

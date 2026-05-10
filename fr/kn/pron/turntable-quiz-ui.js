@@ -34,6 +34,8 @@ export function initTurntableQuizUi() {
   function toggleListen() {
     armEq();
     btnAudio?.click();
+    /* 재생 시작 시 quiz-app에서 녹음 중지 → 녹음 패드 눌림 해제가 한 프레임 늦을 수 있음 */
+    requestAnimationFrame(() => syncRecordPadPressed());
   }
 
   padPlay?.addEventListener('click', toggleListen);
@@ -45,7 +47,10 @@ export function initTurntableQuizUi() {
     }
   });
 
-  padNext?.addEventListener('click', () => btnNext?.click());
+  padNext?.addEventListener('click', () => {
+    btnNext?.click();
+    requestAnimationFrame(() => syncRecordPadPressed());
+  });
 
   /** 마이크 권한 대기 중에도 패드 눌림 유지 (스트림 오기 전 · 브라우저 프롬프트 구간) */
   let awaitingMic = false;
@@ -108,19 +113,24 @@ export function initTurntableQuizUi() {
   }
   syncRecordPadPressed();
 
-  audio?.addEventListener('play', () => setPlaying(true));
-  audio?.addEventListener('playing', () => setPlaying(true));
-  audio?.addEventListener('pause', () => setPlaying(false));
-  audio?.addEventListener('ended', () => setPlaying(false));
+  function syncPlayAndRecordPads() {
+    setPlaying(!!audio && !audio.paused);
+    syncRecordPadPressed();
+  }
+
+  audio?.addEventListener('play', syncPlayAndRecordPads);
+  audio?.addEventListener('playing', syncPlayAndRecordPads);
+  audio?.addEventListener('pause', syncPlayAndRecordPads);
+  audio?.addEventListener('ended', syncPlayAndRecordPads);
 
   if (btnAudio) {
-    new MutationObserver(() => setPlaying(!!audio && !audio.paused)).observe(btnAudio, {
+    new MutationObserver(syncPlayAndRecordPads).observe(btnAudio, {
       subtree: true,
       characterData: true,
       childList: true
     });
   }
-  setPlaying(!!audio && !audio.paused);
+  syncPlayAndRecordPads();
 
   /** 볼륨 버튼: 포인터·키보드로 눌린 동안 `.pressed` 유지 → CSS 3D 눌림 */
   function bindVolumePressFx(btn) {
