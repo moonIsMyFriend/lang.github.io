@@ -129,23 +129,99 @@ body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
     color: var(--pron-match) !important;
 }
 
+/* 녹음 버튼 세로 스택: 위 슬롯에 진행 바 */
+.pronounce-record-stack {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    align-self: flex-start;
+}
+.pronounce-rec-progress-slot:empty {
+    display: none;
+}
+.pronounce-rec-progress-slot:not(:empty) {
+    display: block;
+    min-width: 2.75rem;
+}
+.pronounce-rec-progress-slot .pronounce-rec-wrap {
+    margin-top: 0;
+}
 .pronounce-rec-wrap {
     margin-top: 8px;
     font-size: 13px;
 }
 .pronounce-rec-bar-track {
-    height: 7px;
+    position: relative;
+    height: 16px;
     border-radius: 4px;
     background: var(--bd);
     overflow: hidden;
-    margin-bottom: 6px;
+    margin-bottom: 0;
 }
 .pronounce-rec-bar-fill {
-    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
     border-radius: 4px;
     background: linear-gradient(90deg, #5a8fc7, var(--good));
     transition: width 0.12s linear;
 }
+.pronounce-rec-bar-caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    text-shadow: none;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+    padding: 0 4px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.pronounce-rec-wrap--inbar .pronounce-rec-bar-track {
+    margin-bottom: 0;
+}
+
+/* 막대 + 문구(막대 아래) — 막대만 얇게 */
+.pronounce-rec-wrap--stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+}
+.pronounce-rec-wrap--stacked .pronounce-rec-bar-track {
+    height: 5px;
+    border-radius: 3px;
+}
+.pronounce-rec-bar-caption.pronounce-rec-bar-caption--below {
+    position: static;
+    inset: auto;
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1;
+    text-align: center;
+    padding: 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .pronounce-rec-label {
     color: var(--muted);
 }

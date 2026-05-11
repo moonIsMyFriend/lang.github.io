@@ -427,6 +427,61 @@ body.dark.turntable-quiz-page .tp-grade-device-btn {
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.75), inset 0 -8px 14px rgba(0, 0, 0, 0.08), 0 -4px 12px rgba(0, 0, 0, 0.12);
 }
 
+/* 녹음 열: 재생과 구분선 + 녹음 시 막대만 패드 상단 얇은 띠(● 영역 높이 유지) */
+.turntable-quiz-page .tp-bottom-pad-record {
+  position: relative;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  border-right: 4px solid var(--tp-pad-border);
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pad.record-dot {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0;
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pad.record-dot::after {
+  display: none;
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pronounce-rec-progress-slot:not(:empty) {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 2px;
+  z-index: 2;
+  width: auto;
+  max-width: none;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pronounce-rec-progress-slot .pronounce-rec-wrap {
+  margin-top: 0;
+  height: auto;
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pronounce-rec-bar-track {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.turntable-quiz-page .tp-bottom-pad-record .pronounce-rec-bar-caption--below {
+  margin-top: 1px;
+}
+
 .turntable-quiz-page .pad {
   position: relative;
   border: 0;

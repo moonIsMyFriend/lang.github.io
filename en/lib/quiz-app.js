@@ -96,6 +96,9 @@ export function initQuizApp() {
   const btnPronounceRecord = document.querySelector('#btnPronounceRecord');
   const pronounceStatus = document.querySelector('#pronounceStatus');
   const pronounceOutcome = document.querySelector('#pronounceOutcome');
+  /** 녹음 중 진행 바 — 녹음 버튼 바로 위 슬롯(없으면 #pronounceStatus 로 폴백) */
+  const pronounceRecProgressEl = document.querySelector('#pronounceRecProgress');
+
   /** turntable `#tpExpr` 등에서 표현 줄을 CSV 기준으로 다시 채움 (발음 하이라이트 제거) */
   function dispatchTpExprResync() {
     try {
@@ -177,19 +180,27 @@ export function initQuizApp() {
       clearInterval(pronounceProgressTimer);
       pronounceProgressTimer = null;
     }
+    if (pronounceRecProgressEl) {
+      pronounceRecProgressEl.innerHTML = '';
+    } else if (pronounceStatus) {
+      const rec = pronounceStatus.querySelector('.pronounce-rec-wrap');
+      if (rec) pronounceStatus.innerHTML = '';
+    }
   }
 
   function renderPronounceRecordingProgress() {
-    if (!pronounceStatus) return;
+    const slot = pronounceRecProgressEl || pronounceStatus;
+    if (!slot) return;
     const maxSec = PRONOUNCE_MAX_DURATION_MS / 1000;
     const elapsedSec = Math.min(maxSec, (Date.now() - pronounceRecordStart) / 1000);
     const pct = Math.min(100, (elapsedSec / maxSec) * 100);
     const elapsedLabel = elapsedSec.toFixed(1);
-    pronounceStatus.innerHTML = `<div class="pronounce-rec-wrap" role="status">
+    const cap = `녹음 중 ${elapsedLabel} / ${maxSec}초`;
+    slot.innerHTML = `<div class="pronounce-rec-wrap pronounce-rec-wrap--inbar pronounce-rec-wrap--stacked" role="status">
       <div class="pronounce-rec-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="${maxSec}" aria-valuenow="${Math.round(elapsedSec)}" aria-label="녹음 진행">
         <div class="pronounce-rec-bar-fill" style="width:${pct}%"></div>
       </div>
-      <div class="pronounce-rec-label">녹음 중 ${elapsedLabel} / ${maxSec}초</div>
+      <div class="pronounce-rec-bar-caption pronounce-rec-bar-caption--below">${escapeHTML(cap)}</div>
     </div>`;
   }
 
