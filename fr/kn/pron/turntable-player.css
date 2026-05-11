@@ -1,5 +1,13 @@
 /* TP-7 프레임 — styletest/turntable_music_player 기반 (좌측 메뉴·플레이리스트 제외) */
 
+/* 모바일 스크롤·오버스크롤 시 html 뒤가 quiz 기본 배경(#E9E5D8 등)으로 비치지 않게 */
+html:has(body.turntable-quiz-page) {
+  background-color: #bfc0bd;
+}
+html:has(body.dark.turntable-quiz-page) {
+  background-color: #121210;
+}
+
 .turntable-quiz-page * {
   box-sizing: border-box;
 }
@@ -7,8 +15,10 @@
 .turntable-quiz-page {
   --tp-pad-border: #64615c;
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(circle at top, #f8f8f6, #d8d8d6 55%, #bfc0bd);
+  background-color: #bfc0bd;
+  background-image: radial-gradient(circle at top, #f8f8f6, #d8d8d6 55%, #bfc0bd);
   color: #222;
   overflow-x: clip;
 }
@@ -997,7 +1007,8 @@ body.dark.turntable-quiz-page #tpComment {
 
 body.dark.turntable-quiz-page {
   --tp-pad-border: rgba(255, 255, 255, 0.16);
-  background: radial-gradient(circle at top, #2a2a28, #1a1a18 55%, #121210);
+  background-color: #121210;
+  background-image: radial-gradient(circle at top, #2a2a28, #1a1a18 55%, #121210);
   color: #e8e8e6;
 }
 
