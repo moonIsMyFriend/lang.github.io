@@ -199,7 +199,7 @@ body.dark .pronounce-outcome .pron-meta .pron-score-suffix {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 2px;
+    gap: 9px;
 }
 .pronounce-rec-wrap--stacked .pronounce-rec-bar-track {
     height: 5px;
