@@ -108,6 +108,8 @@ export function initQuizApp() {
   const LS_PRON_API_KEY = 'learnlang_pronounce_api_key';
   /** Set after at least one successful /api/pronounce; cleared on 401 (e.g. rotated server key). */
   const LS_PRON_KEY_VERIFIED = 'learnlang_pronounce_key_verified';
+  /** Successful 요청에 사용된 key와 `LS_PRON_API_KEY`가 같을 때만 통과로 간주 */
+  const LS_PRON_VERIFIED_KEY_SNAPSHOT = 'learnlang_pronounce_verified_key_snapshot';
   const LS_PRON_LOCALE = 'learnlang_pronounce_locale';
 
   let pronounceRecorder = null;
@@ -219,17 +221,24 @@ export function initQuizApp() {
   }
 
   if (pronounceApiKeyEl) {
+    try {
+      if (localStorage.getItem(LS_PRON_KEY_VERIFIED) === '1' && !localStorage.getItem(LS_PRON_VERIFIED_KEY_SNAPSHOT)) {
+        const k = localStorage.getItem(LS_PRON_API_KEY);
+        if (k) localStorage.setItem(LS_PRON_VERIFIED_KEY_SNAPSHOT, k);
+      }
+    } catch (_) {}
     const savedKey = localStorage.getItem(LS_PRON_API_KEY);
     if (savedKey) pronounceApiKeyEl.value = savedKey;
     pronounceApiKeyEl.addEventListener('change', () => {
-      localStorage.setItem(LS_PRON_API_KEY, pronounceApiKeyEl.value.trim());
+      const v = pronounceApiKeyEl.value.trim();
+      if (v) localStorage.setItem(LS_PRON_API_KEY, v);
+      else localStorage.removeItem(LS_PRON_API_KEY);
       localStorage.removeItem(LS_PRON_KEY_VERIFIED);
-      setPronounceApiKeyWrapVisible(true);
-    });
-    if (localStorage.getItem(LS_PRON_KEY_VERIFIED) === '1') {
+      localStorage.removeItem(LS_PRON_VERIFIED_KEY_SNAPSHOT);
       setPronounceApiKeyWrapVisible(false);
-    }
+    });
   }
+  setPronounceApiKeyWrapVisible(false);
 
   if (pronounceLocaleEl) {
     const savedLoc = localStorage.getItem(LS_PRON_LOCALE);
@@ -262,6 +271,47 @@ export function initQuizApp() {
     const line = `음성인식 처리중 (남은 ${sec}초)`;
     if (pronounceStatus) pronounceStatus.textContent = line;
     toast(line);
+  }
+
+  function getStoredPronounceApiKey() {
+    return (localStorage.getItem(LS_PRON_API_KEY) || pronounceApiKeyEl?.value || '').trim();
+  }
+
+  function setStoredPronounceApiKey(key) {
+    const t = String(key ?? '').trim();
+    if (pronounceApiKeyEl) pronounceApiKeyEl.value = t;
+    if (t) localStorage.setItem(LS_PRON_API_KEY, t);
+    else localStorage.removeItem(LS_PRON_API_KEY);
+  }
+
+  function isPronounceKeyOkSkipPrompt() {
+    if (localStorage.getItem(LS_PRON_KEY_VERIFIED) !== '1') return false;
+    const snap = localStorage.getItem(LS_PRON_VERIFIED_KEY_SNAPSHOT);
+    const cur = getStoredPronounceApiKey();
+    return !!cur && snap === cur;
+  }
+
+  /** 녹음 시작 직전: 이미 통과한 동일 key면 true, 아니면 prompt. */
+  function ensurePronounceApiKeyBeforeRecord() {
+    if (isPronounceKeyOkSkipPrompt()) return true;
+    const def = getStoredPronounceApiKey();
+    const entered = window.prompt(
+      '이용 발급 key가 필요합니다.\n관리자에게 받은 key를 입력하세요.',
+      def
+    );
+    if (entered === null) {
+      toast('이용 발급 key 입력이 취소되었습니다.');
+      return false;
+    }
+    const next = String(entered).trim();
+    if (!next) {
+      toast('이용 발급 key를 입력해 주세요.');
+      return false;
+    }
+    setStoredPronounceApiKey(next);
+    localStorage.removeItem(LS_PRON_KEY_VERIFIED);
+    localStorage.removeItem(LS_PRON_VERIFIED_KEY_SNAPSHOT);
+    return true;
   }
 
   async function togglePronounceRecord() {
@@ -303,6 +353,11 @@ export function initQuizApp() {
           ? '마이크는 HTTPS 또는 localhost(127.0.0.1) 페이지에서만 사용할 수 있습니다. 파일을 직접 연 경우 로컬 서버로 열어 주세요.'
           : '이 브라우저에서는 마이크 API를 사용할 수 없습니다.'
       );
+      dispatchPronounceUiAbort();
+      return;
+    }
+
+    if (!ensurePronounceApiKeyBeforeRecord()) {
       dispatchPronounceUiAbort();
       return;
     }
@@ -505,7 +560,7 @@ export function initQuizApp() {
 
     try {
       const headers = {};
-      const apiKey = (pronounceApiKeyEl?.value || '').trim();
+      const apiKey = getStoredPronounceApiKey();
       if (apiKey) headers['X-API-Key'] = apiKey;
 
       const tid = setTimeout(() => {
@@ -533,7 +588,8 @@ export function initQuizApp() {
       if (!res.ok) {
         if (res.status === 401) {
           localStorage.removeItem(LS_PRON_KEY_VERIFIED);
-          setPronounceApiKeyWrapVisible(true);
+          localStorage.removeItem(LS_PRON_VERIFIED_KEY_SNAPSHOT);
+          setPronounceApiKeyWrapVisible(false);
           if (pronounceOutcome) pronounceOutcome.innerHTML = '';
           dispatchTpExprResync();
           if (pronounceStatus) pronounceStatus.textContent = '';
@@ -551,6 +607,8 @@ export function initQuizApp() {
       }
 
       localStorage.setItem(LS_PRON_KEY_VERIFIED, '1');
+      if (apiKey) localStorage.setItem(LS_PRON_VERIFIED_KEY_SNAPSHOT, apiKey);
+      else localStorage.removeItem(LS_PRON_VERIFIED_KEY_SNAPSHOT);
       setPronounceApiKeyWrapVisible(false);
 
       const transRow = state.current ? String(state.current[state.cols.ko] ?? '').trim() : '';

@@ -64,6 +64,11 @@ body.dark #pronounceApiKey {
     display: inline-flex;
 }
 
+/* 이용 발급 key: 화면 입력 대신 녹음 버튼 시 prompt (quiz-app) — #pronounceApiKey 는 저장용으로 유지 */
+#pronounceApiKeyWrap {
+    display: none !important;
+}
+
 #pronounceLocale {
     padding: 8px 10px;
     border-radius: 10px;
