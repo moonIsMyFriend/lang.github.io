@@ -55,6 +55,8 @@ export function initTurntableQuizUi() {
   /** 마이크 권한 대기 중에도 패드 눌림 유지 (스트림 오기 전 · 브라우저 프롬프트 구간) */
   let awaitingMic = false;
   let awaitingMicTimer = null;
+  /** 직전 프레임에 `data-pronounce-posting` 이었는지 — 서버 인식 끝난 뒤 stale awaitingMic 로 패드가 다시 눌리는 것 방지 */
+  let prevPronouncePostingAttr = false;
 
   function clearAwaitingMic() {
     awaitingMic = false;
@@ -86,14 +88,24 @@ export function initTurntableQuizUi() {
     syncRecordPadPressed();
   });
 
+  document.addEventListener('learnlang-pronounce-post-finished', () => {
+    clearAwaitingMic();
+    requestAnimationFrame(() => syncRecordPadPressed());
+  });
+
   /**
    * 숨김 버튼 정지 아이콘(svg rect) 또는 권한 대기(awaitingMic) ↔ 빨간 패드 눌림.
    */
   function syncRecordPadPressed() {
     if (!recordBtn || !btnPronounceRecord) return;
+    const posting = btnPronounceRecord.getAttribute('data-pronounce-posting') === '1';
+    if (prevPronouncePostingAttr && !posting) {
+      clearAwaitingMic();
+    }
+    prevPronouncePostingAttr = posting;
     const hasStopIcon = !!btnPronounceRecord.querySelector('svg rect');
     if (hasStopIcon) clearAwaitingMic();
-    const pressed = hasStopIcon || awaitingMic;
+    const pressed = !posting && (hasStopIcon || awaitingMic);
     recordBtn.classList.toggle('pressed', pressed);
     recordBtn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
     let aria =
@@ -106,7 +118,7 @@ export function initTurntableQuizUi() {
   if (btnPronounceRecord) {
     new MutationObserver(syncRecordPadPressed).observe(btnPronounceRecord, {
       attributes: true,
-      attributeFilter: ['aria-label', 'title'],
+      attributeFilter: ['aria-label', 'title', 'data-pronounce-posting', 'disabled'],
       childList: true,
       subtree: true
     });

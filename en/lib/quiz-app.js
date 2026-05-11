@@ -113,6 +113,12 @@ export function initQuizApp() {
   let suppressPronounceUpload = false;
   /** 서버 발음 채점(fetch) 중 — 연속 클릭·중복 전송 방지 */
   let pronouncePosting = false;
+  /** 활성 /api/pronounce 요청 취소용 (재생·다음·홈에서 인식 취소) */
+  let pronouncePostAbort = null;
+  /** pronouncePosting 이 true가 된 시각 — 남은 대기 시간 안내용 */
+  let pronouncePostStartedAt = 0;
+  /** `AbortError` 구분: 사용자 취소 vs 무응답 타임아웃 */
+  let pronounceAbortReason = null;
   /** Auto-stop recording after this many ms (prevents huge uploads). */
   let pronounceMaxDurationTimer = null;
   let pronounceProgressTimer = null;
@@ -137,6 +143,7 @@ export function initQuizApp() {
 
   function setPronounceRecordButton(recording) {
     if (!btnPronounceRecord) return;
+    if (recording && pronouncePosting) return;
     if (recording) {
       btnPronounceRecord.setAttribute('aria-label', '마이크 비활성 · 녹음 종료 및 전송');
       btnPronounceRecord.title = '마이크 비활성 · 녹음 종료 및 전송';
@@ -145,6 +152,19 @@ export function initQuizApp() {
       btnPronounceRecord.setAttribute('aria-label', '마이크 활성 · 녹음 시작');
       btnPronounceRecord.title = '마이크 활성 · 녹음 시작';
       btnPronounceRecord.innerHTML = PRONOUNCE_SVG_MIC;
+    }
+  }
+
+  /** 음성 인식(서버) 처리 중 — 턴테이블 패드 눌림 해제·정지 아이콘 방지 */
+  function setPronounceRecordPostState(active) {
+    if (!btnPronounceRecord) return;
+    if (active) {
+      btnPronounceRecord.setAttribute('data-pronounce-posting', '1');
+      btnPronounceRecord.setAttribute('aria-busy', 'true');
+      setPronounceRecordButton(false);
+    } else {
+      btnPronounceRecord.removeAttribute('data-pronounce-posting');
+      btnPronounceRecord.removeAttribute('aria-busy');
     }
   }
 
@@ -218,6 +238,21 @@ export function initQuizApp() {
     } catch (_) {}
   }
 
+  /** 발음 API 대기 중일 때 남은 시간(초) — 상태 안내용 */
+  function getPronouncePostingRemainingSec() {
+    const elapsed = pronouncePostStartedAt ? Date.now() - pronouncePostStartedAt : 0;
+    const leftMs = Math.max(0, PRONOUNCE_FETCH_TIMEOUT_MS - elapsed);
+    return Math.max(1, Math.ceil(leftMs / 1000));
+  }
+
+  /** 인식 처리 중에 녹음을 다시 눌렀을 때 — 상태 줄 + 토스트 */
+  function showPronouncePostingBusyHint() {
+    const sec = getPronouncePostingRemainingSec();
+    const line = `음성인식 처리중 (남은 ${sec}초)`;
+    if (pronounceStatus) pronounceStatus.textContent = line;
+    toast(line);
+  }
+
   async function togglePronounceRecord() {
     if (!btnPronounceRecord) return;
     if (!state.current) {
@@ -227,11 +262,17 @@ export function initQuizApp() {
     }
     if (pronounceRecorder && pronounceRecorder.state === 'recording') {
       suppressPronounceUpload = false;
+      btnPronounceRecord.disabled = true;
+      setPronounceRecordButton(false);
+      try {
+        btnPronounceRecord.blur();
+      } catch (_) {}
       pronounceRecorder.stop();
       return;
     }
     if (pronouncePosting) {
-      toast('발음 채점 중입니다. 잠시만 기다려 주세요.');
+      setPronounceRecordButton(false);
+      showPronouncePostingBusyHint();
       dispatchPronounceUiAbort();
       return;
     }
@@ -275,6 +316,17 @@ export function initQuizApp() {
       return;
     }
 
+    if (pronouncePosting) {
+      try {
+        pronounceStream.getTracks().forEach((t) => t.stop());
+      } catch (_) {}
+      pronounceStream = null;
+      setPronounceRecordButton(false);
+      showPronouncePostingBusyHint();
+      dispatchPronounceUiAbort();
+      return;
+    }
+
     /* 마이크 스트림 직후 녹음 UI 표시 — MediaRecorder 준비 전이라도 눌림 상태가 끊기지 않게 */
     setPronounceRecordButton(true);
     /* 녹음과 동시에 예문 오디오 재생 중지(턴테이블 등 #audioPlayer) */
@@ -299,6 +351,13 @@ export function initQuizApp() {
           clearTimeout(pronounceMaxDurationTimer);
           pronounceMaxDurationTimer = null;
         }
+        if (btnPronounceRecord) {
+          btnPronounceRecord.disabled = true;
+          setPronounceRecordButton(false);
+          try {
+            btnPronounceRecord.blur();
+          } catch (_) {}
+        }
         const canceled = suppressPronounceUpload;
         suppressPronounceUpload = false;
         try {
@@ -320,9 +379,6 @@ export function initQuizApp() {
           setPronounceRecordButton(false);
           return;
         }
-
-        btnPronounceRecord.disabled = true;
-        setPronounceRecordButton(false);
 
         const blob = new Blob(pronounceChunks, { type: finalMime });
         try {
@@ -401,6 +457,13 @@ export function initQuizApp() {
   async function postPronounce(blob, caption, mimeType) {
     if (pronouncePosting) return;
     pronouncePosting = true;
+    pronouncePostStartedAt = Date.now();
+    const ac = new AbortController();
+    pronouncePostAbort = ac;
+    pronounceAbortReason = null;
+    setPronounceRecordPostState(true);
+    /* 인식 대기 중에도 녹음 재클릭 → 토스트 안내가 되도록 클릭은 받음 (로직은 pronouncePosting 으로 막음) */
+    if (btnPronounceRecord) btnPronounceRecord.disabled = false;
     try {
     if (blob.size > PRONOUNCE_MAX_BYTES) {
       const mb = (blob.size / (1024 * 1024)).toFixed(2);
@@ -434,8 +497,10 @@ export function initQuizApp() {
       const apiKey = (pronounceApiKeyEl?.value || '').trim();
       if (apiKey) headers['X-API-Key'] = apiKey;
 
-      const ac = new AbortController();
-      const tid = setTimeout(() => ac.abort(), PRONOUNCE_FETCH_TIMEOUT_MS);
+      const tid = setTimeout(() => {
+        pronounceAbortReason = 'timeout';
+        ac.abort();
+      }, PRONOUNCE_FETCH_TIMEOUT_MS);
       let res;
       try {
         res = await fetch(`${base}/api/pronounce`, {
@@ -491,7 +556,6 @@ export function initQuizApp() {
         typeof score === 'number'
           ? `<span class="pron-score-num">${score}점</span><span class="pron-score-suffix">(/100점)</span>`
           : escapeHTML_(String(score));
-      const scoreToast = typeof score === 'number' ? `${score}점` : String(score);
       const cap = colored || escapeHTML_(caption);
       const metaBlock = `<div class="pron-meta">점수 ${scoreHtml} · 인식 문장 <span style="opacity:.92">${said}</span></div>`;
       const tpExprEl = document.querySelector('#tpExpr');
@@ -504,9 +568,15 @@ export function initQuizApp() {
           : `<span class="pron-caption-body">${cap}</span>${metaBlock}`;
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
-      toast(`발음 점수: ${scoreToast}`);
     } catch (e) {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
+      if (e && e.name === 'AbortError' && pronounceAbortReason === 'user') {
+        if (pronounceOutcome) pronounceOutcome.innerHTML = '';
+        dispatchTpExprResync();
+        if (pronounceStatus) pronounceStatus.textContent = '';
+        /* 토스트는 재생·다음·홈에서 취소 직후 표시 */
+        return;
+      }
       if (pronounceOutcome) pronounceOutcome.innerHTML = '';
       dispatchTpExprResync();
       if (isPronounceNoResponseError(e)) {
@@ -517,8 +587,39 @@ export function initQuizApp() {
       toast(`발음 검사 오류: ${e.message || e}`);
     }
     } finally {
+      setPronounceRecordPostState(false);
       pronouncePosting = false;
+      pronouncePostStartedAt = 0;
+      pronouncePostAbort = null;
+      pronounceAbortReason = null;
+      try {
+        document.dispatchEvent(new CustomEvent('learnlang-pronounce-post-finished'));
+      } catch (_) {}
     }
+  }
+
+  /**
+   * 재생·다음·홈 직전: 녹음 중이면 업로드 없이 중지, 인식 중이면 fetch 취소.
+   * @returns {null | 'recording' | 'posting'} 취소한 종류(호출부에서 토스트 후 본래 동작)
+   */
+  function interruptPronounceForUiNav() {
+    if (pronounceRecorder && pronounceRecorder.state === 'recording') {
+      stopPronounceRecording();
+      return 'recording';
+    }
+    if (pronouncePosting) {
+      pronounceAbortReason = 'user';
+      try {
+        pronouncePostAbort?.abort();
+      } catch (_) {}
+      return 'posting';
+    }
+    return null;
+  }
+
+  function toastIfPronounceNavInterrupted(cancelled) {
+    if (cancelled === 'recording') toast('녹음을 취소했습니다.');
+    else if (cancelled === 'posting') toast('발음 인식 요청을 취소했습니다.');
   }
 
   /** local escape when server returns transcript for meta line */
@@ -607,6 +708,8 @@ export function initQuizApp() {
 
   if (btnHome2) {
     btnHome2.addEventListener('click', () => {
+      const cancelled = interruptPronounceForUiNav();
+      toastIfPronounceNavInterrupted(cancelled);
       const homeUrl = (typeof document !== 'undefined' && document.body?.dataset?.quizHomeUrl) || '';
       if (homeUrl) {
         location.href = homeUrl;
@@ -748,7 +851,8 @@ export function initQuizApp() {
   // 화면2 버튼
   //btnNext.addEventListener('click', pickQuestion);
   btnNext.addEventListener('click', () => {
-    stopPronounceRecording();
+    const cancelled = interruptPronounceForUiNav();
+    toastIfPronounceNavInterrupted(cancelled);
     const s = state.session;
     if (!s) return;
 
@@ -789,7 +893,8 @@ export function initQuizApp() {
     document.activeElement.blur();
   });
   btnHome.addEventListener('click', () => {
-    stopPronounceRecording();
+    const cancelled = interruptPronounceForUiNav();
+    toastIfPronounceNavInterrupted(cancelled);
     stopAudio();
     const homeUrl = (typeof document !== 'undefined' && document.body?.dataset?.quizHomeUrl) || '';
     if (homeUrl) {
@@ -973,7 +1078,8 @@ export function initQuizApp() {
   }
 
   function togglePlayCurrent() {
-    stopPronounceRecording();
+    const cancelled = interruptPronounceForUiNav();
+    toastIfPronounceNavInterrupted(cancelled);
     if (!audioPlayer) return;
 
     // 반복 설정 적용

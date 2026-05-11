@@ -166,6 +166,11 @@ body.dark .pronounce-rec-bar-track {
     display: block;
     flex-shrink: 0;
 }
+/* 서버 음성 인식 처리 중: 정지 아이콘·패드 눌림과 구분 (클릭은 받아서 재시도 시 토스트 가능) */
+#btnPronounceRecord[data-pronounce-posting="1"]:active {
+    transform: none;
+    box-shadow: none;
+}
 
 /* 인덱스/목차 리스트 */
 .folder { margin:8px 0 }
