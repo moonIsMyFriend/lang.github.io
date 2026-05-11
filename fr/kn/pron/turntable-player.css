@@ -717,8 +717,9 @@ body.dark.turntable-quiz-page #pronounceLocale {
     font-size: 22px;
   }
 
+  /* ● 재생(▶)과 동일 — .pad font-size 와 맞춤 */
   .turntable-quiz-page .record-dot {
-    font-size: 38px;
+    font-size: 22px;
   }
 
   .turntable-quiz-page .eq-bar {
@@ -768,7 +769,7 @@ body.dark.turntable-quiz-page #pronounceLocale {
   }
 
   .turntable-quiz-page .record-dot {
-    font-size: 32px;
+    font-size: 18px;
   }
 
   .turntable-quiz-page .tp-device-nav {

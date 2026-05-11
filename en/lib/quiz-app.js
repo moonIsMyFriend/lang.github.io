@@ -197,7 +197,7 @@ export function initQuizApp() {
     const elapsedSec = Math.min(maxSec, (Date.now() - pronounceRecordStart) / 1000);
     const pct = Math.min(100, (elapsedSec / maxSec) * 100);
     const elapsedLabel = elapsedSec.toFixed(1);
-    const cap = `녹음 중 ${elapsedLabel} / ${maxSec}초`;
+    const cap = `${elapsedLabel} / ${maxSec}초`;
     slot.innerHTML = `<div class="pronounce-rec-wrap pronounce-rec-wrap--inbar pronounce-rec-wrap--stacked" role="status">
       <div class="pronounce-rec-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="${maxSec}" aria-valuenow="${Math.round(elapsedSec)}" aria-label="녹음 진행">
         <div class="pronounce-rec-bar-fill" style="width:${pct}%"></div>
