@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth to Moon Scroll</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #020611;
+      color: #fff;
+    }
+
+    .scroll-wrapper {
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      display: flex;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .scroll-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screen {
+      position: relative;
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(60, 120, 255, 0.12), transparent 34%),
+        radial-gradient(circle at bottom, rgba(255, 255, 255, 0.08), transparent 35%),
+        #020611;
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1.5px);
+      background-size: 80px 80px, 130px 130px, 190px 190px;
+      background-position: 8px 14px, 40px 70px, 90px 20px;
+      opacity: 0.8;
+    }
+
+    .planet {
+      position: relative;
+      border-radius: 50%;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    /*
+      정적 위성 구: 등각투영 지도를 원에 맞춰 확대·이동(자전 없음).
+      첨부 느낌 — 왼쪽 상단에서 밝게, 오른쪽으로 은은한 그림자, 가장자리 대기 빛.
+      로컬: styletest/earth-texture.jpg 를 두고 --earth-map 을 url("earth-texture.jpg") 로 바꿔도 됨.
+    */
+    .earth {
+      --earth-map: url("https://upload.wikimedia.org/wikipedia/commons/c/cd/Land_ocean_ice_cloud_2048.jpg");
+      width: min(72vw, 320px);
+      height: min(72vw, 320px);
+      background: transparent;
+      box-shadow:
+        inset 26px 14px 40px rgba(255, 255, 255, 0.32),
+        inset -32px -22px 44px rgba(0, 22, 48, 0.2),
+        0 0 28px rgba(150, 210, 255, 0.45),
+        0 0 72px rgba(80, 150, 230, 0.28),
+        0 0 0 1.5px rgba(200, 235, 255, 0.55);
+    }
+
+    /* 아메리카 대륙이 원 중앙에 오도록(2:1 지도 기준 위치 조정) */
+    .earth__photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: 50%;
+      background-color: #2d74c4;
+      background-image:
+        var(--earth-map),
+        radial-gradient(ellipse 52% 40% at 50% 54%, #3ec48a 0%, #2ea66e 30%, #1c6b45 37%, #143d2a 40%, transparent 42%),
+        radial-gradient(ellipse 30% 44% at 74% 30%, #2f9f5e 0%, #227747 33%, transparent 38%),
+        radial-gradient(ellipse 34% 32% at 30% 70%, #42c992 0%, #2a8f5f 32%, transparent 37%),
+        radial-gradient(ellipse 28% 26% at 64% 74%, #257a4e 0%, #1a5234 33%, transparent 36%),
+        radial-gradient(ellipse 24% 22% at 36% 28%, #38a876 0%, #246848 33%, transparent 36%),
+        linear-gradient(128deg, #7ec8ff 0%, #4496e8 40%, #2568c4 100%);
+      background-size:
+        200% auto,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+      background-repeat: no-repeat;
+      background-position:
+        36% 51%,
+        center,
+        center,
+        center,
+        center,
+        center,
+        center;
+    }
+
+    .earth::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 1;
+      background: radial-gradient(
+        95% 92% at 26% 30%,
+        rgba(255, 255, 255, 0.38) 0%,
+        rgba(255, 255, 255, 0.08) 28%,
+        transparent 52%
+      );
+      pointer-events: none;
+    }
+
+    .earth::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 2;
+      background: linear-gradient(
+        98deg,
+        transparent 0%,
+        transparent 44%,
+        rgba(0, 32, 72, 0.05) 72%,
+        rgba(0, 20, 52, 0.14) 100%
+      );
+      box-shadow: inset -4px 0 20px rgba(220, 245, 255, 0.42);
+      pointer-events: none;
+    }
+
+    /* 달: 밝은 고지 + mare(암흑해) + 크레이터 링 */
+    .moon {
+      width: min(62vw, 260px);
+      height: min(62vw, 260px);
+      background:
+        radial-gradient(ellipse 70% 55% at 58% 48%, rgba(55, 52, 58, 0.55) 0%, transparent 62%),
+        radial-gradient(ellipse 45% 40% at 28% 62%, rgba(48, 46, 52, 0.5) 0%, transparent 58%),
+        radial-gradient(ellipse 38% 32% at 72% 28%, rgba(62, 60, 66, 0.42) 0%, transparent 55%),
+        radial-gradient(circle at 22% 32%, rgba(0, 0, 0, 0.22) 0 2.2%, transparent 2.8%),
+        radial-gradient(circle at 22% 32%, transparent 2.5%, rgba(255, 255, 255, 0.35) 2.6%, transparent 4.2%),
+        radial-gradient(circle at 78% 58%, rgba(0, 0, 0, 0.18) 0 1.8%, transparent 2.4%),
+        radial-gradient(circle at 78% 58%, transparent 2.1%, rgba(220, 220, 225, 0.4) 2.2%, transparent 3.5%),
+        radial-gradient(circle at 44% 22%, rgba(0, 0, 0, 0.14) 0 1.5%, transparent 2.1%),
+        radial-gradient(circle at 52% 78%, rgba(0, 0, 0, 0.16) 0 1.6%, transparent 2.2%),
+        radial-gradient(circle at 66% 38%, rgba(0, 0, 0, 0.12) 0 1.2%, transparent 1.8%),
+        linear-gradient(145deg, #f4f4f6 0%, #c9c9cf 42%, #8e8e96 78%, #5a5a62 100%);
+      box-shadow:
+        inset -30px -26px 48px rgba(0, 0, 0, 0.55),
+        inset 14px 10px 28px rgba(255, 255, 255, 0.2),
+        0 0 38px rgba(200, 210, 230, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      animation: moon-drift 8.5s ease-in-out infinite 0.6s;
+    }
+
+    .moon::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 28%,
+        rgba(255, 255, 255, 0.55) 0 1%,
+        rgba(255, 255, 255, 0.08) 2.5%,
+        transparent 4%
+      );
+      opacity: 0.9;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(
+        118deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        transparent 35%,
+        transparent 58%,
+        rgba(0, 0, 0, 0.35) 100%
+      );
+      pointer-events: none;
+    }
+
+    .distance-text {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .distance-text .number {
+      display: block;
+      font-size: clamp(52px, 18vw, 96px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .distance-text .label {
+      display: block;
+      margin-top: 14px;
+      font-size: clamp(16px, 5vw, 24px);
+      letter-spacing: 0.22em;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .arrow-hint {
+      position: absolute;
+      right: 22px;
+      bottom: 34px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      animation: blink 1.6s ease-in-out infinite;
+    }
+
+    .earth-label,
+    .moon-label {
+      position: absolute;
+      bottom: 92px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.68);
+    }
+
+    @keyframes moon-drift {
+      0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0.25deg);
+      }
+      35% {
+        transform: translateY(-13px) translateX(-3px) rotate(-0.45deg);
+      }
+      65% {
+        transform: translateY(-5px) translateX(5px) rotate(0.15deg);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0.35;
+        transform: translateX(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(6px);
+      }
+    }
+
+    @media (min-width: 768px) {
+      body::before {
+        content: "모바일 화면 기준으로 제작된 페이지입니다. 브라우저 폭을 줄이면 더 자연스럽게 보입니다.";
+        position: fixed;
+        z-index: 10;
+        left: 50%;
+        top: 18px;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 90vw;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="scroll-wrapper" aria-label="지구에서 달까지 가로 스크롤 페이지">
+    <section class="screen earth-screen" aria-label="첫 번째 화면 지구">
+      <div class="stars"></div>
+      <div class="planet earth" aria-hidden="true">
+        <div class="earth__photo"></div>
+      </div>
+      <div class="earth-label">EARTH</div>
+      <div class="arrow-hint">오른쪽으로 스크롤 →</div>
+    </section>
+
+    <section class="screen distance-screen" aria-label="두 번째 화면 거리">
+      <div class="stars"></div>
+      <div class="distance-text">
+        <span class="number">4,000km</span>
+        <span class="label">DISTANCE</span>
+      </div>
+      <div class="arrow-hint">오른쪽으로 스크롤 →</div>
+    </section>
+
+    <section class="screen moon-screen" aria-label="세 번째 화면 달">
+      <div class="stars"></div>
+      <div class="planet moon" aria-hidden="true"></div>
+      <div class="moon-label">MOON</div>
+    </section>
+  </main>
+</body>
+</html>
