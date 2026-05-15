@@ -89,9 +89,10 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
+      background: #020611;
     }
 
-    /* 캔버스 위에 은은한 대기 하이라이트(조명은 Three.js, 여기는 분위기만) */
+    /* 대기광: 흰색 번쩍임 줄이고 어두운 쪽 톤 유지 */
     .earth::after {
       content: "";
       position: absolute;
@@ -99,12 +100,12 @@
       border-radius: 50%;
       z-index: 2;
       background: radial-gradient(
-        88% 86% at 28% 28%,
-        rgba(255, 255, 255, 0.22) 0%,
-        rgba(255, 255, 255, 0.04) 35%,
-        transparent 55%
+        90% 88% at 30% 30%,
+        rgba(180, 210, 255, 0.07) 0%,
+        rgba(20, 40, 70, 0.12) 42%,
+        transparent 58%
       );
-      box-shadow: inset -6px 0 18px rgba(200, 235, 255, 0.25);
+      box-shadow: inset -8px 0 22px rgba(0, 10, 28, 0.45);
       pointer-events: none;
     }
 
@@ -254,7 +255,7 @@
     <section class="screen earth-screen" aria-label="첫 번째 화면 지구">
       <div class="stars"></div>
       <div class="planet earth" aria-hidden="true">
-        <!-- WebGL 텍스처: 같은 폴더의 earth_atmos_2048.jpg 를 우선 사용(CORS). 없으면 CDN 순차 시도. -->
+        <!-- 텍스처: earth_day_bright.jpg(밝은 무구름) → earth_atmos_2048.jpg → CDN -->
         <canvas class="earth-canvas"></canvas>
       </div>
       <div class="earth-label">EARTH</div>
@@ -287,7 +288,9 @@
       var textureUrls = [];
       if (customTex) textureUrls.push(customTex);
       textureUrls.push(
+        "earth_day_bright.jpg",
         "earth_atmos_2048.jpg",
+        "https://cdn.jsdelivr.net/gh/turban/webgl-earth@master/images/2_no_clouds_4k.jpg",
         "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/textures/planets/earth_atmos_2048.jpg"
       );
 
@@ -306,7 +309,7 @@
         antialias: true,
         powerPreference: "high-performance",
       });
-      renderer.setClearColor(0x000000, 0);
+      renderer.setClearColor(0x020611, 1);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       if (THREE.SRGBColorSpace !== undefined) {
         renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -322,20 +325,20 @@
       }
       syncSize();
 
-      var ambient = new THREE.AmbientLight(0xffffff, 0.42);
+      var ambient = new THREE.AmbientLight(0xd8e8ff, 0.52);
       scene.add(ambient);
-      var sun = new THREE.DirectionalLight(0xffffff, 1.35);
+      var sun = new THREE.DirectionalLight(0xffffff, 1.52);
       sun.position.set(2.8, 1.1, 1.9);
       scene.add(sun);
-      var fill = new THREE.DirectionalLight(0xa8c8ff, 0.22);
+      var fill = new THREE.DirectionalLight(0x7a9cc8, 0.18);
       fill.position.set(-2.2, -0.6, -1.4);
       scene.add(fill);
 
       var geometry = new THREE.SphereGeometry(1, 56, 56);
       var material = new THREE.MeshStandardMaterial({
-        color: 0x2d74c4,
-        roughness: 0.72,
-        metalness: 0.04,
+        color: 0x0a101f,
+        roughness: 0.62,
+        metalness: 0.02,
       });
       var earthMesh = new THREE.Mesh(geometry, material);
       earthMesh.rotation.y = 0.85;
@@ -356,7 +359,8 @@
           renderer.capabilities.getMaxAnisotropy()
         );
         material.map = texture;
-        material.color.setHex(0xffffff);
+        material.color.setRGB(1, 1, 1);
+        material.roughness = 0.58;
         material.needsUpdate = true;
       }
 
@@ -366,7 +370,8 @@
       function tryLoadNextTexture() {
         if (texIndex >= textureUrls.length) {
           material.map = null;
-          material.color.setHex(0x2d74c4);
+          material.color.setHex(0x0a101f);
+          material.roughness = 0.78;
           material.needsUpdate = true;
           return;
         }
