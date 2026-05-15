@@ -71,87 +71,40 @@
       overflow: hidden;
     }
 
-    /*
-      정적 위성 구: 등각투영 지도를 원에 맞춰 확대·이동(자전 없음).
-      첨부 느낌 — 왼쪽 상단에서 밝게, 오른쪽으로 은은한 그림자, 가장자리 대기 빛.
-      로컬: styletest/earth-texture.jpg 를 두고 --earth-map 을 url("earth-texture.jpg") 로 바꿔도 됨.
-    */
+    /* WebGL 구체 + 대기권 느낌의 외곽 글로우 */
     .earth {
-      --earth-map: url("https://upload.wikimedia.org/wikipedia/commons/c/cd/Land_ocean_ice_cloud_2048.jpg");
       width: min(72vw, 320px);
       height: min(72vw, 320px);
       background: transparent;
       box-shadow:
-        inset 26px 14px 40px rgba(255, 255, 255, 0.32),
-        inset -32px -22px 44px rgba(0, 22, 48, 0.2),
         0 0 28px rgba(150, 210, 255, 0.45),
         0 0 72px rgba(80, 150, 230, 0.28),
         0 0 0 1.5px rgba(200, 235, 255, 0.55);
     }
 
-    /* 아메리카 대륙이 원 중앙에 오도록(2:1 지도 기준 위치 조정) */
-    .earth__photo {
-      position: absolute;
-      inset: 0;
+    .earth-canvas {
+      position: relative;
       z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      background-color: #2d74c4;
-      background-image:
-        var(--earth-map),
-        radial-gradient(ellipse 52% 40% at 50% 54%, #3ec48a 0%, #2ea66e 30%, #1c6b45 37%, #143d2a 40%, transparent 42%),
-        radial-gradient(ellipse 30% 44% at 74% 30%, #2f9f5e 0%, #227747 33%, transparent 38%),
-        radial-gradient(ellipse 34% 32% at 30% 70%, #42c992 0%, #2a8f5f 32%, transparent 37%),
-        radial-gradient(ellipse 28% 26% at 64% 74%, #257a4e 0%, #1a5234 33%, transparent 36%),
-        radial-gradient(ellipse 24% 22% at 36% 28%, #38a876 0%, #246848 33%, transparent 36%),
-        linear-gradient(128deg, #7ec8ff 0%, #4496e8 40%, #2568c4 100%);
-      background-size:
-        200% auto,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%;
-      background-repeat: no-repeat;
-      background-position:
-        36% 51%,
-        center,
-        center,
-        center,
-        center,
-        center,
-        center;
     }
 
-    .earth::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      z-index: 1;
-      background: radial-gradient(
-        95% 92% at 26% 30%,
-        rgba(255, 255, 255, 0.38) 0%,
-        rgba(255, 255, 255, 0.08) 28%,
-        transparent 52%
-      );
-      pointer-events: none;
-    }
-
+    /* 캔버스 위에 은은한 대기 하이라이트(조명은 Three.js, 여기는 분위기만) */
     .earth::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
       z-index: 2;
-      background: linear-gradient(
-        98deg,
-        transparent 0%,
-        transparent 44%,
-        rgba(0, 32, 72, 0.05) 72%,
-        rgba(0, 20, 52, 0.14) 100%
+      background: radial-gradient(
+        88% 86% at 28% 28%,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.04) 35%,
+        transparent 55%
       );
-      box-shadow: inset -4px 0 20px rgba(220, 245, 255, 0.42);
+      box-shadow: inset -6px 0 18px rgba(200, 235, 255, 0.25);
       pointer-events: none;
     }
 
@@ -301,7 +254,8 @@
     <section class="screen earth-screen" aria-label="첫 번째 화면 지구">
       <div class="stars"></div>
       <div class="planet earth" aria-hidden="true">
-        <div class="earth__photo"></div>
+        <!-- WebGL 텍스처: 같은 폴더의 earth_atmos_2048.jpg 를 우선 사용(CORS). 없으면 CDN 순차 시도. -->
+        <canvas class="earth-canvas"></canvas>
       </div>
       <div class="earth-label">EARTH</div>
       <div class="arrow-hint">오른쪽으로 스크롤 →</div>
@@ -322,5 +276,153 @@
       <div class="moon-label">MOON</div>
     </section>
   </main>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>
+    (function () {
+      var canvas = document.querySelector(".earth-canvas");
+      var container = canvas && canvas.closest(".planet.earth");
+      if (!canvas || !container || typeof THREE === "undefined") return;
+
+      var customTex = canvas.getAttribute("data-earth-texture");
+      var textureUrls = [];
+      if (customTex) textureUrls.push(customTex);
+      textureUrls.push(
+        "earth_atmos_2048.jpg",
+        "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/textures/planets/earth_atmos_2048.jpg"
+      );
+
+      var reduceMotion = false;
+      try {
+        reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      } catch (e) {}
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(42, 1, 0.08, 100);
+      camera.position.set(0, 0.08, 2.45);
+
+      var renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setClearColor(0x000000, 0);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      if (THREE.SRGBColorSpace !== undefined) {
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+      }
+
+      function syncSize() {
+        var w = container.clientWidth;
+        var h = container.clientHeight;
+        if (w < 1 || h < 1) return;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      syncSize();
+
+      var ambient = new THREE.AmbientLight(0xffffff, 0.42);
+      scene.add(ambient);
+      var sun = new THREE.DirectionalLight(0xffffff, 1.35);
+      sun.position.set(2.8, 1.1, 1.9);
+      scene.add(sun);
+      var fill = new THREE.DirectionalLight(0xa8c8ff, 0.22);
+      fill.position.set(-2.2, -0.6, -1.4);
+      scene.add(fill);
+
+      var geometry = new THREE.SphereGeometry(1, 56, 56);
+      var material = new THREE.MeshStandardMaterial({
+        color: 0x2d74c4,
+        roughness: 0.72,
+        metalness: 0.04,
+      });
+      var earthMesh = new THREE.Mesh(geometry, material);
+      earthMesh.rotation.y = 0.85;
+      scene.add(earthMesh);
+
+      function isRemoteTextureUrl(url) {
+        return /^https?:\/\//i.test(url);
+      }
+
+      function applyEarthTexture(texture) {
+        if (THREE.SRGBColorSpace !== undefined && "colorSpace" in texture) {
+          texture.colorSpace = THREE.SRGBColorSpace;
+        } else if (THREE.sRGBEncoding !== undefined) {
+          texture.encoding = THREE.sRGBEncoding;
+        }
+        texture.anisotropy = Math.min(
+          8,
+          renderer.capabilities.getMaxAnisotropy()
+        );
+        material.map = texture;
+        material.color.setHex(0xffffff);
+        material.needsUpdate = true;
+      }
+
+      var loader = new THREE.TextureLoader();
+      var texIndex = 0;
+
+      function tryLoadNextTexture() {
+        if (texIndex >= textureUrls.length) {
+          material.map = null;
+          material.color.setHex(0x2d74c4);
+          material.needsUpdate = true;
+          return;
+        }
+        var url = textureUrls[texIndex++];
+        if (isRemoteTextureUrl(url)) {
+          loader.setCrossOrigin("anonymous");
+        } else {
+          loader.setCrossOrigin(null);
+        }
+        loader.load(
+          url,
+          function (texture) {
+            applyEarthTexture(texture);
+          },
+          undefined,
+          function () {
+            tryLoadNextTexture();
+          }
+        );
+      }
+
+      tryLoadNextTexture();
+
+      var clock = new THREE.Clock();
+      var rotationSpeed = 0.11;
+
+      function tick() {
+        requestAnimationFrame(tick);
+        var dt = clock.getDelta();
+        if (!reduceMotion) {
+          earthMesh.rotation.y += dt * rotationSpeed;
+        }
+        renderer.render(scene, camera);
+      }
+      tick();
+
+      if (typeof ResizeObserver !== "undefined") {
+        var ro = new ResizeObserver(syncSize);
+        ro.observe(container);
+      } else {
+        window.addEventListener("resize", syncSize);
+      }
+
+      try {
+        var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (mq.addEventListener) {
+          mq.addEventListener("change", function () {
+            reduceMotion = mq.matches;
+          });
+        } else if (mq.addListener) {
+          mq.addListener(function () {
+            reduceMotion = mq.matches;
+          });
+        }
+      } catch (e2) {}
+    })();
+  </script>
 </body>
 </html>
