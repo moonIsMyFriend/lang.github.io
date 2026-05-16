@@ -1,0 +1,110 @@
+/* 로켓(rocket) */
+.rocket-travel {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.rocket {
+  position: absolute;
+  left: 50vw;
+  top: 44vh;
+  transform: translate(-50%, -50%) rotate(12deg) scale(1);
+  opacity: 1;
+  filter: drop-shadow(0 0 14px rgba(255, 150, 70, 0.55));
+  will-change: left, top, transform;
+  transition:
+    left 0.75s cubic-bezier(0.34, 1.1, 0.48, 1),
+    top 0.75s cubic-bezier(0.34, 1.1, 0.48, 1),
+    transform 0.75s cubic-bezier(0.34, 1.1, 0.48, 1);
+}
+
+.rocket-travel.is-flying .rocket {
+  transition: none;
+}
+
+.rocket-travel .rocket {
+  z-index: 1;
+}
+
+.rocket--flight .rocket__bob {
+  animation: none;
+  transform: none;
+}
+
+.rocket-travel.is-ready-depart .rocket__bob {
+  animation: rocket-ready-nudge 1.5s ease-in-out infinite;
+}
+
+@keyframes rocket-ready-nudge {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -3px);
+  }
+}
+
+.rocket--landed .rocket__bob,
+.rocket--landed .rocket__flame-anim {
+  animation: none;
+}
+
+.rocket--landed .rocket__flame-anim {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.rocket__bob {
+  display: block;
+  animation: rocket-bob 3s ease-in-out infinite;
+}
+
+.rocket__svg {
+  display: block;
+  width: 52px;
+  height: auto;
+}
+
+.rocket__flame-anim {
+  transform-origin: 24px 62px;
+  animation: rocket-flame 0.25s ease-in-out infinite alternate;
+}
+
+@keyframes rocket-flame {
+  0% {
+    transform: scaleY(0.88);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleY(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes rocket-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.rocket-travel.is-scrolling .rocket__bob {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocket__flame-anim,
+  .rocket__bob,
+  .rocket-travel.is-guiding .rocket__bob {
+    animation: none;
+  }
+  .rocket-travel.is-guiding::before {
+    animation: none;
+    opacity: 0.5;
+  }
+}
