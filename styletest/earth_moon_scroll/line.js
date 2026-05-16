@@ -11,6 +11,7 @@
     var trailOn = false;
     var trailUseActive = false;
     var lastTrailPage = -1;
+    var introTrailScrollBase = 0;
 
     function pageWidth() {
       return ctx.pageWidth();
@@ -22,124 +23,185 @@
       return ctx.pageCenterInViewport(pageIndex);
     }
 
-      function trailClear() {
-        introTrailPts = [];
-        activeTrailPts = [];
-        trailFrozen = false;
-        trailMaxDocVw = null;
-        if (trailIntroEl) trailIntroEl.setAttribute("d", "");
-        if (trailActiveEl) trailActiveEl.setAttribute("d", "");
-      }
+    function trailClear() {
+      introTrailPts = [];
+      activeTrailPts = [];
+      trailFrozen = false;
+      trailMaxDocVw = null;
+      introTrailScrollBase = 0;
+      if (trailIntroEl) trailIntroEl.setAttribute("d", "");
+      if (trailActiveEl) trailActiveEl.setAttribute("d", "");
+    }
 
-      function trailClearActive() {
-        activeTrailPts = [];
-        if (trailActiveEl) trailActiveEl.setAttribute("d", "");
-      }
+    function trailClearActive() {
+      activeTrailPts = [];
+      if (trailActiveEl) trailActiveEl.setAttribute("d", "");
+    }
 
-      function trailTrimIntroToDistanceCenter() {
-        var end = pageCenterInViewport(1);
-        trailMaxDocVw = end.x + trailScrollVw() + 50;
-      }
+    function trailBeginIntro() {
+      introTrailScrollBase = trailScrollVw();
+    }
 
-      function trailScrollVw() {
-        var vw = pageWidth();
-        if (vw < 1) return 0;
-        return (wrapper.scrollLeft / vw) * 100;
+    function trailTrimIntroToDistanceCenter() {
+      var end = pageCenterInViewport(1);
+      var centerDoc = end.x + introTrailScrollBase;
+      trailMaxDocVw = centerDoc + 6;
+      while (
+        introTrailPts.length &&
+        introTrailPts[introTrailPts.length - 1].docVw > trailMaxDocVw + 0.5
+      ) {
+        introTrailPts.pop();
       }
+    }
 
-      function buildTrailPath(pts, maxDocVw) {
-        if (pts.length < 2) return "";
-        var vw = window.innerWidth || 1;
-        var scrollVw = trailScrollVw();
-        var maxDoc = maxDocVw != null ? maxDocVw : Infinity;
-        var d = "";
-        var i;
-        for (i = 0; i < pts.length; i++) {
-          if (pts[i].docVw > maxDoc + 0.5) break;
-          var px = ((pts[i].docVw - scrollVw) / 100) * vw;
-          var py = pts[i].py;
-          d += (i === 0 ? "M" : " L") + px + " " + py;
-        }
-        if (d.indexOf("L") === -1) return "";
-        return d;
+    function trailScrollVw() {
+      var vw = pageWidth();
+      if (vw < 1) return 0;
+      return (wrapper.scrollLeft / vw) * 100;
+    }
+
+    function buildTrailPath(pts, opts) {
+      opts = opts || {};
+      if (pts.length < 2) return "";
+      var vw = window.innerWidth || 1;
+      var scrollVw = trailScrollVw();
+      var minDoc = opts.pageClip ? scrollVw : -Infinity;
+      var maxDoc =
+        opts.maxDocVw != null ? opts.maxDocVw : Infinity;
+      if (opts.pageClip) {
+        maxDoc = Math.min(maxDoc, scrollVw + 100);
       }
-
-      function renderTrail() {
-        if (trailIntroEl) {
-          var introCap =
-            trailFrozen && readIndex() > 0 ? trailMaxDocVw : null;
-          trailIntroEl.setAttribute(
-            "d",
-            buildTrailPath(introTrailPts, introCap)
-          );
-        }
-        if (trailActiveEl) {
-          trailActiveEl.setAttribute("d", buildTrailPath(activeTrailPts, null));
-        }
+      var d = "";
+      var started = false;
+      var i;
+      for (i = 0; i < pts.length; i++) {
+        if (pts[i].docVw < minDoc - 0.5) continue;
+        if (pts[i].docVw > maxDoc + 0.5) break;
+        var px = ((pts[i].docVw - scrollVw) / 100) * vw;
+        var py = pts[i].py;
+        d += (started ? " L" : "M") + px + " " + py;
+        started = true;
       }
+      if (!started || d.indexOf("L") === -1) return "";
+      return d;
+    }
 
-      function trailPushTo(pts, p) {
-        var vw = window.innerWidth || 1;
-        var vh = window.innerHeight || 1;
-        var docVw = p.x + trailScrollVw();
-        var py = (p.y / 100) * vh;
-        var n = pts.length;
-        if (n > 0) {
-          var lp = pts[n - 1];
-          var dxPx = ((docVw - lp.docVw) / 100) * vw;
-          var dy = py - lp.py;
-          if (dxPx * dxPx + dy * dy < 36) return;
-        }
-        pts.push({ docVw: docVw, py: py });
-        if (pts.length > 180) pts.shift();
+    function introTrailRenderOpts() {
+      if (!trailFrozen) return {};
+      if (readIndex() === 0) return { maxDocVw: null };
+      if (readIndex() === 1) {
+        return {
+          maxDocVw: trailMaxDocVw,
+          pageClip: true,
+        };
       }
+      return { maxDocVw: trailMaxDocVw };
+    }
 
-      function trailPushVw(p) {
-        if (trailFrozen || trailUseActive) return;
-        trailPushTo(introTrailPts, p);
-        renderTrail();
+    function activeTrailRenderOpts() {
+      if (readIndex() === 1) {
+        return {
+          maxDocVw: trailScrollVw() + 100,
+          pageClip: true,
+        };
       }
+      return {};
+    }
 
-      function trailPushActiveVw(p) {
-        trailPushTo(activeTrailPts, p);
-        renderTrail();
+    function renderTrail() {
+      if (trailIntroEl) {
+        trailIntroEl.setAttribute(
+          "d",
+          buildTrailPath(introTrailPts, introTrailRenderOpts())
+        );
       }
+      if (trailActiveEl) {
+        trailActiveEl.setAttribute(
+          "d",
+          buildTrailPath(activeTrailPts, activeTrailRenderOpts())
+        );
+      }
+    }
 
-      function trailFreeze() {
+    function trailPushTo(pts, p, scrollBase) {
+      var vw = window.innerWidth || 1;
+      var vh = window.innerHeight || 1;
+      var sv = scrollBase != null ? scrollBase : trailScrollVw();
+      var docVw = p.x + sv;
+      var py = (p.y / 100) * vh;
+      var n = pts.length;
+      if (n > 0) {
+        var lp = pts[n - 1];
+        var dxPx = ((docVw - lp.docVw) / 100) * vw;
+        var dy = py - lp.py;
+        if (dxPx * dxPx + dy * dy < 36) return;
+      }
+      pts.push({ docVw: docVw, py: py });
+      if (pts.length > 180) pts.shift();
+    }
+
+    function trailPushVw(p) {
+      if (trailFrozen || trailUseActive) return;
+      trailPushTo(introTrailPts, p, introTrailScrollBase);
+      renderTrail();
+    }
+
+    function trailPushActiveVw(p) {
+      trailPushTo(activeTrailPts, p, null);
+      renderTrail();
+    }
+
+    function trailFreeze() {
+      trailTrimIntroToDistanceCenter();
+      trailFrozen = true;
+      trailOn = false;
+      trailUseActive = false;
+      renderTrail();
+    }
+
+    function trailHandlePageChange(index) {
+      if (index === lastTrailPage) return;
+      lastTrailPage = index;
+      if (index >= 2) {
+        trailClear();
+        return;
+      }
+      if (index === 1) {
+        trailClearActive();
         trailTrimIntroToDistanceCenter();
-        trailFrozen = true;
-        trailOn = false;
-        trailUseActive = false;
         renderTrail();
+        return;
       }
-
-      function trailHandlePageChange(index) {
-        if (index === lastTrailPage) return;
-        var prev = lastTrailPage;
-        lastTrailPage = index;
-        if (index >= 2) {
-          trailClear();
-          return;
-        }
-        if (index === 1) {
-          trailClearActive();
-          return;
-        }
-        if (index === 0) {
-          trailClearActive();
-        }
+      if (index === 0) {
+        trailClearActive();
       }
+    }
 
     return {
-      get trailOn() { return trailOn; },
-      set trailOn(v) { trailOn = v; },
-      get trailUseActive() { return trailUseActive; },
-      set trailUseActive(v) { trailUseActive = v; },
-      get trailFrozen() { return trailFrozen; },
-      get introTrailPts() { return introTrailPts; },
-      get activeTrailPts() { return activeTrailPts; },
+      get trailOn() {
+        return trailOn;
+      },
+      set trailOn(v) {
+        trailOn = v;
+      },
+      get trailUseActive() {
+        return trailUseActive;
+      },
+      set trailUseActive(v) {
+        trailUseActive = v;
+      },
+      get trailFrozen() {
+        return trailFrozen;
+      },
+      get introTrailPts() {
+        return introTrailPts;
+      },
+      get activeTrailPts() {
+        return activeTrailPts;
+      },
       trailClear: trailClear,
       trailClearActive: trailClearActive,
+      trailBeginIntro: trailBeginIntro,
       trailFreeze: trailFreeze,
       trailHandlePageChange: trailHandlePageChange,
       renderTrail: renderTrail,

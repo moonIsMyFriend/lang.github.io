@@ -161,6 +161,9 @@
       function trailClear() {
         line.trailClear();
       }
+      function trailBeginIntro() {
+        line.trailBeginIntro();
+      }
       function trailClearActive() {
         line.trailClearActive();
       }
@@ -327,6 +330,9 @@
         var from = fromSlot || { x: R.lastRocketPos.x, y: R.lastRocketPos.y };
         var to = pageCenterInViewport(1);
         var ctrl = arcControl(from, to, -6, -22);
+        if (!skipTrailClear) {
+          trailBeginIntro();
+        }
         setRocketMode("introArc");
         animateRocketArc(
           from,
@@ -356,9 +362,14 @@
               beginMoonPage();
               return;
             }
-            var wait = pageCenterInViewport(1);
-            applyRocketViewport(wait, DISTANCE_WAIT_ROT, 1, false);
+            if (rocketLayer) rocketLayer.style.visibility = "";
             setRocketMode("atDistance");
+            applyRocketViewport(
+              distanceWaitPose(),
+              DISTANCE_WAIT_ROT,
+              1,
+              false
+            );
             if (readIndex() === 1) scheduleDistanceAutoDepart();
           }
         );
@@ -669,6 +680,19 @@
           }
           return;
         }
+        if (introDone && R.rocketMode === "atDistance" && readIndex() < 2) {
+          if (rocketLayer) rocketLayer.style.visibility = "";
+          if (rocket) {
+            rocket.style.opacity = "1";
+            rocket.classList.remove("rocket--landed");
+          }
+          applyRocketViewport(
+            distanceWaitPose(),
+            DISTANCE_WAIT_ROT,
+            1,
+            false
+          );
+        }
         if (line.introTrailPts.length || line.activeTrailPts.length) renderTrail();
       }
 
@@ -683,6 +707,7 @@
 
       function runIntroDomFallback() {
         trailClear();
+        trailBeginIntro();
         line.trailOn = true;
         setRocketMode("introArc");
         flyToDistanceCenter({ x: 50, y: 44 }, true);
@@ -704,6 +729,7 @@
             return;
           }
           trailClear();
+          trailBeginIntro();
           line.trailOn = true;
           setRocketMode("intro3d");
           if (rocketLayer) rocketLayer.style.visibility = "hidden";

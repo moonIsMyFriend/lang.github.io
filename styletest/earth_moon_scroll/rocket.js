@@ -23,14 +23,16 @@
           "mode-intro",
           "mode-idle",
           "mode-wait-moon",
-          "is-flying"
+          "is-flying",
+          "is-at-distance"
         );
         if (mode === "intro3d" || mode === "introArc") {
           rocketLayer.classList.add("mode-intro");
         }
         rocketLayer.classList.remove("is-ready-depart");
-        if (mode === "atDistance" && earthScreen) {
-          earthScreen.classList.add("is-scroll-guide");
+        if (mode === "atDistance") {
+          rocketLayer.classList.add("is-at-distance");
+          if (earthScreen) earthScreen.classList.add("is-scroll-guide");
           rocketLayer.classList.add("is-ready-depart");
         } else if (earthScreen) {
           earthScreen.classList.remove("is-scroll-guide");
@@ -298,10 +300,11 @@
       function snapDistanceWaitPose() {
         if (!rocket) return;
         if (readIndex() !== 1 || rocketMode !== "atDistance") return;
-        var p = distanceWaitPose();
+        var p = { x: 50, y: 44 };
         mountRocketFixed();
         if (rocketLayer) rocketLayer.style.visibility = "";
         rocket.classList.remove("rocket--flight", "rocket--landed");
+        rocket.style.opacity = "1";
         applyRocketViewport(p, ctx.DISTANCE_WAIT_ROT, 1, false);
       }
 

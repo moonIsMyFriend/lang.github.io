@@ -21,7 +21,8 @@
     transform 0.75s cubic-bezier(0.34, 1.1, 0.48, 1);
 }
 
-.rocket-travel.is-flying .rocket {
+.rocket-travel.is-flying .rocket,
+.rocket-travel.is-at-distance .rocket {
   transition: none;
 }
 
