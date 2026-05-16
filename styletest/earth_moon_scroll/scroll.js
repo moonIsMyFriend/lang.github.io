@@ -45,7 +45,9 @@
       var MOON_AUTO_DELAY_MS = 1400;
       var MOON_LAUNCH_MS = 2400;
       var MOON_ORBIT_MS = 7200;
-      var MOON_APPROACH_FRAC = 0.26;
+      var MOON_APPROACH_FRAC = 0.28;
+      var MOON_APPROACH_APEX_LIFT = 7;
+      var MOON_APPROACH_MIN_Y = 12;
       var MOON_ROTATE_MS = 1100;
       var MOON_DESCEND_MS = 3600;
       var moonAutoTimer = null;
@@ -171,6 +173,12 @@
       function trailClearIntro() {
         line.trailClearIntro();
       }
+      function beginMoonLandingTrailFade(durationMs, cb) {
+        line.beginMoonLandingTrailFade(durationMs, cb);
+      }
+      function resetMoonTrailFade() {
+        line.resetMoonTrailFade();
+      }
       function trailFreeze() {
         line.trailFreeze();
       }
@@ -242,17 +250,46 @@
         return { x: 6, y: 44 };
       }
 
-      function moonOrbitTop(center, radius) {
+      function moonOrbitEntryPoint(center, radius) {
         return pointOnMoonOrbit(-Math.PI / 2, center, radius);
       }
 
-      function moonApproachOrbitPoint(rawT, wait, approachCtrl, top, center, radius) {
+      function moonOrbitTop(center, radius) {
+        return moonOrbitEntryPoint(center, radius);
+      }
+
+      function moonApproachApex(wait, entry) {
+        var lift = MOON_APPROACH_APEX_LIFT;
+        return {
+          x: wait.x + (entry.x - wait.x) * 0.55,
+          y: Math.max(entry.y - lift, MOON_APPROACH_MIN_Y),
+        };
+      }
+
+      /* README: 왼쪽 → 궤도 진입 지점 포물선(너무 위로 가지 않음) → 궤도에 부드럽게 연결 */
+      function moonApproachOrbitPoint(rawT, wait, center, radius) {
+        var entry = moonOrbitEntryPoint(center, radius);
+        var orbitSpan = 1 - MOON_APPROACH_FRAC;
+        var joinSpan = 0.07;
         if (rawT <= MOON_APPROACH_FRAC) {
           var t = easeInOutQuad(rawT / MOON_APPROACH_FRAC);
-          return sampleBezier(wait, approachCtrl, top, t);
+          var p = sampleBezier(wait, moonApproachApex(wait, entry), entry, t);
+          return {
+            x: p.x,
+            y: Math.max(p.y, MOON_APPROACH_MIN_Y),
+          };
         }
-        var ot = (rawT - MOON_APPROACH_FRAC) / (1 - MOON_APPROACH_FRAC);
-        return pointOnMoonOrbit(-Math.PI / 2 + ot * Math.PI * 2, center, radius);
+        var orbitT = (rawT - MOON_APPROACH_FRAC) / orbitSpan;
+        var angle = -Math.PI / 2 + orbitT * Math.PI * 2;
+        var orbitP = pointOnMoonOrbit(angle, center, radius);
+        if (orbitT < joinSpan) {
+          var blend = easeInOutQuad(orbitT / joinSpan);
+          return {
+            x: entry.x + (orbitP.x - entry.x) * blend,
+            y: entry.y + (orbitP.y - entry.y) * blend,
+          };
+        }
+        return orbitP;
       }
 
       function pointOnMoonOrbit(angle, center, radius) {
@@ -578,6 +615,7 @@
         line.trailUseActive = false;
         trailClear();
         trailClearActive();
+        resetMoonTrailFade();
         snapMoonWaitPose();
         scheduleMoonAutoDepart();
       }
@@ -613,6 +651,10 @@
       function finishMoonLanding() {
         moonSequenceActive = false;
         trailClear();
+        resetMoonTrailFade();
+        if (rocketLayer) {
+          rocketLayer.classList.remove("is-moon-landing", "is-moon-orbit");
+        }
         var to = moonCenterTarget();
         applyRocketViewport(to, MOON_LAND_NOSE_UP, MOON_LANDED_SCALE, false);
         setRocketMode("landed");
@@ -620,6 +662,41 @@
           rocket.classList.add("rocket--landed");
           rocket.classList.remove("rocket--flight");
         }
+      }
+
+      function startMoonLandingFromOrbit(atTop) {
+        var land = moonCenterTarget();
+        line.trailOn = false;
+        if (rocketLayer) {
+          rocketLayer.classList.add("is-moon-landing");
+          rocketLayer.classList.remove("is-moon-orbit");
+        }
+        beginMoonLandingTrailFade(1100, function () {
+          applyRocketViewport(atTop, ensureSmoothRot(), 1, false);
+          animateRocketHoldRotate(MOON_LAND_NOSE_UP, MOON_ROTATE_MS, function () {
+            var descendCtrl = {
+              x: atTop.x,
+              y: (atTop.y + land.y) * 0.52,
+            };
+            animateRocketArc(
+              atTop,
+              descendCtrl,
+              land,
+              MOON_DESCEND_MS,
+              {
+                rocketMode: "moonOrbit",
+                trail: false,
+                rotAt: function () {
+                  return MOON_LAND_NOSE_UP;
+                },
+                scaleAt: function (t) {
+                  return 1 - t * (1 - MOON_LANDED_SCALE);
+                },
+              },
+              finishMoonLanding
+            );
+          });
+        });
       }
 
       function runMoonOrbitAndLand() {
@@ -634,10 +711,7 @@
 
         var center = moonOrbitCenter();
         var r = MOON_ORBIT_RADIUS_VW;
-        var top = moonOrbitTop(center, r);
         var from = moonWaitPose();
-        var span = top.x - from.x;
-        var approachCtrl = arcControl(from, top, span * 0.1, -24);
 
         if (rocketLayer) rocketLayer.classList.remove("is-ready-depart");
         if (rocket) {
@@ -649,19 +723,13 @@
         trailClearActive();
         trailPushActiveVw(from);
         resetSmoothRot(MOON_WAIT_ROT);
+        if (rocketLayer) rocketLayer.classList.add("is-moon-orbit");
 
         animateRocketAlong(
           function (rawT) {
-            return moonApproachOrbitPoint(
-              rawT,
-              from,
-              approachCtrl,
-              top,
-              center,
-              r
-            );
+            return moonApproachOrbitPoint(rawT, from, center, r);
           },
-          MOON_AHEAD_MS * 1.35 + MOON_ORBIT_MS,
+          MOON_AHEAD_MS * 1.5 + MOON_ORBIT_MS,
           {
             linearOrbit: true,
             velLook: 0.014,
@@ -674,32 +742,7 @@
           function () {
             var c = moonOrbitCenter();
             var atTop = moonOrbitTop(c, r);
-            var land = moonCenterTarget();
-            line.trailOn = false;
-            applyRocketViewport(atTop, ensureSmoothRot(), 1, true);
-            animateRocketHoldRotate(MOON_LAND_NOSE_UP, MOON_ROTATE_MS, function () {
-              var descendCtrl = {
-                x: atTop.x,
-                y: (atTop.y + land.y) * 0.55,
-              };
-              animateRocketArc(
-                atTop,
-                descendCtrl,
-                land,
-                MOON_DESCEND_MS,
-                {
-                  rocketMode: "moonOrbit",
-                  trail: false,
-                  rotAt: function () {
-                    return MOON_LAND_NOSE_UP;
-                  },
-                  scaleAt: function (t) {
-                    return 1 - t * (1 - MOON_LANDED_SCALE);
-                  },
-                },
-                finishMoonLanding
-              );
-            });
+            startMoonLandingFromOrbit(atTop);
           }
         );
       }

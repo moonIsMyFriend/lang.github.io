@@ -27,6 +27,15 @@
 }
 
 /* 3페이지: 1·2페이지 궤적 숨김 */
-.rocket-travel.is-moon-page .rocket-trail-path--intro {
+.rocket-travel.is-moon-page .rocket-trail-path--intro,
+.rocket-travel.is-moon-page .rocket-trail-path--active {
   display: none;
+}
+
+.rocket-travel.is-moon-page.is-moon-orbit .rocket-trail-path--active {
+  display: block;
+}
+
+.rocket-travel.is-moon-landing .rocket-trail path {
+  transition: opacity 0.35s ease;
 }

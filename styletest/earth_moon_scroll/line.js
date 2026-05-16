@@ -12,6 +12,8 @@
     var trailUseActive = false;
     var lastTrailPage = -1;
     var introTrailScrollBase = 0;
+    var moonTrailFade = 1;
+    var moonFadeAnimId = null;
 
     function pageWidth() {
       return ctx.pageWidth();
@@ -116,6 +118,13 @@
       return {};
     }
 
+    function applyTrailOpacity() {
+      var introOp = 0.75 * moonTrailFade;
+      var activeOp = 0.85 * moonTrailFade;
+      if (trailIntroEl) trailIntroEl.style.opacity = String(introOp);
+      if (trailActiveEl) trailActiveEl.style.opacity = String(activeOp);
+    }
+
     function renderTrail() {
       if (trailIntroEl) {
         trailIntroEl.setAttribute(
@@ -129,6 +138,43 @@
           buildTrailPath(activeTrailPts, activeTrailRenderOpts())
         );
       }
+      applyTrailOpacity();
+    }
+
+    function beginMoonLandingTrailFade(durationMs, cb) {
+      if (moonFadeAnimId) {
+        cancelAnimationFrame(moonFadeAnimId);
+        moonFadeAnimId = null;
+      }
+      var t0 = performance.now();
+      function step(now) {
+        var t = Math.min(1, (now - t0) / durationMs);
+        moonTrailFade = 1 - easeOutQuad(t);
+        renderTrail();
+        if (t < 1) {
+          moonFadeAnimId = requestAnimationFrame(step);
+        } else {
+          moonFadeAnimId = null;
+          moonTrailFade = 0;
+          trailClearActive();
+          if (trailIntroEl) trailIntroEl.setAttribute("d", "");
+          applyTrailOpacity();
+          if (cb) cb();
+        }
+      }
+      function easeOutQuad(u) {
+        return 1 - (1 - u) * (1 - u);
+      }
+      moonFadeAnimId = requestAnimationFrame(step);
+    }
+
+    function resetMoonTrailFade() {
+      if (moonFadeAnimId) {
+        cancelAnimationFrame(moonFadeAnimId);
+        moonFadeAnimId = null;
+      }
+      moonTrailFade = 1;
+      applyTrailOpacity();
     }
 
     function trailPushTo(pts, p, scrollBase) {
@@ -216,6 +262,8 @@
       trailPushVw: trailPushVw,
       trailPushActiveVw: trailPushActiveVw,
       trailTrimIntroToDistanceCenter: trailTrimIntroToDistanceCenter,
+      beginMoonLandingTrailFade: beginMoonLandingTrailFade,
+      resetMoonTrailFade: resetMoonTrailFade,
     };
   }
 
