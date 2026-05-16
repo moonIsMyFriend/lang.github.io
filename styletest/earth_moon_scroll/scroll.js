@@ -20,6 +20,7 @@
 
       /* intro3d → introArc → atDistance → (page3) moonWait → orbit → land */
       var introDone = false;
+      var introArcDistanceRetargeted = false;
       var earthScreen = document.querySelector(".earth-screen");
       var introBooted = false;
       var trailIntroEl = rocketLayer
@@ -167,6 +168,9 @@
       function trailClearActive() {
         line.trailClearActive();
       }
+      function trailClearIntro() {
+        line.trailClearIntro();
+      }
       function trailFreeze() {
         line.trailFreeze();
       }
@@ -184,6 +188,22 @@
         if (i < 0) return 0;
         if (i >= pageCount) return pageCount - 1;
         return i;
+      }
+
+      /* README: 3페이지 도달 전까지 이전 페이지로 되돌릴 수 없음 */
+      function minBackwardIndex() {
+        if (maxPageReached >= pageCount - 1) return 0;
+        return maxPageReached;
+      }
+
+      function finishDistancePageArrival() {
+        introDone = true;
+        trailClearIntro();
+        trailClearActive();
+        if (rocketLayer) rocketLayer.style.visibility = "";
+        setRocketMode("atDistance");
+        snapDistanceWaitPose();
+        scheduleDistanceAutoDepart();
       }
 
 
@@ -251,6 +271,15 @@
 
 
       var DISTANCE_WAIT_ROT = 90;
+      var DISTANCE_PAGE_ENTRY_LEFT = { x: 6, y: 44 };
+
+      function distancePageEntryFrom() {
+        return {
+          x: DISTANCE_PAGE_ENTRY_LEFT.x,
+          y: DISTANCE_PAGE_ENTRY_LEFT.y,
+          rot: DISTANCE_WAIT_ROT,
+        };
+      }
 
 
 
@@ -281,7 +310,7 @@
 
       function goToPage(index, smooth) {
         index = clampIndex(index);
-        if (index < maxPageReached) index = maxPageReached;
+        if (index < minBackwardIndex()) index = minBackwardIndex();
         maxPageReached = Math.max(maxPageReached, index);
         anchorIndex = index;
         isSnapping = true;
@@ -312,7 +341,7 @@
           return;
         }
         var target = raw;
-        if (target < maxPageReached) target = maxPageReached;
+        if (target < minBackwardIndex()) target = minBackwardIndex();
         if (target > maxPageReached + 1) target = maxPageReached + 1;
         target = clampIndex(target);
         if (
@@ -326,7 +355,58 @@
         }
       }
 
-      function flyToDistanceCenter(fromSlot, skipTrailClear) {
+      /* README: 2페이지에 미리 들어오면 왼쪽 → 중앙으로 궤적을 그리며 이동 */
+      function flyDistancePageEntryFromLeft() {
+        if (introArcDistanceRetargeted) return;
+        introArcDistanceRetargeted = true;
+        cancelFlight();
+        mountRocketFixed();
+        if (rocketLayer) rocketLayer.style.visibility = "";
+        var from = distancePageEntryFrom();
+        var to = pageCenterInViewport(1);
+        applyRocketViewport(from, DISTANCE_WAIT_ROT, 1, false);
+        setRocketMode("introArc");
+        line.trailOn = true;
+        line.trailUseActive = true;
+        trailPushActiveVw(from);
+        animateRocketArc(
+          from,
+          arcControl(from, to, (to.x - from.x) * 0.12, -12),
+          to,
+          INTRO_ARC_MS * 0.88,
+          {
+            rocketMode: "introArc",
+            trail: true,
+            trailActive: true,
+            rotAt: function (eased, p, pNext, velRot) {
+              if (eased > 0.45) {
+                return lerpAngleDeg(
+                  R.lastRocketPos.rot,
+                  DISTANCE_WAIT_ROT,
+                  (eased - 0.45) / 0.55
+                );
+              }
+              return DISTANCE_WAIT_ROT;
+            },
+          },
+          function () {
+            if (readIndex() >= 2) {
+              introDone = true;
+              beginMoonPage();
+              return;
+            }
+            finishDistancePageArrival();
+          }
+        );
+      }
+
+      function retargetIntroArcIfOnDistancePage() {
+        if (readIndex() !== 1 || R.rocketMode !== "introArc") return;
+        flyDistancePageEntryFromLeft();
+      }
+
+      function flyToDistanceCenter(fromSlot, skipTrailClear, isRetarget) {
+        if (!isRetarget) introArcDistanceRetargeted = false;
         var from = fromSlot || { x: R.lastRocketPos.x, y: R.lastRocketPos.y };
         var to = pageCenterInViewport(1);
         var ctrl = arcControl(from, to, -6, -22);
@@ -356,21 +436,28 @@
             },
           },
           function () {
-            introDone = true;
-            trailFreeze();
             if (readIndex() >= 2) {
+              introDone = true;
+              trailFreeze();
               beginMoonPage();
               return;
             }
+            if (readIndex() === 1) {
+              trailFreeze();
+              finishDistancePageArrival();
+              return;
+            }
+            introDone = true;
+            trailFreeze();
             if (rocketLayer) rocketLayer.style.visibility = "";
             setRocketMode("atDistance");
+            /* README: 2페이지 중심이 목표지만, 사용자가 스크롤하기 전까지 1페이지 화면 유지 */
             applyRocketViewport(
-              distanceWaitPose(),
+              pageCenterInViewport(1),
               DISTANCE_WAIT_ROT,
               1,
               false
             );
-            if (readIndex() === 1) scheduleDistanceAutoDepart();
           }
         );
       }
@@ -628,6 +715,9 @@
       }
 
       function onPageSettled(index) {
+        if (index === 1 && R.rocketMode === "introArc") {
+          retargetIntroArcIfOnDistancePage();
+        }
         if (!introDone) return;
         trailHandlePageChange(index);
         if (index !== 1) cancelDistanceAutoDepart();
@@ -657,9 +747,12 @@
           if (R.rocketMode === "moonAhead") {
             setRocketMode("atDistance");
           }
+          if (R.rocketMode === "introArc") {
+            retargetIntroArcIfOnDistancePage();
+            return;
+          }
           if (R.rocketMode === "atDistance") {
-            snapDistanceWaitPose();
-            scheduleDistanceAutoDepart();
+            finishDistancePageArrival();
           }
         }
       }
@@ -680,18 +773,27 @@
           }
           return;
         }
-        if (introDone && R.rocketMode === "atDistance" && readIndex() < 2) {
+        if (readIndex() === 1 && R.rocketMode === "introArc") {
+          retargetIntroArcIfOnDistancePage();
+        }
+        if (
+          introDone &&
+          readIndex() < 2 &&
+          (R.rocketMode === "atDistance" || R.rocketMode === "introArc")
+        ) {
           if (rocketLayer) rocketLayer.style.visibility = "";
           if (rocket) {
             rocket.style.opacity = "1";
             rocket.classList.remove("rocket--landed");
           }
-          applyRocketViewport(
-            distanceWaitPose(),
-            DISTANCE_WAIT_ROT,
-            1,
-            false
-          );
+          if (R.rocketMode === "atDistance") {
+            applyRocketViewport(
+              distanceWaitPose(),
+              DISTANCE_WAIT_ROT,
+              1,
+              false
+            );
+          }
         }
         if (line.introTrailPts.length || line.activeTrailPts.length) renderTrail();
       }
@@ -700,8 +802,14 @@
         R.smoothFlightRot = null;
         mountRocketFixed();
         if (rocketLayer) rocketLayer.style.visibility = "";
+        if (readIndex() === 1) {
+          line.trailOn = true;
+          flyDistancePageEntryFromLeft();
+          return;
+        }
         viewportSlot.rot = 90;
         R.lastRocketPos.rot = 90;
+        line.trailOn = true;
         flyToDistanceCenter(viewportSlot, true);
       }
 
@@ -762,7 +870,7 @@
           return;
         }
         var next = clampIndex(readIndex() + dir);
-        if (next < maxPageReached) return;
+        if (next < minBackwardIndex()) return;
         goToPage(next, true);
       }
 
@@ -772,11 +880,13 @@
       }
 
       function onScroll() {
-        if (introDone && !isSnapping) {
+        if (!isSnapping) {
           syncForwardPageIndex();
-          var minLeft = maxPageReached * pageWidth();
-          if (wrapper.scrollLeft < minLeft - 2) {
-            wrapper.scrollLeft = minLeft;
+          if (maxPageReached > 0 || introDone) {
+            var minLeft = minBackwardIndex() * pageWidth();
+            if (wrapper.scrollLeft < minLeft - 2) {
+              wrapper.scrollLeft = minLeft;
+            }
           }
         }
         onScrollEnd();

@@ -38,6 +38,14 @@
       if (trailActiveEl) trailActiveEl.setAttribute("d", "");
     }
 
+    function trailClearIntro() {
+      introTrailPts = [];
+      trailFrozen = false;
+      trailMaxDocVw = null;
+      introTrailScrollBase = 0;
+      if (trailIntroEl) trailIntroEl.setAttribute("d", "");
+    }
+
     function trailBeginIntro() {
       introTrailScrollBase = trailScrollVw();
     }
@@ -168,8 +176,7 @@
       }
       if (index === 1) {
         trailClearActive();
-        trailTrimIntroToDistanceCenter();
-        renderTrail();
+        trailClearIntro();
         return;
       }
       if (index === 0) {
@@ -200,6 +207,7 @@
         return activeTrailPts;
       },
       trailClear: trailClear,
+      trailClearIntro: trailClearIntro,
       trailClearActive: trailClearActive,
       trailBeginIntro: trailBeginIntro,
       trailFreeze: trailFreeze,
