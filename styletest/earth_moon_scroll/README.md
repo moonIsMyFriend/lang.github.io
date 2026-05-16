@@ -1,19 +1,88 @@
-# Earth → Moon 
+# Earth → Moon
 
 ---
 
-## 프로젝트 구조 (모듈 분리)
+## 프로젝트 구조 (페이지별)
 
-| 모듈 | 파일 | 역할 |
-|------|------|------|
-| **background** | `background.css` | 우주 배경, 스크롤 레이아웃, 별<br>달(2·3페이지), 거리 텍스트, 라벨 |
-| **earth** | `earth.css`,<br>`earth.js` | 지구 3D 씬<br>`EarthIntroRocket` (아래→위→턴→오른쪽 3D 궤적) |
-| **rocket** | `rocket.css`,<br>`rocket.js` | 로켓 위치·비행·대기·모드 |
-| **line** | `line.css`,<br>`line.js` | 주황색 궤적(트레일)<br>포인트·렌더·freeze |
-| **scroll** | `scroll.js` | 페이지 스크롤<br>인트로/달 시퀀스 연결 (오케스트레이션) |
+에셋은 **페이지 폴더**(`earth/`, `distance/`, `moon/`)와 **공통**(`common/`)으로 나뉩니다.  
+스크롤·로켓 시퀀스는 페이지 간 연결이 많아 `common/scroll.js` 한 곳에서 오케스트레이션하며, 코드 안에 페이지별 섹션 주석으로 구분합니다.
 
-진입 HTML: `styletest/mobile_earth_moon_page.html`  
-빌드: 프로젝트 루트에서 `node build_publish.js` → `publish/index.html` + `publish/earth_moon_scroll/`
+### 디렉터리
+
+```
+styletest/
+  mobile_earth_moon_page.html     # 진입 HTML
+  earth_moon_scroll/
+    README.md
+    common/
+      base.css                    # reset, 스크롤 래퍼, 별, 화살표 힌트, earth-label
+      rocket.css, rocket.js       # 로켓 DOM·비행·대기·모드
+      line.css, line.js           # 주황 궤적(트레일)·렌더·freeze
+      scroll.js                   # 가로 스크롤·인트로/거리/달 시퀀스
+    earth/                        # 1페이지 — EARTH
+      page.css                    # 지구 백플레이트, 3D 호스트, 캔버스
+      page.js                     # Three.js 지구, EarthIntroRocket
+    distance/                     # 2페이지 — 384,400km
+      page.css                    # .distance-text (숫자·라벨)
+    moon/                         # 3페이지 — MOON
+      page.css                    # .planet.moon, moon-label, moon-drift
+```
+
+### 파일 ↔ 역할
+
+| 경로 | 역할 |
+|------|------|
+| `common/base.css` | 우주 배경, `.scroll-wrapper` / `.screen`, `.stars`, `.arrow-hint`, `.earth-label` |
+| `common/rocket.css` · `rocket.js` | `.rocket-travel`, 로켓 위치·회전·엔진 불·모드 |
+| `common/line.css` · `line.js` | `.rocket-trail`, intro/active path, 달 페이지 트레일 스타일 |
+| `common/scroll.js` | 스냅 스크롤, forward-only, 1→2→3 자동·수동 시퀀스 |
+| `earth/page.css` | `.earth-backplate`, `.earth-3d-host`, `.earth-canvas` |
+| `earth/page.js` | 3D 지구 씬, `window.EarthIntroRocket`, `earth-scene-ready` 이벤트 |
+| `distance/page.css` | `.distance-text` (384,400km, DISTANCE) |
+| `moon/page.css` | `.moon`, `@keyframes moon-drift`, `.moon-label`, 착륙 시 drift 정지 |
+
+### `common/scroll.js` 내부 섹션
+
+| 주석 구간 | 대응 페이지 | 내용 요약 |
+|-----------|-------------|-----------|
+| `1페이지 EARTH` | `earth/` | 3D 인트로 이후 DOM 아크, `EarthIntroRocket` 연동 |
+| `2페이지 DISTANCE` | `distance/` | 2페이지 중앙 대기, 왼쪽→중앙 진입, 자동 출발(3페이지 방향) |
+| `3페이지 MOON` | `moon/` | 왼쪽 대기, 궤도·착륙, 트레일 정리 |
+
+### 진입 HTML 로드 순서
+
+**CSS** (`mobile_earth_moon_page.html`):
+
+1. `earth_moon_scroll/common/base.css`
+2. `earth_moon_scroll/earth/page.css`
+3. `earth_moon_scroll/distance/page.css`
+4. `earth_moon_scroll/moon/page.css`
+5. `earth_moon_scroll/common/rocket.css`
+6. `earth_moon_scroll/common/line.css`
+
+**JS**:
+
+1. `common/line.js`
+2. `common/rocket.js`
+3. `common/scroll.js`
+4. Three.js (CDN)
+5. `earth/page.js`
+
+### 빌드
+
+프로젝트 루트: `node build_publish.js`
+
+```
+publish/
+  index.html                      # mobile_earth_moon_page.html 미니파이
+  earth_moon_scroll/
+    common/ …
+    earth/ …
+    distance/ …
+    moon/ …
+```
+
+`build_publish.js`는 `earth_moon_scroll/` 하위를 재귀 복사·미니파이합니다 (`README.md` 제외).
 
 ---
 

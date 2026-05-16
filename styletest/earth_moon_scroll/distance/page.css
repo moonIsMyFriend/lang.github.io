@@ -1,0 +1,23 @@
+/* 2페이지 — 거리 */
+.distance-text {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.distance-text .number {
+  display: block;
+  font-size: clamp(52px, 18vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.distance-text .label {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(16px, 5vw, 24px);
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.72);
+}
+

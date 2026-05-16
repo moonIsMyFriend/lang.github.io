@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earth to Moon Scroll</title>
-  <link rel="stylesheet" href="earth_moon_scroll/background.css" />
-  <link rel="stylesheet" href="earth_moon_scroll/earth.css" />
-  <link rel="stylesheet" href="earth_moon_scroll/rocket.css" />
-  <link rel="stylesheet" href="earth_moon_scroll/line.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/common/base.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/earth/page.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/distance/page.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/moon/page.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/common/rocket.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/common/line.css" />
 </head>
 <body>
   <main class="scroll-wrapper" aria-label="지구에서 달까지 가로 스크롤 페이지">
@@ -29,7 +31,7 @@
         <span class="number">384,400km</span>
         <span class="label">DISTANCE</span>
       </div>
-      <div class="arrow-hint">오른쪽으로 스크롤 →</div>
+      <div class="arrow-hint">to the right →</div>
     </section>
 
     <section class="screen moon-screen" aria-label="세 번째 화면 달">
@@ -76,10 +78,10 @@
     </div>
   </div>
 
-  <script src="earth_moon_scroll/line.js"></script>
-  <script src="earth_moon_scroll/rocket.js"></script>
-  <script src="earth_moon_scroll/scroll.js"></script>
+  <script src="earth_moon_scroll/common/line.js"></script>
+  <script src="earth_moon_scroll/common/rocket.js"></script>
+  <script src="earth_moon_scroll/common/scroll.js"></script>
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-  <script src="earth_moon_scroll/earth.js"></script>
+  <script src="earth_moon_scroll/earth/page.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* 스크롤·페이지 시퀀스 — line.js, rocket.js 이후 로드 */
+/* 공통 스크롤·페이지 시퀀스 — common/line.js, rocket.js 이후 로드 */
 (function () {
       var wrapper = document.querySelector(".scroll-wrapper");
       if (!wrapper) return;
@@ -52,6 +52,8 @@
       var MOON_DESCEND_MS = 3600;
       var moonAutoTimer = null;
       var moonSequenceActive = false;
+      var DISTANCE_WAIT_ROT = 90;
+      var DISTANCE_PAGE_ENTRY_LEFT = { x: 6, y: 44 };
 
       try {
         reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -204,6 +206,7 @@
         return maxPageReached;
       }
 
+      /* ── 2페이지 DISTANCE (distance/page.css) ── */
       function finishDistancePageArrival() {
         introDone = true;
         trailClearIntro();
@@ -225,6 +228,7 @@
 
 
 
+      /* ── 3페이지 MOON (moon/page.css) ── */
       function isMoonScrollSettled() {
         var w = pageWidth();
         if (w < 1) return false;
@@ -306,9 +310,6 @@
 
 
 
-
-      var DISTANCE_WAIT_ROT = 90;
-      var DISTANCE_PAGE_ENTRY_LEFT = { x: 6, y: 44 };
 
       function distancePageEntryFrom() {
         return {
@@ -841,6 +842,7 @@
         if (line.introTrailPts.length || line.activeTrailPts.length) renderTrail();
       }
 
+      /* ── 1페이지 EARTH (earth/page.js) ── */
       function continueIntroArcFrom(viewportSlot) {
         R.smoothFlightRot = null;
         mountRocketFixed();
