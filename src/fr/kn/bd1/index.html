@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Français</title>
-    <link rel="stylesheet" href="../../../en/css/quiz-style.css" />
+    <title>Français bs gmr</title>
+    <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
             <!-- 공통 헤더 -->
             <div class="screen-title">
-                <h1 id="pageTitle">Français</h1>
+                <h1 id="pageTitle">Français bs gmr</h1>
                 <div class="row">
                     <span class="pill">rows: <span id="totalCnt">0</span></span>
                 </div>
@@ -31,22 +31,10 @@
                         </div>
                     </div>
                     <div style="height:12px"></div>
+                    
                     <div id="list" class="card"></div>
                     <small> <b>référence</b>
-                        <br><a href='https://ucampus.knou.ac.kr/ekp/user/study/retrieveUMYStudy.sdo' target="_blank">영상 프랑스어 (한국방송통신대) </a>
-                        <br><a href='https://www.youtube.com/watch?v=Ji_WjbCB8tc[00:00~03:25]' target="_blank">Histoire du français [00:00~03:25], [03:25~06:58] </a> 
-                        <br><a href='https://www.youtube.com/watch?v=CyLL6i9PMPU&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=101' target="_blank">L'histoire de la BAGUETTE en français facile</a> 
-                        <br><a href='https://www.youtube.com/watch?v=XlSEK813yBs&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=99' target="_blank">La baguette</a> 
-                        <br><a href='https://www.youtube.com/watch?v=hvrsYHW-VoE&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=125' target="_blank">mignonneries à l'école des fans (11:24~16:05)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=tg-DYbTpJHw&t=862s' target="_blank">fous rires à l'école des fans (11:34~14:21)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=r9jcCi2UC3Y' target="_blank">L'urbanisme selon Haussmann - La transformation de Paris au XIXᵉ siècle (01:12~03:24)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=r9jcCi2UC3Y' target="_blank">Le grand chantier (03:25~08:00)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=GG-n8fd2kWk' target="_blank">From Baudelaire to Rimbaud: The Poetry of Paris | Heritage Treasures (13:00~16:25), (27:19~31:32)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=d8XPjmDWdfc&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=61' target="_blank">L’histoire du métro de Paris – De la première ligne à nos jours (00:38~04:30), (10:40~13:09)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=ivk-Ffoy52g&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=79' target="_blank">Jodie Foster x Augustin Trapenard : son premier rôle en français (00:00~03:48)</a> 
-                        <br><a href='https://www.youtube.com/watch?v=zgHD_VorukM&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=80' target="_blank">Jodie Foster et la libération de la parole dans le cinéma : "C'est bien que les gens se réveillent" (00:00~03:38)</a>
-                        <br><a href='https://www.youtube.com/watch?v=UdjPF7bYHQY&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=82' target="_blank">Jean Seberg Interview 1960 (00:04~02:58)</a>
-                        <br><a href='https://www.youtube.com/watch?v=lLEkwRLy12Q&list=PLpRkadSV359x8TOMUQiwjfOHW5MAD5xmN&index=83' target="_blank">Le mariage en douce de Romain Gary et Jean Seberg, par Ariane Chemin (00:00~04:09)</a>
+                        <br><a href='https://ucampus.knou.ac.kr/ekp/user/study/retrieveUMYStudy.sdo' target="_blank">기초 프랑스어 회화1 (한국방송통신대) </a>
                     </small>
                     <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
                     <div style="height:12px"></div>
@@ -214,6 +202,33 @@
                         <div id="answerWrap" style="display:none; margin-top:12px">
                             <div id="enFull" class="big"></div>
                         </div>
+                        <div id="pronouncePanel" style="margin-top:14px">
+                            <div class="row pron-row">
+                                <span id="pronounceApiKeyWrap" class="pronounce-key-wrap">
+                                <input type="password" id="pronounceApiKey"
+                                    placeholder="이용 발급 key"
+                                    autocomplete="off"
+                                    title="관리자에게 받은 이용 발급 key가 있을 때만 입력하세요. 이 브라우저에만 저장됩니다."
+                                    style="flex:1; min-width:140px;max-width:220px;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);background:#FDFBF4;color:#333" />
+                                </span>
+                                <select id="pronounceLocale" title="Recognition language (Speech API locale)">
+                                    <option value="fr-FR" selected>프랑스어 fr-FR</option>
+                                    <option value="en-US">영어 en-US</option>
+                                    <option value="en-GB">영어 en-GB</option>
+                                    <option value="ko-KR">한국어 ko-KR</option>
+                                    <option value="ja-JP">일본어 ja-JP</option>
+                                    <option value="es-ES">스페인어 es-ES</option>
+                                    <option value="de-DE">독일어 de-DE</option>
+                                    <option value="zh-CN">중국어(간체) zh-CN</option>
+                                </select>
+                                <span class="pronounce-record-stack">
+                                <span id="pronounceRecProgress" class="pronounce-rec-progress-slot" aria-live="polite"></span>
+                                <button type="button" id="btnPronounceRecord" class="ghost" aria-label="마이크 활성 · 녹음 시작" title="마이크 활성 · 녹음 시작"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+                                </span>
+                            </div>
+                            <div id="pronounceStatus" class="muted" style="margin-top:8px;font-size:13px;"></div>
+                            <div id="pronounceOutcome" class="pronounce-outcome"></div>
+                        </div>
                     </div>
                 </details>
             </section>
@@ -235,8 +250,8 @@
     </div>
 
     <script type="module">
-        import { initQuizApp } from '../../../en/lib/quiz-app.js';
-        import { loadPageTitle } from '../../../en/lib/title.js';
+        import { initQuizApp } from '../../../com/lib/quiz-app.js';
+        import { loadPageTitle } from '../../../com/lib/title.js';
         loadPageTitle();
         // 페이지 로드 후 앱 초기화
         let app;
