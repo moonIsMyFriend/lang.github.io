@@ -28,10 +28,13 @@
   let cues = [];
   let activeIndex = -1;
   let loopIndex = -1;
+  let loopHoldUntil = 0;
   let tickTimer = null;
   let pendingStart = 0;
   let playEnd = null;
   let captionTracks = [];
+
+  const LOOP_PAUSE_MS = 2000;
 
   function setStatus(msg, isError) {
     statusEl.textContent = msg || '';
@@ -231,16 +234,25 @@
       cueList.appendChild(row);
     });
     updateLoopToggle();
-    if (activeIndex >= 0) scrollCueIntoView(activeIndex, false);
+    if (activeIndex >= 0) {
+      requestAnimationFrame(() => scrollCueIntoView(activeIndex, false));
+    }
   }
 
   function scrollCueIntoView(index, smooth) {
     const row = cueList.querySelector(`[data-index="${index}"]`);
     if (!row) return;
+    const listRect = cueList.getBoundingClientRect();
+    const rowRect = row.getBoundingClientRect();
+    const top = cueList.scrollTop + (rowRect.top - listRect.top);
     cueList.scrollTo({
-      top: row.offsetTop,
+      top: Math.max(0, top),
       behavior: smooth ? 'smooth' : 'auto',
     });
+  }
+
+  function clearLoopHold() {
+    loopHoldUntil = 0;
   }
 
   function updateNowDisplay(index) {
@@ -265,7 +277,7 @@
       row.classList.toggle('is-looping', i === loopIndex);
     });
     updateLoopToggle();
-    scrollCueIntoView(index, smoothScroll !== false);
+    requestAnimationFrame(() => scrollCueIntoView(index, smoothScroll !== false));
   }
 
   function findCueIndex(time) {
@@ -279,6 +291,7 @@
     if (!cues[index]) return;
     if (!keepLoop) {
       loopIndex = -1;
+      clearLoopHold();
       updateLoopToggle();
     }
     if (player) {
@@ -293,7 +306,7 @@
       row.classList.toggle('is-looping', i === loopIndex);
     });
     updateLoopToggle();
-    scrollCueIntoView(index, true);
+    requestAnimationFrame(() => scrollCueIntoView(index, true));
   }
 
   function updateLoopToggle() {
@@ -310,11 +323,13 @@
     if (!cues[index]) return;
     if (loopIndex === index) {
       loopIndex = -1;
+      clearLoopHold();
       setStatus('');
       cueList.querySelectorAll('.yt-cue').forEach((row) => {
         row.classList.toggle('is-looping', false);
       });
     } else {
+      clearLoopHold();
       loopIndex = index;
       if (activeIndex !== index) {
         seekToCue(index, true, true);
@@ -356,9 +371,29 @@
 
       if (loopIndex >= 0 && cues[loopIndex]) {
         const cue = cues[loopIndex];
-        if (t >= cue.end - 0.05) {
+
+        if (loopHoldUntil > 0) {
+          if (Date.now() < loopHoldUntil) {
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+              player.pauseVideo();
+            }
+            highlightActive(loopIndex);
+            return;
+          }
+          clearLoopHold();
           player.seekTo(cue.start, true);
+          player.playVideo();
+          highlightActive(loopIndex);
+          return;
         }
+
+        if (t >= cue.end - 0.05) {
+          loopHoldUntil = Date.now() + LOOP_PAUSE_MS;
+          player.pauseVideo();
+          highlightActive(loopIndex);
+          return;
+        }
+
         highlightActive(loopIndex);
         return;
       }
@@ -401,6 +436,7 @@
 
   function destroyPlayer() {
     stopTick();
+    clearLoopHold();
     if (player) {
       try {
         player.destroy();
@@ -541,7 +577,8 @@
     const base = loopIndex >= 0 ? loopIndex : activeIndex;
     const next = Math.min(cues.length - 1, Math.max(0, (base < 0 ? 0 : base) + delta));
     if (!cues[next]) return;
-      if (loopIndex >= 0) {
+    if (loopIndex >= 0) {
+      clearLoopHold();
       loopIndex = next;
       seekToCue(next, true, true);
       setStatus(`구간 반복: ${formatTime(cues[next].start)} ~ ${formatTime(cues[next].end)}`);
