@@ -20,12 +20,26 @@
   var savedRocket = null;
   var activeLink = null;
 
+  function viewportSize() {
+    if (rocketLayer) {
+      var r = rocketLayer.getBoundingClientRect();
+      if (r.width > 0.5 && r.height > 0.5) {
+        return { width: r.width, height: r.height };
+      }
+    }
+    var root = document.documentElement;
+    return {
+      width: root.clientWidth || window.innerWidth || 1,
+      height: root.clientHeight || window.innerHeight || 1,
+    };
+  }
+
   function pxToVw(px) {
-    return (px / (window.innerWidth || 1)) * 100;
+    return (px / viewportSize().width) * 100;
   }
 
   function pxToVh(px) {
-    return (px / (window.innerHeight || 1)) * 100;
+    return (px / viewportSize().height) * 100;
   }
 
   function parseRocketPose() {

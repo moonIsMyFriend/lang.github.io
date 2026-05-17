@@ -107,13 +107,19 @@
 
       function applyRocketViewport(p, rot, scale, flying) {
         if (!rocket) return;
+        var vp = ctx.viewportMetrics
+          ? ctx.viewportMetrics()
+          : {
+              width: document.documentElement.clientWidth || window.innerWidth || 1,
+              height: document.documentElement.clientHeight || window.innerHeight || 1,
+            };
         lastRocketPos.x = p.x;
         lastRocketPos.y = p.y;
         lastRocketPos.rot = rot;
         lastRocketPos.scale = scale != null ? scale : 1;
         rocket.style.transition = "none";
-        rocket.style.left = p.x + "vw";
-        rocket.style.top = p.y + "vh";
+        rocket.style.left = (p.x / 100) * vp.width + "px";
+        rocket.style.top = (p.y / 100) * vp.height + "px";
         rocket.style.opacity = "1";
         rocket.classList.toggle("rocket--flight", flying !== false);
         rocket.style.transform =
@@ -292,9 +298,13 @@
         var tr = window.getComputedStyle(bob).transform;
         if (!tr || tr === "none") return { x: 0, y: 0 };
         var m = new DOMMatrixReadOnly(tr);
-        var vw = window.innerWidth || 1;
-        var vh = window.innerHeight || 1;
-        return { x: (m.m41 / vw) * 100, y: (m.m42 / vh) * 100 };
+        var vp = ctx.viewportMetrics
+          ? ctx.viewportMetrics()
+          : {
+              width: document.documentElement.clientWidth || window.innerWidth || 1,
+              height: document.documentElement.clientHeight || window.innerHeight || 1,
+            };
+        return { x: (m.m41 / vp.width) * 100, y: (m.m42 / vp.height) * 100 };
       }
 
       function snapDistanceWaitPose() {

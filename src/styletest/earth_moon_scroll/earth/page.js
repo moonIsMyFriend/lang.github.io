@@ -288,8 +288,9 @@
         introRocket.getWorldPosition(v);
         v.project(camera);
         var r = container.getBoundingClientRect();
-        var vw = window.innerWidth || 1;
-        var vh = window.innerHeight || 1;
+        var root = document.documentElement;
+        var vw = root.clientWidth || window.innerWidth || 1;
+        var vh = root.clientHeight || window.innerHeight || 1;
         var tip = introScratch.prev;
         tip.copy(introScratch.dir).multiplyScalar(introRocketRadius);
         tip.add(introScratch.tangent.clone().multiplyScalar(0.12));

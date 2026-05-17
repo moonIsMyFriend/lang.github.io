@@ -70,10 +70,25 @@
       return (wrapper.scrollLeft / vw) * 100;
     }
 
+    function viewportSize() {
+      var m = ctx.viewportMetrics ? ctx.viewportMetrics() : null;
+      if (m) return m;
+      var root = document.documentElement;
+      return {
+        width: root.clientWidth || window.innerWidth || 1,
+        height: root.clientHeight || window.innerHeight || 1,
+      };
+    }
+
+    function trailPointY(pts, i) {
+      return (pts[i].vh / 100) * viewportSize().height;
+    }
+
     function buildTrailPath(pts, opts) {
       opts = opts || {};
       if (pts.length < 2) return "";
-      var vw = window.innerWidth || 1;
+      var vp = viewportSize();
+      var vw = vp.width;
       var scrollVw = trailScrollVw();
       var minDoc = opts.pageClip ? scrollVw : -Infinity;
       var maxDoc =
@@ -88,7 +103,7 @@
         if (pts[i].docVw < minDoc - 0.5) continue;
         if (pts[i].docVw > maxDoc + 0.5) break;
         var px = ((pts[i].docVw - scrollVw) / 100) * vw;
-        var py = pts[i].py;
+        var py = trailPointY(pts, i);
         d += (started ? " L" : "M") + px + " " + py;
         started = true;
       }
@@ -178,19 +193,18 @@
     }
 
     function trailPushTo(pts, p, scrollBase) {
-      var vw = window.innerWidth || 1;
-      var vh = window.innerHeight || 1;
+      var vp = viewportSize();
+      var vw = vp.width;
       var sv = scrollBase != null ? scrollBase : trailScrollVw();
       var docVw = p.x + sv;
-      var py = (p.y / 100) * vh;
       var n = pts.length;
       if (n > 0) {
         var lp = pts[n - 1];
         var dxPx = ((docVw - lp.docVw) / 100) * vw;
-        var dy = py - lp.py;
-        if (dxPx * dxPx + dy * dy < 36) return;
+        var dyPx = ((p.y - lp.vh) / 100) * vp.height;
+        if (dxPx * dxPx + dyPx * dyPx < 36) return;
       }
-      pts.push({ docVw: docVw, py: py });
+      pts.push({ docVw: docVw, vh: p.y });
       if (pts.length > 180) pts.shift();
     }
 

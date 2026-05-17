@@ -21,3 +21,17 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+@media (max-width: 767px) {
+  .distance-text {
+    font-size: clamp(17px, 6vw, 32px);
+  }
+
+  .distance-text .number {
+    font-size: 1em;
+  }
+
+  .distance-text .label {
+    font-size: 0.5em;
+    margin-top: 0.45em;
+  }
+}

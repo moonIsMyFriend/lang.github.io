@@ -59,6 +59,20 @@
         reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       } catch (e) {}
 
+      function viewportMetrics() {
+        if (rocketLayer) {
+          var r = rocketLayer.getBoundingClientRect();
+          if (r.width > 0.5 && r.height > 0.5) {
+            return { width: r.width, height: r.height };
+          }
+        }
+        var root = document.documentElement;
+        return {
+          width: root.clientWidth || window.innerWidth || 1,
+          height: root.clientHeight || window.innerHeight || 1,
+        };
+      }
+
       var ctx = {
         wrapper: wrapper,
         rocketLayer: rocketLayer,
@@ -71,8 +85,10 @@
         MOON_VIEWPORT_PAD: MOON_VIEWPORT_PAD,
         DISTANCE_WAIT_ROT: DISTANCE_WAIT_ROT,
         MOON_LAND_NOSE_UP: MOON_LAND_NOSE_UP,
+        viewportMetrics: viewportMetrics,
         pageWidth: function () {
-          return wrapper.clientWidth || window.innerWidth;
+          var m = viewportMetrics();
+          return wrapper.clientWidth || m.width;
         },
         readIndex: function () {
           var w = ctx.pageWidth();
@@ -1155,7 +1171,7 @@
         R.resetSmoothRot(pose.rot);
       });
 
-      window.addEventListener("resize", function () {
+      function onViewportChange() {
         if (document.body.classList.contains("is-nav-open")) return;
         var stay = syncForwardPageIndex();
         goToPage(stay, false);
@@ -1173,7 +1189,13 @@
             snapDistanceWaitPose();
           }
         }
-      });
+      }
+
+      window.addEventListener("resize", onViewportChange);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", onViewportChange);
+        window.visualViewport.addEventListener("scroll", onViewportChange);
+      }
 
       window.addEventListener("keydown", function (e) {
         if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
