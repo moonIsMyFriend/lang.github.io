@@ -334,11 +334,11 @@
     if (!cues.length) {
       cueList.innerHTML =
         '<p class="muted yt-cue-empty">자막이 없습니다. 언어를 바꾸거나 VTT/SRT 파일을 업로드해 보세요.</p>';
-      cueCountEl.textContent = '0';
+      if (cueCountEl) cueCountEl.textContent = '0';
       updateLoopToggle();
       return;
     }
-    cueCountEl.textContent = String(cues.length);
+    if (cueCountEl) cueCountEl.textContent = String(cues.length);
     cues.forEach((cue, i) => {
       const row = document.createElement('div');
       row.className = 'yt-cue';
