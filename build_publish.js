@@ -7,7 +7,14 @@ const SRC_ROOT = path.join(ROOT_DIR, "src");
 const PUBLISH_ROOT = path.join(ROOT_DIR, "publish");
 const IS_WIN = process.platform === "win32";
 
-const SKIP_EXT = new Set([".md"]);
+const SKIP_EXT = new Set([".md", ".py"]);
+
+function shouldSkipFile(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  if (SKIP_EXT.has(ext)) return true;
+  if (/^readme(\..*)?$/i.test(path.basename(filePath))) return true;
+  return false;
+}
 
 /** Windows: .cmd 는 cmd.exe 로 실행 (execFileSync 단독 호출 시 EINVAL) */
 function runCli(command, args) {
@@ -126,7 +133,7 @@ function parseFolderArg() {
 
 function collectFiles(srcDir) {
   return walk(srcDir).filter(function (filePath) {
-    return !SKIP_EXT.has(path.extname(filePath).toLowerCase());
+    return !shouldSkipFile(filePath);
   });
 }
 
