@@ -1,0 +1,245 @@
+.yt-layout {
+    display: grid;
+    gap: 14px;
+}
+
+/* URL + 돋보기 (겹침 방지) */
+.yt-url-bar {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.yt-url-bar input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid #c0baaa;
+    background: #fdfbf4;
+    color: #333;
+}
+
+body.dark .yt-url-bar input {
+    background: #0b1220;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+
+.yt-btn-search {
+    flex: 0 0 auto !important;
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #d8c69f;
+    border-color: #c4b185;
+}
+
+.yt-btn-search:hover {
+    background: #c9b88d;
+}
+
+.yt-btn-search:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* 파일 선택 — 아래 빈 공간 제거 */
+.yt-file-label {
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.yt-file-label input[type="file"] {
+    width: auto;
+    flex: 1;
+    min-width: 8rem;
+    min-height: 0;
+    margin: 0;
+    padding: 4px 6px;
+    line-height: 1.2;
+}
+
+.yt-player-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #111;
+    border: 1px solid var(--bd);
+}
+
+#player {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.yt-now-panel {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.yt-now {
+    flex: 1;
+    min-width: 0;
+    min-height: 4.5rem;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--bd);
+    background: var(--card);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    font-weight: 600;
+}
+
+.yt-now.is-empty {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.yt-now.is-active {
+    border-color: var(--good);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--good) 35%, transparent);
+}
+
+.yt-loop-toggle {
+    flex: 0 0 auto !important;
+    min-width: 5.5rem;
+    min-height: 44px;
+    align-self: stretch;
+    white-space: nowrap;
+}
+
+.yt-loop-toggle.is-on {
+    background: var(--good);
+    border-color: var(--good);
+    color: #fff;
+}
+
+.yt-loop-toggle:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.yt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.yt-cue-list {
+    max-height: min(52vh, 520px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    background: var(--card);
+}
+
+.yt-cue-empty {
+    padding: 12px;
+    margin: 0;
+}
+
+.yt-cue {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--bd);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.yt-cue:last-child {
+    border-bottom: none;
+}
+
+.yt-cue:hover {
+    background: color-mix(in srgb, var(--good) 8%, var(--card));
+}
+
+.yt-cue.is-active {
+    background: color-mix(in srgb, var(--good) 14%, var(--card));
+}
+
+.yt-cue.is-looping {
+    outline: 2px solid var(--good);
+    outline-offset: -2px;
+}
+
+.yt-cue-time {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 2px;
+}
+
+.yt-cue-text {
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.yt-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.yt-toolbar label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.yt-toolbar select {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--bd);
+    background: var(--card);
+    color: var(--text);
+    min-width: 8rem;
+}
+
+.yt-status {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.yt-status:empty {
+    display: none;
+}
+
+.yt-hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.yt-hint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--bd);
+    background: var(--card);
+    font-size: 0.8rem;
+}
