@@ -400,7 +400,7 @@ body.tp-settings-open {
   top: 76%;
 }
 
-/* 하단 패드 왼쪽 위: Home + 단어 퀴즈(채점) — quiz-app #btnHome / #btnGrade */
+/* 하단 패드 왼쪽 위: 목록 + 단어 퀴즈(채점) — quiz-app #btnHome / #btnGrade */
 .turntable-quiz-page .tp-device-nav {
   position: absolute;
   left: 28px;
@@ -424,6 +424,7 @@ body.tp-settings-open {
   cursor: pointer;
   display: grid;
   place-items: center;
+  color: #222;
   transition: opacity 0.12s ease, transform 0.08s ease;
 }
 
@@ -469,6 +470,7 @@ body.tp-settings-open {
   pointer-events: none;
 }
 
+body.dark.turntable-quiz-page .tp-home-btn,
 body.dark.turntable-quiz-page .tp-grade-device-btn {
   color: #e8e8e6;
 }
