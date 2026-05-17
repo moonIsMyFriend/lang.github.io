@@ -1,5 +1,10 @@
 // lib/quiz-app.js
 import { $, toast, parseCSV, maskEnglish, escapeHTML } from './quiz-core.js';
+import {
+  finishStudySession,
+  syncPronStatsStorage,
+  clearPronStatsStorage,
+} from './study-result-redirect.js';
 
 export function initQuizApp() {
   const state = {
@@ -222,6 +227,38 @@ export function initQuizApp() {
   let pronounceRecordStart = 0;
   /** 첫 발음 인식 요청 여부(새로고침 전까지 유지). */
   let pronounceRequestedOnce = false;
+  /** 세션 발음 채점 누적 (study_card 요약 팝업용) */
+  const pronStats = { count: 0, totalScore: 0 };
+
+  function resetPronStats() {
+    pronStats.count = 0;
+    pronStats.totalScore = 0;
+    clearPronStatsStorage();
+  }
+
+  function parsePronounceScore(raw) {
+    if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+    if (typeof raw === 'string' && raw.trim() !== '') {
+      const n = Number(raw);
+      if (Number.isFinite(n)) return n;
+    }
+    return null;
+  }
+
+  function recordPronScore(score) {
+    const n = parsePronounceScore(score);
+    if (n == null) return;
+    pronStats.count += 1;
+    pronStats.totalScore += Math.max(0, Math.min(100, Math.round(n)));
+    syncPronStatsStorage(pronStats.count, pronStats.totalScore);
+  }
+
+  function formatPronounceSummaryText() {
+    if (pronStats.count === 0) return '';
+    const avg = Math.round(pronStats.totalScore / pronStats.count);
+    const total = Math.round(pronStats.totalScore);
+    return `발음 ${pronStats.count}회 · 총점 ${total}점 · 평균 ${avg}점 / 100`;
+  }
 
   /** Production pronunciation API (no URL input in UI). */
   const PRONOUNCE_API_BASE = 'https://learnlang-4fm6.onrender.com';
@@ -704,12 +741,13 @@ export function initQuizApp() {
       setPronounceApiKeyWrapVisible(false);
 
       const transRow = state.current ? String(state.current[state.cols.ko] ?? '').trim() : '';
-      let score = typeof data.score === 'number' ? data.score : '—';
+      const parsedScore = parsePronounceScore(data.score);
+      let score = parsedScore != null ? parsedScore : '—';
       let colored = data.colored_caption ?? '';
       if (pronounceAsrDigitsMatchTrans(transRow, data.best_user_said)) {
         score = 100;
         colored = pronounceCaptionMatchWordsGreenHtml(caption);
-      } else if (typeof data.score === 'number' && data.score === 100 && !String(colored || '').trim()) {
+      } else if (parsedScore === 100 && !String(colored || '').trim()) {
         colored = pronounceCaptionMatchWordsGreenHtml(caption);
       }
       const said = escapeHTML_(data.best_user_said || '(인식 없음)');
@@ -729,6 +767,7 @@ export function initQuizApp() {
           : `<span class="pron-caption-body">${cap}</span>${metaBlock}`;
       }
       if (pronounceStatus) pronounceStatus.textContent = '';
+      recordPronScore(score);
     } catch (e) {
       if ((e && e.message) === '__pronounce_auth_toast_shown__') return;
       if (e && e.name === 'AbortError' && pronounceAbortReason === 'user') {
@@ -1109,16 +1148,56 @@ export function initQuizApp() {
 
   });
 
+  function shouldGoHomeAfterStudySession() {
+    if (state.practice !== 'study') return false;
+    return !!document.body?.dataset?.quizHomeUrl;
+  }
+
+  function goHomeAfterStudy() {
+    const homeUrl = document.body?.dataset?.quizHomeUrl;
+    if (!homeUrl) return false;
+    const total = state.session?.total || 0;
+    finishStudySession({
+      homeUrl,
+      total,
+      pronSummary: formatPronounceSummaryText(),
+    });
+    clearStudyProgressParams();
+    state.session = null;
+    return true;
+  }
+
+  function getPronounceSummary() {
+    return {
+      total: state.session?.total || 0,
+      text: formatPronounceSummaryText(),
+    };
+  }
+
   function showResults() {
+    if (shouldGoHomeAfterStudySession()) {
+      if (goHomeAfterStudy()) return;
+    }
+
     const s = state.session;
     const total = s?.total || 0;
     const correct = s?.correctCount || 0;
-    if (state.practice == 'study'){
-      finalLine.textContent = `총 ${total}문장을 학습했습니다.`;
-    }else{
+    if (state.practice == 'study') {
+      const pronSummary = formatPronounceSummaryText();
+      if (pronSummary) {
+        finalLine.style.display = '';
+        finalLine.innerHTML =
+          `총 ${total}문장을 학습했습니다.<br><span class="sub">${pronSummary}</span>`;
+      } else {
+        finalLine.textContent = '';
+        finalLine.innerHTML = '';
+        finalLine.style.display = 'none';
+      }
+    } else {
+      finalLine.style.display = '';
       finalLine.textContent = `총 ${total}문제 중 ${correct}문제를 맞혔습니다.`;
     }
-    
+
     showScreen(3);
   }
 
@@ -1165,6 +1244,7 @@ export function initQuizApp() {
     }
 
     state.session = { order, idx: 0, total, scored: Array(total).fill(false), correctCount: 0, mode };
+    resetPronStats();
 
     if (resumeOpts) {
       const idx = typeof resumeOpts.idx === 'number' ? resumeOpts.idx : 0;
@@ -1669,8 +1749,11 @@ export function initQuizApp() {
     handleCSV(csvText);
 
     // 2) 모드 세팅
+    const forcedPractice = document.body?.dataset?.quizPractice;
     const urlMode = url.searchParams.get('mode');
-    if (urlMode === 'study' || urlMode === 'quiz') {
+    if (forcedPractice === 'study' || forcedPractice === 'quiz') {
+      state.practice = forcedPractice;
+    } else if (urlMode === 'study' || urlMode === 'quiz') {
       state.practice = urlMode;
     } else {
       state.practice = (practiceStudy && practiceStudy.checked) ? 'study' : 'quiz';
@@ -1733,6 +1816,6 @@ export function initQuizApp() {
     startWith,
     syncStudyUrl,
     clearStudyProgressParams,
-    // 필요시 다른 메서드도 노출 가능
+    getPronounceSummary,
   };
 }

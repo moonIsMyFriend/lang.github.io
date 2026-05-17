@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 
 <head>
@@ -15,7 +15,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-92QMC1YFZM');
     </script>
 
@@ -25,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
 </head>
 
-<body data-quiz-home-url="./index.html">
+<body data-quiz-home-url="./index.html" data-quiz-practice="study" data-quiz-skip-results="1">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -40,7 +39,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
 
-            <!-- quiz-app이 참조하는 설정용 — 목록 화면과 동일 id (숨김) -->
+            <!-- quiz-app이 참조하는 설정·목록 화면과 동일 id (숨김) -->
             <section id="screen1" class="hidden" hidden aria-hidden="true" style="display:none">
                 <div class="box">
                     <p class="sub" style="display:none"></p>
@@ -154,7 +153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <section id="screen3" class="hidden">
                 <div class="box">
                     <h2 style="margin-top:0">Result</h2>
-                    <p class="big" id="finalLine">—</p>
+                    <p class="big" id="finalLine"></p>
                     <div class="row" style="margin-top:10px">
                         <button id="btnRestart" class="primary" type="button">Retry</button>
                         <button id="btnHome2" type="button" class="ghost">Home</button>
@@ -169,10 +168,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         import { initQuizApp } from '../../../com/lib/quiz-app.js';
         import { loadPageTitle } from '../../../com/lib/title.js';
         import { toast } from '../../../com/lib/quiz-core.js';
+        import { installStudyResultRedirect } from '../../../com/lib/study-result-redirect.js';
 
         loadPageTitle();
 
         window.addEventListener('DOMContentLoaded', async () => {
+            document.body.dataset.quizPractice = 'study';
+            document.body.dataset.quizSkipResults = '1';
             const app = initQuizApp();
             window.quizApp = app;
 
@@ -186,6 +188,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const file = decodeURIComponent(String(raw).trim());
             try {
                 await app.startWith({ file, count: 'all' });
+                installStudyResultRedirect({
+                    requireStudyMode: false,
+                    getSummary: () => window.quizApp?.getPronounceSummary?.(),
+                });
             } catch (e) {
                 console.error(e);
                 toast('파일을 불러오지 못했습니다. 목록으로 돌아갑니다.');

@@ -242,6 +242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         import { loadPageTitle } from '../../../com/lib/title.js';
         import { toast } from '../../../com/lib/quiz-core.js';
         import { initTurntableQuizUi } from '../../../com/lib/turntable-quiz-ui.js';
+        import { installStudyResultRedirect } from '../../../com/lib/study-result-redirect.js';
 
         loadPageTitle();
 
@@ -259,6 +260,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const file = decodeURIComponent(String(raw).trim());
             try {
                 await app.startWith({ file, count: 'all' });
+                installStudyResultRedirect({
+                    getSummary: () => window.quizApp?.getPronounceSummary?.(),
+                });
                 initTurntableQuizUi();
             } catch (e) {
                 console.error(e);
