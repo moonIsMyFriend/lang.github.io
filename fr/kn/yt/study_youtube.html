@@ -27,6 +27,14 @@
 
             <section class="box yt-layout">
                 <div class="yt-url-bar">
+                    <a href="./index.html" class="yt-btn-menu" aria-label="목록" title="목록">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
+                            <line x1="4" y1="6" x2="20" y2="6" />
+                            <line x1="4" y1="12" x2="20" y2="12" />
+                            <line x1="4" y1="18" x2="20" y2="18" />
+                        </svg>
+                    </a>
                     <input id="ytUrl" type="url" inputmode="url"
                         placeholder="YouTube URL (예: https://www.youtube.com/watch?v=… 또는 [02:10~03:25])"
                         autocomplete="off" />
@@ -104,8 +112,7 @@
                 </div>
 
                 <p class="yt-hint">
-                    <a href="./index.html">← 목록</a>
-                    · SRT가 있으면 파일 자막을 씁니다 (첫 줄: <span class="kbd"># https://youtube.com/…</span>).
+                    SRT가 있으면 파일 자막을 씁니다 (첫 줄: <span class="kbd"># https://youtube.com/…</span>).
                     URL만 넣을 때는 서버 자막 API를 사용합니다.
                 </p>
             </section>
