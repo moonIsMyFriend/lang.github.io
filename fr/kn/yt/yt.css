@@ -5,6 +5,8 @@
     margin: 0;
     font-size: inherit;
     line-height: 1.2;
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .site-brand {
@@ -36,9 +38,24 @@
     mix-blend-mode: darken;
 }
 
+.box.yt-layout {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+    box-sizing: border-box;
+}
+
 .yt-layout {
     display: grid;
     gap: 14px;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.yt-layout > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* 햄버거(목록) + URL + 돋보기 */
@@ -329,4 +346,105 @@ body.dark .yt-url-bar input {
     border: 1px solid var(--bd);
     background: var(--card);
     font-size: 0.8rem;
+}
+
+.yt-range-input {
+    width: 5.5rem;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* 모바일: box.yt-layout 안에서 가로 넘침 방지 */
+@media (max-width: 759px) {
+    .wrap > .card {
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: clip;
+        box-sizing: border-box;
+    }
+
+    .screen-title {
+        min-width: 0;
+        max-width: 100%;
+        gap: 6px;
+    }
+
+    .screen-title-heading {
+        font-size: clamp(1rem, 4.2vw, 1.35rem);
+    }
+
+    .yt-url-bar {
+        width: 100%;
+    }
+
+    .yt-url-bar input {
+        font-size: 16px; /* iOS 줌 방지 */
+    }
+
+    .yt-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .yt-toolbar label {
+        width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
+    .yt-toolbar select {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .yt-range-input {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .yt-file-label {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .yt-file-label input[type="file"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .yt-now-panel {
+        width: 100%;
+    }
+
+    .yt-now {
+        font-size: clamp(1rem, 4.2vw, 1.35rem);
+        padding: 12px 14px;
+        overflow-wrap: anywhere;
+    }
+
+    .yt-meta {
+        width: 100%;
+    }
+
+    .yt-meta span {
+        overflow-wrap: anywhere;
+    }
+
+    .yt-hint {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .yt-cue-list {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .yt-cue-text {
+        overflow-wrap: anywhere;
+    }
 }
