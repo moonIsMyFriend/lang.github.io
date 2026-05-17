@@ -4,7 +4,7 @@
     { label: "profile", href: "https://us.simulavi.com" },
     { label: "research", href: "https://re.simulavi.com" },
     { label: "mission", href: "https://game.simulavi.com" },
-    { label: "language", href: "https://lang.simulavi.com" },
+    { label: "experience", href: "https://exp.simulavi.com" },
     { label: "backing", href: "https://back.simulavi.com" },
   ];
 
