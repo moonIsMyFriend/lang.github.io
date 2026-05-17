@@ -3,12 +3,11 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 
 const ROOT_DIR = path.resolve(__dirname);
-const SRC_DIR = path.join(ROOT_DIR, "styletest");
-const ENTRY_HTML = path.join(SRC_DIR, "mobile_earth_moon_page.html");
-const OUT_DIR = path.join(ROOT_DIR, "publish");
-const OUT_HTML = path.join(OUT_DIR, "index.html");
-const ASSET_DIR = path.join(SRC_DIR, "earth_moon_scroll");
+const SRC_ROOT = path.join(ROOT_DIR, "src");
+const PUBLISH_ROOT = path.join(ROOT_DIR, "publish");
 const IS_WIN = process.platform === "win32";
+
+const SKIP_EXT = new Set([".md"]);
 
 /** Windows: .cmd 는 cmd.exe 로 실행 (execFileSync 단독 호출 시 EINVAL) */
 function runCli(command, args) {
@@ -94,53 +93,94 @@ function obfuscateJs(src, dest) {
   ]);
 }
 
-function collectAssetFiles() {
-  if (!fs.existsSync(ASSET_DIR)) {
-    console.error("[ERROR] earth_moon_scroll 폴더가 없습니다.");
+function parseFolderArg() {
+  const raw = process.argv[2];
+
+  if (!raw) {
+    console.error("사용법: node build_publish.js <src 하위 폴더>");
+    console.error("예: node build_publish.js com");
+    console.error("    node build_publish.js fr/kn/pron");
     process.exit(1);
   }
 
-  return walk(ASSET_DIR).filter(function (filePath) {
-    return !filePath.endsWith(".md");
+  const normalized = path.normalize(raw).replace(/^(\.\.(\/|\\|$))+/, "");
+  const srcDir = path.resolve(SRC_ROOT, normalized);
+  const srcRootResolved = path.resolve(SRC_ROOT);
+  const relative = path.relative(srcRootResolved, srcDir);
+
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    console.error("[ERROR] src 밖의 경로는 지정할 수 없습니다.");
+    process.exit(1);
+  }
+
+  if (!fs.existsSync(srcDir) || !fs.statSync(srcDir).isDirectory()) {
+    console.error(`[ERROR] 폴더가 없습니다: src/${normalized.replace(/\\/g, "/")}`);
+    process.exit(1);
+  }
+
+  return {
+    folderKey: relative.split(path.sep).join("/"),
+    srcDir,
+  };
+}
+
+function collectFiles(srcDir) {
+  return walk(srcDir).filter(function (filePath) {
+    return !SKIP_EXT.has(path.extname(filePath).toLowerCase());
   });
 }
 
+function buildFile(srcFile, outFile) {
+  const ext = path.extname(srcFile).toLowerCase();
+
+  if (ext === ".html") {
+    minifyHtml(srcFile, outFile);
+    return "html";
+  }
+  if (ext === ".css") {
+    minifyCss(srcFile, outFile);
+    return "css";
+  }
+  if (ext === ".js") {
+    obfuscateJs(srcFile, outFile);
+    return "js";
+  }
+
+  copyFile(srcFile, outFile);
+  return "copy";
+}
+
 function build() {
-  if (!fs.existsSync(ENTRY_HTML)) {
-    console.error("[ERROR] 진입 HTML이 없습니다: styletest/mobile_earth_moon_page.html");
-    process.exit(1);
+  const { folderKey, srcDir } = parseFolderArg();
+  const outDir = path.join(PUBLISH_ROOT, folderKey);
+
+  if (fs.existsSync(outDir)) {
+    fs.rmSync(outDir, { recursive: true, force: true });
   }
 
-  if (fs.existsSync(OUT_DIR)) {
-    fs.rmSync(OUT_DIR, { recursive: true, force: true });
+  ensureDir(outDir);
+
+  const files = collectFiles(srcDir);
+
+  if (files.length === 0) {
+    console.warn(`[WARN] 처리할 파일이 없습니다: src/${folderKey}`);
   }
 
-  ensureDir(OUT_DIR);
+  const counts = { html: 0, css: 0, js: 0, copy: 0 };
 
-  console.log("[BUILD] mobile_earth_moon_page.html → publish/index.html");
-  minifyHtml(ENTRY_HTML, OUT_HTML);
+  for (const srcFile of files) {
+    const relativePath = path.relative(srcDir, srcFile);
+    const outFile = path.join(outDir, relativePath);
+    const kind = buildFile(srcFile, outFile);
 
-  const assetFiles = collectAssetFiles();
-
-  for (const srcFile of assetFiles) {
-    const relativePath = path.relative(SRC_DIR, srcFile);
-    const outFile = path.join(OUT_DIR, relativePath);
-    const ext = path.extname(srcFile).toLowerCase();
-
-    console.log(`[BUILD] ${relativePath}`);
-
-    if (ext === ".css") {
-      minifyCss(srcFile, outFile);
-    } else if (ext === ".js") {
-      obfuscateJs(srcFile, outFile);
-    } else {
-      copyFile(srcFile, outFile);
-    }
+    counts[kind] += 1;
+    console.log(`[BUILD] ${folderKey}/${relativePath.replace(/\\/g, "/")} (${kind})`);
   }
 
-  console.log("\n[DONE] publish/");
-  console.log("  index.html");
-  console.log("  earth_moon_scroll/ (css, js)");
+  console.log(`\n[DONE] publish/${folderKey}/`);
+  console.log(
+    `  html: ${counts.html}, css: ${counts.css}, js: ${counts.js}, copy: ${counts.copy}`
+  );
 }
 
 build();

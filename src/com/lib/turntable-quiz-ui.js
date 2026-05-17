@@ -1,5 +1,5 @@
 /**
- * TP-7 프레임 ↔ quiz-app 연동 (pron/turntable_music_player.html 전용)
+ * TP-7 프레임 ↔ quiz-app 연동 (turntable_music_player.html 전용)
  */
 export function initTurntableQuizUi() {
   const audio = document.querySelector('#audioPlayer');
