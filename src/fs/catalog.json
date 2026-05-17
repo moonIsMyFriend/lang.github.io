@@ -1,7 +1,22 @@
 [
   {
     "dir": "",
-    "name": "fencing_terms.csv",
-    "path": "fencing_terms.csv"
+    "name": "00. 입문.csv",
+    "path": "00. 입문.csv"
+  },
+  {
+    "dir": "",
+    "name": "01. 기본.csv",
+    "path": "01. 기본.csv"
+  },
+  {
+    "dir": "",
+    "name": "02. 심화.csv",
+    "path": "02. 심화.csv"
+  },
+  {
+    "dir": "",
+    "name": "03. 전문.csv",
+    "path": "03. 전문.csv"
   }
 ]

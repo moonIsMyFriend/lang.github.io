@@ -2,31 +2,40 @@
 <html lang="ko">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T3SXCHL6');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92QMC1YFZM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-92QMC1YFZM');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fencing Terms</title>
-    <link rel="stylesheet" href="../com/css/quiz-style.css" />
-
-    <!-- Open Graph (카카오톡, 페이스북 공통) -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="En Garde Lab">
-    <meta property="og:title" content="En garde! 펜싱 용어 한 번에 정리">
-    <meta property="og:description" content="attaque · parade · riposte · distance · tempo — 핵심 개념을 한 페이지로.">
-    <meta property="og:url" content="https://lang.simulavi.com/fs">
-
-    <!-- 이미지: 동일 위치(동일 URL) 유지 -->
-    <meta property="og:image" content="https://lang.simulavi.com/fs/images/ed9a24dc-4ff4-49f0-989a-b99b49c8b591.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <title>Français pronunciation practice</title>
+    <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div class="wrap">
         <div class="card">
 
             <!-- 공통 헤더 -->
             <div class="screen-title">
-                <h1 id="pageTitle">Fencing Terms</h1>
+                <h1 id="pageTitle">Français pronunciation practice</h1>
                 <div class="row">
                     <span class="pill">rows: <span id="totalCnt">0</span></span>
                 </div>
@@ -45,6 +54,10 @@
                     <div style="height:12px"></div>
                     
                     <div id="list" class="card"></div>
+                    <!-- <small> <b>référence</b>
+                        <br><a href='https://ucampus.knou.ac.kr/ekp/user/study/retrieveUMYStudy.sdo' target="_blank">프랑스어 기초어휘와 발음 (한국방송통신대) </a>
+                        <br><a href='https://www.youtube.com/watch?v=19KilnM3eDE' target="_blank">How to pronounce the French "R"? | Easy French 81</a>
+                    </small> -->
                     <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
                     <div style="height:12px"></div>
 
@@ -81,62 +94,11 @@
 
                 <div style="height:14px"></div>
                 <details>
-                    <summary>학습 설정</summary>
-
-                    <div class="box">
-                        <div class="row" style="margin-top:10px">
-                            <span class="muted">문제 출제 방식:</span>
-                            <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
-                            <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq">
-                                순차</label>
-                        </div>
-                        <div class="row">
-                            <span class="muted">모드 선택:</span>
-                        </div>
-                        <div>
-                            <label style="margin-left:12px"><input type="radio" name="practice" id="practiceQuiz"
-                                    value="quiz"> 퀴즈(빈칸 채우기)</label>
-                        </div>
-                        <div>
-                            <label style="margin-left:12px"><input type="radio" name="practice" id="practiceStudy"
-                                    value="study" checked> 학습(번역/정답/발음)</label>
-                        </div>
-
-                        <div class="row" style="margin-top:10px">
-                            <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
-                            <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
-                        </div>
-                        <div class="row" style="margin-top:6px">
-                            <label><input id="keepFirst" type="checkbox" checked /> 단어 첫 글자는 보이기</label>
-                            <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
-                                    style="width:64px;"> 글자 이상만 가리기</label>
-                        </div>
-
-                        <div class="row" style="margin-top:10px">
-                            <label>
-                                <input type="checkbox" id="audioLoop" />
-                                자동 반복 재생
-                            </label>
-                        </div>
-
-                        <div class="row" style="margin-bottom:10px">
-                            <label>
-                                <input type="checkbox" id="themeToggle">
-                                다크 모드
-                            </label>
-                        </div>
-
-                    </div>
-
-                </details>
-
-                <div style="height:14px"></div>
-                <details>
                     <summary>사용법</summary>
                     <div class="content">
                         <ol>
-                            <li>자동으로 로드되는 데이터를 이용하거나 파일을 직접 선택하세요.</li>
-                            <li>학습 설정을 조정한 뒤 <b>Start</b>를 눌러 학습 화면으로 이동합니다.</li>
+                            <li>목록에서 학습할 CSV를 선택하세요.</li>
+                            <li>학습 화면에서 장치 왼쪽 <b>M</b> 버튼으로 학습 설정을 변경할 수 있습니다.</li>
                         </ol>
                         <p class="footer">CSV는 UTF-8 권장.</p>
                     </div>
@@ -211,6 +173,33 @@
                         <div id="answerWrap" style="display:none; margin-top:12px">
                             <div id="enFull" class="big"></div>
                         </div>
+                        <div id="pronouncePanel" style="margin-top:14px">
+                            <div class="row pron-row">
+                                <span id="pronounceApiKeyWrap" class="pronounce-key-wrap">
+                                <input type="password" id="pronounceApiKey"
+                                    placeholder="이용 발급 key"
+                                    autocomplete="off"
+                                    title="관리자에게 받은 이용 발급 key가 있을 때만 입력하세요. 이 브라우저에만 저장됩니다."
+                                    style="flex:1; min-width:140px;max-width:220px;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);background:#FDFBF4;color:#333" />
+                                </span>
+                                <select id="pronounceLocale" title="Recognition language (Speech API locale)">
+                                    <option value="fr-FR" selected>프랑스어 fr-FR</option>
+                                    <option value="en-US">영어 en-US</option>
+                                    <option value="en-GB">영어 en-GB</option>
+                                    <option value="ko-KR">한국어 ko-KR</option>
+                                    <option value="ja-JP">일본어 ja-JP</option>
+                                    <option value="es-ES">스페인어 es-ES</option>
+                                    <option value="de-DE">독일어 de-DE</option>
+                                    <option value="zh-CN">중국어(간체) zh-CN</option>
+                                </select>
+                                <span class="pronounce-record-stack">
+                                <span id="pronounceRecProgress" class="pronounce-rec-progress-slot" aria-live="polite"></span>
+                                <button type="button" id="btnPronounceRecord" class="ghost" aria-label="마이크 활성 · 녹음 시작" title="마이크 활성 · 녹음 시작"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+                                </span>
+                            </div>
+                            <div id="pronounceStatus" class="muted" style="margin-top:8px;font-size:13px;"></div>
+                            <div id="pronounceOutcome" class="pronounce-outcome"></div>
+                        </div>
                     </div>
                 </details>
             </section>
@@ -232,29 +221,23 @@
     </div>
 
     <script type="module">
-        import { initQuizApp } from '../com/lib/quiz-app.js';
-        import { loadPageTitle } from '../com/lib/title.js';
+        import { initQuizApp } from '../../../com/lib/quiz-app.js';
+        import { loadPageTitle } from '../../../com/lib/title.js';
         loadPageTitle();
 
         let app;
 
-        /** DOM 준비 후 quiz-app 초기화 (목록 클릭·URL 복원·Start 버튼 공통) */
+        /**
+         * DOM 준비 후 quiz-app 초기화.
+         * 이 페이지(index)는 목록·CSV 업로드용이고,
+         * 실제 학습은 turntable_music_player.html 로 이동 (?file=&mode=study…).
+         */
         window.addEventListener('DOMContentLoaded', () => {
             app = initQuizApp();
-            window.quizApp = app; // catalog 스크립트·popstate에서 startWith 호출용
+            window.quizApp = app; // Start·설정 저장 등 화면1 기능용 (목록 클릭은 turntable 링크)
         });
 
-        /**
-         * 브라우저 뒤로/앞으로: 주소창의 ?file=&i=… 를 읽어 학습 화면 복원.
-         * (새로고침은 quiz-app.js tryResumeStudyFromUrl, 목록 클릭은 openStudy + pushState)
-         */
-        window.addEventListener('popstate', async () => {
-            const u = new URL(location.href);
-            const file = u.searchParams.get('file');
-            if (file && u.searchParams.has('i')) {
-                await window.quizApp?.startWith({ file, count: 'all', resume: true });
-            }
-        });
+        // popstate 없음: 학습 URL·새로고침 복원은 turntable 쪽 startWith + quiz-app syncStudyUrl
 
         (async function () {
             const $ = s => document.querySelector(s);
@@ -316,38 +299,20 @@
                     for (const f of files) {
                         const li = document.createElement('li');
                         const display = f.name.replace(/\.csv$/i, ''); // 확장자 제거
-                        li.innerHTML = `<a href="#" class="csv-link" data-path="${encodeURI(f.path)}">${escapeHTML(display)}</a>`;
-                        li.querySelector('a').addEventListener('click', (e) => {
-                            e.preventDefault();
-                            openStudy(f.path);
-                        });
+                        let orderQs = '';
+                        try {
+                            const m = localStorage.getItem('learnlang_quiz_mode');
+                            if (m === 'seq') orderQs = '&order=seq';
+                        } catch (_) {}
+                        // turntable으로 이동; 진행 상태(i, ord)는 turntable에서 주소창에 동기화됨
+                        const studyUrl = `./study_card.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
+                        li.innerHTML = `<a href="${studyUrl}" class="csv-link">${escapeHTML(display)}</a>`;
                         ul.appendChild(li);
                     }
                     frag.appendChild(box);
                 }
                 list.innerHTML = '';
                 list.appendChild(frag);
-            }
-
-            // 클릭 → 학습 페이지(빈칸 없이 번역/정답/발음 표시)
-            async function openStudy(relPath) {
-                if (window.quizApp && typeof window.quizApp.startWith === 'function') {
-                    // 깜박임 없이 바로 시작
-                    await window.quizApp.startWith({ file: relPath, count: 'all' });
-
-                    // 주소창만 업데이트(새로고침 없음)
-                    const u = new URL(location.href);
-                    u.searchParams.set('file', relPath);
-                    u.searchParams.set('mode', 'study');
-                    u.searchParams.delete('n');
-                    history.pushState({ file: relPath, mode: 'study' }, '', u.toString());
-                } else {
-                    // 폴백: 컨트롤러가 없으면 기존 방식으로 이동
-                    const u = new URL('./index.html', location.href);
-                    u.searchParams.set('file', relPath);
-                    u.searchParams.set('mode', 'study');
-                    location.href = u.toString();
-                }
             }
 
             function escapeHTML(s = '') { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
