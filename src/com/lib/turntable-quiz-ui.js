@@ -11,9 +11,60 @@ export function initTurntableQuizUi() {
   const recordBtn = document.querySelector('#recordBtn');
   const btnNext = document.querySelector('#btnNext');
   const btnPronounceRecord = document.querySelector('#btnPronounceRecord');
-  const volUp = document.querySelector('#volUp');
-  const volDown = document.querySelector('#volDown');
+  const speedUp = document.querySelector('#volUp');
+  const speedDown = document.querySelector('#volDown');
+  const tpSpeed = document.querySelector('#tpSpeed');
   const eqBars = document.querySelectorAll('#equalizer .eq-bar');
+
+  const LS_PLAYBACK_RATE = 'learnlang_playback_rate';
+  const SPEED_STEP = 0.25;
+  const SPEED_MIN = 0.25;
+  const SPEED_MAX = 4;
+  const SPEED_MIN_STEP = SPEED_MIN / SPEED_STEP;
+  const SPEED_MAX_STEP = SPEED_MAX / SPEED_STEP;
+
+  function clampSpeedStep(step) {
+    return Math.min(SPEED_MAX_STEP, Math.max(SPEED_MIN_STEP, step));
+  }
+
+  function stepToRate(step) {
+    return Math.round(step * SPEED_STEP * 100) / 100;
+  }
+
+  function rateToStep(rate) {
+    return clampSpeedStep(Math.round(rate / SPEED_STEP));
+  }
+
+  function formatSpeed(rate) {
+    const n = stepToRate(rateToStep(rate));
+    const text = Number.isInteger(n) ? String(n) : String(n);
+    return `x${text}`;
+  }
+
+  function loadSpeedStep() {
+    try {
+      const saved = Number(localStorage.getItem(LS_PLAYBACK_RATE));
+      if (Number.isFinite(saved) && saved >= SPEED_MIN && saved <= SPEED_MAX) {
+        return rateToStep(saved);
+      }
+    } catch (_) {}
+    return rateToStep(1);
+  }
+
+  let speedStep = loadSpeedStep();
+
+  function persistSpeed() {
+    try {
+      localStorage.setItem(LS_PLAYBACK_RATE, String(stepToRate(speedStep)));
+    } catch (_) {}
+  }
+
+  function applyPlaybackSpeed() {
+    const rate = stepToRate(speedStep);
+    if (audio) audio.playbackRate = rate;
+    if (tpSpeed) tpSpeed.textContent = formatSpeed(rate);
+    persistSpeed();
+  }
 
   function setPlaying(on) {
     if (disc) disc.classList.toggle('playing', on);
@@ -144,8 +195,8 @@ export function initTurntableQuizUi() {
   }
   syncPlayAndRecordPads();
 
-  /** 볼륨 버튼: 포인터·키보드로 눌린 동안 `.pressed` 유지 → CSS 3D 눌림 */
-  function bindVolumePressFx(btn) {
+  /** 속도 ± 버튼: 포인터·키보드로 눌린 동안 `.pressed` 유지 → CSS 3D 눌림 */
+  function bindRoundBtnPressFx(btn) {
     if (!btn) return;
     const press = () => btn.classList.add('pressed');
     const release = () => btn.classList.remove('pressed');
@@ -173,17 +224,21 @@ export function initTurntableQuizUi() {
     });
   }
 
-  bindVolumePressFx(volUp);
-  bindVolumePressFx(volDown);
+  bindRoundBtnPressFx(speedUp);
+  bindRoundBtnPressFx(speedDown);
 
-  volUp?.addEventListener('click', () => {
-    if (!audio) return;
-    audio.volume = Math.min(1, audio.volume + 0.1);
+  speedUp?.addEventListener('click', () => {
+    speedStep = clampSpeedStep(speedStep + 1);
+    applyPlaybackSpeed();
   });
-  volDown?.addEventListener('click', () => {
-    if (!audio) return;
-    audio.volume = Math.max(0, audio.volume - 0.1);
+  speedDown?.addEventListener('click', () => {
+    speedStep = clampSpeedStep(speedStep - 1);
+    applyPlaybackSpeed();
   });
+
+  applyPlaybackSpeed();
+  audio?.addEventListener('loadedmetadata', applyPlaybackSpeed);
+  audio?.addEventListener('play', applyPlaybackSpeed);
 
   let audioContext;
   let analyser;

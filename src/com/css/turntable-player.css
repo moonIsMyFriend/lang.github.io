@@ -236,13 +236,37 @@ body.dark.turntable-quiz-page #tpExpr font[color="green"] {
   color: var(--pron-match, #22c55e) !important;
 }
 
-.turntable-quiz-page .display .mini-play {
+.turntable-quiz-page .tp-display-footer {
   position: absolute;
   right: 10px;
   bottom: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.turntable-quiz-page .tp-speed-display {
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #fbbf24;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+body.dark.turntable-quiz-page .tp-speed-display {
+  color: #fcd34d;
+}
+
+.turntable-quiz-page .display .mini-play {
+  position: static;
   font-size: 12px;
   cursor: pointer;
   user-select: none;
+  line-height: 1;
 }
 
 .turntable-quiz-page .disc {
@@ -857,7 +881,7 @@ body.dark.turntable-quiz-page #pronounceLocale {
 
 /* 모바일: 정사각형 상·하 고정 높이 대신 세로 스택 — 디스플레이·원판·네비·패드가 겹치지 않게 */
 @media (max-width: 767px) {
-  /* 행1: 디스플레이 / 행2: 원판 / 행3: Home·퀴즈 | 공간 | 볼륨± / 행4: 하단 패드 */
+  /* 행1: 디스플레이 / 행2: 원판 / 행3: Home·퀴즈 | 공간 | 속도± / 행4: 하단 패드 */
   .turntable-quiz-page .device {
     display: grid;
     grid-template-columns: auto 1fr auto auto;
