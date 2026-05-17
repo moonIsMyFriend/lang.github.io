@@ -45,6 +45,8 @@
   let pendingStart = 0;
   let playEnd = null;
   let captionTracks = [];
+  let srtSourcePath = '';
+  let cuesFromSrt = false;
 
   const LOOP_PAUSE_MS = 1000;
 
@@ -187,10 +189,40 @@
     return finalizeCues(raw);
   }
 
+  function extractYoutubeUrlFromLine(line) {
+    const trimmed = line.trim();
+    if (!trimmed) return '';
+    const hash = trimmed.match(/^#\s*(https?:\/\/\S+)/i);
+    if (hash) return hash[1].replace(/[.,)]+$/, '');
+    const tag = trimmed.match(/^youtube\s*:\s*(\S+)/i);
+    if (tag) return tag[1].replace(/[.,)]+$/, '');
+    if (/^https?:\/\/\S+/i.test(trimmed) && /-->/i.test(trimmed) === false && /youtube/i.test(trimmed)) {
+      return trimmed.replace(/[.,)]+$/, '');
+    }
+    return '';
+  }
+
+  function splitSrtSource(text) {
+    const lines = text.replace(/\r/g, '').split('\n');
+    let youtubeUrl = '';
+    const body = [];
+    for (const line of lines) {
+      if (!youtubeUrl) {
+        const found = extractYoutubeUrlFromLine(line);
+        if (found) {
+          youtubeUrl = found;
+          continue;
+        }
+      }
+      body.push(line);
+    }
+    return { youtubeUrl, body: body.join('\n').trim() };
+  }
+
   function parseSrt(text) {
+    const { youtubeUrl, body } = splitSrtSource(text);
     const raw = [];
-    const normalized = text.replace(/\r/g, '').trim();
-    const blocks = normalized.split(/\n\s*\n/);
+    const blocks = body.split(/\n\s*\n/);
     for (const block of blocks) {
       const lines = block
         .trim()
@@ -203,7 +235,7 @@
       const cue = parseTimedTextBlock(bodyLines);
       if (cue) raw.push(cue);
     }
-    return finalizeCues(raw);
+    return { cues: finalizeCues(raw), youtubeUrl };
   }
 
   function applyLoadedCues(sourceLabel) {
@@ -558,7 +590,32 @@
     });
   }
 
+  function encodeSrtPath(relPath) {
+    return relPath
+      .split('/')
+      .map((seg) => encodeURIComponent(seg))
+      .join('/');
+  }
+
+  async function loadSrtFromPath(relPath) {
+    const res = await fetch(`./${encodeSrtPath(relPath)}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('SRT 파일을 불러오지 못했습니다.');
+    const text = await res.text();
+    const parsed = parseSrt(text);
+    cues = parsed.cues;
+    cuesFromSrt = true;
+    srtSourcePath = relPath;
+    if (parsed.youtubeUrl) urlInput.value = parsed.youtubeUrl;
+    if (!cues.length) throw new Error('자막 내용을 찾지 못했습니다.');
+    applyLoadedCues('SRT');
+    return parsed.youtubeUrl || '';
+  }
+
   async function loadCaptions(videoId) {
+    if (cuesFromSrt && cues.length) {
+      setStatus(`SRT 자막 ${cues.length}개`);
+      return;
+    }
     setStatus('자막 불러오는 중…');
     const data = await fetchTranscriptApi(videoId, langSelect.value || 'fr');
     captionTracks = data.tracks || [];
@@ -620,6 +677,28 @@
     }
   }
 
+  async function bootFromQuery() {
+    const params = new URLSearchParams(location.search);
+    const srtPath = params.get('srt');
+    const urlParam = params.get('url');
+    if (!srtPath) return;
+
+    btnLoad.disabled = true;
+    setStatus('SRT 불러오는 중…');
+    try {
+      const fromSrt = await loadSrtFromPath(srtPath);
+      if (urlParam) urlInput.value = urlParam;
+      const playUrl = urlInput.value.trim() || fromSrt;
+      if (playUrl) await handleLoad();
+      else setStatus('SRT에 YouTube URL이 없습니다. 주소를 입력하세요.', true);
+    } catch (err) {
+      console.error(err);
+      setStatus(err.message || 'SRT 로드 실패', true);
+    } finally {
+      btnLoad.disabled = false;
+    }
+  }
+
   async function reloadCaptionsOnly() {
     const input = urlInput.value.trim();
     const videoId = parseVideoId(input);
@@ -641,8 +720,17 @@
       try {
         const text = reader.result;
         const name = (file.name || '').toLowerCase();
-        if (name.endsWith('.srt')) cues = parseSrt(text);
-        else cues = parseWebVtt(text);
+        if (name.endsWith('.srt')) {
+          const parsed = parseSrt(text);
+          cues = parsed.cues;
+          cuesFromSrt = true;
+          srtSourcePath = file.name || '';
+          if (parsed.youtubeUrl) urlInput.value = parsed.youtubeUrl;
+        } else {
+          cues = parseWebVtt(text);
+          cuesFromSrt = true;
+          srtSourcePath = file.name || '';
+        }
         if (!cues.length) {
           setStatus('자막 내용을 찾지 못했습니다.', true);
           return;
@@ -701,6 +789,9 @@
   vttFile.addEventListener('change', () => handleVttUpload(vttFile.files[0]));
 
   const saved = localStorage.getItem('yt_last_url');
-  if (saved) urlInput.value = saved;
+  if (saved && !new URLSearchParams(location.search).get('srt')) {
+    urlInput.value = saved;
+  }
   updateLoopToggle();
+  bootFromQuery();
 })();

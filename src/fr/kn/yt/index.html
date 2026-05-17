@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>YouTube 자막 학습</title>
     <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
-    <link rel="stylesheet" href="yt.css" />
 </head>
 
 <body>
@@ -15,97 +14,117 @@
             <div class="screen-title">
                 <h1>YouTube 자막 학습</h1>
                 <div class="row">
-                    <span class="pill">자막: <span id="cueCount">0</span></span>
+                    <span class="pill">SRT: <span id="totalCnt">0</span></span>
                 </div>
             </div>
 
-            <section class="box yt-layout">
-                <div class="yt-url-bar">
-                    <input id="ytUrl" type="url" inputmode="url"
-                        placeholder="YouTube URL (예: https://www.youtube.com/watch?v=… 또는 [02:10~03:25])"
-                        autocomplete="off" />
-                    <button id="btnLoad" type="button" class="yt-btn-search" aria-label="불러오기" title="불러오기">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7" />
-                            <path d="M20 20l-3.5-3.5" />
-                        </svg>
-                    </button>
+            <section class="box">
+                <h1 style="margin-top:0">Index</h1>
+
+                <div class="row">
+                    <div class="search" style="flex:1">
+                        <input id="q" type="search" placeholder="검색: 파일명">
+                    </div>
                 </div>
+                <div style="height:12px"></div>
 
-                <div class="yt-toolbar">
-                    <label>
-                        자막 언어
-                        <select id="captionLang" disabled>
-                            <option value="fr">fr</option>
-                        </select>
-                    </label>
-                    <label>
-                        시작
-                        <input id="rangeStart" type="text" placeholder="0:00" style="width:5.5rem" />
-                    </label>
-                    <label>
-                        끝
-                        <input id="rangeEnd" type="text" placeholder="선택" style="width:5.5rem" />
-                    </label>
-                    <label class="yt-file-label">
-                        VTT/SRT
-                        <input id="vttFile" type="file" accept=".vtt,.srt,text/vtt,text/plain" />
-                    </label>
-                </div>
+                <div id="list" class="card"></div>
+                <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
 
-                <p id="status" class="yt-status"></p>
-
-                <div class="yt-player-wrap">
-                    <div id="player"></div>
-                </div>
-
-                <div class="yt-now-panel">
-                    <div id="nowCue" class="yt-now is-empty">재생 중인 자막이 여기에 표시됩니다.</div>
-                    <button id="btnLoopToggle" type="button" class="ghost yt-loop-toggle" disabled
-                        aria-pressed="false" aria-label="구간 반복 켜기" title="구간 반복 켜기">
-                        <span class="yt-loop-icon yt-loop-icon--off" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 2.1l4 4-4 4" />
-                                <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
-                                <path d="M7 21.9l-4-4 4-4" />
-                                <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
-                                <path d="M4 4l16 16" />
-                            </svg>
-                        </span>
-                        <span class="yt-loop-icon yt-loop-icon--on" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 2.1l4 4-4 4" />
-                                <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
-                                <path d="M7 21.9l-4-4 4-4" />
-                                <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="yt-meta">
-                    <span>목록 클릭: 해당 구간 이동</span>
-                    <span><kbd>←</kbd> <kbd>→</kbd> 이전·다음</span>
-                    <span><kbd>R</kbd> 반복</span>
-                    <span><kbd>Space</kbd> 재생/일시정지</span>
-                </div>
-
-                <div id="cueList" class="yt-cue-list">
-                    <p class="muted yt-cue-empty">URL을 입력하고 돋보기를 누르면 자막 목록이 표시됩니다.</p>
-                </div>
-
-                <p class="yt-hint">
-                    URL에 <span class="kbd">[02:10~03:25]</span> 형식을 넣으면 해당 구간 자막만 표시합니다.
-                    자막은 learnlang 서버를 통해 불러옵니다 (로컬: <span class="kbd">learnlang_server</span> 포트 8765).
+                <p class="sub" style="margin-top:14px">
+                    SRT 파일 <b>첫 줄</b>에 YouTube 주소를 넣으세요.
+                    예: <span class="kbd"># https://www.youtube.com/watch?v=Ji_WjbCB8tc</span>
                 </p>
             </section>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module">
+        import { loadPageTitle } from '../../../com/lib/title.js';
+        loadPageTitle();
+
+        const list = document.getElementById('list');
+        const empty = document.getElementById('empty');
+        const totalCnt = document.getElementById('totalCnt');
+        const q = document.getElementById('q');
+
+        let data = [];
+        try {
+            const res = await fetch('./catalog.json', { cache: 'no-store' });
+            data = await res.json();
+            totalCnt.textContent = String(data.length);
+        } catch (_) {
+            list.innerHTML = '<div class="muted">catalog.json을 불러오지 못했습니다. make_catalog.py를 실행하세요.</div>';
+        }
+
+        function escapeHTML(s = '') {
+            return s.replace(/[&<>"']/g, (c) =>
+                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+            );
+        }
+
+        function groupByDir(arr) {
+            const map = new Map();
+            for (const it of arr) {
+                const key = it.dir || '';
+                if (!map.has(key)) map.set(key, []);
+                map.get(key).push(it);
+            }
+            for (const [, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
+            return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+        }
+
+        function openStudy(item) {
+            const u = new URL('./study_youtube.html', location.href);
+            u.searchParams.set('srt', item.path);
+            if (item.youtube) u.searchParams.set('url', item.youtube);
+            location.href = u.toString();
+        }
+
+        function render(arr) {
+            if (!arr.length) {
+                list.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+            const frag = document.createDocumentFragment();
+
+            for (const [dir, files] of groupByDir(arr)) {
+                const box = document.createElement('div');
+                box.className = 'folder';
+                const title = dir ? escapeHTML(dir) : 'SRT';
+                box.innerHTML = `<div class="title">${title}</div><ul></ul>`;
+                const ul = box.querySelector('ul');
+
+                for (const f of files) {
+                    const li = document.createElement('li');
+                    const display = f.name.replace(/\.srt$/i, '');
+                    const hint = f.youtube
+                        ? `<span class="muted" style="font-size:0.85em;display:block">${escapeHTML(f.youtube)}</span>`
+                        : '<span class="muted" style="font-size:0.85em">YouTube URL 없음</span>';
+                    li.innerHTML = `<a href="#" class="csv-link">${escapeHTML(display)}</a>${hint}`;
+                    li.querySelector('a').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openStudy(f);
+                    });
+                    ul.appendChild(li);
+                }
+                frag.appendChild(box);
+            }
+            list.innerHTML = '';
+            list.appendChild(frag);
+        }
+
+        let view = data.slice();
+        render(view);
+
+        q.addEventListener('input', () => {
+            const term = q.value.trim().toLowerCase();
+            view = data.filter((it) => ((it.dir || '') + '/' + it.name).toLowerCase().includes(term));
+            render(view);
+        });
+    </script>
 </body>
 
 </html>
