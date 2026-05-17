@@ -110,6 +110,7 @@
         R.cancelFlight();
       }
       function applyRocketViewport(p, rot, scale, flying) {
+        if (document.body.classList.contains("is-nav-open")) return;
         R.applyRocketViewport(p, rot, scale, flying);
       }
       function animateRocketArc(from, ctrl, to, duration, opts, cb) {
@@ -952,7 +953,18 @@
         wrapper.addEventListener("scrollend", settleScroll);
       }
 
+      document.addEventListener("earth-moon-nav-close", function (e) {
+        var pose = e.detail;
+        if (!pose) return;
+        R.lastRocketPos.x = pose.x;
+        R.lastRocketPos.y = pose.y;
+        R.lastRocketPos.rot = pose.rot;
+        R.lastRocketPos.scale = pose.scale != null ? pose.scale : 1;
+        R.resetSmoothRot(pose.rot);
+      });
+
       window.addEventListener("resize", function () {
+        if (document.body.classList.contains("is-nav-open")) return;
         var stay = syncForwardPageIndex();
         goToPage(stay, false);
         if (line.introTrailPts.length || line.activeTrailPts.length) renderTrail();

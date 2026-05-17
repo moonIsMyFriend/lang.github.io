@@ -10,8 +10,113 @@
   <link rel="stylesheet" href="earth_moon_scroll/moon/page.css" />
   <link rel="stylesheet" href="earth_moon_scroll/common/rocket.css" />
   <link rel="stylesheet" href="earth_moon_scroll/common/line.css" />
+  <link rel="stylesheet" href="earth_moon_scroll/common/nav-menu.css" />
 </head>
 <body>
+  <nav class="site-nav" aria-label="사이트 메뉴">
+    <svg class="site-nav__goo-defs" aria-hidden="true">
+      <defs>
+        <filter id="nav-liquid-goo" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10"
+            result="goo"
+          />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <button
+      type="button"
+      class="site-nav__toggle"
+      aria-expanded="false"
+      aria-controls="site-nav-panel"
+      aria-label="메뉴 열기"
+    >
+      <span class="site-nav__bar"></span>
+      <span class="site-nav__bar"></span>
+      <span class="site-nav__bar"></span>
+    </button>
+    <div id="site-nav-panel" class="site-nav__panel">
+      <div class="site-nav__card">
+        <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <a class="liquid-btn" href="https://us.simulavi.com">
+            <span class="liquid-btn__shell">
+              <span class="liquid-btn__goo" aria-hidden="true">
+                <span class="liquid-btn__blob liquid-btn__blob--a"></span>
+                <span class="liquid-btn__blob liquid-btn__blob--b"></span>
+              </span>
+              <span class="liquid-btn__face">
+                <span class="liquid-btn__label">profile</span>
+                <span class="liquid-btn__kebab" aria-hidden="true"></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="site-nav__item">
+          <a class="liquid-btn" href="https://re.simulavi.com">
+            <span class="liquid-btn__shell">
+              <span class="liquid-btn__goo" aria-hidden="true">
+                <span class="liquid-btn__blob liquid-btn__blob--a"></span>
+                <span class="liquid-btn__blob liquid-btn__blob--b"></span>
+              </span>
+              <span class="liquid-btn__face">
+                <span class="liquid-btn__label">research</span>
+                <span class="liquid-btn__kebab" aria-hidden="true"></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="site-nav__item">
+          <a class="liquid-btn" href="https://game.simulavi.com">
+            <span class="liquid-btn__shell">
+              <span class="liquid-btn__goo" aria-hidden="true">
+                <span class="liquid-btn__blob liquid-btn__blob--a"></span>
+                <span class="liquid-btn__blob liquid-btn__blob--b"></span>
+              </span>
+              <span class="liquid-btn__face">
+                <span class="liquid-btn__label">mission</span>
+                <span class="liquid-btn__kebab" aria-hidden="true"></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="site-nav__item">
+          <a class="liquid-btn" href="https://lang.simulavi.com">
+            <span class="liquid-btn__shell">
+              <span class="liquid-btn__goo" aria-hidden="true">
+                <span class="liquid-btn__blob liquid-btn__blob--a"></span>
+                <span class="liquid-btn__blob liquid-btn__blob--b"></span>
+              </span>
+              <span class="liquid-btn__face">
+                <span class="liquid-btn__label">language</span>
+                <span class="liquid-btn__kebab" aria-hidden="true"></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="site-nav__item">
+          <a class="liquid-btn" href="https://back.simulavi.com">
+            <span class="liquid-btn__shell">
+              <span class="liquid-btn__goo" aria-hidden="true">
+                <span class="liquid-btn__blob liquid-btn__blob--a"></span>
+                <span class="liquid-btn__blob liquid-btn__blob--b"></span>
+              </span>
+              <span class="liquid-btn__face">
+                <span class="liquid-btn__label">backing</span>
+                <span class="liquid-btn__kebab" aria-hidden="true"></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <main class="scroll-wrapper" aria-label="지구에서 달까지 가로 스크롤 페이지">
     <section class="screen earth-screen" aria-label="첫 번째 화면 지구">
       <div class="stars"></div>
@@ -81,6 +186,7 @@
   <script src="earth_moon_scroll/common/line.js"></script>
   <script src="earth_moon_scroll/common/rocket.js"></script>
   <script src="earth_moon_scroll/common/scroll.js"></script>
+  <script src="earth_moon_scroll/common/nav-menu.js"></script>
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="earth_moon_scroll/earth/page.js"></script>
 </body>

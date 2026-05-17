@@ -1,0 +1,342 @@
+/* 햄버거 · 투명 패널 · liquid nav */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.site-nav__toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 42;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(8, 14, 32, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.site-nav__toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+.site-nav__toggle:focus-visible {
+  outline: 2px solid rgba(126, 212, 255, 0.85);
+  outline-offset: 3px;
+}
+
+.site-nav__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.site-nav.is-open .site-nav__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  width: 20px;
+}
+
+.site-nav.is-open .site-nav__bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.site-nav.is-open .site-nav__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  width: 20px;
+}
+
+.site-nav__panel {
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 76px 18px 24px 18px;
+  background: rgba(2, 6, 17, 0.28);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.site-nav.is-open .site-nav__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* 플로팅 글래스 카드 */
+.site-nav__card {
+  padding: 14px 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(28px) saturate(1.4);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.site-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(292px, calc(100vw - 56px));
+}
+
+.site-nav__item {
+  position: relative;
+}
+
+/* liquid goo filter (hidden) */
+.site-nav__goo-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.liquid-btn {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  outline: none;
+}
+
+/* 글래스 캡슐 */
+.liquid-btn__shell {
+  position: relative;
+  display: block;
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(20px) saturate(1.35);
+  -webkit-backdrop-filter: blur(20px) saturate(1.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 6px 16px rgba(0, 0, 0, 0.16);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.15, 0.48, 1);
+}
+
+.liquid-btn__shell::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 8%;
+  right: 8%;
+  height: 40%;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 하단 파란 액체 — 캡슐 안에만 */
+.liquid-btn__goo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;
+  z-index: 0;
+  overflow: hidden;
+  filter: url(#nav-liquid-goo);
+  opacity: 0;
+  transition:
+    height 0.55s cubic-bezier(0.34, 1.2, 0.48, 1),
+    opacity 0.4s ease;
+}
+
+.liquid-btn__blob {
+  position: absolute;
+  border-radius: 50%;
+  bottom: 0;
+  top: auto;
+  transition: transform 0.55s cubic-bezier(0.34, 1.2, 0.48, 1);
+}
+
+.liquid-btn__blob--a {
+  width: 62%;
+  height: 140%;
+  left: -8%;
+  bottom: -42%;
+  background: radial-gradient(
+    circle at 42% 28%,
+    rgba(120, 200, 255, 0.95) 0%,
+    rgba(50, 140, 255, 0.85) 42%,
+    transparent 68%
+  );
+}
+
+.liquid-btn__blob--b {
+  width: 54%;
+  height: 130%;
+  right: -6%;
+  left: auto;
+  bottom: -40%;
+  background: radial-gradient(
+    circle at 55% 30%,
+    rgba(90, 175, 255, 0.9) 0%,
+    rgba(30, 110, 240, 0.82) 45%,
+    transparent 68%
+  );
+}
+
+.liquid-btn__face {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 50px;
+  padding: 13px 16px 13px 18px;
+}
+
+.liquid-btn__label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: capitalize;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+  transition: color 0.3s ease;
+}
+
+.liquid-btn__kebab {
+  position: relative;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  flex-shrink: 0;
+  box-shadow:
+    0 -7px 0 rgba(255, 255, 255, 0.88),
+    0 7px 0 rgba(255, 255, 255, 0.88);
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.liquid-btn:hover .liquid-btn__shell,
+.liquid-btn:focus-visible .liquid-btn__shell {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 10px 24px rgba(40, 120, 255, 0.18);
+}
+
+.liquid-btn:hover .liquid-btn__goo,
+.liquid-btn:focus-visible .liquid-btn__goo {
+  height: 68%;
+  opacity: 1;
+}
+
+.liquid-btn:hover .liquid-btn__blob--a,
+.liquid-btn:focus-visible .liquid-btn__blob--a {
+  transform: translate(10%, -6%) scale(1.04);
+}
+
+.liquid-btn:hover .liquid-btn__blob--b,
+.liquid-btn:focus-visible .liquid-btn__blob--b {
+  transform: translate(-8%, -4%) scale(1.05);
+}
+
+.liquid-btn:hover .liquid-btn__label,
+.liquid-btn:focus-visible .liquid-btn__label {
+  color: #fff;
+}
+
+.liquid-btn:hover .liquid-btn__kebab,
+.liquid-btn:focus-visible .liquid-btn__kebab {
+  opacity: 1;
+}
+
+.liquid-btn:focus-visible .liquid-btn__shell {
+  outline: 2px solid rgba(80, 160, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.rocket-travel.is-nav-attract .rocket {
+  transition:
+    left 0.65s cubic-bezier(0.34, 1.15, 0.48, 1),
+    top 0.65s cubic-bezier(0.34, 1.15, 0.48, 1),
+    transform 0.65s cubic-bezier(0.34, 1.15, 0.48, 1) !important;
+}
+
+.rocket-travel.is-nav-attract .rocket__bob {
+  animation: none;
+}
+
+body.is-nav-open {
+  overflow: hidden;
+}
+
+body.is-nav-open .scroll-wrapper {
+  pointer-events: none;
+}
+
+body.is-nav-open .rocket-travel {
+  z-index: 43;
+}
+
+@media (min-width: 768px) {
+  .site-nav__toggle {
+    top: 18px;
+    left: 22px;
+  }
+
+  .site-nav__panel {
+    padding: 88px 28px 28px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-btn__blob,
+  .liquid-btn__face,
+  .site-nav__panel,
+  .site-nav__toggle .site-nav__bar {
+    transition: none;
+  }
+}
