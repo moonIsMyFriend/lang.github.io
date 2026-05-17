@@ -207,6 +207,57 @@
         return maxPageReached;
       }
 
+      function hintScreenIndex(screenEl) {
+        var screens = wrapper.querySelectorAll(".screen");
+        for (var i = 0; i < screens.length; i++) {
+          if (screens[i] === screenEl) return i;
+        }
+        return -1;
+      }
+
+      function syncScrollHints() {
+        var backEnabled = maxPageReached >= pageCount - 1;
+        var minBack = minBackwardIndex();
+
+        wrapper.querySelectorAll(".arrow-hint--right").forEach(function (btn) {
+          var si = hintScreenIndex(btn.closest(".screen"));
+          var show = si >= 0 && si < pageCount - 1 && si < maxPageReached + 1;
+          btn.hidden = !show;
+        });
+
+        wrapper.querySelectorAll(".arrow-hint--left").forEach(function (btn) {
+          var si = hintScreenIndex(btn.closest(".screen"));
+          var show = backEnabled && si > 0 && si > minBack;
+          btn.hidden = !show;
+        });
+      }
+
+      function navigateByHint(dir) {
+        if (document.body.classList.contains("is-nav-open")) return;
+        if (moonSequenceActive) return;
+        if (R.rocketMode === "flying" || R.rocketMode === "moonOrbit") return;
+
+        var idx = readIndex();
+        if (dir > 0) {
+          var next = clampIndex(idx + 1);
+          if (next > maxPageReached + 1) return;
+          if (idx === 0 && R.rocketMode === "intro3d") {
+            maxPageReached = Math.max(maxPageReached, next);
+            goToPage(next, true);
+            window.setTimeout(function () {
+              skipEarthIntroForDrag(next);
+              syncScrollHints();
+            }, reduceMotion ? 0 : 440);
+            return;
+          }
+          goToPage(next, true);
+        } else {
+          var prev = idx - 1;
+          if (prev < minBackwardIndex()) return;
+          goToPage(prev, true);
+        }
+      }
+
       /* ── 2페이지 DISTANCE (distance/page.css) ── */
       function finishDistancePageArrival() {
         introDone = true;
@@ -216,6 +267,7 @@
         setRocketMode("atDistance");
         snapDistanceWaitPose();
         scheduleDistanceAutoDepart();
+        syncScrollHints();
       }
 
 
@@ -664,6 +716,7 @@
           rocket.classList.add("rocket--landed");
           rocket.classList.remove("rocket--flight");
         }
+        syncScrollHints();
       }
 
       function startMoonLandingFromOrbit(atTop) {
@@ -760,6 +813,7 @@
       }
 
       function onPageSettled(index) {
+        syncScrollHints();
         if (index === 1 && R.rocketMode === "introArc") {
           retargetIntroArcIfOnDistancePage();
         }
@@ -938,6 +992,7 @@
         onScrollEnd();
         syncMoonPageClass();
         syncDistanceWaitOnScroll();
+        syncScrollHints();
         if (rocketLayer) {
           rocketLayer.classList.add("is-scrolling");
           clearTimeout(rocketScrollTimer);
@@ -952,6 +1007,16 @@
       if ("onscrollend" in wrapper) {
         wrapper.addEventListener("scrollend", settleScroll);
       }
+
+      wrapper.addEventListener("click", function (e) {
+        var hint = e.target.closest(".arrow-hint");
+        if (!hint || hint.hidden) return;
+        e.preventDefault();
+        if (hint.classList.contains("arrow-hint--right")) navigateByHint(1);
+        else if (hint.classList.contains("arrow-hint--left")) navigateByHint(-1);
+      });
+
+      syncScrollHints();
 
       /* 마우스·터치 드래그로 가로 스크롤 */
       var dragActive = false;

@@ -127,7 +127,7 @@
         <canvas class="earth-canvas"></canvas>
       </div>
       <div class="earth-label">EARTH</div>
-      <div class="arrow-hint">to the right →</div>
+      <button type="button" class="arrow-hint arrow-hint--right">to the right →</button>
     </section>
 
     <section class="screen distance-screen" aria-label="두 번째 화면 거리">
@@ -136,13 +136,15 @@
         <span class="number">384,400km</span>
         <span class="label">DISTANCE</span>
       </div>
-      <div class="arrow-hint">to the right →</div>
+      <button type="button" class="arrow-hint arrow-hint--right">to the right →</button>
+      <button type="button" class="arrow-hint arrow-hint--left" hidden>← to the left</button>
     </section>
 
     <section class="screen moon-screen" aria-label="세 번째 화면 달">
       <div class="stars"></div>
       <div class="planet moon" aria-hidden="true"></div>
       <div class="moon-label">MOON</div>
+      <button type="button" class="arrow-hint arrow-hint--left" hidden>← to the left</button>
     </section>
   </main>
   <div class="rocket-travel" aria-hidden="true">

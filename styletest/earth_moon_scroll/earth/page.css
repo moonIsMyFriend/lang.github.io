@@ -41,7 +41,7 @@
   background: transparent;
 }
 
-.earth-screen.is-scroll-guide .arrow-hint {
+.earth-screen.is-scroll-guide .arrow-hint--right {
   color: rgba(255, 220, 160, 0.95);
   animation-duration: 1.1s;
 }

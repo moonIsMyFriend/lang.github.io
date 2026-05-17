@@ -78,9 +78,40 @@ body.is-nav-open .scroll-wrapper {
   right: 22px;
   bottom: 34px;
   z-index: 2;
+  margin: 0;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 999px;
+  font: inherit;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
-  animation: blink 1.6s ease-in-out infinite;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  pointer-events: auto;
+  animation: blink-right 1.6s ease-in-out infinite;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.arrow-hint:hover {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.arrow-hint:focus-visible {
+  outline: 2px solid rgba(126, 212, 255, 0.75);
+  outline-offset: 2px;
+}
+
+.arrow-hint[hidden] {
+  display: none;
+}
+
+.arrow-hint--left {
+  right: auto;
+  left: 22px;
+  animation-name: blink-left;
 }
 
 .earth-label {
@@ -107,7 +138,7 @@ body.is-nav-open .scroll-wrapper {
   }
 }
 
-@keyframes blink {
+@keyframes blink-right {
   0%, 100% {
     opacity: 0.35;
     transform: translateX(0);
@@ -115,6 +146,17 @@ body.is-nav-open .scroll-wrapper {
   50% {
     opacity: 1;
     transform: translateX(6px);
+  }
+}
+
+@keyframes blink-left {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-6px);
   }
 }
 
