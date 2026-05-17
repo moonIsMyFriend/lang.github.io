@@ -1,0 +1,142 @@
+﻿no,group,speaker,original,pron,trans,comment
+1,basic,ref,arrêt,아ㅎ레,즉시 반격,"상대 공격 중간에 끊어 찌르는 반격 (syn. 역공격(꽁뜨르 오팡시브), 꽁뜨르아따끄)"
+2,basic,ref,attaque,아따끄,공격,우선권을 가진 최초 공격
+3,attack,ref,attaque composée,아따끄 콩뽀제,복합 공격,속임 후 실제 공격
+4,attack,ref,attaque simple,아따끄 삼플,단순 공격,속임 없는 단일  공격
+5,footwork,ref,balestra,발레스트하,도약 스텝,짧은 도약 후 공격 연결
+6,blade,ref,battement,바트멍,칼 치기,상대 칼을 쳐내는 준비 동작
+7,footwork,ref,bond en avant,봉 엉 아방,전방 도약,앞으로 점프
+8,footwork,ref,bond en arrière,봉 엉 아히에흐,후방 도약,뒤로 점프
+9,tactics,ref,combat rapproché,콩바 하프호셰,근접 전투,아주 가까운 거리 싸움
+10,tactics,ref,contre,콩트흐,대응,상대 동작에 맞서는 개념
+11,tactics,ref,contre-attaque,콩트흐 아따끄,반격,우선권 없는 반격
+12,tactics,ref,contre-offensive,콩트흐 오펑시브,역공,반격 계열 상위 개념
+13,tactics,ref,contre-riposte,콩트흐 히뽀스트,재반격,리포스트에 대한 재공격
+14,tactics,ref,contre-temps,콩트흐 떵,역타이밍,상대 템포를 끊는 동작
+15,blade,ref,coupé,쿠페,넘겨 공격,칼 위로 넘겨 공격
+16,tactics,ref,corps à corps,코흐 아 코흐,밀착,접촉으로 중단되는 상황
+17,blade,ref,coup croisé,쿠 크후아제,교차 공격,대각선 교차 공격
+18,blade,ref,coupé croisé,쿠페 크후아제,넘겨 교차 공격,쿠페 후 교차
+19,line,ref,dedans,드당,안쪽,내측 라인
+20,style,ref,défensive,데팡시브,방어적인,수비 위주 전술
+21,blade,ref,dégagement,드가쥬멍,라인 전환,아래로 라인 변경
+22,line,ref,dehors,드오흐,바깥쪽,외측 라인
+23,blade,ref,dérobement,데호브멍,회피,블레이드 제어 회피
+24,line,ref,dessous,드쑤,아래쪽,하단 라인
+25,line,ref,dessus,드쒸,위쪽,상단 라인
+26,distance,ref,distance,디스땅스,거리,두 선수 간 간격
+27,judgement,ref,coup double,쿠 두블,동시 타격,동시에 맞힘
+28,blade,ref,engagement,엉가쥬멍,칼 맞대기,공격 전 접촉
+29,defence,ref,esquive,에스키브,회피,몸으로 피하기
+30,attack,ref,feinte,페앙트,속임,가짜 공격
+31,attack,ref,fente,펑트,런지,기본 찌르기
+32,blade,ref,fer,페흐,칼,블레이드
+33,attack,ref,attaque au fer,아따끄 오 페흐,칼 제어 공격,제어 후 공격
+34,blade,ref,prise de fer,프히즈 드 페흐,칼 제어,지속 접촉 제어
+35,attack,ref,flèche,플레쉬,돌진 공격,연속 보행 돌진
+36,stance,ref,garde,갸흐드,준비 자세,기본 자세
+37,blade,ref,lame,람,블레이드,금속 칼날
+38,blade,ref,liement,리이멍,연속 제어,라인 이동 제어
+39,line,ref,ligne,리뉴,라인,공격 경로
+40,footwork,ref,marche,마흐슈,전진,앞으로 스텝
+41,defence,ref,octave,옥타브,드오르 린느를 막고 있는 자세,하단 외측 방어
+42,style,ref,offensive,오펑시브,공격적인,공격 위주
+43,attack,ref,opposition,오뽀지시옹,차단 공격,막으며 찌르기
+44,defence,ref,parade,빠하드,방어,칼로 막기
+45,defence,ref,mal paré,말 빠헤,불완전 방어,제어 실패 파리
+46,footwork,ref,passé avant,파쎄 아방,앞 교차,교차 전진
+47,footwork,ref,passé arrière,파쎄 아히에흐,뒤 교차,교차 후퇴
+48,field,ref,piste,삐스트,경기장,펜싱 스트립
+49,defence,ref,positions,뽀지시옹,자세/번호,파리 체계
+50,defence,ref,quarte,캬흐트,드당 린느를 막는 자세,상단 내측 방어
+51,defence,ref,quinte,꺄앙트/껭뜨,얼굴과 어깨를 막는 자세,머리 방어
+52,attack,ref,remise,허미즈,재공격,즉시 재공
+53,attack,ref,reprise,허프히즈,재개 공격,템포 후 재공
+54,footwork,ref,retraite,허트헤트,후퇴,뒤로 스텝
+55,attack,ref,riposte,ㅎ리뽀스트,받아치기,파리 후 공격
+56,distance,ref,rompre,홈프흐,거리 벌리기,후퇴로 거리 증가
+57,etiquette,ref,salut,살뤼,경례,경기 예절
+58,defence,ref,septime,셉띰,드쑤 린느를 막는 자세,하단 내측 방어
+59,judgement,ref,actions simultanées,악씨옹 시뮬따네,동시 동작,동시 행동
+60,defence,ref,sixte,식스트,드뀌 린느를 막는 자세,상단 외측 방어
+61,rules,ref,surface valable,쉬흐파스 발라블,유효면,득점 인정 부위
+62,timing,ref,temps d’escrime,떵 데스크힘,펜싱 템포,동작 박자
+63,rules,ref,tête,떼트,머리,사브르 유효면
+64,defence,ref,tierce,티에흐스,3번 파리,하단 외측 방어
+65,rules,ref,toucher,뚜셰,맞히다,득점 행위
+66,attack,ref,une-deux,윤 드읏,이중 속임,두 번 속임
+67,attack,ref,une-deux-trois,윤 드읏 트후아,삼중 속임,세 번 속임
+68,stance,ref,en garde,앙갸ㅎ드,준비,심판 구령
+69,weapon,ref,fleuret,플ㄹ으헤,플뢰레,플뢰레 종목
+70,etiquette,ref,prêt ? / allez !,프헤 알레,시작 구령,경기 시작
+71,attack,ref,longue fente,롱 펑트,롱 런지,긴 사거리 런지
+72,-,ref,attaque simple,아딱 삼플,단순 공격,속임(feinte) 없이 한 번의 동작으로 바로 들어가는 공격
+73,-,ref,parade–riposte,빠하드 ㅎ리뽀스트,막고 바로 찌르기,펜싱의 가장 기본적인 방어 → 공격 연결 패턴
+74,-,ref,attaque composée,아딱 콩포제,속임을 포함한 연속 공격,속임(feinte)을 먼저 사용해 상대의 parade 반응을 유도한 뒤 다른 라인으로 실제 공격을 이어가는 연속 공격
+75,-,ref,contre-attaque,콩트르아탁,막지 않고 들어가는 반격,"상대가 공격 우선권을 가진 상태에서, parade 없이 공격 도중이나 끝에 직접 찌르는 동작입니다."
+76,-,ref,pointe en ligne,푸앵 앙 리뉴,먼저 뻗어 우선권을 확보한 칼끝 고정 자세,"팔을 완전히 뻗어 칼끝을 상대 유효면에 위협적으로 고정한 상태를 말합니다.이 상태가 공격 시작 이전에 명확히 성립하면, 상대가 공격을 하더라도 먼저 **파리(parade)**로 이 포인트를 제거하지 않으면 상대는 우선권을 얻지 못함."
+77,contre-attaque,ref,Contre-attaque,꽁트르 아따끄,역공격,Counterattack
+78,contre-attaque,ref,Temps d’escrime,땅 데스크림,펜싱 템포,우선권 판단의 시간 개념
+79,contre-attaque,ref,Arrêt avec temps d’escrime,아레 아벡 땅 데스크림,타이밍 저지 공격,상대 공격 도중 템포 선점
+80,contre-attaque,ref,Arrêt par opposition,아레 빠르 오뽀지시옹,블레이드 제어 저지 공격,상대 칼을 억제하며 공격
+81,contre-attaque,ref,Esquive,에스키브,회피,몸을 피하는 동작
+82,contre-attaque,ref,Ducking,덕킹,숙여 피하기,사브르에서 자주 사용되는 영어 표현
+83,contre-temps,ref,Contre-temps,꽁트르 땅,카운터 타이밍 역이용,상대 역공격을 유도 후 재공격
+84,re-attack,ref,Remise,르미즈,즉시 재공격,팔을 거두지 않고 연속 찌르기
+85,re-attack,ref,Reprise,르프리즈,재정비 후 재공격,거리와 타이밍 재설정 포함
+86,re-attack,ref,Redoublement,르두블르망,압박 재공격,전진 압박 유지하며 다시 공격
+87,preparation,ref,Préparation,프레빠라시옹,준비 동작,공격 전 세팅
+88,movement,ref,Marche,마르쉐,전진,기본 전진 스텝
+89,movement,ref,Rompez,롱뻬,뒤로 물러나라,심판 구령
+90,movement,ref,Appel,아뻴,발구르기,리듬 교란 동작
+91,blade_action,ref,Battement,바뜨망,블레이드 치기,상대 칼을 치는 동작
+92,blade_action,ref,Pression,프레시옹,압박,블레이드 접촉 유지
+93,blade_action,ref,Feinte,페인트,속임 공격,페이크 공격
+94,blade_action,ref,Absence de fer,압상스 드 페르,칼 접촉 회피,블레이드 접촉 회피
+95,blade_action,ref,Fausse attaque,포스 아따끄,허위 공격,가짜 공격
+96,defense,ref,Parade-Riposte,빠라드 리포스트,방어 후 반격,패리 후 반격
+97,defense,ref,Contre-riposte,콩트르 리포스트,재반격,반격 후 다시 반격
+98,re-attack,ref,Remise,르미즈,즉시 재공격,팔을 거두지 않고 연속 찌르기
+99,distance,ref,Distance,디스탕스,거리,펜싱 핵심 거리 개념
+100,counterattack,ref,Contre-attaque,꽁트르 아따끄,역공격,Counterattack
+101,style,ref,Défensive,데팡시브,수비적 움직임,디펜시브 플레이
+102,counterattack,ref,Riposte,리포스트,반격,보통 Parade 이후 이어짐
+103,counterattack,ref,Fausse attaque,포스 아따끄,허위 공격,가짜 공격
+104,counterattack,ref,Temps d’escrime,땅 데스크림,펜싱 템포,우선권 판단 시간 개념
+105,counterattack,ref,Arrêt avec temps d’escrime,아레 아벡 땅 데스크림,타이밍 저지 공격,상대 공격 도중 템포 선점
+106,counterattack,ref,Arrêt par opposition,아레 빠르 오뽀지시옹,블레이드 제어 저지 공격,상대 칼 억제
+107,counterattack,ref,Esquive,에스키브,회피,몸을 피하는 동작
+108,counterattack,ref,Ducking,덕킹,숙여 피하기,사브르 영어 표현
+109,contre-temps,ref,Contre-temps,꽁트르 땅,카운터 타이밍 역이용,상대 역공격 유도 후 재공격
+110,re-attack,ref,Reprise,르프리즈,재정비 후 재공격,거리와 타이밍 재설정
+111,re-attack,ref,Redoublement,르두블르망,압박 재공격,전진 압박 유지
+112,preparation,ref,Préparation,프레빠라시옹,준비 동작,공격 전 세팅
+113,movement,ref,Marche,마르쉐,전진,기본 전진 스텝
+114,movement,ref,Rompez,롱뻬,뒤로 물러나라,심판 구령
+115,movement,ref,Appel,아뻴,발구르기,리듬 교란 동작
+116,blade_action,ref,Battement,바뜨망,블레이드 치기,상대 칼을 치는 동작
+117,blade_action,ref,Pression,프레시옹,압박,블레이드 접촉 유지
+118,blade_action,ref,Feinte,페인트,속임 공격,페이크 공격
+119,blade_action,ref,Absence de fer,압상스 드 페르,칼 접촉 회피,블레이드 접촉 회피
+120,blade_action,ref,Fausse attaque,포스 아따끄,허위 공격,가짜 공격
+121,offense,ref,Offensive,오펑시브,공격적 플레이,공세 운영
+122,offense,ref,Contre-offensive,콩트르 오펑시브,반공세 / 역공세,상대 공격에 대한 반공세
+123,defense,ref,Parade,빠라드,방어,패리
+124,defense,ref,Parade-Riposte,빠라드 리포스트,방어 후 반격,프랑스식 표현
+125,defense,ref,Parry-Riposte,패리 리포스트,방어 후 반격,영어식 표현
+126,defense,ref,Contre-riposte,콩트르 리포스트,재반격,반격 후 다시 반격
+127,distance,ref,Distance,디스탕스,거리,펜싱 핵심 거리 개념
+128,distance,ref,Mesure,므쥐르,거리 감각 / 유효 거리,Distance와 같이 사용
+129,timing,ref,Temps,떵,타이밍 / 템포,공격 흐름과 리듬
+130,counterattack,ref,Contre-attaque,꽁트르 아따끄,역공격,Counterattack
+131,style,ref,Défensive,데팡시브,수비적 움직임,디펜시브 플레이
+132,counterattack,ref,Riposte,리포스트,반격,보통 Parade 이후 이어짐
+133,counterattack,ref,Temps d’escrime,땅 데스크림,펜싱 템포,우선권 판단 시간 개념
+134,counterattack,ref,Arrêt avec temps d’escrime,아레 아벡 땅 데스크림,타이밍 저지 공격,상대 공격 도중 템포 선점
+135,counterattack,ref,Arrêt par opposition,아레 빠르 오뽀지시옹,블레이드 제어 저지 공격,상대 칼 억제
+136,counterattack,ref,Esquive,에스키브,회피,몸을 피하는 동작
+137,counterattack,ref,Ducking,덕킹,숙여 피하기,사브르 영어 표현
+138,contre-temps,ref,Contre-temps,꽁트르 땅,카운터 타이밍 역이용,상대 역공격 유도 후 재공격
+139,re-attack,ref,Remise,르미즈,즉시 재공격,팔을 거두지 않고 연속 찌르기
+140,re-attack,ref,Reprise,르프리즈,재정비 후 재공격,거리와 타이밍 재설정
+141,re-attack,ref,Redoublement,르두블르망,압박 재공격,전진 압박 유지
