@@ -1,14 +1,26 @@
 (function () {
   'use strict';
 
-  /** Browser cannot call YouTube APIs (CORS). Use learnlang_server proxy. */
-  const YT_API_BASE = (() => {
+  /** learnlang_server — cloud IP may be blocked by YouTube; try local server next. */
+  function getTranscriptApiBases() {
     const host = window.location.hostname;
     if (host === '127.0.0.1' || host === 'localhost') {
-      return 'http://127.0.0.1:8765';
+      return ['http://127.0.0.1:8765'];
     }
-    return 'https://learnlang-4fm6.onrender.com';
-  })();
+    return ['https://learnlang-4fm6.onrender.com', 'http://127.0.0.1:8765'];
+  }
+
+  function isRetriableTranscriptError(msg) {
+    const s = String(msg || '').toLowerCase();
+    return (
+      s.includes('blocking requests') ||
+      s.includes('ip has been blocked') ||
+      s.includes('ip를 차단') ||
+      s.includes('클라우드') ||
+      s.includes('연결하지 못했습니다') ||
+      s.includes('could not retrieve a transcript')
+    );
+  }
 
   const $ = (id) => document.getElementById(id);
 
@@ -56,14 +68,33 @@
     return h * 3600 + m * 60 + s;
   }
 
+  /** SRT/VTT: 00:00:01,010 or 00:00:01.010 */
+  function parseSubRipTime(tok) {
+    if (!tok) return 0;
+    const t = String(tok).trim().replace(',', '.');
+    const hms = t.match(/^(\d{1,2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?$/);
+    if (hms) {
+      const ms = hms[4] ? parseInt(hms[4].padEnd(3, '0').slice(0, 3), 10) / 1000 : 0;
+      return parseInt(hms[1], 10) * 3600 + parseInt(hms[2], 10) * 60 + parseInt(hms[3], 10) + ms;
+    }
+    const ms2 = t.match(/^(\d{1,2}):(\d{2})(?:\.(\d{1,3}))?$/);
+    if (ms2) {
+      const frac = ms2[3] ? parseInt(ms2[3].padEnd(3, '0').slice(0, 3), 10) / 1000 : 0;
+      return parseInt(ms2[1], 10) * 60 + parseInt(ms2[2], 10) + frac;
+    }
+    return parseTimeToken(tok);
+  }
+
   function parseTimeToken(tok) {
     if (!tok) return 0;
     const t = tok.trim();
-    if (/^\d+(\.\d+)?$/.test(t)) return parseFloat(t);
+    if (/^\d+([.,]\d+)?$/.test(t)) return parseFloat(t.replace(',', '.'));
     const hm = t.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+(?:\.\d+)?)s?)?$/i);
     if (hm && (hm[1] || hm[2] || hm[3])) {
       return (parseInt(hm[1], 10) || 0) * 3600 + (parseInt(hm[2], 10) || 0) * 60 + (parseFloat(hm[3]) || 0);
     }
+    const sub = parseSubRipTime(t);
+    if (sub > 0 || /^(\d{1,2}:){1,2}\d{2}/.test(t)) return sub;
     const clock = t.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
     if (clock) return parseClock([clock[3] ? clock[1] : 0, clock[3] ? clock[2] : clock[1], clock[3] || clock[2]]);
     return 0;
@@ -115,10 +146,33 @@
       .sort((a, b) => a.start - b.start);
     for (let i = 0; i < sorted.length; i++) {
       const next = sorted[i + 1];
-      sorted[i].end = next ? next.start : sorted[i].start + (sorted[i].duration || 2.5);
+      const endFromCue = sorted[i].end;
+      sorted[i].end =
+        endFromCue && endFromCue > sorted[i].start
+          ? endFromCue
+          : next
+            ? next.start
+            : sorted[i].start + (sorted[i].duration || 2.5);
       sorted[i].duration = Math.max(0.15, sorted[i].end - sorted[i].start);
     }
     return sorted;
+  }
+
+  function parseTimedTextBlock(lines) {
+    const timeLine = lines.find((l) => /-->/i.test(l));
+    if (!timeLine) return null;
+    const parts = timeLine.split(/-->/i);
+    const start = parseSubRipTime(parts[0]);
+    const end = parts[1] ? parseSubRipTime(parts[1]) : 0;
+    const idx = lines.indexOf(timeLine);
+    const textLines = lines
+      .slice(idx + 1)
+      .join(' ')
+      .replace(/<[^>]+>/g, '')
+      .trim();
+    if (!textLines) return null;
+    const duration = end > start ? end - start : 0;
+    return { start, end: end > start ? end : undefined, duration, text: textLines };
   }
 
   function parseWebVtt(text) {
@@ -127,49 +181,58 @@
     for (const block of blocks) {
       const lines = block.trim().split('\n');
       if (lines.length < 2) continue;
-      const timeLine = lines.find((l) => l.includes('-->'));
-      if (!timeLine) continue;
-      const m = timeLine.match(
-        /(\d{1,2}:)?\d{2}:\d{2}(?:\.\d+)?\s*-->\s*(\d{1,2}:)?\d{2}:\d{2}(?:\.\d+)?/
-      );
-      if (!m) continue;
-      const start = parseTimeToken(timeLine.split('-->')[0].trim());
-      const idx = lines.indexOf(timeLine);
-      const textLines = lines.slice(idx + 1).join(' ').trim();
-      if (!textLines) continue;
-      raw.push({ start, text: textLines, duration: 0 });
+      const cue = parseTimedTextBlock(lines);
+      if (cue) raw.push(cue);
     }
     return finalizeCues(raw);
   }
 
   function parseSrt(text) {
     const raw = [];
-    const blocks = text.replace(/\r/g, '').split(/\n\n+/);
+    const normalized = text.replace(/\r/g, '').trim();
+    const blocks = normalized.split(/\n\s*\n/);
     for (const block of blocks) {
-      const lines = block.trim().split('\n');
-      const timeLine = lines.find((l) => l.includes('-->'));
-      if (!timeLine) continue;
-      const start = parseTimeToken(timeLine.split('-->')[0].trim());
-      const idx = lines.indexOf(timeLine);
-      const textLines = lines.slice(idx + 1).join(' ').trim();
-      if (!textLines) continue;
-      raw.push({ start, text: textLines, duration: 0 });
+      const lines = block
+        .trim()
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => l.length > 0);
+      if (lines.length < 2) continue;
+      const first = lines[0];
+      const bodyLines = /^\d+$/.test(first) ? lines.slice(1) : lines;
+      const cue = parseTimedTextBlock(bodyLines);
+      if (cue) raw.push(cue);
     }
     return finalizeCues(raw);
   }
 
-  async function fetchTranscriptApi(videoId, lang) {
+  function applyLoadedCues(sourceLabel) {
+    applyRangeFilter();
+    activeIndex = cues.length > 0 ? 0 : -1;
+    loopIndex = -1;
+    clearLoopHold();
+    captionTracks = [];
+    langSelect.innerHTML = '<option value="">파일</option>';
+    langSelect.disabled = true;
+    renderCueList();
+    if (activeIndex >= 0) {
+      updateNowDisplay(activeIndex);
+      requestAnimationFrame(() => scrollCueIntoView(activeIndex, false));
+    }
+    setStatus(`${sourceLabel} ${cues.length}개 로드됨`);
+  }
+
+  async function fetchTranscriptFromBase(base, videoId, lang) {
     const q = new URLSearchParams({
       video_id: videoId,
       lang: lang || 'fr',
     });
     let res;
     try {
-      res = await fetch(`${YT_API_BASE}/api/youtube/transcript?${q}`);
+      res = await fetch(`${base}/api/youtube/transcript?${q}`);
     } catch (_) {
       throw new Error(
-        `자막 서버에 연결하지 못했습니다 (${YT_API_BASE}). ` +
-          'learnlang_server가 실행 중인지 확인하거나, 배포된 API를 사용해 주세요.'
+        `자막 서버에 연결하지 못했습니다 (${base}). learnlang_server가 실행 중인지 확인해 주세요.`
       );
     }
     let body = {};
@@ -180,10 +243,34 @@
     }
     if (!res.ok) {
       const detail = body.detail;
-      const msg = typeof detail === 'string' ? detail : Array.isArray(detail) ? detail.map((d) => d.msg || d).join(', ') : `HTTP ${res.status}`;
+      const msg =
+        typeof detail === 'string'
+          ? detail
+          : Array.isArray(detail)
+            ? detail.map((d) => d.msg || d).join(', ')
+            : `HTTP ${res.status}`;
       throw new Error(msg || '자막을 가져오지 못했습니다.');
     }
     return body;
+  }
+
+  async function fetchTranscriptApi(videoId, lang) {
+    const bases = getTranscriptApiBases();
+    let lastErr = null;
+    for (let i = 0; i < bases.length; i++) {
+      try {
+        const data = await fetchTranscriptFromBase(bases[i], videoId, lang);
+        if (i > 0) {
+          setStatus('로컬 자막 서버(127.0.0.1:8765)에서 불러왔습니다.');
+        }
+        return data;
+      } catch (err) {
+        lastErr = err;
+        const canRetry = i < bases.length - 1 && isRetriableTranscriptError(err.message);
+        if (!canRetry) break;
+      }
+    }
+    throw lastErr || new Error('자막을 가져오지 못했습니다.');
   }
 
   function fillLangSelect(tracks, selectedCode) {
@@ -556,10 +643,13 @@
         const name = (file.name || '').toLowerCase();
         if (name.endsWith('.srt')) cues = parseSrt(text);
         else cues = parseWebVtt(text);
-        applyRangeFilter();
-        renderCueList();
-        setStatus(`파일 자막 ${cues.length}개 로드됨`);
+        if (!cues.length) {
+          setStatus('자막 내용을 찾지 못했습니다.', true);
+          return;
+        }
+        applyLoadedCues('파일 자막');
       } catch (err) {
+        console.error(err);
         setStatus('자막 파일 파싱 실패', true);
       }
     };
