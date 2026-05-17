@@ -1619,6 +1619,18 @@ export function initQuizApp() {
     syncStudyUrl();
   }
 
+  /** ?file=…&i=… 주소로 들어온 경우(새로고침·공유 링크) 학습 화면 복원 (turntable은 자체 startWith 사용) */
+  (async function tryResumeStudyFromUrl() {
+    if (document.body?.classList?.contains('turntable-quiz-page')) return;
+    const fileParam = url.searchParams.get('file');
+    if (!fileParam || !url.searchParams.has('i')) return;
+    try {
+      await startWith({ file: fileParam, count: 'all', resume: true });
+    } catch (err) {
+      console.warn('[quiz-app] URL resume failed', err);
+    }
+  })();
+
   // 페이지 외부에서 호출할 수 있게 반환
   return {
     startWith,
