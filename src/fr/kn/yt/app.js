@@ -35,6 +35,8 @@
   const vttFile = $('vttFile');
   const rangeStart = $('rangeStart');
   const rangeEnd = $('rangeEnd');
+  const btnCaptionSettings = $('btnCaptionSettings');
+  const captionSettings = $('ytCaptionSettings');
 
   let player = null;
   let cues = [];
@@ -846,6 +848,26 @@
       toggleLoopCurrent();
     }
   });
+
+  function isMobileCaptionSettings() {
+    return window.matchMedia('(max-width: 759px)').matches;
+  }
+
+  function setCaptionSettingsOpen(open) {
+    if (!captionSettings || !btnCaptionSettings) return;
+    const on = !!open && isMobileCaptionSettings();
+    captionSettings.classList.toggle('is-open', on);
+    btnCaptionSettings.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+
+  if (btnCaptionSettings && captionSettings) {
+    btnCaptionSettings.addEventListener('click', () => {
+      setCaptionSettingsOpen(!captionSettings.classList.contains('is-open'));
+    });
+    window.addEventListener('resize', () => {
+      if (!isMobileCaptionSettings()) setCaptionSettingsOpen(false);
+    });
+  }
 
   btnLoad.addEventListener('click', handleLoad);
   btnLoopToggle.addEventListener('click', toggleLoopCurrent);

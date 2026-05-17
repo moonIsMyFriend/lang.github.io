@@ -44,25 +44,32 @@
                     </button>
                 </div>
 
-                <div class="yt-toolbar">
-                    <label>
-                        자막 언어
-                        <select id="captionLang" disabled>
-                            <option value="fr">fr</option>
-                        </select>
-                    </label>
-                    <label>
-                        시작
-                        <input id="rangeStart" type="text" class="yt-range-input" placeholder="0:00" />
-                    </label>
-                    <label>
-                        끝
-                        <input id="rangeEnd" type="text" class="yt-range-input" placeholder="선택" />
-                    </label>
-                    <label class="yt-file-label">
-                        VTT/SRT
-                        <input id="vttFile" type="file" accept=".vtt,.srt,text/vtt,text/plain" />
-                    </label>
+                <div class="yt-settings-bar">
+                    <button type="button" id="btnCaptionSettings" class="yt-btn-caption-settings"
+                        aria-expanded="false" aria-controls="ytCaptionSettings">
+                        자막 설정
+                        <span class="yt-settings-chevron" aria-hidden="true">▼</span>
+                    </button>
+                    <div id="ytCaptionSettings" class="yt-toolbar yt-caption-settings">
+                        <label>
+                            자막 언어
+                            <select id="captionLang" disabled>
+                                <option value="fr">fr</option>
+                            </select>
+                        </label>
+                        <label>
+                            시작
+                            <input id="rangeStart" type="text" class="yt-range-input" placeholder="0:00" />
+                        </label>
+                        <label>
+                            끝
+                            <input id="rangeEnd" type="text" class="yt-range-input" placeholder="선택" />
+                        </label>
+                        <label class="yt-file-label">
+                            VTT/SRT
+                            <input id="vttFile" type="file" accept=".vtt,.srt,text/vtt,text/plain" />
+                        </label>
+                    </div>
                 </div>
 
                 <p id="status" class="yt-status"></p>
