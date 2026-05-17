@@ -1,4 +1,49 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouTube 자막 학습</title><link rel="stylesheet" href="../../../com/css/quiz-style.css"></head><body><div class="wrap"><div class="card"><div class="screen-title"><h1>YouTube 자막 학습</h1><div class="row"><span class="pill">SRT: <span id="totalCnt">0</span></span></div></div><section class="box"><h1 style="margin-top:0">Index</h1><div class="row"><div class="search" style="flex:1"><input id="q" type="search" placeholder="검색: 파일명"></div></div><div style="height:12px"></div><div id="list" class="card"></div><p id="empty" class="muted" style="display:none">결과가 없습니다.</p></section></div></div><script type="module">import { loadPageTitle } from '../../../com/lib/title.js';
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube 자막 학습</title>
+    <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
+    <link rel="stylesheet" href="yt.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card">
+            <div class="screen-title">
+                <h1 class="screen-title-heading">
+                    <a class="site-brand" href="https://simulavi.com" target="_blank" rel="noopener noreferrer"
+                        aria-label="simulavi.com">
+                        <img src="../../../com/img/005.png" alt="" width="36" height="36" decoding="async" />
+                    </a>
+                    YouTube 자막 학습
+                </h1>
+                <div class="row">
+                    <span class="pill">SRT: <span id="totalCnt">0</span></span>
+                </div>
+            </div>
+
+            <section class="box">
+                <h1 style="margin-top:0">Index</h1>
+
+                <div class="row">
+                    <div class="search" style="flex:1">
+                        <input id="q" type="search" placeholder="검색: 파일명">
+                    </div>
+                </div>
+                <div style="height:12px"></div>
+
+                <div id="list" class="card"></div>
+                <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
+
+            </section>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadPageTitle } from '../../../com/lib/title.js';
         loadPageTitle();
 
         const list = document.getElementById('list');
@@ -78,4 +123,8 @@
             const term = q.value.trim().toLowerCase();
             view = data.filter((it) => ((it.dir || '') + '/' + it.name).toLowerCase().includes(term));
             render(view);
-        });</script></body></html>
+        });
+    </script>
+</body>
+
+</html>

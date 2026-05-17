@@ -1,3 +1,41 @@
+.screen-title-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: inherit;
+    line-height: 1.2;
+}
+
+.site-brand {
+    display: inline-flex;
+    flex-shrink: 0;
+    line-height: 0;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: none;
+    transition: opacity 0.15s ease;
+}
+
+.site-brand:hover {
+    opacity: 0.85;
+}
+
+.site-brand img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    object-fit: cover;
+    transform: scale(1.12);
+    /* PNG 바깥 흰 여백을 배경색과 합침 */
+    mix-blend-mode: darken;
+}
+
 .yt-layout {
     display: grid;
     gap: 14px;
