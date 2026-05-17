@@ -31,10 +31,6 @@
                 <div id="list" class="card"></div>
                 <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
 
-                <p class="sub" style="margin-top:14px">
-                    SRT 파일 <b>첫 줄</b>에 YouTube 주소를 넣으세요.
-                    예: <span class="kbd"># https://www.youtube.com/watch?v=Ji_WjbCB8tc</span>
-                </p>
             </section>
         </div>
     </div>
@@ -93,7 +89,7 @@
             for (const [dir, files] of groupByDir(arr)) {
                 const box = document.createElement('div');
                 box.className = 'folder';
-                const title = dir ? escapeHTML(dir) : 'SRT';
+                const title = dir ? escapeHTML(dir) : '';
                 box.innerHTML = `<div class="title">${title}</div><ul></ul>`;
                 const ul = box.querySelector('ul');
 

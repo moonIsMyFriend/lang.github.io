@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouTube 자막 학습</title><link rel="stylesheet" href="../../../com/css/quiz-style.css"></head><body><div class="wrap"><div class="card"><div class="screen-title"><h1>YouTube 자막 학습</h1><div class="row"><span class="pill">SRT: <span id="totalCnt">0</span></span></div></div><section class="box"><h1 style="margin-top:0">Index</h1><div class="row"><div class="search" style="flex:1"><input id="q" type="search" placeholder="검색: 파일명"></div></div><div style="height:12px"></div><div id="list" class="card"></div><p id="empty" class="muted" style="display:none">결과가 없습니다.</p><p class="sub" style="margin-top:14px">SRT 파일 <b>첫 줄</b>에 YouTube 주소를 넣으세요. 예: <span class="kbd"># https://www.youtube.com/watch?v=Ji_WjbCB8tc</span></p></section></div></div><script type="module">import { loadPageTitle } from '../../../com/lib/title.js';
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouTube 자막 학습</title><link rel="stylesheet" href="../../../com/css/quiz-style.css"></head><body><div class="wrap"><div class="card"><div class="screen-title"><h1>YouTube 자막 학습</h1><div class="row"><span class="pill">SRT: <span id="totalCnt">0</span></span></div></div><section class="box"><h1 style="margin-top:0">Index</h1><div class="row"><div class="search" style="flex:1"><input id="q" type="search" placeholder="검색: 파일명"></div></div><div style="height:12px"></div><div id="list" class="card"></div><p id="empty" class="muted" style="display:none">결과가 없습니다.</p></section></div></div><script type="module">import { loadPageTitle } from '../../../com/lib/title.js';
         loadPageTitle();
 
         const list = document.getElementById('list');
@@ -51,7 +51,7 @@
             for (const [dir, files] of groupByDir(arr)) {
                 const box = document.createElement('div');
                 box.className = 'folder';
-                const title = dir ? escapeHTML(dir) : 'SRT';
+                const title = dir ? escapeHTML(dir) : '';
                 box.innerHTML = `<div class="title">${title}</div><ul></ul>`;
                 const ul = box.querySelector('ul');
 
