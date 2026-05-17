@@ -114,10 +114,28 @@ body.dark .yt-url-bar input {
 
 .yt-loop-toggle {
     flex: 0 0 auto !important;
-    min-width: 5.5rem;
+    width: 44px;
+    min-width: 44px;
     min-height: 44px;
+    padding: 0 !important;
     align-self: stretch;
-    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-loop-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-loop-toggle:not(.is-on) .yt-loop-icon--off {
+    display: inline-flex;
+}
+
+.yt-loop-toggle.is-on .yt-loop-icon--on {
+    display: inline-flex;
 }
 
 .yt-loop-toggle.is-on {

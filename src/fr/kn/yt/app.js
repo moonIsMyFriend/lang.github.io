@@ -34,7 +34,7 @@
   let playEnd = null;
   let captionTracks = [];
 
-  const LOOP_PAUSE_MS = 2000;
+  const LOOP_PAUSE_MS = 1000;
 
   function setStatus(msg, isError) {
     statusEl.textContent = msg || '';
@@ -311,12 +311,12 @@
 
   function updateLoopToggle() {
     if (!btnLoopToggle) return;
-    const canLoop = cues.length > 0 && activeIndex >= 0;
-    btnLoopToggle.disabled = !canLoop;
+    btnLoopToggle.disabled = cues.length === 0;
     const on = loopIndex >= 0;
-    btnLoopToggle.textContent = on ? '반복 ON' : '반복 OFF';
     btnLoopToggle.classList.toggle('is-on', on);
     btnLoopToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btnLoopToggle.setAttribute('aria-label', on ? '구간 반복 끄기' : '구간 반복 켜기');
+    btnLoopToggle.title = on ? '구간 반복 끄기' : '구간 반복 켜기';
   }
 
   function toggleLoop(index) {
@@ -328,20 +328,13 @@
       cueList.querySelectorAll('.yt-cue').forEach((row) => {
         row.classList.toggle('is-looping', false);
       });
-    } else {
-      clearLoopHold();
-      loopIndex = index;
-      if (activeIndex !== index) {
-        seekToCue(index, true, true);
-      } else if (player) {
-        player.seekTo(cues[index].start, true);
+      if (player && window.YT) {
         player.playVideo();
       }
+    } else {
+      loopIndex = index;
+      seekToCue(index, true, true);
       setStatus(`구간 반복: ${formatTime(cues[index].start)} ~ ${formatTime(cues[index].end)}`);
-      cueList.querySelectorAll('.yt-cue').forEach((row) => {
-        const i = parseInt(row.dataset.index, 10);
-        row.classList.toggle('is-looping', i === loopIndex);
-      });
     }
     updateLoopToggle();
   }
