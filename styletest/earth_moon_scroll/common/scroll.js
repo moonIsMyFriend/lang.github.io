@@ -953,6 +953,133 @@
         wrapper.addEventListener("scrollend", settleScroll);
       }
 
+      /* 마우스·터치 드래그로 가로 스크롤 */
+      var dragActive = false;
+      var dragStartX = 0;
+      var dragStartScroll = 0;
+      var dragMoved = false;
+      var DRAG_THRESHOLD = 5;
+
+      function canDragScroll() {
+        if (document.body.classList.contains("is-nav-open")) return false;
+        if (moonSequenceActive) return false;
+        if (R.rocketMode === "flying" || R.rocketMode === "moonOrbit") return false;
+        return true;
+      }
+
+      function skipEarthIntroForDrag(targetIndex) {
+        if (targetIndex < 1 || R.rocketMode !== "intro3d") return false;
+        if (window.EarthIntroRocket && window.EarthIntroRocket.cancel) {
+          window.EarthIntroRocket.cancel();
+        }
+        cancelFlight();
+        mountRocketFixed();
+        if (rocketLayer) rocketLayer.style.visibility = "";
+        line.trailOn = true;
+        if (targetIndex === 1) {
+          flyDistancePageEntryFromLeft();
+          return true;
+        }
+        if (targetIndex >= 2) {
+          introDone = true;
+          abortIntroArcForMoon();
+          return true;
+        }
+        return false;
+      }
+
+      function settleScrollFromDrag() {
+        if (isSnapping || moonSequenceActive) return;
+        if (R.rocketMode === "flying" || R.rocketMode === "moonOrbit") return;
+
+        var raw = syncForwardPageIndex();
+        var target = clampIndex(raw);
+        if (target < minBackwardIndex()) target = minBackwardIndex();
+        if (target > maxPageReached + 1) target = maxPageReached + 1;
+        target = clampIndex(target);
+
+        if (
+          target !== raw ||
+          Math.abs(wrapper.scrollLeft - target * pageWidth()) > 2
+        ) {
+          goToPage(target, true);
+          window.setTimeout(function () {
+            if (!skipEarthIntroForDrag(target)) onPageSettled(target);
+          }, reduceMotion ? 0 : 440);
+        } else {
+          anchorIndex = target;
+          if (!skipEarthIntroForDrag(target)) onPageSettled(target);
+        }
+      }
+
+      function isDragBlockedTarget(el) {
+        if (!el || !el.closest) return false;
+        if (el.closest(".site-nav")) return true;
+        if (el.closest("a, button, input, textarea, select, label")) return true;
+        return false;
+      }
+
+      function dragScrollMaxLeft() {
+        var w = pageWidth();
+        return Math.min((pageCount - 1) * w, (maxPageReached + 1) * w);
+      }
+
+      function onDragPointerDown(e) {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        if (!canDragScroll()) return;
+        if (isDragBlockedTarget(e.target)) return;
+
+        dragActive = true;
+        dragMoved = false;
+        dragStartX = e.clientX;
+        dragStartScroll = wrapper.scrollLeft;
+        isSnapping = false;
+
+        try {
+          wrapper.setPointerCapture(e.pointerId);
+        } catch (err) {}
+
+        wrapper.classList.add("is-drag-scrolling");
+      }
+
+      function onDragPointerMove(e) {
+        if (!dragActive) return;
+
+        var dx = e.clientX - dragStartX;
+        if (Math.abs(dx) > DRAG_THRESHOLD) dragMoved = true;
+
+        var next = dragStartScroll - dx;
+        var minLeft = minBackwardIndex() * pageWidth();
+        var maxLeft = dragScrollMaxLeft();
+
+        if (next < minLeft) next = minLeft;
+        if (next > maxLeft) next = maxLeft;
+
+        wrapper.scrollLeft = next;
+
+        if (dragMoved) e.preventDefault();
+      }
+
+      function onDragPointerEnd(e) {
+        if (!dragActive) return;
+
+        dragActive = false;
+        wrapper.classList.remove("is-drag-scrolling");
+
+        try {
+          wrapper.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+
+        if (dragMoved) {
+          settleScrollFromDrag();
+        }
+      }
+
+      wrapper.addEventListener("pointerdown", onDragPointerDown);
+      wrapper.addEventListener("pointermove", onDragPointerMove);
+      wrapper.addEventListener("pointerup", onDragPointerEnd);
+      wrapper.addEventListener("pointercancel", onDragPointerEnd);
+
       document.addEventListener("earth-moon-nav-close", function (e) {
         var pose = e.detail;
         if (!pose) return;

@@ -352,8 +352,17 @@
         return s.dir.dot(introScratch.toCam) > 0.04;
       }
 
+      var introRafId = null;
+
       window.EarthIntroRocket = {
         ready: true,
+        cancel: function () {
+          if (introRafId != null) {
+            cancelAnimationFrame(introRafId);
+            introRafId = null;
+          }
+          introRocketActive = false;
+        },
         start: function (durationMs, reduced, onFrame, onDone) {
           computeIntroDirections();
           introRocketActive = true;
@@ -367,6 +376,7 @@
           setIntroRocketT(0);
           var t0 = performance.now();
           function step(now) {
+            if (!introRocketActive) return;
             var t = Math.min(1, (now - t0) / durationMs);
             var eased = 1 - Math.pow(1 - t, 2.1);
             var front = setIntroRocketT(eased);
@@ -374,13 +384,14 @@
             slot.rot = introRotForPhase(eased);
             if (onFrame) onFrame(slot, front);
             if (t < 1) {
-              requestAnimationFrame(step);
+              introRafId = requestAnimationFrame(step);
             } else {
+              introRafId = null;
               introRocketActive = false;
               onDone(slot);
             }
           }
-          requestAnimationFrame(step);
+          introRafId = requestAnimationFrame(step);
         },
       };
       document.dispatchEvent(new CustomEvent("earth-scene-ready"));

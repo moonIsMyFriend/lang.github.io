@@ -25,6 +25,19 @@ body {
   overscroll-behavior-x: contain;
   display: flex;
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.scroll-wrapper.is-drag-scrolling {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  cursor: grabbing;
+  user-select: none;
+}
+
+body.is-nav-open .scroll-wrapper {
+  cursor: default;
 }
 
 .scroll-wrapper::-webkit-scrollbar {
