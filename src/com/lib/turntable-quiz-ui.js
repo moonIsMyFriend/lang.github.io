@@ -313,4 +313,36 @@ export function initTurntableQuizUi() {
   if (answerWrap) mo.observe(answerWrap, { attributes: true, attributeFilter: ['style'] });
   document.addEventListener('learnlang-reset-tp-expr', syncLines);
   syncLines();
+
+  const settingsBtn = document.querySelector('#btnSettings');
+  const settingsModal = document.querySelector('#tpSettingsModal');
+  const closeBtn = document.querySelector('#btnCloseSettings');
+  const applyBtn = document.querySelector('#btnApplySettings');
+
+  function openSettings() {
+    if (!settingsModal) return;
+    settingsModal.classList.remove('hidden');
+    settingsModal.hidden = false;
+    document.body.classList.add('tp-settings-open');
+    closeBtn?.focus();
+  }
+
+  function closeSettings() {
+    if (!settingsModal) return;
+    settingsModal.classList.add('hidden');
+    settingsModal.hidden = true;
+    document.body.classList.remove('tp-settings-open');
+    settingsBtn?.focus();
+  }
+
+  settingsBtn?.addEventListener('click', openSettings);
+  closeBtn?.addEventListener('click', closeSettings);
+  applyBtn?.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('learnlang-settings-applied'));
+    closeSettings();
+  });
+  settingsModal?.querySelector('[data-close-settings]')?.addEventListener('click', closeSettings);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && settingsModal && !settingsModal.hidden) closeSettings();
+  });
 }

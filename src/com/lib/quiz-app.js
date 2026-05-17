@@ -101,6 +101,96 @@ export function initQuizApp() {
   /** 녹음 중 진행 바 — 녹음 버튼 바로 위 슬롯(없으면 #pronounceStatus 로 폴백) */
   const pronounceRecProgressEl = document.querySelector('#pronounceRecProgress');
 
+  const LS_MASK_LEVEL = 'learnlang_mask_level';
+  const LS_MASK_KEEP_FIRST = 'learnlang_mask_keep_first';
+  const LS_MASK_MIN_LEN = 'learnlang_mask_min_len';
+  const LS_THEME_DARK = 'learnlang_theme_dark';
+
+  function readMaskLevelValue() {
+    if (level) return Number(level.value) || 30;
+    try {
+      const v = Number(localStorage.getItem(LS_MASK_LEVEL));
+      return Number.isFinite(v) ? v : 30;
+    } catch (_) {
+      return 30;
+    }
+  }
+
+  function readKeepFirst() {
+    if (keepFirst) return keepFirst.checked;
+    try {
+      return localStorage.getItem(LS_MASK_KEEP_FIRST) !== '0';
+    } catch (_) {
+      return true;
+    }
+  }
+
+  function readMinLen() {
+    if (minLen) return Math.max(1, Number(minLen.value) || 1);
+    try {
+      const v = Number(localStorage.getItem(LS_MASK_MIN_LEN));
+      return Number.isFinite(v) ? Math.max(1, v) : 3;
+    } catch (_) {
+      return 3;
+    }
+  }
+
+  function getMaskOpts() {
+    return {
+      ratio: readMaskLevelValue() / 100,
+      keepFirst: readKeepFirst(),
+      minLen: readMinLen()
+    };
+  }
+
+  function persistMaskSettings() {
+    try {
+      if (level) localStorage.setItem(LS_MASK_LEVEL, String(readMaskLevelValue()));
+      if (keepFirst) localStorage.setItem(LS_MASK_KEEP_FIRST, keepFirst.checked ? '1' : '0');
+      if (minLen) localStorage.setItem(LS_MASK_MIN_LEN, String(readMinLen()));
+    } catch (_) {}
+  }
+
+  function loadMaskSettingsIntoDom() {
+    try {
+      if (level) {
+        const v = localStorage.getItem(LS_MASK_LEVEL);
+        if (v != null && v !== '') level.value = v;
+        if (levelLabel) levelLabel.textContent = level.value + '%';
+      }
+      if (keepFirst) {
+        const k = localStorage.getItem(LS_MASK_KEEP_FIRST);
+        if (k === '0') keepFirst.checked = false;
+        else if (k === '1') keepFirst.checked = true;
+      }
+      if (minLen) {
+        const m = localStorage.getItem(LS_MASK_MIN_LEN);
+        if (m != null && m !== '') minLen.value = m;
+      }
+    } catch (_) {}
+  }
+
+  const themeToggle = document.querySelector('#themeToggle');
+
+  function applyThemeFromToggle() {
+    if (!themeToggle) return;
+    if (themeToggle.checked) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
+    try {
+      localStorage.setItem(LS_THEME_DARK, themeToggle.checked ? '1' : '0');
+    } catch (_) {}
+  }
+
+  function loadThemeFromStorage() {
+    if (!themeToggle) return;
+    try {
+      const saved = localStorage.getItem(LS_THEME_DARK);
+      if (saved === '1') themeToggle.checked = true;
+      else if (saved === '0') themeToggle.checked = false;
+    } catch (_) {}
+    applyThemeFromToggle();
+  }
+
   /** turntable `#tpExpr` 등에서 표현 줄을 CSV 기준으로 다시 채움 (발음 하이라이트 제거) */
   function dispatchTpExprResync() {
     try {
@@ -884,7 +974,23 @@ export function initQuizApp() {
     });
   }
 
-  level.addEventListener('input', () => levelLabel.textContent = level.value + '%');
+  if (level && levelLabel) {
+    loadMaskSettingsIntoDom();
+    const onMaskControlChange = () => {
+      if (levelLabel) levelLabel.textContent = level.value + '%';
+      persistMaskSettings();
+      if (state.session) renderCurrent();
+    };
+    level.addEventListener('input', onMaskControlChange);
+    keepFirst?.addEventListener('change', onMaskControlChange);
+    minLen?.addEventListener('change', onMaskControlChange);
+    minLen?.addEventListener('input', onMaskControlChange);
+  }
+
+  if (themeToggle) {
+    loadThemeFromStorage();
+    themeToggle.addEventListener('change', applyThemeFromToggle);
+  }
 
   // 파일 선택
   csvInput.addEventListener('change', async (e) => {
@@ -893,20 +999,6 @@ export function initQuizApp() {
     state.csvFileName = file.name;
     const text = await file.text();
     handleCSV(text);
-  });
-
-
-  const themeToggle = document.querySelector('#themeToggle');
-
-  // 기본: 밝은 모드이므로 체크 안 됨
-  themeToggle.checked = false;
-
-  themeToggle.addEventListener('change', () => {
-      if(themeToggle.checked){
-          document.body.classList.add('dark');
-      } else {
-          document.body.classList.remove('dark');
-      }
   });
 
 
@@ -1036,7 +1128,7 @@ export function initQuizApp() {
     gradeCurrent();
     document.activeElement.blur();
   });
-  btnHome.addEventListener('click', () => {
+  if (btnHome) btnHome.addEventListener('click', () => {
     const cancelled = interruptPronounceForUiNav();
     toastIfPronounceNavInterrupted(cancelled);
     stopAudio();
@@ -1111,11 +1203,7 @@ export function initQuizApp() {
     const comment = (row[state.cols.comment] || '').toString();
     const pr = String(row[state.cols.pron] ?? '');
 
-    const maskedInfo = maskEnglish(en, {
-      ratio: Number(level.value) / 100,
-      keepFirst: keepFirst.checked,
-      minLen: Math.max(1, Number(minLen.value) || 1)
-    });
+    const maskedInfo = maskEnglish(en, getMaskOpts());
 
     if (comment){
         ko.textContent = koText +'\n:' + comment;
@@ -1335,11 +1423,7 @@ export function initQuizApp() {
     const en = (row[state.cols.en] || '').toString();
     const koText = (row[state.cols.ko] || '').toString();
 
-    const maskedInfo = maskEnglish(en, {
-      ratio: Number(level.value) / 100,
-      keepFirst: keepFirst.checked,
-      minLen: Math.max(1, Number(minLen.value) || 1)
-    });
+    const maskedInfo = maskEnglish(en, getMaskOpts());
 
     ko.textContent = koText;
     enMask.innerHTML = maskedInfo.html;
@@ -1514,14 +1598,27 @@ export function initQuizApp() {
         practiceQuizEl.checked = false;
       }
     } catch (_) {}
+    const applyPracticeFromDom = () => {
+      state.practice = practiceStudyEl.checked ? 'study' : 'quiz';
+      if (state.session) renderCurrent();
+    };
     const persistPractice = () => {
       try {
         localStorage.setItem(LS_PRACTICE_MODE, practiceStudyEl.checked ? 'study' : 'quiz');
       } catch (_) {}
+      applyPracticeFromDom();
     };
     practiceQuizEl.addEventListener('change', persistPractice);
     practiceStudyEl.addEventListener('change', persistPractice);
   }
+
+  document.addEventListener('learnlang-settings-applied', () => {
+    persistMaskSettings();
+    const pq = document.querySelector('#practiceQuiz');
+    const ps = document.querySelector('#practiceStudy');
+    if (pq && ps) state.practice = ps.checked ? 'study' : 'quiz';
+    if (state.session) renderCurrent();
+  });
 
   function stopPronounceRecording() {
     clearPronounceRecordingProgress();

@@ -50,18 +50,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <button id="btnPick" class="primary" type="button">Start</button>
                         </div>
                     </details>
-                    <div class="box">
-                        <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
-                        <label><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
-                        <label><input type="radio" name="practice" id="practiceQuiz" value="quiz"> 퀴즈</label>
-                        <label><input type="radio" name="practice" id="practiceStudy" value="study" checked> 학습</label>
-                        <label for="level">난이도 <span id="levelLabel" class="hint">30%</span></label>
-                        <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
-                        <label><input id="keepFirst" type="checkbox" checked /> 첫 글자 보이기</label>
-                        <input id="minLen" type="number" min="1" max="10" value="3" />
-                        <label><input type="checkbox" id="audioLoop" /> 자동 반복 재생</label>
-                        <label><input type="checkbox" id="themeToggle" /> 다크 모드</label>
-                    </div>
                 </div>
             </section>
 
@@ -96,7 +84,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <div class="mini-play" id="miniPlay" role="button" tabindex="0" title="듣기">▶</div>
                             </div>
 
-                            <div class="orange-tab">M</div>
+                            <button type="button" class="orange-tab" id="btnSettings" aria-label="학습 설정" title="학습 설정">M</button>
 
                             <div class="disc" id="disc">
                                 <div class="hub"></div>
@@ -197,6 +185,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </section>
 
 
+    </div>
+
+    <div id="tpSettingsModal" class="tp-settings-modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="tpSettingsTitle" hidden>
+        <div class="tp-settings-backdrop" data-close-settings tabindex="-1" aria-hidden="true"></div>
+        <div class="tp-settings-dialog box card">
+            <div class="row tp-settings-head">
+                <h2 id="tpSettingsTitle" style="margin:0">학습 설정</h2>
+                <button type="button" class="ghost" id="btnCloseSettings" aria-label="닫기">✕</button>
+            </div>
+            <div class="box" style="margin-top:12px">
+                <div class="row" style="margin-top:4px">
+                    <span class="muted">문제 출제 방식:</span>
+                    <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
+                    <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
+                </div>
+                <div class="row" style="margin-top:8px">
+                    <span class="muted">모드 선택:</span>
+                </div>
+                <div>
+                    <label style="margin-left:12px"><input type="radio" name="practice" id="practiceQuiz" value="quiz"> 퀴즈(빈칸 채우기)</label>
+                </div>
+                <div>
+                    <label style="margin-left:12px"><input type="radio" name="practice" id="practiceStudy" value="study" checked> 학습(번역/정답/발음)</label>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
+                    <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
+                </div>
+                <div class="row" style="margin-top:6px">
+                    <label><input id="keepFirst" type="checkbox" checked /> 단어 첫 글자는 보이기</label>
+                    <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
+                            style="width:64px;"> 글자 이상만 가리기</label>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <label><input type="checkbox" id="audioLoop" /> 자동 반복 재생</label>
+                </div>
+                <div class="row" style="margin-bottom:4px">
+                    <label><input type="checkbox" id="themeToggle" /> 다크 모드</label>
+                </div>
+            </div>
+            <div class="row" style="margin-top:14px; justify-content:flex-end">
+                <button type="button" class="primary" id="btnApplySettings">확인</button>
+            </div>
+        </div>
     </div>
 
     <script type="module">
