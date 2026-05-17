@@ -4,9 +4,18 @@
 
 const PRON_STATS_KEY = 'learnlang.pronStats';
 
-export function syncPronStatsStorage(count, totalScore) {
+export function syncPronStatsStorage(count, totalScore, zeroScores = []) {
   try {
-    sessionStorage.setItem(PRON_STATS_KEY, JSON.stringify({ count, totalScore }));
+    sessionStorage.setItem(
+      PRON_STATS_KEY,
+      JSON.stringify({
+        count,
+        totalScore,
+        zeroScores: zeroScores.map((z) =>
+          typeof z === 'string' ? { label: z } : { label: z.label || '' }
+        ).filter((z) => z.label),
+      })
+    );
   } catch (_) { /* ignore */ }
 }
 
@@ -20,25 +29,40 @@ function readPronStatsFromStorage() {
   try {
     const raw = sessionStorage.getItem(PRON_STATS_KEY);
     if (!raw) return null;
-    const { count, totalScore } = JSON.parse(raw);
+    const { count, totalScore, zeroScores = [] } = JSON.parse(raw);
     if (!count) return null;
     const avg = Math.round(totalScore / count);
     return {
       text: `발음 ${count}회 · 총점 ${Math.round(totalScore)}점 · 평균 ${avg}점 / 100`,
+      zeroScoreWords: zeroScores.map((z) => z.label).filter(Boolean),
     };
   } catch {
     return null;
   }
 }
 
-function resolveSummary({ total = 0, pronSummary = '', getSummary } = {}) {
-  if (pronSummary) return { total, text: pronSummary };
+function resolveSummary({ total = 0, pronSummary = '', zeroScoreWords = [], getSummary } = {}) {
+  if (pronSummary) {
+    return { total, text: pronSummary, zeroScoreWords };
+  }
   if (typeof getSummary === 'function') {
     const s = getSummary();
-    if (s?.text) return { total: s.total ?? total, text: s.text };
+    if (s?.text) {
+      return {
+        total: s.total ?? total,
+        text: s.text,
+        zeroScoreWords: s.zeroScoreWords ?? zeroScoreWords,
+      };
+    }
   }
   const stored = readPronStatsFromStorage();
-  if (stored?.text) return { total, text: stored.text };
+  if (stored?.text) {
+    return {
+      total,
+      text: stored.text,
+      zeroScoreWords: stored.zeroScoreWords ?? [],
+    };
+  }
   return null;
 }
 
@@ -50,17 +74,51 @@ function ensurePronSummaryStyles() {
     .pron-summary-modal { position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:16px; }
     .pron-summary-modal.hidden { display:none !important; }
     .pron-summary-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.55); border:0; padding:0; cursor:pointer; }
-    .pron-summary-dialog { position:relative; z-index:1; max-width:420px; width:100%; margin:0; }
+    .pron-summary-dialog { position:relative; z-index:1; max-width:420px; width:100%; margin:0; max-height:min(90vh,640px); overflow-y:auto; }
+    .pron-summary-zero-wrap { margin-top:12px; }
+    .pron-summary-zero-title { font-size:13px; color:#94a3b8; margin:0 0 6px; font-weight:600; }
+    .pron-summary-zero-scroll {
+      max-height:160px;
+      overflow-y:auto;
+      margin:0;
+      padding:8px 10px 8px 24px;
+      border:1px solid var(--bd, #334155);
+      border-radius:8px;
+      background:rgba(0,0,0,.15);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .pron-summary-zero-scroll li { margin:4px 0; }
   `;
   document.head.appendChild(style);
 }
 
+function ensureZeroListInModal(modal) {
+  if (modal.querySelector('#pronSummaryZeroWrap')) return;
+  const dialog = modal.querySelector('.pron-summary-dialog');
+  const actions = dialog?.querySelector('.row');
+  if (!dialog || !actions) return;
+
+  const wrap = document.createElement('div');
+  wrap.id = 'pronSummaryZeroWrap';
+  wrap.className = 'pron-summary-zero-wrap';
+  wrap.hidden = true;
+  wrap.innerHTML = `
+    <p class="pron-summary-zero-title">0점 (다시 연습할 표현)</p>
+    <ul id="pronSummaryZeroList" class="pron-summary-zero-scroll"></ul>
+  `;
+  dialog.insertBefore(wrap, actions);
+}
+
 function ensurePronSummaryModal() {
   ensurePronSummaryStyles();
-  const existing = document.getElementById('pronSummaryModal');
-  if (existing) return existing;
+  let modal = document.getElementById('pronSummaryModal');
+  if (modal) {
+    ensureZeroListInModal(modal);
+    return modal;
+  }
 
-  const modal = document.createElement('div');
+  modal = document.createElement('div');
   modal.id = 'pronSummaryModal';
   modal.className = 'pron-summary-modal hidden';
   modal.setAttribute('role', 'dialog');
@@ -73,6 +131,10 @@ function ensurePronSummaryModal() {
       <h2 id="pronSummaryTitle" style="margin-top:0">발음 학습 결과</h2>
       <p id="pronSummaryLead" class="sub"></p>
       <p id="pronSummaryBody" class="big"></p>
+      <div id="pronSummaryZeroWrap" class="pron-summary-zero-wrap" hidden>
+        <p class="pron-summary-zero-title">0점 (다시 연습할 표현)</p>
+        <ul id="pronSummaryZeroList" class="pron-summary-zero-scroll"></ul>
+      </div>
       <div class="row" style="margin-top:14px;justify-content:flex-end">
         <button type="button" class="primary" id="pronSummaryOk">확인</button>
       </div>
@@ -83,7 +145,31 @@ function ensurePronSummaryModal() {
   return modal;
 }
 
-function showPronounceSummaryModal({ total, pronSummary, onClose }) {
+function renderZeroScoreList(modal, zeroScoreWords) {
+  const wrap = modal.querySelector('#pronSummaryZeroWrap');
+  const list = modal.querySelector('#pronSummaryZeroList');
+  if (!wrap || !list) return;
+
+  const words = Array.isArray(zeroScoreWords)
+    ? zeroScoreWords.filter((w) => String(w).trim())
+    : [];
+
+  if (!words.length) {
+    wrap.hidden = true;
+    list.replaceChildren();
+    return;
+  }
+
+  wrap.hidden = false;
+  list.replaceChildren();
+  for (const word of words) {
+    const li = document.createElement('li');
+    li.textContent = String(word).trim();
+    list.appendChild(li);
+  }
+}
+
+function showPronounceSummaryModal({ total, pronSummary, zeroScoreWords = [], onClose }) {
   const modal = ensurePronSummaryModal();
   const lead = modal.querySelector('#pronSummaryLead');
   const body = modal.querySelector('#pronSummaryBody');
@@ -92,6 +178,7 @@ function showPronounceSummaryModal({ total, pronSummary, onClose }) {
 
   if (lead) lead.textContent = total > 0 ? `총 ${total}문장을 학습했습니다.` : '';
   if (body) body.textContent = pronSummary;
+  renderZeroScoreList(modal, zeroScoreWords);
 
   const close = () => {
     modal.classList.add('hidden');
@@ -108,10 +195,16 @@ function showPronounceSummaryModal({ total, pronSummary, onClose }) {
 }
 
 /** @returns {boolean} handled */
-export function finishStudySession({ homeUrl, total = 0, pronSummary = '', getSummary } = {}) {
+export function finishStudySession({
+  homeUrl,
+  total = 0,
+  pronSummary = '',
+  zeroScoreWords = [],
+  getSummary,
+} = {}) {
   if (!homeUrl) return false;
 
-  const summary = resolveSummary({ total, pronSummary, getSummary });
+  const summary = resolveSummary({ total, pronSummary, zeroScoreWords, getSummary });
   const go = () => {
     clearPronStatsStorage();
     location.replace(homeUrl);
@@ -121,6 +214,7 @@ export function finishStudySession({ homeUrl, total = 0, pronSummary = '', getSu
     showPronounceSummaryModal({
       total: summary.total,
       pronSummary: summary.text,
+      zeroScoreWords: summary.zeroScoreWords,
       onClose: go,
     });
     return true;
@@ -128,6 +222,18 @@ export function finishStudySession({ homeUrl, total = 0, pronSummary = '', getSu
 
   go();
   return true;
+}
+
+function captureZeroScoreLabelFromDom() {
+  const tp = document.querySelector('#tpExpr')?.textContent?.trim();
+  const enMask = document.querySelector('#enMask')?.textContent?.trim();
+  const enFull = document.querySelector('#enFull')?.textContent?.trim();
+  const ko = document.querySelector('#ko')?.textContent?.trim();
+  const en = (enMask && enMask !== '—' ? enMask : '') || (enFull && enFull !== '—' ? enFull : '');
+  if (tp && tp !== '—' && ko && ko !== '—') return `${tp} — ${ko}`;
+  if (tp && tp !== '—') return tp;
+  if (en && ko && ko !== '—') return `${en} — ${ko}`;
+  return en || ko || '';
 }
 
 /**
@@ -140,6 +246,7 @@ export function installPronStatsDomTracker() {
 
   let count = 0;
   let totalScore = 0;
+  let zeroScores = [];
   let lastKey = '';
 
   const obs = new MutationObserver(() => {
@@ -153,9 +260,16 @@ export function installPronStatsDomTracker() {
 
     const n = Number(m[1]);
     if (!Number.isFinite(n)) return;
+    const rounded = Math.max(0, Math.min(100, Math.round(n)));
     count += 1;
-    totalScore += Math.max(0, Math.min(100, Math.round(n)));
-    syncPronStatsStorage(count, totalScore);
+    totalScore += rounded;
+    if (rounded === 0) {
+      const label = captureZeroScoreLabelFromDom();
+      if (label && !zeroScores.some((z) => z.label === label)) {
+        zeroScores.push({ label });
+      }
+    }
+    syncPronStatsStorage(count, totalScore, zeroScores);
   });
 
   obs.observe(el, { childList: true, subtree: true, characterData: true });
@@ -189,12 +303,18 @@ export function installStudyResultRedirect({ requireStudyMode = true, getSummary
     screen3.classList.add('hidden');
     screen3.hidden = true;
 
+    const summary = typeof getSummary === 'function' ? getSummary() : null;
     const total =
-      (typeof getSummary === 'function' && getSummary()?.total) ||
+      summary?.total ||
       Number(document.getElementById('barTotal')?.textContent) ||
       0;
 
-    finishStudySession({ homeUrl, total, getSummary });
+    finishStudySession({
+      homeUrl,
+      total,
+      getSummary,
+      zeroScoreWords: summary?.zeroScoreWords,
+    });
   };
 
   new MutationObserver(redirect).observe(screen3, {
