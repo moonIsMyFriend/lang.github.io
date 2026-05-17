@@ -164,6 +164,20 @@ body.is-nav-open .scroll-wrapper {
   display: none;
 }
 
+.site-brand {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: max(16px, env(safe-area-inset-top));
+  transform: translateX(-50%);
+  display: block;
+  height: clamp(44px, 11vw, 60px);
+  width: auto;
+  max-width: min(88vw, 360px);
+  object-fit: contain;
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
   .rocket-zone-hint {
     display: block;
@@ -178,22 +192,5 @@ body.is-nav-open .scroll-wrapper {
     color: rgba(255, 255, 255, 0.65);
     background: rgba(255, 255, 255, 0.08);
     pointer-events: none;
-  }
-
-  body::before {
-    content: "simulavi";
-    position: fixed;
-    z-index: 10;
-    left: 50%;
-    top: 18px;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: 90vw;
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 13px;
-    backdrop-filter: blur(10px);
   }
 }
