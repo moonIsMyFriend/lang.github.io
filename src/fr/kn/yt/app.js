@@ -47,6 +47,8 @@
   let captionTracks = [];
   let srtSourcePath = '';
   let cuesFromSrt = false;
+  let lastLoadedVideoId = '';
+  let catalogPromise = null;
 
   const LOOP_PAUSE_MS = 1000;
 
@@ -597,6 +599,50 @@
       .join('/');
   }
 
+  function loadCatalog() {
+    if (!catalogPromise) {
+      catalogPromise = fetch('./catalog.json', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : []))
+        .catch(() => []);
+    }
+    return catalogPromise;
+  }
+
+  function catalogEntryPath(item) {
+    if (!item || !item.path) return '';
+    const dir = (item.dir || '').replace(/\/+$/, '');
+    return dir ? `${dir}/${item.path}` : item.path;
+  }
+
+  async function findSrtPathInCatalog(videoId) {
+    const catalog = await loadCatalog();
+    for (const item of catalog) {
+      if (parseVideoId(item.youtube || '') === videoId) {
+        return catalogEntryPath(item);
+      }
+    }
+    return '';
+  }
+
+  async function tryLoadSrtForVideo(videoId) {
+    const params = new URLSearchParams(location.search);
+    const candidates = [params.get('srt'), srtSourcePath, await findSrtPathInCatalog(videoId)].filter(
+      Boolean
+    );
+    const seen = new Set();
+    for (const relPath of candidates) {
+      if (seen.has(relPath)) continue;
+      seen.add(relPath);
+      try {
+        await loadSrtFromPath(relPath);
+        return true;
+      } catch (_) {
+        /* try next */
+      }
+    }
+    return false;
+  }
+
   async function loadSrtFromPath(relPath) {
     const res = await fetch(`./${encodeSrtPath(relPath)}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('SRT 파일을 불러오지 못했습니다.');
@@ -612,7 +658,17 @@
   }
 
   async function loadCaptions(videoId) {
+    if (!(cuesFromSrt && cues.length)) {
+      setStatus('SRT 확인 중…');
+      if (await tryLoadSrtForVideo(videoId)) {
+        applyRangeFilter();
+        renderCueList();
+        return;
+      }
+    }
     if (cuesFromSrt && cues.length) {
+      applyRangeFilter();
+      renderCueList();
       setStatus(`SRT 자막 ${cues.length}개`);
       return;
     }
@@ -654,6 +710,16 @@
     if (!videoId) {
       setStatus('올바른 YouTube URL이 아닙니다.', true);
       return;
+    }
+
+    const srtInUrl = new URLSearchParams(location.search).get('srt');
+    if (lastLoadedVideoId !== videoId) {
+      if (!srtInUrl) {
+        cuesFromSrt = false;
+        srtSourcePath = '';
+        cues = [];
+      }
+      lastLoadedVideoId = videoId;
     }
 
     const times = parseUrlTimes(input);
@@ -700,6 +766,7 @@
   }
 
   async function reloadCaptionsOnly() {
+    if (cuesFromSrt && cues.length) return;
     const input = urlInput.value.trim();
     const videoId = parseVideoId(input);
     if (!videoId) return;
