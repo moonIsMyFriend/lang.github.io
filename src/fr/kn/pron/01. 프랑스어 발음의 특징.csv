@@ -1,11 +1,11 @@
 no,group,speaker,original,pron,trans,comment
-1,1,word,Paris,[paʁi / 빠히],파리,[s muet]
+1,1,word,Paris,[paʁi / 빨히],파리,[s muet]
 2,1,sentence,tous les jours,[tu le ʒuʁ / 뚤레쥬흐],매일,[s muet]
 3,1,word,jambon beurre,[ʒɑ̃bɔ̃ bœʁ / 졍봉 뵈흐],햄버터 샌드위치,[œʁ]
 4,1,word,lingerie,[lɛ̃ʒʁi / 랑쥬히],란제리,[ʒ]
-5,1,word,Versailles,[vɛʁsaj / 베흐싸이],베르사유,[j]
+5,1,word,Versailles,[vɛʁsaj / 베ㅎ싸이],베르사유,[j]
 6,1,sentence,mon ami,[mɔ̃nami / 모나미],내 친구,[n liaison]
-7,1,word,gomme,[ɡɔm / 곰ㅁ],지우개,[g]
+7,1,word,gomme,[ɡɔm / 곰ㅁ],지우개,[g] 입모양을 '오' 발음은 '어'
 8,1,word,manteau,[mɑ̃to / 멍또],코트,[o]
 9,1,word,A,[a / 아],알파벳 A,
 10,1,word,B,[be / 베],알파벳 B,
@@ -46,9 +46,9 @@ no,group,speaker,original,pron,trans,comment
 45,1,word,leçon,[ləsɔ̃ / 르쏭],수업,쎄디으: 철자c 아래 붙이는 작은 s \n [k]를 [s]로 발음
 46,1,word,été,[ete / 에떼],여름,악쌍 떼귀 e를 폐음[e]으로 발음
 47,1,word,café,[kafe / 까페],커피,악쌍 떼귀 e를 폐음[e]으로 발음
-48,1,word,père,[pɛʁ / 빼흐],아버지,악쌍 그라브: e를 개음[ɛ]으로 발음
-49,1,word,après,[apʁɛ / 아프해],후에,악쌍 그라브 e를 개음[ɛ]으로 발음
-50,1,word,fête,[fɛt / 패뜨],축제, 악쌍 씨르꽁플랙스: 모음을 개음과 장음으로 발음
-51,1,word,pâte,[pat / 빠뜨],반죽, 악쌍 씨르꽁플랙스: 모음을 개음과 장음으로 발음
-52,1,word,Noël,[nɔɛl / 노앨르],크리스마스,트레마: 두 모음을 분리하여 발음
-53,1,word,maïs,[mais / 마이쓰],옥수수,트레마: 두 모음을 분리하여 발음
+48,1,word,père,[pɛʁ / 빼흐],아버지,악쌍 그하브: e를 개음[ɛ]으로 발음
+49,1,word,après,[apʁɛ / 아프해],후에,악쌍 그하브 e를 개음[ɛ]으로 발음
+50,1,word,fête,[fɛt / 패뜨],축제, 악쌍 씨흐꽁플랙스: 모음을 개음과 장음으로 발음
+51,1,word,pâte,[pat / 빠뜨],반죽, 악쌍 씨흐꽁플랙스: 모음을 개음과 장음으로 발음
+52,1,word,Noël,[nɔɛl / 노앨르],크리스마스,트헤마: 두 모음을 분리하여 발음
+53,1,word,maïs,[mais / 마이쓰],옥수수,트헤마: 두 모음을 분리하여 발음

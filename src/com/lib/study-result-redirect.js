@@ -4,19 +4,25 @@
 
 const PRON_STATS_KEY = 'learnlang.pronStats';
 
-export function syncPronStatsStorage(count, totalScore, zeroScores = []) {
+export function syncPronStatsStorage(count, totalScore, bestByLabel = {}) {
   try {
+    const best =
+      bestByLabel && typeof bestByLabel === 'object' && !Array.isArray(bestByLabel)
+        ? bestByLabel
+        : {};
     sessionStorage.setItem(
       PRON_STATS_KEY,
-      JSON.stringify({
-        count,
-        totalScore,
-        zeroScores: zeroScores.map((z) =>
-          typeof z === 'string' ? { label: z } : { label: z.label || '' }
-        ).filter((z) => z.label),
-      })
+      JSON.stringify({ count, totalScore, bestByLabel: best })
     );
   } catch (_) { /* ignore */ }
+}
+
+function zeroScoreWordsFromBestMap(bestByLabel) {
+  if (!bestByLabel || typeof bestByLabel !== 'object') return [];
+  return Object.entries(bestByLabel)
+    .filter(([, best]) => best === 0)
+    .map(([label]) => label)
+    .filter(Boolean);
 }
 
 export function clearPronStatsStorage() {
@@ -29,12 +35,16 @@ function readPronStatsFromStorage() {
   try {
     const raw = sessionStorage.getItem(PRON_STATS_KEY);
     if (!raw) return null;
-    const { count, totalScore, zeroScores = [] } = JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    const { count, totalScore, bestByLabel, zeroScores = [] } = parsed;
     if (!count) return null;
     const avg = Math.round(totalScore / count);
+    const zeroScoreWords = bestByLabel
+      ? zeroScoreWordsFromBestMap(bestByLabel)
+      : zeroScores.map((z) => z.label).filter(Boolean);
     return {
-      text: `발음 ${count}회 · 총점 ${Math.round(totalScore)}점 · 평균 ${avg}점 / 100`,
-      zeroScoreWords: zeroScores.map((z) => z.label).filter(Boolean),
+      text: `발음 ${count}회 · 총점 ${Math.round(totalScore)}점 · 평균 ${avg}점`,
+      zeroScoreWords,
     };
   } catch {
     return null;
@@ -104,7 +114,7 @@ function ensureZeroListInModal(modal) {
   wrap.className = 'pron-summary-zero-wrap';
   wrap.hidden = true;
   wrap.innerHTML = `
-    <p class="pron-summary-zero-title">0점 (다시 연습할 표현)</p>
+    <p class="pron-summary-zero-title">다시 연습할 표현</p>
     <ul id="pronSummaryZeroList" class="pron-summary-zero-scroll"></ul>
   `;
   dialog.insertBefore(wrap, actions);
@@ -132,7 +142,7 @@ function ensurePronSummaryModal() {
       <p id="pronSummaryLead" class="sub"></p>
       <p id="pronSummaryBody" class="big"></p>
       <div id="pronSummaryZeroWrap" class="pron-summary-zero-wrap" hidden>
-        <p class="pron-summary-zero-title">0점 (다시 연습할 표현)</p>
+        <p class="pron-summary-zero-title">다시 연습할 표현</p>
         <ul id="pronSummaryZeroList" class="pron-summary-zero-scroll"></ul>
       </div>
       <div class="row" style="margin-top:14px;justify-content:flex-end">
@@ -246,7 +256,7 @@ export function installPronStatsDomTracker() {
 
   let count = 0;
   let totalScore = 0;
-  let zeroScores = [];
+  let bestByLabel = {};
   let lastKey = '';
 
   const obs = new MutationObserver(() => {
@@ -263,13 +273,12 @@ export function installPronStatsDomTracker() {
     const rounded = Math.max(0, Math.min(100, Math.round(n)));
     count += 1;
     totalScore += rounded;
-    if (rounded === 0) {
-      const label = captureZeroScoreLabelFromDom();
-      if (label && !zeroScores.some((z) => z.label === label)) {
-        zeroScores.push({ label });
-      }
+    const label = captureZeroScoreLabelFromDom();
+    if (label) {
+      const prev = bestByLabel[label];
+      bestByLabel[label] = prev == null ? rounded : Math.max(prev, rounded);
     }
-    syncPronStatsStorage(count, totalScore, zeroScores);
+    syncPronStatsStorage(count, totalScore, bestByLabel);
   });
 
   obs.observe(el, { childList: true, subtree: true, characterData: true });

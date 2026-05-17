@@ -228,7 +228,7 @@ export function initQuizApp() {
   /** 첫 발음 인식 요청 여부(새로고침 전까지 유지). */
   let pronounceRequestedOnce = false;
   /** 세션 발음 채점 누적 (study_card 요약 팝업용) */
-  const pronStats = { count: 0, totalScore: 0, zeroScores: [] };
+  const pronStats = { count: 0, totalScore: 0, bestByLabel: {} };
 
   function getCurrentPronounceLabel() {
     if (!state.current) return '';
@@ -238,10 +238,16 @@ export function initQuizApp() {
     return en || ko || '';
   }
 
+  function getZeroScoreLabelsFromBest() {
+    return Object.entries(pronStats.bestByLabel)
+      .filter(([, best]) => best === 0)
+      .map(([label]) => label);
+  }
+
   function resetPronStats() {
     pronStats.count = 0;
     pronStats.totalScore = 0;
-    pronStats.zeroScores = [];
+    pronStats.bestByLabel = {};
     clearPronStatsStorage();
   }
 
@@ -260,20 +266,20 @@ export function initQuizApp() {
     const rounded = Math.max(0, Math.min(100, Math.round(n)));
     pronStats.count += 1;
     pronStats.totalScore += rounded;
-    if (rounded === 0) {
-      const label = getCurrentPronounceLabel();
-      if (label && !pronStats.zeroScores.some((z) => z.label === label)) {
-        pronStats.zeroScores.push({ label });
-      }
+    const label = getCurrentPronounceLabel();
+    if (label) {
+      const prev = pronStats.bestByLabel[label];
+      pronStats.bestByLabel[label] =
+        prev == null ? rounded : Math.max(prev, rounded);
     }
-    syncPronStatsStorage(pronStats.count, pronStats.totalScore, pronStats.zeroScores);
+    syncPronStatsStorage(pronStats.count, pronStats.totalScore, pronStats.bestByLabel);
   }
 
   function formatPronounceSummaryText() {
     if (pronStats.count === 0) return '';
     const avg = Math.round(pronStats.totalScore / pronStats.count);
     const total = Math.round(pronStats.totalScore);
-    return `발음 ${pronStats.count}회 · 총점 ${total}점 · 평균 ${avg}점 / 100`;
+    return `발음 ${pronStats.count}회 · 총점 ${total}점 · 평균 ${avg}점`;
   }
 
   /** Production pronunciation API (no URL input in UI). */
@@ -1177,7 +1183,7 @@ export function initQuizApp() {
       homeUrl,
       total,
       pronSummary: formatPronounceSummaryText(),
-      zeroScoreWords: pronStats.zeroScores.map((z) => z.label),
+      zeroScoreWords: getZeroScoreLabelsFromBest(),
     });
     clearStudyProgressParams();
     state.session = null;
@@ -1188,7 +1194,7 @@ export function initQuizApp() {
     return {
       total: state.session?.total || 0,
       text: formatPronounceSummaryText(),
-      zeroScoreWords: pronStats.zeroScores.map((z) => z.label),
+      zeroScoreWords: getZeroScoreLabelsFromBest(),
     };
   }
 
