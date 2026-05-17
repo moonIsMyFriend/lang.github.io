@@ -937,7 +937,18 @@ body.dark.turntable-quiz-page #pronounceLocale {
   }
 
   .turntable-quiz-page .orange-tab {
-    display: none;
+    grid-column: 2;
+    grid-row: 3;
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    justify-self: center;
+    align-self: center;
+    margin: 8px 0 10px;
+    z-index: 4;
+    width: 32px;
+    height: 34px;
+    font-size: 14px;
   }
 
   .turntable-quiz-page .disc {
