@@ -100,10 +100,7 @@
                 for (const f of files) {
                     const li = document.createElement('li');
                     const display = f.name.replace(/\.srt$/i, '');
-                    const hint = f.youtube
-                        ? `<span class="muted" style="font-size:0.85em;display:block">${escapeHTML(f.youtube)}</span>`
-                        : '<span class="muted" style="font-size:0.85em">YouTube URL 없음</span>';
-                    li.innerHTML = `<a href="#" class="csv-link">${escapeHTML(display)}</a>${hint}`;
+                    li.innerHTML = `<a href="#" class="csv-link">${escapeHTML(display)}</a>`;
                     li.querySelector('a').addEventListener('click', (e) => {
                         e.preventDefault();
                         openStudy(f);
