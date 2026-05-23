@@ -1,0 +1,52 @@
+no,group,speaker,original,pron,trans,comment
+1,referee,0,arbitre,아르비트르,심판,경기를 규칙과 관습에 따라 주관·판정
+2,referee,0,president,주심,주심,선수 소집·경기 진행·뚜슈 판정·징계 부여
+3,referee,0,jury,부심단,부심단,주심 양옆에서 반칙·유효면 가림 등 감시
+4,etiquette,0,En garde !,엉 갸르드,갸르드 자세를 취하시오,경기 시작·재시작 명령. Allez 전까지 정지 유지
+5,etiquette,0,Prêt ? / Êtes-vous prêts ?,프렛,준비되었습니까?,준비 시 oui(위) / 미준비 시 non(농)
+6,etiquette,0,Allez !,알레,시작,경기를 시작하라는 명령
+7,etiquette,0,Halte !,알뜨,정지,경기를 멈추라는 명령
+8,attack,0,Attaque !,아따끄,공격,한 선수가 공격했을 때 공격권 인정
+9,defence,0,Parade !,빠라드,막기,상대 공격을 막았을 때 수비권 인정
+10,defence,0,Riposte !,리뽀스트,막고 찌르기,패리 성공 후 곧바로 찌르는 행동
+11,defence,0,Contre-riposte !,꽁뜨르 리뽀스트,재반격,상대 리뽀스트를 되막고 찌르기
+12,contre-attaque,0,Arrêt !,아렛,역공격,패리 없이 상대 공격 중 공격(꽁뜨르 아따끄)
+13,signal,0,contre-attaque,꽁뜨르 아따끄,역공격,상대 공격 중 공격·수비공격. 대부분 arrêt
+14,line,0,Pointe en ligne !,뽀엥뜨  엉 린느,일직선 위협,칼끝이 유효면을 향해 팔을 뻗은 상태. 공격·수비 동작 아님. 상대 공격 전 선제권 확보.
+15,tactics,0,Contre-temps !,꽁뜨르 땅,역타이밍,공격 도중 상대 아렛에 막고 찌르기, 상대 꽁뜨르 아따끄를 무산하는 동작.
+16,rules,0,Simultanée !,씨뮐따네,동시 동작, 선수가 동시에 공격·행동 에뻬: 양쪽 득점 / 플뢰레·사브르: 보통 무효 후 재시작
+18,rules,0,Touche(e) !,뚜세,유효타,득점으로 인정
+19,rules,0,Non valable !,농 발라블,무효타,플뢰레에서 무효면을 찌름
+20,rules,0,Point !,포엥,점수,득점 부여
+21,rules,0,carte jaune,꺄르똥 존,옐로 카드,경고. 같은 경기에서 두 번이면 상대 1점
+22,rules,0,carte rouge,꺄르똥 루즈,레드 카드,경고. 상대 1점
+23,rules,0,carte noire,꺄르똥 놔르,블랙 카드,퇴장
+24,footwork,0,déplacements,데쁠라스망,이동,거리 조절·공격·수비를 위한 앞뒤 움직임
+25,footwork,0,marche,마르쉬,전진,데쁠라스망의 전진
+26,footwork,0,retraite,르트레트,후퇴,데쁠라스망의 후퇴
+27,distance,0,distances,디스땅스,거리,두 선수 간 거리
+28,line,0,les lignes,린느,라인,칼 잡은 손 자세에 따른 과녁 부분
+29,line,0,dedans,드당,왼쪽 높은 라인,린느 용어
+30,line,0,dessus,드쒸,오른쪽 높은 라인,린느 용어
+31,line,0,dessous,드쑤,왼쪽 낮은 라인,린느 용어
+32,line,0,dehors,드오르,오른쪽 낮은 라인,린느 용어
+34,tactics,2,priorité,프리오리떼,선제권,포엥뜨 엉 린느로 확보. 아따끄 오 페르·프리즈 드 페르 당한 뒤 즉각 공격 시 상실
+35,stance,1,position d'escrime,펜싱자세,펜싱 자세,8가지. 플뢰레·에뻬: sixte / 사브르: tierce
+36,blade,1,engagement,앙가즈망,칼 맞대기,상대 칼과 접촉한 상태
+38,defence,1,tac,딱,딱,패리 방식. 칼을 쳐내거나 막는 동작
+39,defence,1,opposition,오뽀지숑,오뽀지숑,패리·리뽀스트 방식. 상대 칼을 제어하며 막기
+40,defence,1,en cédant,엉 세당,엉 세당,패리·리뽀스트 방식. 양보하며 막는 동작
+41,attack,1,attaque simple,아따끄 생쁠,단순 공격,coup droit / dégagement / coupé
+42,attack,1,attaque composée,아따끄 꽁뽀제,복합 공격,연속·속임 포함 공격
+44,attack,2,attaque au fer,아따끄 오 페르,칼 치기 공격,battement / pression / froissement
+45,blade,2,prise de fer,프리즈 드 페르,칼 잡기,opposition / liement / enveloppement / croisé
+48,contre-attaque,2,arrêt,아레,아레,contre-attaque의 대표 형태
+49,contre-attaque,2,arrêt par opposition,아레 빠르 오뽀지숑,오뽀지숑 아레,블레이드 제어 저지 공격
+50,contre-attaque,2,arrêt avec temps d'escrime,아레 아벡 땅 데스크림,템포 아레,타이밍 저지 공격
+52,re-attack,2,remise,르미즈,재공격,팔을 거두지 않고 연속 찌르기
+53,re-attack,2,redoublement,르두블망,압박 재공격,전진 압박 유지하며 다시 공격
+54,re-attack,2,reprise,르프리즈,재정비 후 재공격,거리·타이밍 재설정 후 재공격
+55,judgment,2,phrase d'armes,프라즈 다름,경기 상황,중단 시 주심이 동작을 분석하는 단위
+56,judgment,2,a Attaque,a 아따끄,a가 이김,단독 공격 성공
+64,rules,1,touche,뚜슈,뚜슈,심판기 신호로 확인. 미신호 시 부여 불가
+
