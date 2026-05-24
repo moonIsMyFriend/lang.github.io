@@ -6,6 +6,7 @@ from shutil import make_archive
 titles = ['00.num.0_20', '01.num.21_40', '02.num.41_60', '03.num.61_80', '04.num.81_100', '15']
 titles = ['06 모음 i, y, u', '07. 비강모음 ɑ̃, ɔ̃, ɛ̃', '08. 반모음(반자음) j, w, ɥ', '09. 프랑스어 자음의 특징과 h의 발음', '10. 자음 b,v,p,f,m']
 titles = ['01. 프랑스어 발음의 특징']
+titles = ['06 모음 i, y, u']
 print('making', titles)
 
 
@@ -24,7 +25,7 @@ for title in titles:
 
     df = pd.read_csv(CSV_PATH)
     for _, row in df.iterrows():
-        if int(row['no']) != 53:
+        if int(row['no']) != 6:
             continue
 
         text = str(row["original"]).strip()
