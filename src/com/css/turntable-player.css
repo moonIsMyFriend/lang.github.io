@@ -280,10 +280,31 @@ body.dark.turntable-quiz-page .tp-speed-display {
 .turntable-quiz-page .display .mini-play {
   position: static;
   flex-shrink: 0;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
   cursor: pointer;
   user-select: none;
-  line-height: 1;
+  line-height: 0;
+}
+
+.turntable-quiz-page .display .mini-play .tp-mini-play-icon {
+  display: block;
+}
+
+.turntable-quiz-page .display .mini-play,
+.turntable-quiz-page .display .mini-play.tp-play-mode-once,
+.turntable-quiz-page .display .mini-play.tp-play-mode-repeat {
+  color: #e8e8e8;
+}
+
+body.dark.turntable-quiz-page .display .mini-play,
+body.dark.turntable-quiz-page .display .mini-play.tp-play-mode-once,
+body.dark.turntable-quiz-page .display .mini-play.tp-play-mode-repeat {
+  color: #f0f0f0;
 }
 
 .turntable-quiz-page .disc {

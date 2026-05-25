@@ -8,6 +8,7 @@ export function initTurntableQuizUi() {
   const padPlay = document.querySelector('#padPlay');
   const padNext = document.querySelector('#padNext');
   const miniPlay = document.querySelector('#miniPlay');
+  const audioLoopEl = document.querySelector('#audioLoop');
   const recordBtn = document.querySelector('#recordBtn');
   const btnNext = document.querySelector('#btnNext');
   const btnPronounceRecord = document.querySelector('#btnPronounceRecord');
@@ -66,13 +67,42 @@ export function initTurntableQuizUi() {
     persistSpeed();
   }
 
+  function isAudioLoopOn() {
+    if (audioLoopEl) return audioLoopEl.checked;
+    if (audio) return !!audio.loop;
+    return false;
+  }
+
+  const MINI_PLAY_ICON =
+    '<svg class="tp-mini-play-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  const MINI_REPEAT_ICON =
+    '<svg class="tp-mini-play-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>';
+
+  /** 디스플레이 하단: 1회 재생 ▶ / 반복 리사이클 아이콘 */
+  function syncMiniPlayModeLabel() {
+    if (!miniPlay) return;
+    const loop = isAudioLoopOn();
+    miniPlay.innerHTML = loop ? MINI_REPEAT_ICON : MINI_PLAY_ICON;
+    miniPlay.classList.toggle('tp-play-mode-repeat', loop);
+    miniPlay.classList.toggle('tp-play-mode-once', !loop);
+    miniPlay.title = loop ? '반복 재생 (클릭: 1회 재생)' : '1회 재생 (클릭: 반복 재생)';
+    miniPlay.setAttribute('aria-label', loop ? '반복 재생, 클릭하면 1회 재생' : '1회 재생, 클릭하면 반복 재생');
+    miniPlay.setAttribute('aria-pressed', loop ? 'true' : 'false');
+  }
+
+  function toggleAudioLoop() {
+    if (!audioLoopEl) return;
+    audioLoopEl.checked = !audioLoopEl.checked;
+    audioLoopEl.dispatchEvent(new Event('change', { bubbles: true }));
+    syncMiniPlayModeLabel();
+  }
+
   function setPlaying(on) {
     if (disc) disc.classList.toggle('playing', on);
     if (padPlay) {
       padPlay.classList.toggle('pressed', on);
       padPlay.textContent = on ? 'Ⅱ' : '▶';
     }
-    if (miniPlay) miniPlay.textContent = on ? 'Ⅱ' : '▶';
   }
 
   function armEq() {
@@ -89,12 +119,15 @@ export function initTurntableQuizUi() {
     requestAnimationFrame(() => syncRecordPadPressed());
   }
 
+  audioLoopEl?.addEventListener('change', syncMiniPlayModeLabel);
+  document.addEventListener('learnlang-settings-applied', syncMiniPlayModeLabel);
+
   padPlay?.addEventListener('click', toggleListen);
-  miniPlay?.addEventListener('click', toggleListen);
+  miniPlay?.addEventListener('click', toggleAudioLoop);
   miniPlay?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      toggleListen();
+      toggleAudioLoop();
     }
   });
 
@@ -194,6 +227,7 @@ export function initTurntableQuizUi() {
     });
   }
   syncPlayAndRecordPads();
+  syncMiniPlayModeLabel();
 
   /** 속도 ± 버튼: 포인터·키보드로 눌린 동안 `.pressed` 유지 → CSS 3D 눌림 */
   function bindRoundBtnPressFx(btn) {
