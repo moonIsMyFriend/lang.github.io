@@ -27,7 +27,6 @@
 00:02:03,600 --> 00:02:11,520
 [right/3:2]
 
-
 33
 00:02:28,640 --> 00:02:33,800
 [left/4:2]
@@ -45,509 +44,117 @@
 [right/5:3]
 
 51
-00:03:14,800 --> 00:03:23,659
-[Applaudissements]
-
-52
-00:03:25,690 --> 00:03:30,000
-[Applaudissements]
-
-53
-00:03:30,000 --> 00:03:32,519
-il y a une première
-
-54
-00:03:32,519 --> 00:03:35,959
-parade ene et l'arost n'a pas touché
+00:03:22,800 --> 00:03:24,000
+[right/5:4]
 
 55
-00:03:35,959 --> 00:03:37,159
-tout de
-
-56
-00:03:37,159 --> 00:03:41,760
-suite et il y a une remise
-
-57
-00:03:45,799 --> 00:03:47,640
-d'attaqueattaque la parade c'est bien
-
-58
-00:03:47,640 --> 00:03:49,640
-fait vous voyez comme il est bas sur les
-
-59
-00:03:49,640 --> 00:03:51,720
-jambes Alesso fuconi il est vraiment
-
-60
-00:03:51,720 --> 00:03:54,000
-très fléchi en position de de demi-fante
+00:03:37,159 --> 00:03:47,640
+[left/6:4]
 
 61
-00:03:54,000 --> 00:03:55,200
-quasiment tout le temps dès qu'il est au
-
-62
-00:03:55,200 --> 00:03:57,079
-combat il a déjà le il est déjà en
-
-63
-00:03:57,079 --> 00:03:59,879
-position de de demi-fente
-
-64
-00:03:59,879 --> 00:04:03,439
-attaque passe contreataque non avec le
-
-65
-00:04:03,439 --> 00:04:05,480
-corps en avance qui réduit encore plus
+00:03:54,000 --> 00:03:59,879
+[-]
 
 66
-00:04:05,480 --> 00:04:08,760
-en fait la surface de sa
-
-67
-00:04:10,799 --> 00:04:12,560
-curasseataque de
+00:04:05,480 --> 00:04:11,560
+[-]
 
 68
-00:04:12,560 --> 00:04:15,799
-gauche regarde
-
-69
-00:04:16,959 --> 00:04:19,959
-pr
+00:04:12,560 --> 00:04:19,959
+[-]
 
 70
-00:04:20,410 --> 00:04:22,520
-[Musique]
-
-71
-00:04:22,520 --> 00:04:25,930
-ahata regardez
-
-72
-00:04:25,930 --> 00:04:29,029
-[Applaudissements]
+00:04:24,410 --> 00:04:32,520
+[-]
 
 73
-00:04:36,080 --> 00:04:39,400
-pointe non c'est pas hyper académique je
+00:04:37,080 --> 00:04:44,400
+[-]
 
 74
-00:04:39,400 --> 00:04:41,520
-vous
-
-75
-00:04:54,360 --> 00:04:58,639
-[Applaudissements]
-
-76
-00:04:58,639 --> 00:05:01,600
-l'accorde ne le prend pas il a dérobé en
-
-77
-00:05:01,600 --> 00:05:02,780
-fait
-
-78
-00:05:02,780 --> 00:05:06,500
-[Applaudissements]
+00:04:46,400 --> 00:04:51,520
+[left/7:4]
 
 79
-00:05:13,840 --> 00:05:17,759
-faoni il met trop de force m dans que ce
+00:05:07,840 --> 00:05:11,759
+[left/8:4]
 
 80
-00:05:17,759 --> 00:05:19,880
-soit dans ses dans ses prises de fer
-
-81
-00:05:19,880 --> 00:05:22,039
-dans tout ce qu'il fait il force trop
-
-82
-00:05:22,039 --> 00:05:23,080
-j'ai l'impression qu'il perd de sa
-
-83
-00:05:23,080 --> 00:05:25,479
-fluidité qui pourtant il a une escrime
-
-84
-00:05:25,479 --> 00:05:27,479
-qui est hyper fluide
-
-85
-00:05:27,479 --> 00:05:30,240
-normalement mais là il y a trop de trop
-
-86
-00:05:30,240 --> 00:05:31,910
-de
-
-87
-00:05:31,910 --> 00:05:35,059
-[Applaudissements]
-
-88
-00:05:36,160 --> 00:05:38,000
-force
-
-89
-00:05:38,000 --> 00:05:40,319
-c'est ça c'est une attaque au fer là il
-
-90
-00:05:40,319 --> 00:05:42,360
-a bien pris le fer on a entendu le le
+00:05:23,759 --> 00:05:36,880
+[rigth/8:5]
 
 91
-00:05:42,360 --> 00:05:45,280
-bruit il y a pas de doute
-
-92
-00:05:45,280 --> 00:05:48,280
-regarde
-
-93
-00:05:54,280 --> 00:05:55,880
-allez
-
-94
-00:05:55,880 --> 00:06:01,080
-ahite il a il a eu onarde près allez
+00:05:44,360 --> 00:05:56,280
+[-]
 
 95
-00:06:01,080 --> 00:06:02,880
-50 secondes à disputer dans ce premier
+00:05:59,080 --> 00:06:12,880
+[-]
 
 96
-00:06:02,880 --> 00:06:05,960
-tirtemps TR touches d'avance pour
-
-97
-00:06:05,960 --> 00:06:08,560
-l'Italien qui prend pour l'instant une
-
-98
-00:06:08,560 --> 00:06:10,319
-petite option pour aller chercher le le
-
-99
-00:06:10,319 --> 00:06:14,680
-tripl sur cette épreuve mais c'est pas
-
-100
-00:06:24,080 --> 00:06:27,639
-terminé la remise qui touche d'Al fon a
+00:06:15,880 --> 00:06:24,960
+[right/8:6]
 
 101
 00:06:27,639 --> 00:06:29,639
-signalé une une erreur de combat et donc
+[right/8:7]
 
 102
-00:06:29,639 --> 00:06:30,639
-c'est pour ça qu'on lui a donné un
-
-103
-00:06:30,639 --> 00:06:32,759
-carton
-
-104
-00:06:32,759 --> 00:06:35,319
-jaune
-
-105
-00:06:35,319 --> 00:06:38,440
-ici attaque touche mais il lui dit qu'il
-
-106
-00:06:38,440 --> 00:06:39,960
-est en retard donc il revient pas sur sa
-
-107
-00:06:39,960 --> 00:06:41,599
-décision
-
-108
-00:06:41,599 --> 00:06:43,720
-87 plus que une petite touche d'écart
-
-109
-00:06:43,720 --> 00:06:45,520
-entre les
-
-110
-00:06:45,520 --> 00:06:50,840
-deux il revient bien mi Balas
-
-111
-00:06:53,520 --> 00:06:54,720
-ouais il y a une recherche de faire
-
-112
-00:06:54,720 --> 00:06:55,919
-beaucoup trop large de la part de
-
-113
-00:06:55,919 --> 00:06:58,199
-l'américain et même lui il se retourne
-
-114
-00:06:58,199 --> 00:07:00,440
-vers sonou il com
+00:06:41,639 --> 00:06:52,639
+[left/9:7]
 
 115
-00:07:00,440 --> 00:07:05,160
-j'ai comis son coach j'ai
+00:07:02,440 --> 00:07:12,160
+[-]
 
 116
-00:07:06,000 --> 00:07:08,000
-compris il s'est fait avoir quandme à
-
-117
-00:07:08,000 --> 00:07:10,479
-quelques repris làdessus en fait trop
-
-118
-00:07:10,479 --> 00:07:12,080
-bougé la main on dévoile de la surface
-
-119
-00:07:12,080 --> 00:07:13,960
-valable et ça ouvre des cibles son
-
-120
-00:07:13,960 --> 00:07:16,400
-adversaire compris il le sait il a
-
-121
-00:07:16,400 --> 00:07:19,199
-l'expérience il connait très bien je
-
-122
-00:07:19,199 --> 00:07:23,700
-DEAS il attend presque que ça de la part
+00:07:18,000 --> 00:07:24,000
+[right/9:8]
 
 123
-00:07:23,700 --> 00:07:25,960
-[Applaudissements]
-
-124
-00:07:25,960 --> 00:07:28,000
-deasoursign parce que la coquille doit
-
-125
-00:07:28,000 --> 00:07:30,080
-bouger un petit peu
-
-126
-00:07:30,080 --> 00:07:35,199
-ou puis ça direess de casser je on
-
-127
-00:07:41,240 --> 00:07:45,520
-arrive pour l'instant rien n fait dans
+00:07:26,700 --> 00:07:36,960
+[-]
 
 128
-00:07:45,520 --> 00:07:49,560
-cette finale de l'édition 2025 for
-
-129
-00:07:49,560 --> 00:07:53,440
-challeng international de Paris
-
-130
-00:07:55,840 --> 00:07:59,840
-alors cont
+00:07:43,520 --> 00:07:49,560
+[left/10:8]
 
 131
-00:08:00,040 --> 00:08:03,259
-[Applaudissements]
+00:08:03,040 --> 00:08:08,259
+[-]
 
 132
-00:08:07,120 --> 00:08:10,520
-allez non remise non
+00:08:12,120 --> 00:08:25,520
+[right/10:9]
 
 133
-00:08:10,520 --> 00:08:14,759
-valable garde prê
-
-134
-00:08:24,599 --> 00:08:26,690
-allez passeou
-
-135
-00:08:26,690 --> 00:08:33,100
-[Applaudissements]
+00:08:14,520 --> 00:08:25,759
+[right/10:9]
 
 136
-00:08:41,000 --> 00:08:42,399
-allez mais du coup ça veut dire que les
-
-137
-00:08:42,399 --> 00:08:44,399
-tireurs ont un deuxième masque dans le
-
-138
-00:08:44,399 --> 00:08:46,320
-dans le dans le sac je pense pas que ce
-
-139
-00:08:46,320 --> 00:08:47,680
-soit systématique bah oui parce que là
-
-140
-00:08:47,680 --> 00:08:48,680
-c'est la première fois que je vois ça en
-
-141
-00:08:48,680 --> 00:08:50,279
-fait il avait un autre masque dans son
-
-142
-00:08:50,279 --> 00:08:52,080
-dans son sac et peut-être que il a
-
-143
-00:08:52,080 --> 00:08:54,640
-anticipé la chose en se disant j'ai
-
-144
-00:08:54,640 --> 00:08:57,200
-tendance à un peu transpirer de la tête
-
-145
-00:08:57,200 --> 00:09:01,120
-je préfère en avoir un deuxième
-
-146
-00:09:05,160 --> 00:09:07,760
-allez attention ça commence à être
-
-147
-00:09:07,760 --> 00:09:10,640
-dangereux pour matialas même si il n'est
+00:08:41,000 --> 00:08:59,399
+[left/11:9]
 
 148
-00:09:10,640 --> 00:09:14,279
-qu'à deux points
+00:09:10,640 --> 00:09:27,279
+[left/12:9]
 
 149
-00:09:17,000 --> 00:09:18,959
-derrière vous voyez comme il est il est
+00:09:32,000 --> 00:09:34,959
+[right/12:10]
 
 150
-00:09:18,959 --> 00:09:21,560
-penché en avant fauconi sur sa position
-
-151
-00:09:21,560 --> 00:09:23,720
-de
-
-152
-00:09:27,360 --> 00:09:29,810
-garde c'est cette partie du vent
-
-153
-00:09:29,810 --> 00:09:32,160
-[Applaudissements]
-
-154
-00:09:32,160 --> 00:09:35,399
-il va il arrive à la
-
-155
-00:09:35,399 --> 00:09:38,079
-raccrocher il se rattrape bien là sur
-
-156
-00:09:38,079 --> 00:09:39,519
-cette
-
-157
-00:09:39,519 --> 00:09:43,760
-action presque debout quand il a
-
-158
-00:09:46,680 --> 00:09:51,160
-touché oh çaouch ça touch
+00:09:42,959 --> 00:09:47,560
+[left/13:10]
 
 159
-00:09:51,160 --> 00:09:53,839
-direct bloqué le en fait c'est pour ça
-
-160
-00:09:53,839 --> 00:09:55,839
-qu'il arrive
-
-161
-00:09:55,839 --> 00:10:00,880
-pas super bienit sur la marche
-
-162
-00:10:01,079 --> 00:10:03,160
-allez plus qu'une
+00:09:51,160 --> 00:09:55,839
+[left/14:10]
 
 163
-00:10:03,160 --> 00:10:05,959
-touche al faon rentrera dans l'histoire
+00:10:02,160 --> 00:10:05,959
+[-]
 
 164
-00:10:05,959 --> 00:10:07,399
-en
-
-165
-00:10:07,399 --> 00:10:11,480
-étant à TR reprises titré ici à Paris au
-
-166
-00:10:11,480 --> 00:10:14,079
-stade Pierre de
-
-167
-00:10:14,240 --> 00:10:16,240
-Coubertin il avait fait le pardon le
-
-168
-00:10:16,240 --> 00:10:19,360
-doublé 2018 2019 et peut-être peut-être
-
-169
-00:10:19,360 --> 00:10:23,760
-là et voilà et c'est fait allez sur
-
-170
-00:10:23,760 --> 00:10:25,480
-Triple
-
-171
-00:10:25,480 --> 00:10:29,560
-vainur de ce grand tourno
-
-172
-00:10:29,560 --> 00:10:32,120
-Challenge International de
-
-173
-00:10:32,120 --> 00:10:35,279
-Paris et bien il a été très très bon he
-
-174
-00:10:35,279 --> 00:10:36,920
-il a été assez impressionnant toute la
-
-175
-00:10:36,920 --> 00:10:39,279
-journée après n'a pas démérité mais on a
-
-176
-00:10:39,279 --> 00:10:41,120
-eu du très très grand faoni là
-
-177
-00:10:41,120 --> 00:10:44,120
-aujourd'hui
+00:10:09,959 --> 00:10:19,399
+[left/15:10]
