@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T3SXCHL6');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92QMC1YFZM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-92QMC1YFZM');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube 자막 학습</title>
+    <link rel="stylesheet" href="../../../com/css/quiz-style.css" />
+    <link rel="stylesheet" href="yt.css" />
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="wrap">
+        <div class="card">
+            <div class="screen-title">
+                <h1 class="screen-title-heading">
+                    <a class="site-brand" href="https://simulavi.com" target="_blank" rel="noopener noreferrer"
+                        aria-label="simulavi.com">
+                        <img src="../../../com/img/005.png" alt="" width="36" height="36" decoding="async" />
+                    </a>
+                    YouTube 자막 학습
+                </h1>
+                <div class="row">
+                    <span class="pill">SRT: <span id="totalCnt">0</span></span>
+                </div>
+            </div>
+
+            <section class="box">
+                <h1 style="margin-top:0">Index</h1>
+
+                <div class="row">
+                    <div class="search" style="flex:1">
+                        <input id="q" type="search" placeholder="검색: 파일명">
+                    </div>
+                </div>
+                <div style="height:12px"></div>
+
+                <div id="list" class="card"></div>
+                <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
+
+            </section>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadPageTitle } from '../../../com/lib/title.js';
+        loadPageTitle();
+
+        const list = document.getElementById('list');
+        const empty = document.getElementById('empty');
+        const totalCnt = document.getElementById('totalCnt');
+        const q = document.getElementById('q');
+
+        let data = [];
+        try {
+            const res = await fetch('./catalog.json', { cache: 'no-store' });
+            data = await res.json();
+            totalCnt.textContent = String(data.length);
+        } catch (_) {
+            list.innerHTML = '<div class="muted">catalog.json을 불러오지 못했습니다. make_catalog.py를 실행하세요.</div>';
+        }
+
+        function escapeHTML(s = '') {
+            return s.replace(/[&<>"']/g, (c) =>
+                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+            );
+        }
+
+        function groupByDir(arr) {
+            const map = new Map();
+            for (const it of arr) {
+                const key = it.dir || '';
+                if (!map.has(key)) map.set(key, []);
+                map.get(key).push(it);
+            }
+            for (const [, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
+            return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+        }
+
+        function openStudy(item) {
+            const u = new URL('./study_youtube.html', location.href);
+            u.searchParams.set('srt', item.path);
+            if (item.youtube) u.searchParams.set('url', item.youtube);
+            location.href = u.toString();
+        }
+
+        function render(arr) {
+            if (!arr.length) {
+                list.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+            const frag = document.createDocumentFragment();
+
+            for (const [dir, files] of groupByDir(arr)) {
+                const box = document.createElement('div');
+                box.className = 'folder';
+                const title = dir ? escapeHTML(dir) : '';
+                box.innerHTML = `<div class="title">${title}</div><ul></ul>`;
+                const ul = box.querySelector('ul');
+
+                for (const f of files) {
+                    const li = document.createElement('li');
+                    const display = f.name.replace(/\.srt$/i, '');
+                    li.innerHTML = `<a href="#" class="csv-link">${escapeHTML(display)}</a>`;
+                    li.querySelector('a').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openStudy(f);
+                    });
+                    ul.appendChild(li);
+                }
+                frag.appendChild(box);
+            }
+            list.innerHTML = '';
+            list.appendChild(frag);
+        }
+
+        let view = data.slice();
+        render(view);
+
+        q.addEventListener('input', () => {
+            const term = q.value.trim().toLowerCase();
+            view = data.filter((it) => ((it.dir || '') + '/' + it.name).toLowerCase().includes(term));
+            render(view);
+        });
+    </script>
+</body>
+
+</html>
