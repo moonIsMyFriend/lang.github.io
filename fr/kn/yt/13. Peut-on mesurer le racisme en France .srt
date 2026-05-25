@@ -1,0 +1,670 @@
+# https://www.youtube.com/watch?v=Bfbo0563-Q4
+
+1
+00:00:01,440 --> 00:00:04,640
+Un jour, le président de la République
+a annoncé vouloir…
+
+2
+00:00:08,560 --> 00:00:10,320
+Il a alors commandé une étude sur
+
+3
+00:00:10,550 --> 00:00:13,410
+les discriminations dans le recrutement
+des grandes entreprises.
+
+4
+00:00:14,180 --> 00:00:14,940
+Résultat…
+
+5
+00:00:24,460 --> 00:00:26,340
+Avec cette étude, les chercheurs
+
+6
+00:00:26,540 --> 00:00:30,300
+ont mesuré la manifestation d'une
+discrimination raciste.
+
+7
+00:00:30,690 --> 00:00:33,360
+Pourtant, en France,
+il est illégal de collecter des
+
+8
+00:00:33,560 --> 00:00:36,570
+informations sur la couleur de
+peau et l'origine des citoyens.
+
+9
+00:00:36,900 --> 00:00:40,410
+Alors, pour mesurer le racisme,
+il a fallu apprendre à faire
+
+10
+00:00:40,610 --> 00:00:41,370
+autrement.
+
+11
+00:00:43,900 --> 00:00:47,290
+Avant de mesurer le racisme,
+il faudrait pouvoir mesurer les
+
+12
+00:00:47,490 --> 00:00:50,350
+inégalités en fonction de l'origine
+et de la couleur de peau.
+
+13
+00:00:50,800 --> 00:00:54,220
+Par exemple, est-ce que les Maghrébins
+et les Noirs sont plus pauvres
+
+14
+00:00:54,420 --> 00:00:55,330
+ou plus riches que les Blancs ?
+
+15
+00:00:55,670 --> 00:00:59,020
+Et est-ce que cela a à voir avec
+leur couleur de peau et leur origine ?
+
+16
+00:00:59,230 --> 00:01:02,650
+Pour cela, il faut des statistiques
+précises sur qui est noir,
+
+17
+00:01:02,850 --> 00:01:04,360
+qui est maghrébin et qui est blanc.
+
+18
+00:01:04,750 --> 00:01:07,420
+C'est ce que l'on appelle les
+statistiques ethniques.
+
+19
+00:01:07,720 --> 00:01:09,840
+Le problème, c'est qu'en France,
+elles sont interdites,
+
+20
+00:01:10,150 --> 00:01:10,990
+en principe en tout cas.
+
+21
+00:01:11,770 --> 00:01:14,740
+Elles ne sont pas dans les faits
+à 100 % interdites, mais elles
+
+22
+00:01:14,940 --> 00:01:18,670
+sont fortement contrôlées et encadrées,
+notamment par la loi Informatique
+
+23
+00:01:18,870 --> 00:01:21,100
+et Libertés de 1978.
+
+24
+00:01:21,790 --> 00:01:23,890
+Mais ça ne veut pas dire qu'on
+ne peut rien faire du tout en France
+
+25
+00:01:24,160 --> 00:01:26,350
+pour mesurer les inégalités
+ethniques.
+
+26
+00:01:27,160 --> 00:01:30,940
+L'Insee dit notamment qu'on peut
+utiliser des données objectives,
+
+27
+00:01:32,500 --> 00:01:35,170
+c'est-à-dire qu'on ne va pas faire
+en fonction de si une personne
+
+28
+00:01:35,370 --> 00:01:37,030
+est noire, maghrébine ou asiatique.
+
+29
+00:01:37,300 --> 00:01:40,690
+On va plutôt les placer dans une
+catégorie à partir de leur nom,
+
+30
+00:01:40,890 --> 00:01:43,690
+leur pays de naissance ou celui
+de leurs parents, par exemple.
+
+31
+00:01:44,290 --> 00:01:47,500
+L'Insee ajoute que des données
+subjectives, comme le ressenti
+
+32
+00:01:47,700 --> 00:01:49,990
+d'appartenance, peuvent être
+recueillies dans les études.
+
+33
+00:01:51,160 --> 00:01:55,060
+En bref, même sans statistiques
+ethniques, on peut mesurer certaines
+
+34
+00:01:55,260 --> 00:01:58,720
+inégalités en France grâce à des
+enquêtes, comme celle-ci par exemple,
+
+35
+00:01:59,020 --> 00:02:02,010
+l'enquête Trajectoires et Origines,
+abrégée en TeO.
+
+36
+00:02:02,470 --> 00:02:04,930
+C'est quelque chose de structurel
+dans la société française.
+
+37
+00:02:05,130 --> 00:02:08,050
+Il y a vraiment des formes de
+discrimination et de racisme qui
+
+38
+00:02:08,250 --> 00:02:11,950
+sont très répandues et qui ont
+des effets permanents sur les personnes
+
+39
+00:02:12,250 --> 00:02:13,180
+qui y sont exposées.
+
+40
+00:02:13,990 --> 00:02:17,800
+Si l'on prend le taux de chômage
+par exemple, l'étude trouve ces
+
+41
+00:02:18,000 --> 00:02:21,910
+résultats : dans la population
+majoritaire, c'est-à-dire ni immigrés
+
+42
+00:02:22,110 --> 00:02:25,090
+ou natifs des DOM-TOM,
+ni descendants d'immigrés ou de
+
+43
+00:02:25,290 --> 00:02:28,360
+natifs des DOM-TOM, le taux de chômage,
+au moment de l'enquête,
+
+44
+00:02:28,600 --> 00:02:31,960
+est de 8 % pour les hommes et de
+10 % pour les femmes.
+
+45
+00:02:32,880 --> 00:02:35,940
+Mais pour les descendants d'immigrés
+algériens, il est de 20 %.
+
+46
+00:02:36,140 --> 00:02:39,790
+Et pour les descendants d'immigrés
+du Maroc ou Tunisie,
+
+47
+00:02:40,060 --> 00:02:43,960
+d'Afrique subsaharienne et de Turquie,
+il est respectivement de 22,
+
+48
+00:02:44,160 --> 00:02:49,570
+21 et 22 % chez les hommes,
+et de 18, 15 et 34 % chez les
+
+49
+00:02:49,770 --> 00:02:50,530
+femmes.
+
+50
+00:02:50,730 --> 00:02:53,890
+En plus de ces chiffres bruts,
+les chercheurs ont aussi directement
+
+51
+00:02:54,090 --> 00:02:57,670
+posé la question aux enquêtés sur
+leur expérience du racisme et des
+
+52
+00:02:57,870 --> 00:02:58,630
+discriminations.
+
+53
+00:02:59,110 --> 00:03:01,960
+Les descendants d'immigrés d'Algérie,
+du Maroc et Tunisie,
+
+54
+00:03:02,200 --> 00:03:05,290
+de l'Afrique sahélienne et de l'Afrique
+guinéenne ou centrale sont
+
+55
+00:03:05,490 --> 00:03:10,660
+respectivement 49, 50,
+58 et 60 % à déclarer avoir déjà
+
+56
+00:03:10,860 --> 00:03:12,850
+vécu une situation raciste en
+France.
+
+57
+00:03:13,300 --> 00:03:16,630
+Le problème avec ce genre de moyens
+de mesure, c'est qu'il y a des limites.
+
+58
+00:03:17,050 --> 00:03:19,000
+Dans le premier cas,
+celui sur le chômage,
+
+59
+00:03:19,380 --> 00:03:20,410
+il y a des imprécisions.
+
+60
+00:03:22,090 --> 00:03:25,180
+Même quand l'on compte les personnes
+selon leur nationalité ou celle
+
+61
+00:03:25,380 --> 00:03:28,010
+de leurs parents, on oublie que
+certaines personnes noires ou
+
+62
+00:03:28,210 --> 00:03:31,000
+maghrébines, par exemple,
+sont françaises, et qu'à partir
+
+63
+00:03:31,200 --> 00:03:33,940
+du moment où elles vivent en France
+depuis plus de deux générations,
+
+64
+00:03:34,270 --> 00:03:37,180
+elles ne sont plus considérées
+par ces études comme immigrées,
+
+65
+00:03:37,380 --> 00:03:39,070
+et donc comme des personnes de
+couleur.
+
+66
+00:03:40,770 --> 00:03:44,220
+Autre limite dans le deuxième exemple,
+sur la déclaration d'expérience
+
+67
+00:03:44,420 --> 00:03:46,110
+du racisme et des discriminations.
+
+68
+00:03:46,500 --> 00:03:49,410
+On y étudie un ressenti,
+ça pose un problème.
+
+69
+00:03:49,960 --> 00:03:53,040
+Quand on pose la question :"Est-ce
+que vous avez été victime de
+
+70
+00:03:53,240 --> 00:03:55,590
+discrimination et de racisme ?"
+Pour répondre à cette question,
+
+71
+00:03:55,790 --> 00:03:58,680
+il faut que les personnes aient
+identifié ou aient la conscience
+
+72
+00:03:58,880 --> 00:04:00,820
+d'avoir été exposées au racisme
+ou aux discriminations.
+
+73
+00:04:01,160 --> 00:04:02,370
+Ça varie selon les personnes,
+en fait.
+
+74
+00:04:03,210 --> 00:04:05,400
+Avec la même situation,
+parfois certains vont dire :
+
+75
+00:04:05,600 --> 00:04:08,820
+"Oui, j'ai été confronté à du
+racisme.", et d'autres ne vont
+
+76
+00:04:09,020 --> 00:04:10,020
+pas voir les choses de cette
+façon-là.
+
+77
+00:04:10,220 --> 00:04:15,180
+Bref, cette méthode permet de mesurer
+une partie de l'expérience du racisme
+
+78
+00:04:15,480 --> 00:04:19,410
+et l'existence de certaines inégalités,
+mais elle ne montre qu'une partie
+
+79
+00:04:19,620 --> 00:04:20,380
+de la réalité.
+
+80
+00:04:20,580 --> 00:04:23,460
+D'autres méthodes complémentaires
+permettent de mesurer les
+
+81
+00:04:23,660 --> 00:04:26,910
+discriminations, notamment les
+campagnes de testing.
+
+82
+00:04:27,810 --> 00:04:31,290
+Les campagnes de testing consistent
+à recréer une situation dans laquelle
+
+83
+00:04:31,490 --> 00:04:34,130
+une discrimination peut s'exprimer
+afin de la mesurer.
+
+84
+00:04:35,340 --> 00:04:38,240
+C'est exactement comme cela que
+ça s'est passé pour l'étude que
+
+85
+00:04:38,440 --> 00:04:40,250
+je vous ai montrée au début de la vidéo.
+
+86
+00:04:41,240 --> 00:04:44,240
+Les chercheurs ont créé des profils
+fictifs de personnes qui ont le
+
+87
+00:04:44,440 --> 00:04:46,710
+même niveau d'études et qui postulent
+aux mêmes choses.
+
+88
+00:04:47,300 --> 00:04:51,260
+Mais il y a deux paramètres qui
+sont différents : le lieu de résidence
+
+89
+00:04:51,650 --> 00:04:52,850
+et le nom des candidats.
+
+90
+00:04:53,540 --> 00:04:56,570
+Certains s'appellent Julien Legrand
+ou Émilie Petit, par exemple,
+
+91
+00:04:56,870 --> 00:04:59,870
+tandis que d'autres s'appellent
+Mohamed Chettou ou Jamila Benchargui.
+
+92
+00:05:00,470 --> 00:05:03,620
+Ces candidats habitent parfois
+dans des quartiers difficiles et
+
+93
+00:05:03,820 --> 00:05:04,580
+parfois pas.
+
+94
+00:05:05,150 --> 00:05:08,090
+Une fois tous ces profils créés,
+les chercheurs ont envoyé plus
+
+95
+00:05:08,290 --> 00:05:12,110
+de 17 000 candidatures ou demandes
+d'information à 103 entreprises
+
+96
+00:05:12,310 --> 00:05:15,530
+françaises, qui n'était évidemment
+pas au courant, à la fois pour
+
+97
+00:05:15,730 --> 00:05:18,800
+répondre à des offres existantes
+et en candidatures spontanées.
+
+98
+00:05:19,610 --> 00:05:22,430
+Résultat : le lieu de résidence
+ne change rien.
+
+99
+00:05:23,120 --> 00:05:26,330
+En revanche, le nom,
+et donc l'origine présumée du candidat,
+
+100
+00:05:26,720 --> 00:05:29,780
+a une conséquence sur sa chance
+d'obtenir une réponse.
+
+101
+00:05:30,440 --> 00:05:34,220
+Mohamed et Jamila ont environ 20
+% de réponses en moins par rapport
+
+102
+00:05:34,420 --> 00:05:35,570
+à Émilie et Julien.
+
+103
+00:05:37,760 --> 00:05:40,520
+L'avantage des campagnes de testing,
+c'est qu'elles sont déclinables
+
+104
+00:05:40,820 --> 00:05:43,400
+dans beaucoup d'autres domaines,
+comme l'accès aux soins,
+
+105
+00:05:43,610 --> 00:05:46,520
+les inscriptions à la crèche,
+à l'école, aux grandes écoles,
+
+106
+00:05:46,850 --> 00:05:50,090
+passer une nuit à l'hôtel,
+ou bien même un simple achat de
+
+107
+00:05:50,290 --> 00:05:51,050
+voiture d'occasion.
+
+108
+00:05:51,410 --> 00:05:54,590
+Le problème, c'est que ces études
+ne sont pas parfaites.
+
+109
+00:05:55,130 --> 00:05:59,650
+Elles sont ponctuelles,
+partielles et localisées,
+
+110
+00:06:00,320 --> 00:06:02,990
+ce qui fait que si on veut vraiment
+produire des connaissances avec
+
+111
+00:06:03,190 --> 00:06:06,230
+ce type d'opération, il est important
+de les répéter.
+
+112
+00:06:07,360 --> 00:06:10,910
+Quand on reprend celles sur l'accès
+à l'emploi, les entreprises épinglées
+
+113
+00:06:11,110 --> 00:06:14,720
+par le gouvernement se sont plaintes,
+comme par exemple Air France,
+
+114
+00:06:15,020 --> 00:06:19,130
+qui conteste totalement la méthodologie
+et les conclusions du rapport.
+
+115
+00:06:20,330 --> 00:06:23,930
+Les entreprises soulignent notamment
+qu'en principe, les candidatures
+
+116
+00:06:24,130 --> 00:06:25,310
+passent par le service RH.
+
+117
+00:06:25,790 --> 00:06:28,280
+Dans le cadre de l'étude,
+et parce qu'il y a eu beaucoup
+
+118
+00:06:28,480 --> 00:06:31,340
+de candidatures spontanées,
+elles sont arrivées en grand nombre
+
+119
+00:06:31,540 --> 00:06:34,280
+dans les mains des managers,
+qui sont moins formés au recrutement
+
+120
+00:06:34,550 --> 00:06:35,570
+que les services RH.
+
+121
+00:06:36,780 --> 00:06:39,140
+Notre point de vue, c'était de dire :
+"Oui, mais sur le marché du travail,
+
+122
+00:06:39,340 --> 00:06:42,030
+ça existe." Il y a effectivement
+beaucoup de bouche à oreille,
+
+123
+00:06:42,230 --> 00:06:43,970
+il y a des candidatures spontanées
+sur le marché du travail,
+
+124
+00:06:44,290 --> 00:06:47,000
+donc s'il y a des différences de
+traitement entre des candidats
+
+125
+00:06:47,200 --> 00:06:51,470
+par ce biais-là, ça peut être quelque
+chose qu'il faut considérer,
+
+126
+00:06:51,670 --> 00:06:56,780
+et peut-être que les entreprises
+devraient s'en emparer pour améliorer
+
+127
+00:06:56,980 --> 00:06:57,890
+leur processus de recrutement.
+
+128
+00:06:58,670 --> 00:07:01,910
+En définitive, on ne mesure pas
+vraiment le racisme en France.
+
+129
+00:07:02,110 --> 00:07:04,790
+On mesure la présence des racismes
+et leurs conséquences :
+
+130
+00:07:05,120 --> 00:07:06,130
+les discriminations.
+
+131
+00:07:06,770 --> 00:07:11,150
+Tout ça, c'est nécessaire à une chose :
+les décisions politiques.
+
+132
+00:07:11,840 --> 00:07:15,950
+En l'absence de mesure,
+on ne sait pas, dans le fond,
+
+133
+00:07:16,190 --> 00:07:21,800
+où il faut agir, avec quelle intensité
+il faut agir, et même comment faut-il
+
+134
+00:07:22,000 --> 00:07:22,760
+agir.
+
+135
+00:07:22,960 --> 00:07:25,220
+Je pense que ce qu'il faut,
+c'est que les pouvoirs publics,
+
+136
+00:07:25,420 --> 00:07:29,660
+la parole gouvernementale,
+prennent la mesure des moyens qu'il
+
+137
+00:07:29,860 --> 00:07:31,610
+faut mettre en œuvre pour lutter
+contre le racisme et les
+
+138
+00:07:31,810 --> 00:07:35,930
+discriminations, et notamment la
+dimension systémique du racisme
+
+139
+00:07:36,130 --> 00:07:36,960
+et des discriminations.
