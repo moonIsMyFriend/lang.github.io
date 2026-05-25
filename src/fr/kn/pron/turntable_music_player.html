@@ -57,16 +57,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <!-- quiz-app 전용(패드 다음 트리거). 화면에는 turntable 하단 ▶▶ 만 사용 -->
                     <button type="button" id="btnNext" class="primary sr-only" disabled tabindex="-1" aria-hidden="true">Next</button>
 
-                    <div id="barWrap" class="tp-bar-wrap">
-                        <div role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100"
-                            aria-valuenow="0" id="barUnified" class="tp-bar-unified">
-                            <div id="barProgress" class="tp-bar-progress"></div>
-                            <div id="barCorrect" class="tp-bar-correct"></div>
-                            <div id="barLabel" class="tp-bar-label"></div>
-                        </div>
-                        <span id="barTotal" class="tp-bar-total">0</span>
-                    </div>
-
                 <main class="app tp-main">
                     <section class="device-wrap">
                         <div class="device">
@@ -82,6 +72,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </div>
                                 </div>
                                 <div class="tp-display-footer">
+                                    <div id="barWrap" class="tp-bar-wrap tp-bar-wrap--in-display">
+                                        <div role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100"
+                                            aria-valuenow="0" id="barUnified" class="tp-bar-unified">
+                                            <div id="barProgress" class="tp-bar-progress"></div>
+                                            <div id="barCorrect" class="tp-bar-correct"></div>
+                                            <div id="barLabel" class="tp-bar-label"></div>
+                                            <span id="barTotal" class="tp-bar-total">0</span>
+                                        </div>
+                                    </div>
                                     <div id="tpSpeed" class="tp-speed-display" aria-label="재생 속도">x1</div>
                                     <div class="mini-play" id="miniPlay" role="button" tabindex="0" title="듣기">▶</div>
                                 </div>
