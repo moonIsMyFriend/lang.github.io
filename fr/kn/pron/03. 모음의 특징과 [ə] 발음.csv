@@ -1,10 +1,13 @@
 no,group,speaker,original,pron,trans,comment
-1,3,word,le monde,[lə mɔ̃d / 러 몽더],세계,[ɔ̃]
-2,3,word,ce,[sə / 쓰],이것,[s]
-3,3,word,de,[də / 드],~의,[ə]
-4,3,word,te,[tə / 뜨],너를,[ə]
-5,3,word,ne,[nə / 느],~않다(부정),[ə]
-6,3,expression,sur le lit,[syʁ lə li / 쒸흐 러 리],침대 위에,[i]
-7,3,expression,sous le lit,[su lə li / 쑬리],침대 아래에,[u]
-8,3,expression,sur le banc,[syʁ lə bɑ̃ / 쒸흐 러 벙],벤치 위에,[ɑ̃]
-9,3,expression,sous le banc,[su lə bɑ̃ / 쑬벙],벤치 아래에,[ɑ̃]
+1,3,word,le monde,[lə mɔ̃d / 루 몽더],세계,[ə] 반개/원순모음 [으/어]
+2,3,word,ce,[sə / 쓰],이것,[ə] 반개/원순모음 [으/어]
+3,3,word,de,[də / 드],~의,[ə] 반개/원순모음 [으/어]
+4,3,word,te,[tə / 뜨],너를,[ə] 반개/원순모음 [으/어]
+5,3,word,ne,[nə / 느],~않다(부정),[ə] 반개/원순모음 [으/어]
+6,3,expression,sur le lit,[syʁ lə li / 쒸흐 러/루 리잇],침대 위에,[ə] 반개/원순모음 [으/어]
+7,3,expression,sous le lit,[su lə li / 쑬 루리잇],침대 아래에,[ə] 반개/원순모음 [으/어]
+8,3,expression,sur le banc,[syʁ lə bɑ̃ / 쒸흐 루벙],의자 위에,[ə] 반개/원순모음 [으/어]
+9,3,expression,sous le banc,[su lə bɑ̃ / 쑤ㄹ벙],의자 아래에,[ə] 반개/원순모음 [으/어]
+ 
+  
+       
