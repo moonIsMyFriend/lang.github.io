@@ -1,30 +1,30 @@
 no,group,speaker,original,pron,trans,comment
-1,13,word,rat,[ʁa / 하],쥐,[R] 연구개음(목젖음]/마찰음/유성음
-2,13,word,rue,[ʁy / 휘],거리,[R] 연구개음(목젖음]/마찰음/유성음
+1,13,word,rat,[ʁa / ㅎ아],쥐,[R] 연구개음(목젖음]/마찰음/유성음
+2,13,word,rue,[ʁy / ㅎ위],거리,[R] 연구개음(목젖음]/마찰음/유성음
 3,13,word,terre,[tɛʁ / 때흐],땅/지구,[R] 연구개음(목젖음]/마찰음/유성음
-4,13,word,serrure,[sɛʁyʁ / 쌔휘흐],자물쇠,[R] 연구개음(목젖음]/마찰음/유성음
-5,13,word,riz,[ʁi / 히],쌀,[R] 연구개음(목젖음]/마찰음/유성음
+4,13,word,serrure,[sɛʁyʁ / 쌔ㅎ 위ㅎ],자물쇠,[R] 연구개음(목젖음]/마찰음/유성음
+5,13,word,riz,[ʁi / ㅎ이],쌀,[R] 연구개음(목젖음]/마찰음/유성음
 6,14,word,rose,[ʁoz / 호즈],장미,[R] 연구개음(목젖음]/마찰음/유성음
-7,14,word,fort,[fɔʁ / 포흐],강한,[R] 연구개음(목젖음]/마찰음/유성음
-8,13,word,peur,[pœʁ / 뽸흐],두려움,[R] 연구개음(목젖음]/마찰음/유성음
-9,13,word,heureux,[ø.ʁø / 왜흐외],행복한,[R] 연구개음(목젖음]/마찰음/유성음 
+7,14,word,fort,[fɔʁ / 퍼흐어],강한,[R] 연구개음(목젖음]/마찰음/유성음
+8,13,word,peur,[pœʁ / 뽸흐/뻐 ㅎ],두려움,[R] 연구개음(목젖음]/마찰음/유성음
+9,13,word,heureux,[ø.ʁø / 왜흐외/으허 흑],행복한,[R] 연구개음(목젖음]/마찰음/유성음 
 10,13,word,bureau,[by.ʁo / 뷔호],사무실,[R] 연구개음(목젖음]/마찰음/유성음 
-11,13,word,voiture,[vwa.tyʁ / 부와뛰흐],자동차,[R] 연구개음(목젖음]/마찰음/유성음 
-12,13,word,Paris,[pa.ʁi / 빠히],파리,[R] 연구개음(목젖음]/마찰음/유성음 
-13,13,word,Algérie,[al.ʒe.ʁi / 알줴히],알제리,[R] 연구개음(목젖음]/마찰음/유성음 
-14,13,word,boulangerie,[bu.lɑ̃.ʒʁi / 불렁쥬히],빵집,[R] 연구개음(목젖음]/마찰음/유성음 
-15,14,sentence,c'est le grand jour de la foire à l'emploi,[se lə gʁɑ̃ ʒuʁ də la fwaʁ a lɑ̃plwa / 쎌르 그헝 쥬흐 ▲  들라 푸아흐 알렁쁠루아 ▼],취업 박람회의 중요한 날이다,
-16,14,sentence,"Un job, un stage, un emploi.",[œ̃ ʒɔb œ̃ staʒ œ̃ nɑ̃plwa / 앙 좝 ▲  앙 스타쥬 ▲   앙 랑플루아 ▼],일자리?인턴?직업?,
-17,14,sentence,"Des étudiants, une ambassadrice, quatre sociétés.",[de zetydjɑ̃ yn ɑ̃basadʁis katʁ sɔsjete / 데 제튀디앙 ▲  윈 앙바사드히스 ▲ 카트흐 소시에테 ▼],"학생들! 여성 홍보대사, 네 개의 회사",
-18,14,sentence,Anina tient le rôle d'ambassadrice pour 4 sociétés.,[anina tjɛ̃ lə ʁol dɑ̃basadʁis puʁ katʁ sɔsjete / 아니나 ▲   티앙 르 홀 담바사드히스 ▲  푸흐 카트흐 소시에테 ▼],아니나는 네 회사의 홍보대사 역할을 맡고 있다,
-19,14,sentence,Vous cherchez un poste fixe ?,[vu ʃɛʁʃe œ̃ pɔst fiks / 부 셰흐셰 앙 포스트 픽스 ▲ ],정규직을 찾고 계신가요?,
-20,14,sentence,Au revoir !,[o ʁəvwaʁ / 오 흐부아흐],안녕히 가세요,
+11,13,word,voiture,[vwa.tyʁ / 부와 뜌흐],자동차,[R] 연구개음(목젖음]/마찰음/유성음 
+12,13,word,Paris,[pa.ʁi / 빠휘],파리,[R] 연구개음(목젖음]/마찰음/유성음 
+13,13,word,Algérie,[al.ʒe.ʁi / 알 줴휘],알제리,[R] 연구개음(목젖음]/마찰음/유성음 
+14,13,word,boulangerie,[bu.lɑ̃.ʒʁi / 불렁 쥬히],빵집,[R] 연구개음(목젖음]/마찰음/유성음 
+15,14,sentence,c'est le grand jour de la foire à l'emploi,[se lə gʁɑ̃ ʒuʁ də la fwaʁ a lɑ̃plwa / 쎌르 그헝쥬흐 ▲  들라 푸아ㅎ 알렁 쁠루아 ▼],취업 박람회의 중요한 날이다,
+16,14,sentence,"Un job, un stage, un emploi.",[œ̃ ʒɔb œ̃ staʒ œ̃ nɑ̃plwa / 앙ㅈ여브 ▲  앙스타쥬 ▲   앙넝 플루아 ▼],일자리?인턴?직업?,
+17,14,sentence,"Des étudiants, une ambassadrice, quatre sociétés.",[de zetydjɑ̃ yn ɑ̃basadʁis katʁ sɔsjete / 데제튀디엉 ▲  위넝 바싸드 ㅎ이쓰 ▲ 카트ㅎ 소씨에떼 ▼],"학생들! 여성 홍보대사, 네 개의 회사",
+18,14,sentence,Anina tient le rôle d'ambassadrice pour 4 sociétés.,[anina tjɛ̃ lə ʁol dɑ̃basadʁis puʁ katʁ sɔsjete / 아니나 ▲   티앙 르홀 / 덩바싸드ㅎ이쓰 ▲  뿌ㅎ 까트ㅎ 쏘씨에떼 ▼],아니나는 네 회사의 홍보대사 역할을 맡고 있다,
+19,14,sentence,Vous cherchez un poste fixe ?,[vu ʃɛʁʃe œ̃ pɔst fiks / 부셰흐셰 앙 뽀스트 픽스 ▲ ],정규직을 찾고 계신가요?,
+20,14,sentence,Au revoir !,[o ʁəvwaʁ / 오흐 부아흐],안녕히 가세요,
 21,14,sentence,Bien sûr !,[bjɛ̃ syʁ / 비양 쒸흐],물론입니다,
-22,14,sentence,Bonne chance ! Bonsoir !,[bɔn ʃɑ̃s bɔ̃swaʁ / 본느 셩쓰 봉수아흐],행운을 빕니다 안녕하세요(저녁),
-23,14,sentence,Combien ça coûte ?,[kɔ̃bjɛ̃ sa kut / 콩비양 싸 꾸뜨],얼마인가요?,
+22,14,sentence,Bonne chance ! Bonsoir !,[bɔn ʃɑ̃s bɔ̃swaʁ / 본으 셩쓰 / 봉쑤아흐],행운을 빕니다 안녕하세요(저녁),
+23,14,sentence,Combien ça coûte ?,[kɔ̃bjɛ̃ sa kut / 콩비양 싸꾸뜨],얼마인가요?,
 24,14,sentence,Comment allez-vous ?,[kɔmɑ̃ tale vu / 꼬멍 딸레부],어떻게 지내세요?,
-25,14,sentence,"Le temps, c'est de l'argent.",[lə tɑ̃ se də laʁʒɑ̃ / 르떵 쎄들라흐졍],시간은 돈이다,
-26,14,sentence,Qui vole un œuf vole un bœuf.,[ki vɔl œ̃ nœf vɔl œ̃ bœf / 끼볼라놰ㅍ 볼랑봬ㅍ],작은 도둑질이 큰 도둑질로 이어진다
-27,14,word,du shampooing,[dy ʃɑ̃pwɛ̃ / 뒤 셩뿌앙],샴푸/머리감기
-28,14,word,la pharmacie,[la faʁmasi / 라 파르마씨],약국,
-29,14,word,l'ascenseur,[lasɑ̃sœʁ / 라썽쐐흐],엘리베이터,
+25,14,sentence,"Le temps, c'est de l'argent.",[lə tɑ̃ se də laʁʒɑ̃ / 르떵 쎄들 라흐졍],시간은 돈이다,
+26,14,sentence,Qui vole un œuf vole un bœuf.,[ki vɔl œ̃ nœf vɔl œ̃ bœf / 끼볼 라느어ㅍ / 볼랑 버ㅍ],작은 도둑질이 큰 도둑질로 이어진다
+27,14,word,du shampooing,[dy ʃɑ̃pwɛ̃ / 뒤셩 뿌앙],샴푸/머리감기
+28,14,word,la pharmacie,[la faʁmasi / 라 빠흐마씨],약국,
+29,14,word,l'ascenseur,[lasɑ̃sœʁ / 라썽 써흐],엘리베이터,
