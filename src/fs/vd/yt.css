@@ -161,6 +161,18 @@ body.dark .yt-url-bar input {
     border: 1px solid var(--bd);
 }
 
+.yt-player-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 20%;
+    background: #000;
+    pointer-events: auto;
+    z-index: 2;
+}
+
 #player {
     position: absolute;
     inset: 0;
