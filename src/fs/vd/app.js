@@ -356,8 +356,8 @@
       if (i === loopIndex) row.classList.add('is-looping');
 
       row.innerHTML = `
-        <span class="yt-cue-time">${formatTime(cue.start)}</span>
-        <span class="yt-cue-text">${escapeHtml(cue.text)}</span>
+        <span class="yt-cue-no">${i + 1}.</span>
+        <span class="yt-cue-time">${formatTime(cue.start)} ~ ${formatTime(cue.end)}</span>
       `;
 
       row.addEventListener('click', () => {

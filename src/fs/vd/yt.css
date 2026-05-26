@@ -318,8 +318,10 @@ body.dark .yt-url-bar input {
 
 .yt-cue {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto;
     gap: 10px;
+    justify-content: start;
+    align-items: baseline;
     align-items: start;
     padding: 10px 12px;
     border-bottom: 1px solid var(--bd);
@@ -342,6 +344,15 @@ body.dark .yt-url-bar input {
 .yt-cue.is-looping {
     outline: 2px solid var(--good);
     outline-offset: -2px;
+}
+
+.yt-cue-no {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--fg);
+    min-width: 2.2em;
+    text-align: right;
+    padding-top: 2px;
 }
 
 .yt-cue-time {
