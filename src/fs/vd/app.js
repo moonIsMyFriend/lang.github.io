@@ -353,7 +353,16 @@
         <span class="yt-cue-text">${escapeHtml(cue.text)}</span>
       `;
 
-      row.addEventListener('click', () => seekToCue(i, true));
+      row.addEventListener('click', () => {
+        if (loopIndex >= 0) {
+          clearLoopHold();
+          loopIndex = i;
+          seekToCue(i, true, true);
+          setStatus(`구간 반복: ${formatTime(cues[i].start)} ~ ${formatTime(cues[i].end)}`);
+        } else {
+          seekToCue(i, true);
+        }
+      });
       cueList.appendChild(row);
     });
     updateLoopToggle();
