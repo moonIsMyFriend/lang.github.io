@@ -647,6 +647,7 @@
         videoId,
         playerVars: {
           autoplay: 1,
+          mute: 1,
           start: Math.floor(startSec || 0),
           rel: 0,
           modestbranding: 1,
@@ -655,6 +656,7 @@
         },
         events: {
           onReady: (e) => {
+            try { e.target.mute(); } catch (_) { /* ignore */ }
             if (startSec > 0) e.target.seekTo(startSec, true);
             e.target.playVideo();
             startTick();
