@@ -250,7 +250,7 @@
   function applyLoadedCues(sourceLabel) {
     applyRangeFilter();
     activeIndex = cues.length > 0 ? 0 : -1;
-    loopIndex = -1;
+    loopIndex = activeIndex;
     clearLoopHold();
     captionTracks = [];
     langSelect.innerHTML = '<option value="">파일</option>';
@@ -462,6 +462,9 @@
     quizAnswers.set(idx, ok ? 'correct' : 'wrong');
     flashQuizButton(answer, ok);
     updateQuizScore();
+    if (ok && idx < cues.length - 1) {
+      setTimeout(() => stepCue(1), 600);
+    }
   }
 
   function highlightActive(index, smoothScroll) {
@@ -765,6 +768,9 @@
       return;
     }
     applyRangeFilter();
+    activeIndex = cues.length > 0 ? 0 : -1;
+    loopIndex = activeIndex;
+    clearLoopHold();
     resetQuizScore();
     renderCueList();
     updateQuizButtonsEnabled();
