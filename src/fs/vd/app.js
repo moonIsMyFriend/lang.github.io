@@ -37,6 +37,11 @@
   const rangeEnd = $('rangeEnd');
   const btnCaptionSettings = $('btnCaptionSettings');
   const captionSettings = $('ytCaptionSettings');
+  const btnAnsLeft = $('btnAnsLeft');
+  const btnAnsNon = $('btnAnsNon');
+  const btnAnsRight = $('btnAnsRight');
+  const quizScoreEl = $('quizScore');
+  const quizAnswers = new Map();
 
   let player = null;
   let cues = [];
@@ -250,11 +255,13 @@
     captionTracks = [];
     langSelect.innerHTML = '<option value="">파일</option>';
     langSelect.disabled = true;
+    resetQuizScore();
     renderCueList();
     if (activeIndex >= 0) {
       updateNowDisplay(activeIndex);
       requestAnimationFrame(() => scrollCueIntoView(activeIndex, false));
     }
+    updateQuizButtonsEnabled();
     setStatus(`${sourceLabel} ${cues.length}개 로드됨`);
   }
 
@@ -388,15 +395,73 @@
   }
 
   function updateNowDisplay(index) {
-    if (index < 0 || !cues[index]) {
-      nowCue.textContent = '재생 중인 자막이 여기에 표시됩니다.';
-      nowCue.classList.add('is-empty');
-      nowCue.classList.remove('is-active');
-      return;
+    if (nowCue) {
+      if (index < 0 || !cues[index]) {
+        nowCue.textContent = '재생 중인 자막이 여기에 표시됩니다.';
+        nowCue.classList.add('is-empty');
+        nowCue.classList.remove('is-active');
+      } else {
+        nowCue.textContent = cues[index].text;
+        nowCue.classList.remove('is-empty');
+        nowCue.classList.add('is-active');
+      }
     }
-    nowCue.textContent = cues[index].text;
-    nowCue.classList.remove('is-empty');
-    nowCue.classList.add('is-active');
+    updateQuizButtonsEnabled();
+  }
+
+  function determineAnswer(text) {
+    const t = String(text || '');
+    if (/\[\s*-\s*\]/.test(t)) return 'non';
+    if (/left/i.test(t)) return 'left';
+    if (/right/i.test(t)) return 'right';
+    return null;
+  }
+
+  function getCurrentQuizIndex() {
+    if (loopIndex >= 0 && cues[loopIndex]) return loopIndex;
+    if (activeIndex >= 0 && cues[activeIndex]) return activeIndex;
+    return -1;
+  }
+
+  function updateQuizButtonsEnabled() {
+    const idx = getCurrentQuizIndex();
+    const hasAnswer = idx >= 0 && determineAnswer(cues[idx] && cues[idx].text) != null;
+    [btnAnsLeft, btnAnsNon, btnAnsRight].forEach((b) => {
+      if (b) b.disabled = !hasAnswer;
+    });
+  }
+
+  function updateQuizScore() {
+    if (!quizScoreEl) return;
+    let correct = 0;
+    for (const v of quizAnswers.values()) if (v === 'correct') correct++;
+    quizScoreEl.textContent = `${correct} / ${cues.length}`;
+  }
+
+  function resetQuizScore() {
+    quizAnswers.clear();
+    updateQuizScore();
+  }
+
+  function flashQuizButton(answer, ok) {
+    const btn =
+      answer === 'left' ? btnAnsLeft : answer === 'right' ? btnAnsRight : btnAnsNon;
+    if (!btn) return;
+    btn.classList.remove('is-correct', 'is-wrong');
+    void btn.offsetWidth;
+    btn.classList.add(ok ? 'is-correct' : 'is-wrong');
+    setTimeout(() => btn.classList.remove('is-correct', 'is-wrong'), 700);
+  }
+
+  function handleQuizAnswer(answer) {
+    const idx = getCurrentQuizIndex();
+    if (idx < 0 || !cues[idx]) return;
+    const correct = determineAnswer(cues[idx].text);
+    if (!correct) return;
+    const ok = answer === correct;
+    quizAnswers.set(idx, ok ? 'correct' : 'wrong');
+    flashQuizButton(answer, ok);
+    updateQuizScore();
   }
 
   function highlightActive(index, smoothScroll) {
@@ -694,12 +759,15 @@
       text: c.text,
     }));
     if (!cues.length) {
+      resetQuizScore();
       renderCueList();
       setStatus('YouTube 자막이 없습니다. VTT/SRT 파일을 업로드해 주세요.', true);
       return;
     }
     applyRangeFilter();
+    resetQuizScore();
     renderCueList();
+    updateQuizButtonsEnabled();
     setStatus(`자막 ${cues.length}개 (${data.language_code || ''})`);
   }
 
@@ -880,6 +948,10 @@
 
   btnLoad.addEventListener('click', handleLoad);
   btnLoopToggle.addEventListener('click', toggleLoopCurrent);
+  [btnAnsLeft, btnAnsNon, btnAnsRight].forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener('click', () => handleQuizAnswer(btn.dataset.answer));
+  });
   urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') handleLoad();
   });

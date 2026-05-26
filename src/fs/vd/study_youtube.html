@@ -99,7 +99,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <div class="yt-now-panel">
-                    <div id="nowCue" class="yt-now is-empty">재생 중인 자막이 여기에 표시됩니다.</div>
+                    <div class="yt-quiz-buttons" role="group" aria-label="정답 선택">
+                        <button id="btnAnsLeft" type="button" class="yt-quiz-btn" data-answer="left" disabled>Left</button>
+                        <button id="btnAnsNon" type="button" class="yt-quiz-btn yt-quiz-btn--non" data-answer="non" disabled>Non</button>
+                        <button id="btnAnsRight" type="button" class="yt-quiz-btn" data-answer="right" disabled>Right</button>
+                    </div>
                     <button id="btnLoopToggle" type="button" class="ghost yt-loop-toggle" disabled
                         aria-pressed="false" aria-label="구간 반복 켜기" title="구간 반복 켜기">
                         <span class="yt-loop-icon yt-loop-icon--off" aria-hidden="true">
@@ -123,6 +127,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </span>
                     </button>
                 </div>
+
+                <div class="yt-quiz-score" id="quizScore" aria-live="polite">0 / 0</div>
 
                 <div class="yt-meta">
                     <span>목록 클릭: 해당 구간 이동</span>

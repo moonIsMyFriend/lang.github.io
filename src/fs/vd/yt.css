@@ -235,6 +235,64 @@ body.dark .yt-url-bar input {
     cursor: not-allowed;
 }
 
+.yt-quiz-buttons {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.yt-quiz-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 4.5rem;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--bd);
+    background: var(--card);
+    color: var(--fg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.08s;
+}
+
+.yt-quiz-btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--good) 8%, var(--card));
+    border-color: color-mix(in srgb, var(--good) 50%, var(--bd));
+}
+
+.yt-quiz-btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.yt-quiz-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.yt-quiz-btn.is-correct {
+    background: var(--good);
+    border-color: var(--good);
+    color: #fff;
+}
+
+.yt-quiz-btn.is-wrong {
+    background: var(--bad, #dc2626);
+    border-color: var(--bad, #dc2626);
+    color: #fff;
+}
+
+.yt-quiz-score {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    padding: 6px 0;
+    font-variant-numeric: tabular-nums;
+}
+
 .yt-meta {
     display: flex;
     flex-wrap: wrap;
@@ -478,10 +536,10 @@ body.dark .yt-url-bar input {
         width: 100%;
     }
 
-    .yt-now {
-        font-size: clamp(1rem, 4.2vw, 1.35rem);
-        padding: 12px 14px;
-        overflow-wrap: anywhere;
+    .yt-quiz-btn {
+        font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+        min-height: 3.6rem;
+        padding: 10px 8px;
     }
 
     .yt-meta {
