@@ -1,6 +1,8 @@
 /**
  * TP-7 프레임 ↔ quiz-app 연동 (turntable_music_player.html 전용)
  */
+import { installNaverDictPopup } from './naver-dict-popup.js';
+
 export function initTurntableQuizUi() {
   const audio = document.querySelector('#audioPlayer');
   const btnAudio = document.querySelector('#btnAudio');
@@ -402,6 +404,10 @@ export function initTurntableQuizUi() {
   if (answerWrap) mo.observe(answerWrap, { attributes: true, attributeFilter: ['style'] });
   document.addEventListener('learnlang-reset-tp-expr', syncLines);
   syncLines();
+
+  if (tpExpr) {
+    installNaverDictPopup(tpExpr, { dict: 'fren' });
+  }
 
   const settingsBtn = document.querySelector('#btnSettings');
   const settingsModal = document.querySelector('#tpSettingsModal');
