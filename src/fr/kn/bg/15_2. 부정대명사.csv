@@ -1,29 +1,29 @@
 no,group,speaker,original,pron,trans,comment
-Il y a quelqu’un ?
-Quelqu’un frappe à la porte.
-Tu vois quelque chose ?
-Voulez-vous manger quelque chose ?
-Je n’aime personne et personne ne m’aime.
-Il n’y a personne dans la maison ?
-Je ne regrette rien.
-Il n’y a rien sur la table.
-Je ne regrette rien.
-Personne ne m’aime.
-Je n’entends rien.
-Je n’ai rien entendu.
-Vous ne voyez rien ?
-Vous n’avez rien vu ?
-Tu vois quelque chose ?
-"Non, je ne vois rien."
-Tu aimes quelqu’un ?
-"Non, je n’aime personne."
-Vous entendez quelque chose ?
-"Non, on n’entend rien"
-Il y a quelqu’un dans la chambre ?
-"Non, il n’y a personne dans la chambre."
-Vous avez mangé quelque chose ?
-"Non, nous n’avons rien mangé."
-Elle aime toujours quelqu’un.
-Personne n’est content.
-Je ne regrette rien.
-Vous n’avez rien vu ?
+1,152,,Il y a quelqu'un ?,[il i a kɛlkœ̃ / 일리아 켈컹],누군가 있나요?,
+2,152,,Quelqu'un frappe à la porte.,[kɛlkœ̃ fʁap a la pɔʁt / 켈컹 프라프 아 라 포르트],누군가 문을 두드립니다.,
+3,152,,Tu vois quelque chose ?,[ty vwɑ kɛlkə ʃoz / 튀 브와 켈크 쇼즈],뭔가 보이니?,
+4,152,,Voulez-vous manger quelque chose ?,[vule vu mɑ̃ʒe kɛlkə ʃoz / 부레 부 망제 켈크 쇼즈],뭔가 드시겠어요?,
+5,152,,Je n'aime personne et personne ne m'aime.,[ʒə nɛm pɛʁsɔn e pɛʁsɔn nə mɛm / 즈 넴 페르손 에 페르손 너 맴],나는 아무도 좋아하지 않고 아무도 나를 좋아하지 않는다.,
+6,152,,Il n'y a personne dans la maison ?,[il n i a pɛʁsɔn dɑ̃ la mɛzɔ̃ / 일 니아 페르손 당 라 메종],집에 아무도 없나요?,
+7,152,,Je ne regrette rien.,[ʒə nə ʁəgʁɛt ʁjɛ̃ / 즈 너 헤그레 리앙],나는 아무것도 후회하지 않는다.,
+8,152,,Il n'y a rien sur la table.,[il n i a ʁjɛ̃ syʁ la tabl / 일 니아 리앙 쉬르 라 따블],테이블 위에 아무것도 없다.,
+9,152,,Je ne regrette rien.,[ʒə nə ʁəgʁɛt ʁjɛ̃ / 즈 너 헤그레 리앙],나는 아무것도 후회하지 않는다.,
+10,152,,Personne ne m'aime.,[pɛʁsɔn nə mɛm / 페르손 너 맴],아무도 나를 좋아하지 않는다.,
+11,152,,Je n'entends rien.,[ʒə n‿ɑ̃tɑ̃ ʁjɛ̃ / 즈 낭탕 리앙],나는 아무 소리도 듣지 못한다.,
+12,152,,Je n'ai rien entendu.,[ʒə nɛ ʁjɛ̃ ɑ̃tɑ̃dy / 즈 네 리앙 앙탕듀],나는 아무것도 듣지 못했다.,
+13,152,,Vous ne voyez rien ?,[vu nə vwaje ʁjɛ̃ / 부 너 브와이 리앙],아무것도 안 보이세요?,
+14,152,,Vous n'avez rien vu ?,[vu n‿ave ʁjɛ̃ vy / 부 나베 리앙 뷔],아무것도 안 보셨나요?,
+15,152,,Tu vois quelque chose ?,[ty vwɑ kɛlkə ʃoz / 튀 브와 켈크 쇼즈],뭔가 보이니?,
+16,152,,"Non, je ne vois rien.","[nɔ̃, ʒə nə vwɑ̃ ʁjɛ̃ / 농, 즈 너 브앙 리앙]","아니, 아무것도 안 보여.",
+17,152,,Tu aimes quelqu'un ?,[ty ɛm kɛlkœ̃ / 튀 엠 켈컹],누군가 좋아하니?,
+18,152,,"Non, je n'aime personne.","[nɔ̃, ʒə nɛm pɛʁsɔn / 농, 즈 넴 페르손]","아니, 아무도 좋아하지 않아.",
+19,152,,Vous entendez quelque chose ?,[vu z‿ɑ̃tɑ̃de kɛlkə ʃoz / 부장탕드 켈크 쇼즈],뭔가 들리세요?,
+20,152,,"Non, on n'entend rien","[nɔ̃, ɔ̃ n‿ɑ̃tɑ̃ ʁjɛ̃ / 농, 옹 낭탕 리앙]","아니, 아무 소리도 안 들려.",
+21,152,,Il y a quelqu'un dans la chambre ?,[il i a kɛlkœ̃ dɑ̃ la ʃɑ̃bʁ / 일리아 켈컹 당 라 샹브르],방에 누군가 있나요?,
+22,152,,"Non, il n'y a personne dans la chambre.","[nɔ̃, il n i a pɛʁsɔn dɑ̃ la ʃɑ̃bʁ / 농, 일 니아 페르손 당 라 샹브르]","아니, 방에 아무도 없어.",
+23,152,,Vous avez mangé quelque chose ?,[vu z‿ave mɑ̃ʒe kɛlkə ʃoz / 부자베 망제 켈크 쇼즈],뭔가 드셨나요?,
+24,152,,"Non, nous n'avons rien mangé.","[nɔ̃, nu n‿avɔ̃ ʁjɛ̃ mɑ̃ʒe / 농, 누 나봉 리앙 망제]","아니, 우리는 아무것도 먹지 않았어.",
+25,152,,Elle aime toujours quelqu'un.,[ɛl ɛm tujuʁ kɛlkœ̃ / 엘 엠 투주르 켈컹],그녀는 항상 누군가를 좋아한다.,
+26,152,,Personne n'est content.,[pɛʁsɔn nɛ kɔ̃tɑ̃ / 페르손 네 콩탕],아무도 만족하지 않는다.,
+27,152,,Je ne regrette rien.,[ʒə nə ʁəgʁɛt ʁjɛ̃ / 즈 너 헤그레 리앙],나는 아무것도 후회하지 않는다.,
+28,152,,Vous n'avez rien vu ?,[vu n‿ave ʁjɛ̃ vy / 부 나베 리앙 뷔],아무것도 안 보셨나요?,
