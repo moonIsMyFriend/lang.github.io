@@ -1,51 +1,51 @@
 no,group,speaker,original,pron,trans,comment
-Je regardela télé.
-J’airegardéla télé.
-Elle surfesur Internet.
-Elle asurfé sur Internet
-Nous mangeons des pâtes.
-Nous avonsmangé des pâtes.
-Tu finistes devoirs ?
-Tu asfini tes devoirs ?
-Vous choisissez votre dessert ?
-Vous avezchoisivotre dessert ?
-Les enfants grandissent.
-Les enfants ontgrandi.
-Je suis professeur d’anglais.
-J’ai été professeur d’anglais.
-Qu’est-ce que tu fais aujourd’hui ?
-Qu’est-ce que tu as fait hier ?
-Nous prenons l’avion pour Paris.
-Nous avons pris l’avion pour Paris.
-Vous lisez Les Misérables ?
-Vous avez lu Les Misérables ?
-Ils ont un accident.
-Ils ont eu un accident.
-Il ne prend pas le petit-déjeuner.
-Il n’a pas pris le petit-déjeuner.
-Nous ne lisons pas ce roman.
-Nous n’avons pas lu ce roman.
-Vous n’avez pas d’accident ?
-Vous n’avez pas eu d’accident ?
-"Aujourd’hui, je regarde la télé."
-"Hier aussi, j’ai regardé la télé."
-"Aujourd’hui, vous dînez dans un restaurant français ?"
-"Hier aussi, vous avez dîné dans un restaurant français ?"
-"Aujourd’hui, nous faisons du tennis."
-"Hier aussi, nous avons fait du tennis."
-"Aujourd’hui, je prends le métro pour aller au travail."
-"Hier aussi, j’ai pris le métro pour aller au travail."
-"Aujourd’hui, il y a un accident de voiture sur l’autoroute."
-"Hier aussi, il y a eu un accident de voiture sur l’autoroute."
-"Aujourd’hui, tu vois ta copine ?"
-"Hier aussi, tu as vu ta copine ?"
-"Tu réserves une chambre d’hôtel ?"
-Tu as réservé une chambre d’hôtel ?
-Je lis Les Misérables.
-J’ai lu Les Misérables.
-Vous choisissez ?
-Vous avez choisi ?
-Qu’est-ce qu’il fait ?
-Qu’est-ce qu’il a fait ?
-Ils ne finissent pas leurs devoirs ?
-Ils n’ont pas fini leurs devoirs ?
+1,143,,Je regarde la télé.,[ʒə ʁəgaʁd la tele / 즈 헤가르드 라 텔레],나는 TV를 봅니다. (현재),
+2,143,,J'ai regardé la télé.,[ʒe ʁəgaʁde la tele / 제 헤가르데 라 텔레],나는 TV를 봤습니다. (복합과거),
+3,143,,Elle surfe sur Internet.,[ɛl syʁf syʁ ɛ̃tɛʁnɛt / 엘 쉬르프 쉬르 앵테르네트],그녀는 인터넷을 합니다. (현재),
+4,143,,Elle a surfé sur Internet.,[ɛl a syʁfe syʁ ɛ̃tɛʁnɛt / 엘 아 쉬르페 쉬르 앵테르네트],그녀는 인터넷을 했습니다. (복합과거),
+5,143,,Nous mangeons des pâtes.,[nu mɑ̃ʒɔ̃ de pat / 누 망종 데 파트],우리는 파스타를 먹습니다. (현재),
+6,143,,Nous avons mangé des pâtes.,[nu z‿avɔ̃ mɑ̃ʒe de pat / 누 자봉 망제 데 파트],우리는 파스타를 먹었습니다. (복합과거),
+7,143,,Tu finis tes devoirs ?,[ty fini te dəvwaʁ / 튀 피니 테 데브와르],너 숙제 끝냈니? (현재),
+8,143,,Tu as fini tes devoirs ?,[ty a fini te dəvwaʁ / 튀 아 피니 테 데브와르],너 숙제 끝냈니? (복합과거),
+9,143,,Vous choisissez votre dessert ?,[vu ʃwisise vɔtʁ desɛʁ / 부 슈이시즈 보트르 데세르],디저트 고르시겠어요? (현재),
+10,143,,Vous avez choisi votre dessert ?,[vu z‿ave ʃwizi vɔtʁ desɛʁ / 부 자베 슈이지 보트르 데세르],디저트 고르셨어요? (복합과거),
+11,143,,Les enfants grandissent.,[le zɑ̃fɑ̃ gʁɑ̃dis / 레 장팡 그랑디스],아이들이 자랍니다. (현재),
+12,143,,Les enfants ont grandi.,[le zɑ̃fɑ̃ ɔ̃ gʁɑ̃di / 레 장팡 옹 그랑디],아이들이 자랐습니다. (복합과거),
+13,143,,Je suis professeur d'anglais.,[ʒə sɥi pʁɔfɛsœʁ dɑ̃glɛ / 즈 쉬 프로페쇠르 당글레],나는 영어 교사입니다.,
+14,143,,J'ai été professeur d'anglais.,[ʒe ete pʁɔfɛsœʁ dɑ̃glɛ / 제 에테 프로페쇠르 당글레],나는 영어 교사였습니다. (être 과거),
+15,143,,Qu'est-ce que tu fais aujourd'hui ?,[kɛs kə ty fɛ oʒuʁdɥi / 케스크 튀 페 오주르뒤],오늘 뭐 해?,
+16,143,,Qu'est-ce que tu as fait hier ?,[kɛs kə ty a fɛ jɛʁ / 케스크 튀 아 페 예르],어제 뭐 했어?,
+17,143,,Nous prenons l'avion pour Paris.,[nu pʁənɔ̃ lavjɔ̃ puʁ paʁi / 누 프러농 라비옹 푸르 파리],우리는 파리행 비행기를 탑니다. (현재),
+18,143,,Nous avons pris l'avion pour Paris.,[nu z‿avɔ̃ pʁi lavjɔ̃ puʁ paʁi / 누 자봉 프리 라비옹 푸르 파리],우리는 파리행 비행기를 탔습니다. (복합과거),
+19,143,,Vous lisez Les Misérables ?,[vu lize le mizeʁabl / 부 리제 레 미제라블],레 미제라블을 읽고 계세요? (현재),
+20,143,,Vous avez lu Les Misérables ?,[vu z‿ave ly le mizeʁabl / 부 자베 륀 레 미제라블],레 미제라블을 읽으셨어요? (복합과거),
+21,143,,Ils ont un accident.,[il zɔ̃t‿œ̃n aksidɑ̃ / 일존텅 악시당],그들은 사고가 있습니다. (avoir 현재),
+22,143,,Ils ont eu un accident.,[il zɔ̃t‿y œ̃n aksidɑ̃ / 일존튀 엉 악시당],그들은 사고를 당했습니다. (복합과거),
+23,143,,Il ne prend pas le petit-déjeuner.,[il nə pʁɑ̃ pa lə pətideʒøne / 일 너 프랑 파 르 프티데죄네],그는 아침을 먹지 않습니다. (현재),
+24,143,,Il n'a pas pris le petit-déjeuner.,[il na pa pʁi lə pətideʒøne / 일 나 파 프리 르 프티데죄네],그는 아침을 먹지 않았습니다. (복합과거),
+25,143,,Nous ne lisons pas ce roman.,[nu nə lizɔ̃ pa sə ʁɔmɑ̃ / 누 너 리종 파 스 허망],우리는 이 소설을 읽지 않습니다. (현재),
+26,143,,Nous n'avons pas lu ce roman.,[nu n‿avɔ̃ pa ly sə ʁɔmɑ̃ / 누 나봉 파 륀 스 허망],우리는 이 소설을 읽지 않았습니다. (복합과거),
+27,143,,Vous n'avez pas d'accident ?,[vu n‿ave pa daksidɑ̃ / 부 나베 파 닥시당],사고 없으세요? (avoir 현재),
+28,143,,Vous n'avez pas eu d'accident ?,[vu n‿ave pa dy daksidɑ̃ / 부 나베 파 뒤 닥시당],사고 안 나셨어요? (복합과거),
+29,143,,"Aujourd'hui, je regarde la télé.","[oʒuʁdɥi, ʒə ʁəgaʁd la tele / 오주르뒤, 즈 헤가르드 라 텔레]","오늘, 나는 TV를 봅니다.",
+30,143,,"Hier aussi, j'ai regardé la télé.","[jɛʁ osi, ʒe ʁəgaʁde la tele / 예르 오시, 제 헤가르데 라 텔레]","어제도, 나는 TV를 봤습니다.",
+31,143,,"Aujourd'hui, vous dînez dans un restaurant français ?","[oʒuʁdɥi, vu dine dɑ̃z‿œ̃ ʁɛstɔʁɑ̃ fʁɑ̃sɛ / 오주르뒤, 부 디네 당쓴 헤스토랑 프랑세]","오늘, 프랑스 식당에서 저녁 드세요?",
+32,143,,"Hier aussi, vous avez dîné dans un restaurant français ?","[jɛʁ osi, vu z‿ave dine dɑ̃z‿œ̃ ʁɛstɔʁɑ̃ fʁɑ̃sɛ / 예르 오시, 부 자베 디네 당쓴 헤스토랑 프랑세]","어제도, 프랑스 식당에서 저녁 드셨어요?",
+33,143,,"Aujourd'hui, nous faisons du tennis.","[oʒuʁdɥi, nu fɛzɔ̃ dy tenis / 오주르뒤, 누 페종 뒤 테니스]","오늘, 우리는 테니스를 합니다.",
+34,143,,"Hier aussi, nous avons fait du tennis.","[jɛʁ osi, nu z‿avɔ̃ fɛ dy tenis / 예르 오시, 누 자베 페 뒤 테니스]","어제도, 우리는 테니스를 했습니다.",
+35,143,,"Aujourd'hui, je prends le métro pour aller au travail.","[oʒuʁdɥi, ʒə pʁɑ̃ lə metʁo puʁ ale o tʁavaj / 오주르뒤, 즈 프랑 르 메트로 푸르 알레 오 트라바이]","오늘, 나는 출근하려고 지하철을 탑니다.",
+36,143,,"Hier aussi, j'ai pris le métro pour aller au travail.","[jɛʁ osi, ʒe pʁi lə metʁo puʁ ale o tʁavaj / 예르 오시, 제 프리 르 메트로 푸르 알레 오 트라바이]","어제도, 나는 출근하려고 지하철을 탔습니다.",
+37,143,,"Aujourd'hui, il y a un accident de voiture sur l'autoroute.","[oʒuʁdɥi, il i a œ̃n aksidɑ̃ də vwatyʁ syʁ lotɔʁut / 오주르뒤, 일리아 엉 악시당 드 브와튀르 쉬르 로토루트]","오늘, 고속도로에서 교통사고가 있습니다.",
+38,143,,"Hier aussi, il y a eu un accident de voiture sur l'autoroute.","[jɛʁ osi, il i a y œ̃n aksidɑ̃ də vwatyʁ syʁ lotɔʁut / 예르 오시, 일리아 유 엉 악시당 드 브와튀르 쉬르 로토루트]","어제도, 고속도로에서 교통사고가 있었습니다.",
+39,143,,"Aujourd'hui, tu vois ta copine ?","[oʒuʁdɥi, ty vwɑ ta kɔpin / 오주르뒤, 튀 브와 타 코핀]","오늘, 여자친구를 만나?",
+40,143,,"Hier aussi, tu as vu ta copine ?","[jɛʁ osi, ty a vy ta kɔpin / 예르 오시, 튀 아 뷔 타 코핀]","어제도, 여자친구를 만났어?",
+41,143,,Tu réserves une chambre d'hôtel ?,[ty ʁezɛʁv yn ʃɑ̃bʁ dotɛl / 튀 헤제르브 윈 샹브르 도텔],호텔 방을 예약해?,
+42,143,,Tu as réservé une chambre d'hôtel ?,[ty a ʁezɛʁve yn ʃɑ̃bʁ dotɛl / 튀 아 헤제르베 윈 샹브르 도텔],호텔 방을 예약했어?,
+43,143,,Je lis Les Misérables.,[ʒə li le mizeʁabl / 즈 리 레 미제라블],나는 레 미제라블을 읽습니다. (현재),
+44,143,,J'ai lu Les Misérables.,[ʒe ly le mizeʁabl / 제 륀 레 미제라블],나는 레 미제라블을 읽었습니다. (복합과거),
+45,143,,Vous choisissez ?,[vu ʃwisise / 부 슈이시즈],고르시겠어요? (현재),
+46,143,,Vous avez choisi ?,[vu z‿ave ʃwizi / 부 자베 슈이지],고르셨어요? (복합과거),
+47,143,,Qu'est-ce qu'il fait ?,[kɛs kil fɛ / 케스 킬 페],그는 뭐 해?,
+48,143,,Qu'est-ce qu'il a fait ?,[kɛs kil a fɛ / 케스 킬 아 페],그는 뭐 했어?,
+49,143,,Ils ne finissent pas leurs devoirs ?,[il nə finis pa lœʁ dəvwaʁ / 일 너 피니 파 뢰 데브와르],그들은 숙제를 안 끝내?,
+50,143,,Ils n'ont pas fini leurs devoirs ?,[il nɔ̃ pa fini lœʁ dəvwaʁ / 일 농 파 피니 뢰 데브와르],그들은 숙제를 끝내지 않았어?,

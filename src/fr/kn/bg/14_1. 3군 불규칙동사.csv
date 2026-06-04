@@ -1,59 +1,55 @@
 no,group,speaker,original,pron,trans,comment
-je vois
-tu vois
-il/elle/on voit
-nous voyons
-vous voyez
-ils/elles voient
-j’entends
-tu entends
-il/elle/on entend
-nous entendons
-vous entendez
-ils/elles entendent
-Nous voyons la mer par la fenêtre de chez nous.
-"Ce soir, on voit la super lune dans le ciel."
-Voyez-vous souvent vos parents ?
-On se voit demain ?
-Qu’est-ce que tu entends ?
-J’entends un bruit bizarre.
-J’écoute de la musique.
-"Allô, j’écoute !"
-J’entends un bruit bizarre.
-Mon grand-père entend mal.
-je lis
-tu lis
-il/elle/on lit
-nous lisons
-vous lisez
-ils/elles lisent
-j’écris
-tu écris
-il/elle/on écrit
-nous écrivons
-vous écrivez
-ils/elles écrivent
-"Tous les matins, je lis mon journal dans le métro."
-Ils lisent beaucoup de romans.
-"À trois ans, cet enfant lit et écrit son prénom."
-Écrivez votre prénom et votre nom de famille.
-Qu’est-ce qu’ils écrivent sur le mur ?
-Il écrit une lettre à ses parents.
-Il écrit à ses parents.
-Est-ce qu’il écrit souvent à ses parents ?
-"Avec ces nouvelles lunettes, tu vois mieux ?"
-On voit un bateau à l’horizon.
-Qu’est-ce que vous voyez par la fenêtre ?
-Je ne vois plus mes cousins.
-"Le dimanche, nous voyons nos parents."
-Mes amis voient la vie en rose.
-Qu’est-ce que tu entends ? [entendre]
-Est-ce que vous entendez ma voix ? [entendre]
-Il écrit un roman. [écrire]
-Nous écrivons des e-mails à nos amis. [écrire]
-Je lis des messages sur mon portable. [lire]
-Ils ne lisent pas le journal. [lire]
-
-
-
-
+1,141,,je vois,[ʒə vwɑ / 즈 브와],나는 본다 (voir),
+2,141,,tu vois,[ty vwɑ / 튀 브와],너는 본다 (voir),
+3,141,,il/elle/on voit,[il/ɛl/ɔ̃ vwa / 일·엘·옹 브와],그/그녀/우리는 본다 (voir),
+4,141,,nous voyons,[nu vwajɔ̃ / 누 브와용],우리는 본다 (voir),
+5,141,,vous voyez,[vu vweje / 부 브웨제],당신(들)은 본다 (voir),
+6,141,,ils/elles voient,[il/ɛl vwɑ̃ / 일·엘 브앙],그들/그녀들은 본다 (voir),
+7,141,,j'entends,[ʒɑ̃tɑ̃ / 즈 앙탕],나는 듣는다 (entendre),
+8,141,,tu entends,[ty ɑ̃tɑ̃ / 튀 앙탕],너는 듣는다 (entendre),
+9,141,,il/elle/on entend,[il/ɛl/ɔ̃ ɑ̃tɑ̃ / 일·엘·옹 앙탕],그/그녀/우리는 듣는다 (entendre),
+10,141,,nous entendons,[nu zɑ̃tɑ̃dɔ̃ / 누 장탕동],우리는 듣는다 (entendre),
+11,141,,vous entendez,[vu zɑ̃tɑ̃de / 부 장탕데],당신(들)은 듣는다 (entendre),
+12,141,,ils/elles entendent,[il/ɛl ɑ̃tɑ̃d / 일·엘 앙탕드],그들/그녀들은 듣는다 (entendre),
+13,141,,Nous voyons la mer par la fenêtre de chez nous.,[nu vwajɔ̃ la mɛʁ paʁ la fənɛtʁ də ʃe nu / 누 브와용 라 메르 파르 라 프네트르 드 셰 누],우리는 집 창문으로 바다를 봅니다.,
+14,141,,"Ce soir, on voit la super lune dans le ciel.","[sə swaʁ, ɔ̃ vwa la sypɛʁ lyn dɑ̃ lə sjɛl / 스 수아르, 옹 브와 라 슈페르 륀 당 르 시엘]","오늘 밤, 우리는 하늘에서 슈퍼문을 봅니다.",
+15,141,,Voyez-vous souvent vos parents ?,[vwaje vu suvɑ̃ vo paʁɑ̃ / 브와예 부 수방 보 파랑],부모님을 자주 뵙나요?,
+16,141,,On se voit demain ?,[ɔ̃ sə vwa dəmɛ̃ / 옹 스 브와 드망],내일 만날까?,
+17,141,,Qu'est-ce que tu entends ?,[kɛs kə ty ɑ̃tɑ̃ / 케스크 튀 앙탕],무슨 소리가 들리니?,
+18,141,,J'entends un bruit bizarre.,[ʒɑ̃tɑ̃ œ̃ bʁɥi bizaʁ / 즈 앙탕 엉 브뤼 비자르],이상한 소리가 들립니다.,
+19,141,,J'écoute de la musique.,[ʒekut də la myzik / 즈 에쿠트 드 라 뮈지크],음악을 듣습니다 (귀 기울임).,
+20,141,,"Allô, j'écoute !","[alo, ʒekut / 알로, 즈 에쿠트]","여보세요, 듣고 있어요!",
+21,141,,J'entends un bruit bizarre.,[ʒɑ̃tɑ̃ œ̃ bʁɥi bizaʁ / 즈 앙탕 엉 브뤼 비자르],이상한 소리가 들립니다.,
+22,141,,Mon grand-père entend mal.,[mɔ̃ gʁɑ̃pɛʁ ɑ̃tɑ̃ mal / 몽 그랑페르 앙탕 말],우리 할아버지는 잘 못 들으십니다.,
+23,141,,je lis,[ʒə li / 즈 리],나는 읽는다 (lire),
+24,141,,tu lis,[ty li / 튀 리],너는 읽는다 (lire),
+25,141,,il/elle/on lit,[il/ɛl/ɔ̃ li / 일·엘·옹 리],그/그녀/우리는 읽는다 (lire),
+26,141,,nous lisons,[nu lizɔ̃ / 누 리종],우리는 읽는다 (lire),
+27,141,,vous lisez,[vu lize / 부 리제],당신(들)은 읽는다 (lire),
+28,141,,ils/elles lisent,[il/ɛl liz / 일·엘 리즈],그들/그녀들은 읽는다 (lire),
+29,141,,j'écris,[ʒekʁi / 즈 에크리],나는 쓴다 (écrire),
+30,141,,tu écris,[ty ekʁi / 튀 에크리],너는 쓴다 (écrire),
+31,141,,il/elle/on écrit,[il/ɛl/ɔ̃ ekʁi / 일·엘·옹 에크리],그/그녀/우리는 쓴다 (écrire),
+32,141,,nous écrivons,[nu zekʁivɔ̃ / 누 제크리봉],우리는 쓴다 (écrire),
+33,141,,vous écrivez,[vu zekʁive / 부 제크리베],당신(들)은 쓴다 (écrire),
+34,141,,ils/elles écrivent,[il/ɛl ekʁiv / 일·엘 에크리브],그들/그녀들은 쓴다 (écrire),
+35,141,,"Tous les matins, je lis mon journal dans le métro.","[tu le matɛ̃, ʒə li mɔ̃ ʒuʁnal dɑ̃ lə metʁo / 투 레 마탱, 즈 리 몽 주르날 당 르 메트로]","매일 아침, 나는 지하철에서 신문을 읽습니다.",
+36,141,,Ils lisent beaucoup de romans.,[il liz boku də ʁɔmɑ̃ / 일 리즈 보쿠 드 호망],그들은 소설을 많이 읽습니다.,
+37,141,,"À trois ans, cet enfant lit et écrit son prénom.","[a tʁwa z‿ɑ̃, sɛt ɑ̃fɑ̃ li e ekʁi sɔ̃ pʁenɔ̃ / 아 트와 잉, 쎄 땅팡 리 에 에크리 송 프헤논]","세 살에, 이 아이는 이름을 읽고 씁니다.",
+38,141,,Écrivez votre prénom et votre nom de famille.,[ekʁive vɔtʁ pʁenɔ̃ e vɔtʁ nɔ̃ də famij / 에크리베 보트르 프헤논 에 보트르 농 드 파미],이름과 성을 쓰세요.,
+39,141,,Qu'est-ce qu'ils écrivent sur le mur ?,[kɛs kilz ekʁiv syʁ lə myʁ / 케스 킬즈 에크리브 쉬르 르 뮈르],그들은 벽에 무엇을 쓰고 있나요?,
+40,141,,Il écrit une lettre à ses parents.,[il ekʁi yn lɛtʁ a se paʁɑ̃ / 일 에크리 인 레트르 아 세 파랑],그는 부모님에게 편지를 씁니다.,
+41,141,,Il écrit à ses parents.,[il ekʁi a se paʁɑ̃ / 일 에크리 아 세 파랑],그는 부모님에게 글을 씁니다.,
+42,141,,Est-ce qu'il écrit souvent à ses parents ?,[ɛs kil ekʁi suvɑ̃ a se paʁɑ̃ / 에스 킬 에크리 수방 아 세 파랑],그는 부모님에게 자주 글을 쓰나요?,
+43,141,,"Avec ces nouvelles lunettes, tu vois mieux ?","[avɛk se nuvɛl lynɛt, ty vwɑ mjø / 아벡 세 누벨 뤼넷, 튀 브와 뮤외]","이 새 안경으로, 더 잘 보이니?",
+44,141,,On voit un bateau à l'horizon.,[ɔ̃ vwa œ̃ bato a lɔʁizɔ̃ / 옹 브와 엉 바토 아 로리종],수평선에 배가 보입니다.,
+45,141,,Qu'est-ce que vous voyez par la fenêtre ?,[kɛs kə vu vwaje paʁ la fənɛtʁ / 케스크 부 브와이 파르 라 프네트르],창문으로 무엇이 보이세요?,
+46,141,,Je ne vois plus mes cousins.,[ʒə nə vwɑ ply me kuzɛ̃ / 즈 너 브와 플뤼 메 쿠쟁],나는 더 이상 사촌들을 보지 못합니다.,
+47,141,,"Le dimanche, nous voyons nos parents.","[lə dimɑ̃ʃ, nu vwajɔ̃ no paʁɑ̃ / 르 디망슈, 누 브와용 노 파랑]","일요일에, 우리는 부모님을 뵙습니다.",
+48,141,,Mes amis voient la vie en rose.,[me zami vwɑ̃ la vi ɑ̃ ʁoz / 메 자미 브앙 라 비 앙 로즈],내 친구들은 낙관적으로 살아갑니다.,
+49,141,,Qu'est-ce que tu entends ? [entendre],[kɛs kə ty ɑ̃tɑ̃ / 케스크 튀 앙탕],무슨 소리가 들리니? [entendre],
+50,141,,Est-ce que vous entendez ma voix ? [entendre],[ɛs kə vu zɑ̃tɑ̃de ma vwa / 에스크 부 장탕데 마 브와],제 목소리가 들리세요? [entendre],
+51,141,,Il écrit un roman. [écrire],[il ekʁi œ̃ ʁɔmɑ̃ / 일 에크리 엉 호망],그는 소설을 씁니다. [écrire],
+52,141,,Nous écrivons des e-mails à nos amis. [écrire],[nu zekʁivɔ̃ de z‿imɛl a no zami / 누 제크리봉 데 지메일 아 노 자미],우리는 친구들에게 이메일을 씁니다. [écrire],
+53,141,,Je lis des messages sur mon portable. [lire],[ʒə li de mesaʒ syʁ mɔ̃ pɔʁtabl / 즈 리 데 메사주 쉬르 몽 포르타블],나는 휴대폰으로 메시지를 읽습니다. [lire],
+54,141,,Ils ne lisent pas le journal. [lire],[il nə liz pa lə ʒuʁnal / 일 너 리즈 파 르 주르날],그들은 신문을 읽지 않습니다. [lire],
