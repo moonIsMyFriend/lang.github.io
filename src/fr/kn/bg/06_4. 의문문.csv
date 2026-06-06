@@ -1,59 +1,59 @@
-
-Vous parlez français.
-Vous parlez français?
-Est-ce que vous parlez français?
-Parlez-vous français?
-Tu habites à Nice.
-Tu habites à Nice?
-Est-ce que tu habites à Nice?
-Habites-tu à Nice?
-Ils aiment le café.
-Ils aiment le café?
-Est-ce qu’ils aiment le café?
-Aiment-ils le café?
-Elle regarde la télé.
-Elle regarde la télé?
-Est-ce qu’elle regarde la télé?
-Regarde-t-elle la télé?
-Il y a des nuages dans le ciel.
-Il y a des nuages dans le ciel?
-Est-ce qu’il y a des nuages dans le ciel?
-Y a-t-il des nuages dans le ciel?
-Est-ce que tu aimes le vin ?
-Oui, j’aime le vin.
-Non, je n’aime pas le vin.
-Est-ce que tu n’aimes pas le vin ?
-Non, je n’aime pas le vin.
-Si, j’aime le vin.
-C’est ta soeur ?
-Est-ce que c’est ta soeur ?
-Elle a des enfants ?
-Est-ce qu’elle a des enfants ?
-Vos parents habitent à Nice ?
-Est-ce que vos parents habitent à Nice ?
-Ils parlent français ?
-Est-ce qu’ils parlent français ?
-Tu as un stylo ?
-As-tu un stylo ?
-Tu parles français ?
-Parles-tu français ?
-Vous travaillez aujourd’hui ?
-Travaillez-vous aujourd’hui ?
-Ils aiment les fruits ?
-Aiment-ils les fruits ?
-Elle écoute souvent la radio ?
-Écoute-t-elle souvent la radio ?
-Il habite ici ?
-Habite-t-il ici ?
-Êtes-vous prêts ?
-Oui , nous sommes prêts.
-Habitez-vous à Paris ?
-Non , nous habitons à Séoul.
-Est-ce que ton frère est marié ?
-- Non , il est célibataire.
-- Est-ce qu’il ne fume pas ?
-- Non , il ne fume pas.
-Vous ne parlez pas français ?
-- Si , nous parlons français.
-- Vous n’aimez pas la cuisine coréenne ?
-- Si , nous adorons la cuisine coréenne.
+no,group,speaker,original,pron,trans,comment
+1,64,,Vous parlez français.,[vu paʁle fʁɑ̃sɛ / 부 파를레 프랑스],당신(들)은 프랑스어를 합니다.,
+2,64,,Vous parlez français?,[vu paʁle fʁɑ̃sɛ / 부 파를레 프랑스],당신(들)은 프랑스어를 합니까?,
+3,64,,Est-ce que vous parlez français?,[ɛs kə vu paʁle fʁɑ̃sɛ / 에스크 부 파를레 프랑스],당신(들)은 프랑스어를 합니까?,
+4,64,,Parlez-vous français?,[paʁle vu fʁɑ̃sɛ / 파를레 부 프랑스],프랑스어를 하십니까?,
+5,64,,Tu habites à Nice.,[ty abit a nis / 튀 아비트 아 니스],너는 니스에 산다.,
+6,64,,Tu habites à Nice?,[ty abit a nis / 튀 아비트 아 니스],너는 니스에 사니?,
+7,64,,Est-ce que tu habites à Nice?,[ɛs kə ty abit a nis / 에스크 튀 아비트 아 니스],너는 니스에 사니?,
+8,64,,Habites-tu à Nice?,[abit ty a nis / 아비트 튀 아 니스],니스에 사니?,
+9,64,,Ils aiment le café.,[il z‿ɛm lə kafe / 일 z엠 le 카페],그들은 커피를 좋아한다.,
+10,64,,Ils aiment le café?,[il z‿ɛm lə kafe / 일 z엠 le 카페],그들은 커피를 좋아하니?,
+11,64,,Est-ce qu'ils aiment le café?,[ɛs kil z‿ɛm lə kafe / 에스 킬 z엠 le 카페],그들은 커피를 좋아하니?,
+12,64,,Aiment-ils le café?,[ɛm til lə kafe / 엠 til le 카페],그들은 커피를 좋아하니?,
+13,64,,Elle regarde la télé.,[ɛl ʁəgaʁd la tele / 엘 헤가르드 la 텔레],그녀는 TV를 본다.,
+14,64,,Elle regarde la télé?,[ɛl ʁəgaʁd la tele / 엘 헤가르드 la 텔레],그녀는 TV를 보니?,
+15,64,,Est-ce qu'elle regarde la télé?,[ɛs kɛl ʁəgaʁd la tele / 에스 kel 헤가르드 la 텔레],그녀는 TV를 보니?,
+16,64,,Regarde-t-elle la télé?,[ʁəgaʁd tɛl la tele / 헤가르드 tel la 텔레],TV를 보니?,
+17,64,,Il y a des nuages dans le ciel.,[il i a de nɥaʒ dɑ̃ lə sjɛl / 일 i a de 뉴age 당 le 시엘],하늘에 구름이 있다.,
+18,64,,Il y a des nuages dans le ciel?,[il i a de nɥaʒ dɑ̃ lə sjɛl / 일 i a de 뉴age 당 le 시엘],하늘에 구름이 있니?,
+19,64,,Est-ce qu'il y a des nuages dans le ciel?,[ɛs kil i a de nɥaʒ dɑ̃ lə sjɛl / 에스 kil i a de 뉴age 당 le 시엘],하늘에 구름이 있니?,
+20,64,,Y a-t-il des nuages dans le ciel?,[ja til de nɥaʒ dɑ̃ lə sjɛl / ya til de 뉴age 당 le 시엘],하늘에 구름이 있니?,
+21,64,,Est-ce que tu aimes le vin ?,[ɛs kə ty ɛm lə vɛ̃ / 에스크 튀 엠 le vang],너는 와인을 좋아하니?,
+22,64,,"Oui, j'aime le vin.",[wi ʒɛm lə vɛ̃ / wi jem le vang],"응, 나는 와인을 좋아해.",
+23,64,,"Non, je n'aime pas le vin.",[nɔ̃ ʒə nɛm pa lə vɛ̃ / nong 즈 nem pa le vang],"아니, 나는 와인을 좋아하지 않아.",
+24,64,,Est-ce que tu n'aimes pas le vin ?,[ɛs kə ty n‿ɛm pa lə vɛ̃ / 에스크 튀 nem pa le vang],너는 와인을 좋아하지 않니?,
+25,64,,"Non, je n'aime pas le vin.",[nɔ̃ ʒə nɛm pa lə vɛ̃ / nong 즈 nem pa le vang],"아니, 나는 와인을 좋아하지 않아.",
+26,64,,"Si, j'aime le vin.",[si ʒɛm lə vɛ̃ / si jem le vang],"아니(글쎄), 나는 와인을 좋아해.",
+27,64,,C'est ta soeur ?,[sɛ ta sœʁ / se ta sœur],네 여동생이니?,
+28,64,,Est-ce que c'est ta soeur ?,[ɛs kə sɛ ta sœʁ / 에스크 se ta sœur],네 여동생이니?,
+29,64,,Elle a des enfants ?,[ɛl a de z‿ɑ̃fɑ̃ / 엘 a de z앙f앙],그녀는 아이가 있니?,
+30,64,,Est-ce qu'elle a des enfants ?,[ɛs kɛl a de z‿ɑ̃fɑ̃ / 에스 kel a de z앙f앙],그녀는 아이가 있니?,
+31,64,,Vos parents habitent à Nice ?,[vo paʁɑ̃ zabit a nis / vo pa랑 z아bit a 니스],부모님은 니스에 사시니?,
+32,64,,Est-ce que vos parents habitent à Nice ?,[ɛs kə vo paʁɑ̃ zabit a nis / 에스크 vo pa랑 z아bit a 니스],부모님은 니스에 사시니?,
+33,64,,Ils parlent français ?,[il paʁl fʁɑ̃sɛ / il 파를 프랑스],그들은 프랑스어를 하니?,
+34,64,,Est-ce qu'ils parlent français ?,[ɛs kil paʁl fʁɑ̃sɛ / 에스 kil 파를 프랑스],그들은 프랑스어를 하니?,
+35,64,,Tu as un stylo ?,[ty a œ̃ stilo / 튀 a un stilo],너는 펜이 있니?,
+36,64,,As-tu un stylo ?,[a ty œ̃ stilo / a ty un stilo],펜이 있니?,
+37,64,,Tu parles français ?,[ty paʁl fʁɑ̃sɛ / 튀 파를 프랑스],너는 프랑스어를 하니?,
+38,64,,Parles-tu français ?,[paʁl ty fʁɑ̃sɛ / 파를 ty 프랑스],프랑스어를 하니?,
+39,64,,Vous travaillez aujourd'hui ?,[vu tʁavaje oʒuʁdɥi / 부 트라vaille 오주르뒤],오늘 일하세요?,
+40,64,,Travaillez-vous aujourd'hui ?,[tʁavaje vu oʒuʁdɥi / t라vaille vu 오주르뒤],오늘 일하세요?,
+41,64,,Ils aiment les fruits ?,[il z‿ɛm le fʁɥi / il z엠 le fʁui],그들은 과일을 좋아하니?,
+42,64,,Aiment-ils les fruits ?,[ɛm til le fʁɥi / 엠 til le fʁui],그들은 과일을 좋아하니?,
+43,64,,Elle écoute souvent la radio ?,[ɛl ekut suvɑ̃ la ʁadjo / 엘 에coute suvan la radio],그녀는 자주 라디오를 듣니?,
+44,64,,Écoute-t-elle souvent la radio ?,[ekut tɛl suvɑ̃ la ʁadjo / écoute tel suvan la radio],자주 라디오를 듣니?,
+45,64,,Il habite ici ?,[il abit isi / il 아bit isi],그는 여기에 사니?,
+46,64,,Habite-t-il ici ?,[abit til isi / abit til isi],여기에 사니?,
+47,64,,Êtes-vous prêts ?,[ɛt vu pʁɛ / et vu pre],준비되셨습니까?,
+48,64,,"Oui, nous sommes prêts.",[wi nu sɔm pʁɛ / wi nu som pre],"네, 준비됐습니다.",
+49,64,,Habitez-vous à Paris ?,[abite vu a paʁi / abite vu a 파리],파리에 사세요?,
+50,64,,"Non, nous habitons à Séoul.",[nɔ̃ nu zabitɔ̃ a seul / nong nu z아biton a seoul],"아니요, 우리는 서울에 삽니다.",
+51,64,,Est-ce que ton frère est marié ?,[ɛs kə tɔ̃ fʁɛʁ ɛ maʁje / 에스크 ton frère et marié],네 형/오빠는 결혼했니?,
+52,64,,"Non, il est célibataire.",[nɔ̃ il ɛ selibatɛʁ / nong il et célibataire],"아니, 그는 미혼이야.",
+53,64,,Est-ce qu'il ne fume pas ?,[ɛs kil nə fym pa / 에스 kil ne fume pa],그는 담배를 피우지 않니?,
+54,64,,"Non, il ne fume pas.",[nɔ̃ il nə fym pa / nong il ne fume pa],"아니, 그는 담배를 피우지 않아.",
+55,64,,Vous ne parlez pas français ?,[vu nə paʁl pa fʁɑ̃sɛ / vu ne parlez pa 프랑스],프랑스어를 못하세요?,
+56,64,,"Si, nous parlons français.",[si nu paʁlɔ̃ fʁɑ̃sɛ / si nu parlon 프랑스],"아니요(글쎄), 우리는 프랑스어를 해요.",
+57,64,,Vous n'aimez pas la cuisine coréenne ?,[vu n‿ɛme pa la kɥizin kɔʁeɛn / vu nem pa la cuisine coréenne],한국 음식을 좋아하지 않으세요?,
+58,64,,"Si, nous adorons la cuisine coréenne.",[si nu zadɔʁɔ̃ la kɥizin kɔʁeɛn / si nu zadoron la cuisine coréenne],"아니요(글쎄), 우리는 한국 음식을 아주 좋아해요.",

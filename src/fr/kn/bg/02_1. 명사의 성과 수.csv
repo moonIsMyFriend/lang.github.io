@@ -1,19 +1,19 @@
-
-homme garçon père coq
-femme fille mère poule
-vélo croissant appartement sport
-moto baguette maison musique
-ami étudiant professeur
-amie étudiante professeure
-artiste journaliste dentiste
-comédien chien chat
-comédienne chienne chatte
-homme ami chien vélo
-hommes amis chiens vélos
-femme amie chienne moto
-femmes amies chiennes motos
-bus pays prix gaz
-animal journal
-animaux journaux
-manteau gâteau
-manteaux gâteaux
+no,group,speaker,original,pron,trans,comment
+1,21,,homme garçon père coq,[ɔm gaʁsɔ̃ pɛʁ kɔk / 옴 가르송 페르 코크],남자, 소년, 아버지, 수탉,
+2,21,,femme fille mère poule,[fam fij mɛʁ pul / 팸 필 메르풀],여자, 소녀, 어머니, 암탉,
+3,21,,vélo croissant appartement sport,[velo kʁwasɑ̃ apaʁtəmɑ̃ spɔʁ / 벨로 크와송 아파르트망 스포르],자전거, 크루아상, 아파트, 스포츠,
+4,21,,moto baguette maison musique,[moto bagɛt mɛzɔ̃ myzik / 모토 바게트 메종 뮈지크],오토바이, 바게트, 집, 음악,
+5,21,,ami étudiant professeur,[ami etydjɑ̃ pʁɔfesœʁ / 아미 에튀디앙 프로페써],친구(남), 남학생, 남교수,
+6,21,,amie étudiante professeure,[ami etydjɑ̃t pʁɔfesœʁ / 아미 에튀디앙트 프로페써],친구(여), 여학생, 여교수,
+7,21,,artiste journaliste dentiste,[aʁtist ʒuʁnalist dɑ̃tist / 아르티스트 쥐르날리스트 당티스트],예술가, 기자, 치과의사,
+8,21,,comédien chien chat,[kɔmedjɛ̃ ʃjɛ̃ ʃa / 코메디앙 셰앙 샤],남배우, 개(수), 고양이(수),
+9,21,,comédienne chienne chatte,[kɔmedjɛn ʃjɛn ʃat / 코메디엔 셰앙 샤트],여배우, 개(암), 고양이(암),
+10,21,,homme ami chien vélo,[ɔm ami ʃjɛ̃ velo / 옴 아미 셰앙 벨로],남자, 친구(남), 개(수), 자전거,
+11,21,,hommes amis chiens vélos,[ɔm ami ʃjɛ̃ velo / 옴 ami 셰앙 벨로],남자들, 친구들(남), 개들(수), 자전거들,
+12,21,,femme amie chienne moto,[fam ami ʃjɛn moto / 팸 아미 셰앙 모토],여자, 친구(여), 개(암), 오토바이,
+13,21,,femmes amies chiennes motos,[fam ami ʃjɛn moto / 팸 ami 셰앙 모토],여자들, 친구들(여), 개들(암), 오토바이들,
+14,21,,bus pays prix gaz,[bys pɛi pʁi ɡa / 뷔스 페이 프리 가],버스, 나라, 가격, 가스,
+15,21,,animal journal,[animal ʒuʁnal / 아니말 쥐르날],동물, 신문,
+16,21,,animaux journaux,[animo ʒuʁno / 아니모 쥐르노],동물들, 신문들,
+17,21,,manteau gâteau,[mɑ̃to ɡato / 멍토 가토],코트, 케이크,
+18,21,,manteaux gâteaux,[mɑ̃to ɡato / 멍토 가토],코트들, 케이크들,

@@ -1,48 +1,38 @@
-
-je veux
-je peux
-tu veux
-tu peux
-il/elle/on veut
-il/elle/on peut
-nous voulons
-nous pouvons
-vous voulez
-vous pouvez
-ils/elles veulent
-ils/elles peuvent
-Je veux aller aux toilettes.
-Tu veux sortir?
-Je peux aller aux toilettes ?
-Vous pouvez sortir.
-Il doit finir son travail.
-Nous devons partir tout de suite.
-Je ne veux pas aller aux toilettes.
-Vous ne pouvez pas sortir ce soir.
-On ne doit pas parler trop fort.
-Tu veux quoi ?
-Je veux un portable.
-Qu’est-ce que vous voulez comme dessert ?
-Nous voulons une tarte aux fraises.
-Tu veux quoi ?
-Qu’est-ce que vous voulez ?
-Elle veut visiter le Musée du Louvre.
-Les enfants veulent des glaces.
-Est-ce que je peux entrer ?
-Vous pouvez nager dans ce lac.
-Maman, tu peux acheter un gâteau ?
-Nous ne pouvons pas sortir ce soir.
-Je dois téléphoner à mon client.
-Les enfants, vous devez dormir maintenant !
-Aujourd’hui, nous devons finir notre travail.
-Est-ce qu’ils doivent partir tout de suite ?
-
-
-
-
-
-
-
-
-
-
+no,group,speaker,original,pron,trans,comment
+1,101,,je veux,[ʒə vø / 즈 뵈],나는 원한다 (vouloir),
+2,101,,je peux,[ʒə pø / 즈 뾔],나는 ~할 수 있다 (pouvoir),
+3,101,,tu veux,[ty vø / 튀 뵈],너는 원한다 (vouloir),
+4,101,,tu peux,[ty pø / 튀 뾔],너는 ~할 수 있다 (pouvoir),
+5,101,,il/elle/on veut,[il/ɛl/ɔ̃ vø / 일·엘·옹 뵈],그/그녀/우리는 원한다 (vouloir),
+6,101,,il/elle/on peut,[il/ɛl/ɔ̃ pø / 일·엘·옹 뾔],그/그녀/우리는 ~할 수 있다 (pouvoir),
+7,101,,nous voulons,[nu vulɔ̃ / 누 부롱],우리는 원한다 (vouloir),
+8,101,,nous pouvons,[nu puvɔ̃ / 누 부봉],우리는 ~할 수 있다 (pouvoir),
+9,101,,vous voulez,[vu vule / 부 뷸레],당신(들)은 원한다 (vouloir),
+10,101,,vous pouvez,[vu puve / 부 뷔베],당신(들)은 ~할 수 있다 (pouvoir),
+11,101,,ils/elles veulent,[il/ɛl vœl / 일·엘 뵐],그들/그녀들은 원한다 (vouloir),
+12,101,,ils/elles peuvent,[il/ɛl pœv / 일·엘 뾔],그들/그녀들은 ~할 수 있다 (pouvoir),
+13,101,,Je veux aller aux toilettes.,[ʒə vø ale o twalɛt / 즈 뵈 알레 오 투알렛],화장실에 가고 싶어요.,
+14,101,,Tu veux sortir?,[ty vø sɔʁtiʁ / 튀 뵈 소르티르],나갈래?,
+15,101,,Je peux aller aux toilettes ?,[ʒə pø ale o twalɛt / 즈 뾔 알레 오 투알렛],화장실에 가도 될까요?,
+16,101,,Vous pouvez sortir.,[vu puve sɔʁtiʁ / 부 뷔베 소르티르],나가셔도 됩니다.,
+17,101,,Il doit finir son travail.,[il dwa finiʁ sɔ̃ tʁavaj / 일 두아 피니르 송 트라바이],그는 일을 끝내야 합니다.,
+18,101,,Nous devons partir tout de suite.,[nu dəvɔ̃ paʁtiʁ tu də sɥit / 누 드봉 파르티르 투 드 스위],우리는 지금 당장 떠나야 합니다.,
+19,101,,Je ne veux pas aller aux toilettes.,[ʒə nə vø pa ale o twalɛt / 즈 너 뵈 파 알레 오 투알렛],화장실에 가고 싶지 않아요.,
+20,101,,Vous ne pouvez pas sortir ce soir.,[vu nə puve pa sɔʁtiʁ sə swaʁ / 부 너 뷔베 파 소르티르 스 수아르],오늘 밤에는 나가실 수 없습니다.,
+21,101,,On ne doit pas parler trop fort.,[ɔ̃ nə dwa pa paʁle tʁo fɔʁ / 옹 너 두아 파 파를르 트로 포르],너무 크게 말하면 안 됩니다.,
+22,101,,Tu veux quoi ?,[ty vø kwa / 튀 뵈 쿠아],뭐 원해?,
+23,101,,Je veux un portable.,[ʒə vø œ̃ pɔʁtabl / 즈 뵈 엉 포르타블],휴대폰을 원해요.,
+24,101,,"Qu'est-ce que vous voulez comme dessert ?","[kɛs kə vu vule kɔm desɛʁ / 케스크 부 뷸레 콤 데세르]",디저트로 무엇을 원하세요?,
+25,101,,Nous voulons une tarte aux fraises.,[nu vulɔ̃ yn taʁt o fʁɛz / 누 부롱 인 타르트 오 프헤즈],우리는 딸기 타르트를 원합니다.,
+26,101,,Tu veux quoi ?,[ty vø kwa / 튀 뵈 쿠아],뭐 원해?,
+27,101,,Qu'est-ce que vous voulez ?,[kɛs kə vu vule / 케스크 부 뷸레],무엇을 원하세요?,
+28,101,,Elle veut visiter le Musée du Louvre.,[ɛl vœ vizite lə myze dy luvʁ / 엘 뵈 비지테 르 뮈제 뒤 루브르],그녀는 루브르 박물관을 방문하고 싶어합니다.,
+29,101,,Les enfants veulent des glaces.,[le zɑ̃fɑ̃ vœl de glas / 레 잉팡 뵐 데 글라스],아이들은 아이스크림을 원합니다.,
+30,101,,Est-ce que je peux entrer ?,[ɛs kə ʒə pø ɑ̃tʁe / 에스크 즈 뾔 앙트레],들어가도 될까요?,
+31,101,,Vous pouvez nager dans ce lac.,[vu puve naʒe dɑ̃ sə lak / 부 뷔베 나제 당 스 라크],이 호수에서 수영하실 수 있습니다.,
+32,101,,"Maman, tu peux acheter un gâteau ?","[mamɑ̃, ty pø aʃte œ̃ gato / 마망, 튀 뾔 아슈테 엉 가토]","엄마, 케이크 사 줄 수 있어?",
+33,101,,Nous ne pouvons pas sortir ce soir.,[nu nə puvɔ̃ pa sɔʁtiʁ sə swaʁ / 누 너 부봉 파 소르티르 스 수아르],우리는 오늘 밤 나갈 수 없습니다.,
+34,101,,Je dois téléphoner à mon client.,[ʒə dwa telefone a mɔ̃ klijɑ̃ / 즈 두아 텔레포네 아 몽 클리앙],고객에게 전화해야 합니다.,
+35,101,,"Les enfants, vous devez dormir maintenant !","[le zɑ̃fɑ̃, vu dəve dɔʁmiʁ mɛ̃tənɑ̃ / 레 잉팡, 부 드베 도르미르 망트넝]","아이들아, 지금 자야 해!",
+36,101,,"Aujourd'hui, nous devons finir notre travail.","[oʒuʁdɥi, nu dəvɔ̃ finiʁ nɔtʁ tʁavaj / 오주르뒤, 누 드봉 피니르 노트르 트라바이]","오늘, 우리는 일을 끝내야 합니다.",
+37,101,,Est-ce qu'ils doivent partir tout de suite ?,[ɛs kil dwav paʁtiʁ tu də sɥit / 에스 킬 두아브 파르티르 투 드 스위],그들은 지금 당장 떠나야 하나요?,

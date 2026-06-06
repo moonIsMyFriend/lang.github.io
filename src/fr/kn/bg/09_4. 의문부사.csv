@@ -1,39 +1,37 @@
-
-Vous partez quand ?
-Quand partez-vous ?
-Quand est-ce que vous partez ?
-Nous partons demain, à 15 heures.
-Vous partez comment à Tokyo ?
-Comment partez-vous à Tokyo ?
-Comment est-ce que vous partez à Tokyo ?
-Nous partons en avion / en bateau.
-Pourquoi vous partez à Tokyo ?
-Pourquoi partez-vous à Tokyo ?
-Pourquoi est-ce que vous partez à Tokyo ?
-Parce que nos parents sont là.
-Tu pars quand ?
-Quand est-ce que tu pars ?
-Où partez-vous ?
-Où est-ce que vous partez ?
-Comment partent-ils ?
-Comment est-ce qu’ils partent ?
-Pourquoi ils partent ?
-Pourquoi est-ce qu’ils partent ?
-Comment payez-vous ?
-Comment est-ce que vous payez ?
-Pourquoi tu ne viens pas ?
-Pourquoi est-ce que tu ne viens pas ?
-Où partez-vous ?
-Nous partons en France.
-Quand partez-vous en France ?
-Nous partons demain.
-Pourquoi pars-tu à Paris ?
-Parce que j’aime beaucoup Paris.
-Comment payez-vous pour votre voyage ?
-Je paye par carte.
-Comment allez-vous ?
-Je vais très bien.
-Pourquoi la vie est belle ?
-Parce que je suis avec toi.
-
-
+no,group,speaker,original,pron,trans,comment
+1,94,,Vous partez quand ?,[vu paʁte kɑ̃ / 부 파르테 깡],언제 떠나세요?,
+2,94,,Quand partez-vous ?,[kɑ̃ paʁte vu / 깡 파르테 부],언제 떠나세요?,
+3,94,,Quand est-ce que vous partez ?,[kɑ̃ ɛs kə vu paʁte / 깡 에스크 부 파르테],언제 떠나세요?,
+4,94,,Nous partons demain à 15 heures.,[nu paʁtɔ̃ dəmɛ̃ a kɛ̃z œʁ / 누 파르통 드망 아 캥즈 외르],우리는 내일 3시에 떠납니다.,
+5,94,,Vous partez comment à Tokyo ?,[vu paʁte kɔmɑ̃ a tokyo / 부 파르테 코망 아 도쿄],도쿄에는 어떻게 가세요?,
+6,94,,Comment partez-vous à Tokyo ?,[kɔmɑ̃ paʁte vu a tokyo / 코망 파르테 부 아 도쿄],도쿄에는 어떻게 가세요?,
+7,94,,Comment est-ce que vous partez à Tokyo ?,[kɔmɑ̃ ɛs kə vu paʁte a tokyo / 코망 에스크 부 파르테 아 도쿄],도쿄에는 어떻게 가세요?,
+8,94,,Nous partons en avion / en bateau.,[nu paʁtɔ̃ ɑ̃ navjɔ̃ / ɑ̃ bato / 누 파르통 앙 나비옹 / 앙 바토],우리는 비행기/배로 갑니다.,
+9,94,,Pourquoi vous partez à Tokyo ?,[puʁkwa vu paʁte a tokyo / 퓌르쿠아 부 파르테 아 도쿄],왜 도쿄에 가세요?,
+10,94,,Pourquoi partez-vous à Tokyo ?,[puʁkwa paʁte vu a tokyo / 퓌르쿠아 파르테 부 아 도쿄],왜 도쿄에 가세요?,
+11,94,,Pourquoi est-ce que vous partez à Tokyo ?,[puʁkwa ɛs kə vu paʁte a tokyo / 퓌르쿠아 에스크 부 파르테 아 도쿄],왜 도쿄에 가세요?,
+12,94,,Parce que nos parents sont là.,[paʁs kə no paʁɑ̃ sɔ̃ la / 파르스 커 노 파랑 송 라],부모님이 거기 계시기 때문입니다.,
+13,94,,Tu pars quand ?,[ty paʁ kɑ̃ / 튀 파르 깡],언제 떠나?,
+14,94,,Quand est-ce que tu pars ?,[kɑ̃ ɛs kə ty paʁ / 깡 에스크 튀 파르],언제 떠나?,
+15,94,,Où partez-vous ?,[u paʁte vu / 우 파르테 부],어디로 가세요?,
+16,94,,Où est-ce que vous partez ?,[u ɛs kə vu paʁte / 우 에스크 부 파르테],어디로 가세요?,
+17,94,,Comment partent-ils ?,[kɔmɑ̃ paʁ til / 코망 파르 틸],그들은 어떻게 갑니까?,
+18,94,,Comment est-ce qu'ils partent ?,[kɔmɑ̃ ɛs kil paʁ / 코망 에스 킬 파르],그들은 어떻게 갑니까?,
+19,94,,Pourquoi ils partent ?,[puʁkwa il paʁ / 퓌르쿠아 일 파르],왜 그들은 떠나?,
+20,94,,Pourquoi est-ce qu'ils partent ?,[puʁkwa ɛs kil paʁ / 퓌르쿠아 에스 킬 파르],왜 그들은 떠나?,
+21,94,,Comment payez-vous ?,[kɔmɑ̃ peje vu / 코망 페이에 부],어떻게 지불하세요?,
+22,94,,Comment est-ce que vous payez ?,[kɔmɑ̃ ɛs kə vu peje / 코망 에스크 부 페이에],어떻게 지불하세요?,
+23,94,,Pourquoi tu ne viens pas ?,[puʁkwa ty nə vjɛ̃ pa / 퓌르쿠아 튀 너 비엔 파],왜 안 와?,
+24,94,,Pourquoi est-ce que tu ne viens pas ?,[puʁkwa ɛs kə ty nə vjɛ̃ pa / 퓌르쿠아 에스크 튀 너 비엔 파],왜 안 와?,
+25,94,,Où partez-vous ?,[u paʁte vu / 우 파르테 부],어디로 가세요?,
+26,94,,Nous partons en France.,[nu paʁtɔ̃ ɑ̃ fʁɑ̃s / 누 파르통 앙 프랑스],우리는 프랑스로 갑니다.,
+27,94,,Quand partez-vous en France ?,[kɑ̃ paʁte vu ɑ̃ fʁɑ̃s / 깡 파르테 부 앙 프랑스],프랑스에는 언제 가세요?,
+28,94,,Nous partons demain.,[nu paʁtɔ̃ dəmɛ̃ / 누 파르통 드망],우리는 내일 떠납니다.,
+29,94,,Pourquoi pars-tu à Paris ?,[puʁkwa paʁ ty a paʁi / 퓌르쿠아 파르 튀 아 파리],왜 파리에 가?,
+30,94,,Parce que j'aime beaucoup Paris.,[paʁs kə ʒɛm boku paʁi / 파르스 커 제므 보쿠 파리],파리를 아주 좋아하기 때문입니다.,
+31,94,,Comment payez-vous pour votre voyage ?,[kɔmɑ̃ peje vu puʁ vɔtʁ vwaʒaʒ / 코망 페이에 부 퓌르 보뜨르 부와야주],여행비는 어떻게 지불하세요?,
+32,94,,Je paye par carte.,[ʒə pɛ paʁ kaʁt / 즈 페이 파르 카르트],카드로 지불합니다.,
+33,94,,Comment allez-vous ?,[kɔmɑ̃t ale vu / 코망탈레 부],잘 지내세요?,
+34,94,,Je vais très bien.,[ʒə vɛ tʁɛ bjɛ̃ / 즈 베 트레 비앙],아주 잘 지냅니다.,
+35,94,,Pourquoi la vie est belle ?,[puʁkwa la vi ɛ bɛl / 퓌르쿠아 라 비 에 벨],왜 인생은 아름다울까?,
+36,94,,Parce que je suis avec toi.,[paʁs kə ʒə sɥi avɛk twa / 파르스 커 즈 쉬 아벡 투아],너와 함께 있기 때문입니다.,

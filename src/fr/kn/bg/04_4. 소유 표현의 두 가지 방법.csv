@@ -1,24 +1,24 @@
-
-Cette voiture, c’est à Louis ?
-C’est sa voiture ?
-Oui, elle est à lui.
-Cet appartement est à Louise ?
-C’est son appartement ?
-Oui, il est à elle.
-Ces livres sont à toi ?
-Oui, ils sont à moi.
-Ce sont mes livres.
-C’est ton vélo ?
-Ce vélo est à toi ?
-C’est ma moto.
-Cette moto est à moi.
-C’est sa voiture ?
-Cette voiture est à lui ?
-Cette voiture est à elle ?
-C’est votre adresse e-mail ?
-Cette adresse e-mail est à vous ?
-C’est notre appartement.
-Cet appartement est à nous.
-Ce sont leurs livres.
-Ces livres sont à eux.
-Ces livres sont à elles.
+no,group,speaker,original,pron,trans,comment
+1,44,,"Cette voiture, c'est à Louis ?","[sɛt vwatyʁ, sɛ ta lwi / 쎄 브와튀르, 세 타 뤼]","이 차, 루이 것이야?",
+2,44,,C'est sa voiture ?,[sɛ sa vwatyʁ / 세 사 브와튀르],그의 차니?,
+3,44,,"Oui, elle est à lui.","[wi, ɛl ɛ ta lɥi / 위, 엘 에 타 뤼]","네, 그의 것이에요.",
+4,44,,Cet appartement est à Louise ?,[sɛt napartəmɑ̃ ɛ ta lwiz / 쎄 나파르트먼 에 타 루이즈],이 아파트는 루이즈 것이니?,
+5,44,,C'est son appartement ?,[sɛ sɔ̃ napartəmɑ̃ / 세 송 나파르트먼],그녀의 아파트니?,
+6,44,,"Oui, il est à elle.","[wi, il ɛ ta ɛl / 위, 일 에 타 엘]","네, 그녀의 것이에요.",
+7,44,,Ces livres sont à toi ?,[se livʁ sɔ̃ ta twa / 세 리브르 송 타 투아],이 책들 네 거니?,
+8,44,,"Oui, ils sont à moi.","[wi, il sɔ̃ ta mwa / 위, 일 송 타 므와]","네, 내 거예요.",
+9,44,,Ce sont mes livres.,[sə sɔ̃ me livʁ / 스 송 메 리브르],내 책들이에요.,
+10,44,,C'est ton vélo ?,[sɛ tɔ̃ velo / 세 통 벨로],네 자전거니?,
+11,44,,Ce vélo est à toi ?,[sə velo ɛ ta twa / 스 벨로 에 타 투아],이 자전거 네 거니?,
+12,44,,C'est ma moto.,[sɛ ma moto / 세 마 모토],내 오토바이야.,
+13,44,,Cette moto est à moi.,[sɛt moto ɛ ta mwa / 쎄 모토 에 타 므와],이 오토바이는 내 거야.,
+14,44,,C'est sa voiture ?,[sɛ sa vwatyʁ / 세 사 브와튀르],그의/그녀의 차니?,
+15,44,,Cette voiture est à lui ?,[sɛt vwatyʁ ɛ ta lɥi / 쎄 브와튀르 에 타 뤼],이 차는 그의 것이니?,
+16,44,,Cette voiture est à elle ?,[sɛt vwatyʁ ɛ ta ɛl / 쎄 브와튀르 에 타 엘],이 차는 그녀의 것이니?,
+17,44,,C'est votre adresse e-mail ?,[sɛ vɔtʁ nadʁɛs imɛl / 세 보트르 나드레스 이메일],당신 이메일 주소니?,
+18,44,,Cette adresse e-mail est à vous ?,[sɛt nadʁɛs imɛl ɛ ta vu / 쎄 나드레스 이메일 에 타 부],이 이메일 주소는 당신 것이니?,
+19,44,,C'est notre appartement.,[sɛ nɔtʁ napartəmɑ̃ / 세 노트르 나파르트먼],우리 아파트예요.,
+20,44,,Cet appartement est à nous.,[sɛt napartəmɑ̃ ɛ ta nu / 쎄 나파르트먼 에 타 누],이 아파트는 우리 것이에요.,
+21,44,,Ce sont leurs livres.,[sə sɔ̃ lœʁ livʁ / 스 송 르흐 리브르],그들의 책들이에요.,
+22,44,,Ces livres sont à eux.,[se livʁ sɔ̃ ta ø / 세 리브르 송 타 으],이 책들은 그들(남) 것이에요.,
+23,44,,Ces livres sont à elles.,[se livʁ sɔ̃ ta ɛl / 세 리브르 송 타 엘],이 책들은 그들(여) 것이에요.,

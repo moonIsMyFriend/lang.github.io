@@ -1,62 +1,60 @@
-
-je cours
-nous courons
-tu cours
-vous courez
-il/elle/on court
-ils/elles courent
-Tu cours !
-Mon chien court très vite.
-Les enfants courent à la mer.
-je pars 
-nous partons
-tu pars 
-vous partez
-il/elle/on part 
-ils/elles partent
-Le train part.
-Vous partez en vacances ?
-Nous sortons pour manger au restaurant.
-je dors
-nous dormons
-tu dors
-vous dormez
-il/elle/on dort
-ils/elles dorment
-Dormez-vous, Monsieur ?
-Les enfants dorment dans leur chambre.
-j’offre
-tu offres
-il/elle/on offre
-nous offrons
-vous offrez
-ils/elles offrent
-j’ouvre
-tu ouvres
-il/elle/on ouvre
-nous ouvrons
-vous ouvrez
-ils/elles ouvrent
-Léo offre un café à son client.
-Qu’est-ce que tu offres à Lina pour son anniversaire ?
-Tu ouvres la porte ?
-Elle ne court pas vite. [courir]
-Ils courent à l’école. [courir]
-Vous partez demain ? [partir]
-Nous ne sortons pas ce soir. [sortir]
-Tu ne dors pas ? [dormir]
-Il ouvre son livre. [ouvrir]
-Tu cours à l’école.
-Vous courez à l’école.
-Est-ce que j’ouvre la porte ?
-Est-ce que nous ouvrons la porte ?
-Où est-ce qu’il part ?
-Où est-ce qu’ils partent ?
-Elle dort bien ?
-Elles dorment bien ?
-Qu’est-ce qu’il offre à ses parents ?
-Qu’est-ce qu’ils offrent à leurs parents ?
-Je pars en vacances.
-Nous partons en vacances.
-
-
+no,group,speaker,original,pron,trans,comment
+1,92,,je cours,[ʒə kuʁ / 즈 쿠르],나는 달린다 (courir),
+2,92,,nous courons,[nu kuʁɔ̃ / 누 쿠롱],우리는 달린다 (courir),
+3,92,,tu cours,[ty kuʁ / 튀 쿠르],너는 달린다 (courir),
+4,92,,vous courez,[vu kuʁe / 부 쿠레],당신(들)은 달린다 (courir),
+5,92,,il/elle/on court,[il/ɛl/ɔ̃ kuʁ / 일·엘·옹 쿠르],그/그녀/우리는 달린다 (courir),
+6,92,,ils/elles courent,[il/ɛl kuʁ / 일·엘 쿠르],그들/그녀들은 달린다 (courir),
+7,92,,Tu cours !,[ty kuʁ / 튀 쿠르],뛰어!,
+8,92,,Mon chien court très vite.,[mɔ̃ ʃjɛ̃ kuʁ tʁɛ vit / 몽 셴 쿠르 트레 비트],내 개는 아주 빨리 달립니다.,
+9,92,,Les enfants courent à la mer.,[le zɑ̃fɑ̃ kuʁ a la mɛʁ / 레 잉팡 쿠르 아 라 메르],아이들은 바다로 달려갑니다.,
+10,92,,je pars,[ʒə paʁ / 즈 파르],나는 떠난다 (partir),
+11,92,,nous partons,[nu paʁtɔ̃ / 누 파르통],우리는 떠난다 (partir),
+12,92,,tu pars,[ty paʁ / 튀 파르],너는 떠난다 (partir),
+13,92,,vous partez,[vu paʁte / 부 파르테],당신(들)은 떠난다 (partir),
+14,92,,il/elle/on part,[il/ɛl/ɔ̃ paʁ / 일·엘·옹 파르],그/그녀/우리는 떠난다 (partir),
+15,92,,ils/elles partent,[il/ɛl paʁ / 일·엘 파르],그들/그녀들은 떠난다 (partir),
+16,92,,Le train part.,[lə tʁɛ̃ paʁ / 르 트랑 파르],기차가 출발합니다.,
+17,92,,Vous partez en vacances ?,[vu paʁte ɑ̃ vakɑ̃s / 부 파르테 앙 바깡스],휴가를 떠나세요?,
+18,92,,Nous sortons pour manger au restaurant.,[nu sɔʁtɔ̃ puʁ mɑ̃ʒe o ʁɛstoʁɑ̃ / 누 소르통 퓌르 망제 오 헤스토랑],우리는 식당에서 먹으러 나갑니다.,
+19,92,,je dors,[ʒə dɔʁ / 즈 도르],나는 잔다 (dormir),
+20,92,,nous dormons,[nu dɔʁmɔ̃ / 누 도르몽],우리는 잔다 (dormir),
+21,92,,tu dors,[ty dɔʁ / 튀 도르],너는 잔다 (dormir),
+22,92,,vous dormez,[vu dɔʁme / 부 도르메],당신(들)은 잔다 (dormir),
+23,92,,il/elle/on dort,[il/ɛl/ɔ̃ dɔʁ / 일·엘·옹 도르],그/그녀/우리는 잔다 (dormir),
+24,92,,ils/elles dorment,[il/ɛl dɔʁ / 일·엘 도르],그들/그녀들은 잔다 (dormir),
+25,92,,"Dormez-vous, Monsieur ?","[dɔʁme vu, məsjø / 도르메 부, 머슈]","주무시나요, 선생님?",
+26,92,,Les enfants dorment dans leur chambre.,[le zɑ̃fɑ̃ dɔʁ dɑ̃ lœʁ ʃɑ̃bʁ / 레 잉팡 도르 당 뢰르 샹브르],아이들은 자기 방에서 잡니다.,
+27,92,,j'offre,[ʒɔfʁ / 조프르],나는 준다 (offrir),
+28,92,,tu offres,[ty ɔfʁ / 튀 오프르],너는 준다 (offrir),
+29,92,,il/elle/on offre,[il/ɛl/ɔ̃ ɔfʁ / 일·엘·옹 오프르],그/그녀/우리는 준다 (offrir),
+30,92,,nous offrons,[nu nɔfʁɔ̃ / 누 노프롱],우리는 준다 (offrir),
+31,92,,vous offrez,[vu nɔfʁe / 부 노프레],당신(들)은 준다 (offrir),
+32,92,,ils/elles offrent,[il/ɛl ɔfʁ / 일·엘 오프르],그들/그녀들은 준다 (offrir),
+33,92,,j'ouvre,[ʒuvʁ / 주브르],나는 연다 (ouvrir),
+34,92,,tu ouvres,[ty uvʁ / 튀 우브르],너는 연다 (ouvrir),
+35,92,,il/elle/on ouvre,[il/ɛl/ɔ̃ uvʁ / 일·엘·옹 우브르],그/그녀/우리는 연다 (ouvrir),
+36,92,,nous ouvrons,[nu nuvʁɔ̃ / 누 누브롱],우리는 연다 (ouvrir),
+37,92,,vous ouvrez,[vu nuvʁe / 부 누브레],당신(들)은 연다 (ouvrir),
+38,92,,ils/elles ouvrent,[il/ɛl uvʁ / 일·엘 우브르],그들/그녀들은 연다 (ouvrir),
+39,92,,Léo offre un café à son client.,[leo ɔfʁ œ̃ kafe a sɔ̃ klijɑ̃ / 레오 오프르 엉 카페 아 송 클리양],레오는 손님에게 커피를 제공합니다.,
+40,92,,Qu'est-ce que tu offres à Lina pour son anniversaire ?,[kɛs kə ty ɔfʁ a lina puʁ sɔ̃ anivɛʁsɛʁ / 케스크 튀 오프르 아 리나 퓌르 송 아니베르세르],리나 생일에 뭘 줄 거야?,
+41,92,,Tu ouvres la porte ?,[ty uvʁ la pɔʁt / 튀 우브르 라 포르트],문 열어?,
+42,92,,Elle ne court pas vite. [courir],[ɛl nə kuʁ pa vit / 엘 너 쿠르 파 비트],그녀는 빨리 달리지 않습니다. [courir],
+43,92,,Ils courent à l'école. [courir],[il kuʁ a lekɔl / 일 쿠르 아 레��콜],그들은 학교로 달립니다. [courir],
+44,92,,Vous partez demain ? [partir],[vu paʁte dəmɛ̃ / 부 파르테 드망],내일 떠나세요? [partir],
+45,92,,Nous ne sortons pas ce soir. [sortir],[nu nə sɔʁtɔ̃ pa sə swaʁ / 누 너 소르통 파 스 수아르],우리는 오늘 밤 나가지 않습니다. [sortir],
+46,92,,Tu ne dors pas ? [dormir],[ty nə dɔʁ pa / 튀 너 도르 파],안 자?,
+47,92,,Il ouvre son livre. [ouvrir],[il uvʁ sɔ̃ livʁ / 일 우브르 송 리브르],그는 책을 펼칩니다. [ouvrir],
+48,92,,Tu cours à l'école.,[ty kuʁ a lekɔl / 튀 쿠르 아 레�콜],너는 학교로 달려간다.,
+49,92,,Vous courez à l'école.,[vu kuʁe a lekɔl / 부 쿠레 아 레콜],당신(들)은 학교로 달려갑니다.,
+50,92,,Est-ce que j'ouvre la porte ?,[ɛs kə ʒuvʁ la pɔʁt / 에스크 주브르 라 포르트],제가 문을 열까요?,
+51,92,,Est-ce que nous ouvrons la porte ?,[ɛs kə nu nuvʁɔ̃ la pɔʁt / 에스크 누 누브롱 라 포르트],우리가 문을 열까요?,
+52,92,,Où est-ce qu'il part ?,[u ɛs kil paʁ / 우 에스 킬 파르],그는 어디로 떠나?,
+53,92,,Où est-ce qu'ils partent ?,[u ɛs kil paʁ / 우 에스 킬 파르],그들은 어디로 떠나?,
+54,92,,Elle dort bien ?,[ɛl dɔʁ bjɛ̃ / 엘 도르 비앙],그녀는 잘 자?,
+55,92,,Elles dorment bien ?,[ɛl dɔʁ bjɛ̃ / 엘 도르 비앙],그녀들은 잘 자?,
+56,92,,Qu'est-ce qu'il offre à ses parents ?,[kɛs kil ɔfʁ a se paʁɑ̃ / 케스 킬 오프르 아 세 파랑],그는 부모님께 뭘 드려?,
+57,92,,Qu'est-ce qu'ils offrent à leurs parents ?,[kɛs kil ɔfʁ a lœʁ paʁɑ̃ / 케스 킬 오프르 아 뢰르 파랑],그들은 부모님께 뭘 드려?,
+58,92,,Je pars en vacances.,[ʒə paʁ ɑ̃ vakɑ̃s / 즈 파르 앙 바깡스],나는 휴가를 떠납니다.,
+59,92,,Nous partons en vacances.,[nu paʁtɔ̃ ɑ̃ vakɑ̃s / 누 파르통 앙 바깡스],우리는 휴가를 떠납니다.,

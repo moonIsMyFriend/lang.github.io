@@ -1,31 +1,31 @@
-
-Je suis à la maison.
-Elle est dans la chambre.
-Le livre est sur la table.
-Les chats sont sous la table.
-Nous sommes à Séoul.
-Vous êtes à Paris ?
-Je suis de Séoul.
-Vous êtes de Paris ?
-Elle est de Nice.
-Vous êtes de Paris ?
-Vous êtes parisien, Monsieur ?
-Vous êtes parisienne, Madame ?
-Vous êtes à la maison ?
-Nous sommes dans la cuisine.
-Je suis dans la chambre.
-Les chats sont sous la table.
-Ils sont à Lyon.
-Elles sont de Paris.
-Il est parisien.
-Il est de Paris.
-Il est lyonnais.
-Il est de Lyon.
-Elle est marseillaise.
-Elle est de Marseille.
-Elles sont parisiennes.
-Elles sont de Paris.
-Elles sont lyonnaises.
-Elle sont de Lyon.
-Ils sont marseillais.
-Ils sont de Marseille.
+no,group,speaker,original,pron,trans,comment
+1,33,,Je suis à la maison.,[ʒə sɥi a la mɛzɔ̃ / 즈 쉬 아 라 메종],나는 집에 있어요.,
+2,33,,Elle est dans la chambre.,[ɛl ɛ dɑ̃ la ʃɑ̃bʁ / 엘 에 당 라 샹브르],그녀는 방 안에 있어요.,
+3,33,,Le livre est sur la table.,[lə livʁ ɛ syʁ la tabl / 르 리브르 에 쉬르 라 타블],책이 탁자 위에 있어요.,
+4,33,,Les chats sont sous la table.,[le ʃa sɔ̃ su la tabl / 레 샤 송 수 라 타블],고양이들이 탁자 아래에 있어요.,
+5,33,,Nous sommes à Séoul.,[nu sɔm a seul / 누 솜 아 쎄울],우리는 서울에 있어요.,
+6,33,,Vous êtes à Paris ?,[vu z‿ɛt a paʁi / 부‿제트 아 빠리],파리에 계세요?,
+7,33,,Je suis de Séoul.,[ʒə sɥi də seul / 즈 쉬 드 쎄울],나는 서울 출신이에요.,
+8,33,,Vous êtes de Paris ?,[vu z‿ɛt də paʁi / 부‿제트 드 빠리],파리 출신이세요?,
+9,33,,Elle est de Nice.,[ɛl ɛ də nis / 엘 에 드 니스],그녀는 니스 출신이에요.,
+10,33,,Vous êtes de Paris ?,[vu z‿ɛt də paʁi / 부‿제트 드 빠리],파리 출신이세요?,
+11,33,,"Vous êtes parisien, Monsieur ?","[vu z‿ɛt paʁizjɛ̃, məsjø / 부‿제트 파리지앙, 머슈]","파리 남성이세요, 씨?",
+12,33,,"Vous êtes parisienne, Madame ?","[vu z‿ɛt paʁizjɛn, madam / 부‿제트 파리지엔, 마담]","파리 여성이세요, 부인?",
+13,33,,Vous êtes à la maison ?,[vu z‿ɛt a la mɛzɔ̃ / 부‿제트 아 라 메종],집에 계세요?,
+14,33,,Nous sommes dans la cuisine.,[nu sɔm dɑ̃ la kɥizin / 누 솜 당 라 퀴진],우리는 부엌에 있어요.,
+15,33,,Je suis dans la chambre.,[ʒə sɥi dɑ̃ la ʃɑ̃bʁ / 즈 쉬 당 라 샹브르],나는 방 안에 있어요.,
+16,33,,Les chats sont sous la table.,[le ʃa sɔ̃ su la tabl / 레 샤 송 수 라 타블],고양이들이 탁자 아래에 있어요.,
+17,33,,Ils sont à Lyon.,[il sɔ̃ a ljɔ̃ / 일 송 아 리옹],그들은 리옹에 있어요.,
+18,33,,Elles sont de Paris.,[ɛl sɔ̃ də paʁi / 엘 송 드 빠리],그녀들은 파리 출신이에요.,
+19,33,,Il est parisien.,[il ɛ paʁizjɛ̃ / 일 에 파리지앙],그는 파리 남성이에요.,
+20,33,,Il est de Paris.,[il ɛ də paʁi / 일 에 드 빠리],그는 파리 출신이에요.,
+21,33,,Il est lyonnais.,[il ɛ ljɔnɛ / 일 에 리오네],그는 리옹 남성이에요.,
+22,33,,Il est de Lyon.,[il ɛ də ljɔ̃ / 일 에 드 리옹],그는 리옹 출신이에요.,
+23,33,,Elle est marseillaise.,[ɛl ɛ maʁsɛjɛz / 엘 에 마르세예즈],그녀는 마르세유 여성이에요.,
+24,33,,Elle est de Marseille.,[ɛl ɛ də maʁsɛj / 엘 에 드 마르세이],그녀는 마르세유 출신이에요.,
+25,33,,Elles sont parisiennes.,[ɛl sɔ̃ paʁizjɛn / 엘 송 파리지엔],그녀들은 파리 여성들이에요.,
+26,33,,Elles sont de Paris.,[ɛl sɔ̃ də paʁi / 엘 송 드 빠리],그녀들은 파리 출신이에요.,
+27,33,,Elles sont lyonnaises.,[ɛl sɔ̃ ljɔnɛz / 엘 송 리오네즈],그녀들은 리옹 여성들이에요.,
+28,33,,Elle sont de Lyon.,[ɛl sɔ̃ də ljɔ̃ / 엘 송 드 리옹],그녀(들)는 리옹 출신이에요.,
+29,33,,Ils sont marseillais.,[il sɔ̃ maʁsɛjɛ / 일 송 마르세예],그들은 마르세유 남성들이에요.,
+30,33,,Ils sont de Marseille.,[il sɔ̃ də maʁsɛj / 일 송 드 마르세이],그들은 마르세유 출신이에요.,

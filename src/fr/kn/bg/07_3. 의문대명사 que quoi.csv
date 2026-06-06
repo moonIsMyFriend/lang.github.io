@@ -1,35 +1,33 @@
-
-Vous mangez quoi ?
-Que mangez-vous ?
-Qu’est-ce que vous mangez ?
-Nous mangeons des pâtes.
-Il préfère quoi, le métro ou le bus ?
-Que préfère-il ?
-Qu’est-ce qu’il préfère ?
-Il préfère le bus.
-Vous avez quoi comme dessert ?
-Qu’avez-vous comme dessert ?
-Qu’est-ce que vous avez comme dessert ?
-Nous avons des tartes et des glaces.
-C’est quoi ?
-Qu’est-ce que c'est?
-C’est un cadeau.
-Ce sont des cadeaux.
-Vous parlez de quoi ?
-De quoi parlez-vous ?
-De quoi est-ce que vous parlez ?
-Nous parlons de nos vacances.
-C’est quoi ?
-Qu’est-ce que c’est ?
-Tu préfères quoi, le vin ou la bière ?
-Qu’est-ce que tu préfères, le vin ou la bière ?
-Q : Qu’est-ce que tu cherches ? ( tu)
-R : Je cherche mon sac.
-Q : Qu’est-ce qu’il achète ?
-R : Il achète des fleurs.
-Q : Qu’est-ce que c’est ?
-R : C’est la Tour Eiffel.
-Q : Qu’est-ce que c’est ?
-R : Ce sont des stylos.
-
-
+no,group,speaker,original,pron,trans,comment
+1,73,,Vous mangez quoi ?,[vu mɑ̃ʒe kwa / vu mange kwa],무엇을 드세요?,
+2,73,,Que mangez-vous ?,[kə mɑ̃ʒe vu / ke mange vu],무엇을 드세요?,
+3,73,,Qu'est-ce que vous mangez ?,[kɛs kə vu mɑ̃ʒe / kes ke vu mange],무엇을 드세요?,
+4,73,,Nous mangeons des pâtes.,[nu mɑ̃ʒɔ̃ de pat / nu mangeon de pate],파스타를 먹습니다.,
+5,73,,Il préfère quoi, le métro ou le bus ?,[il pʁefɛʁ kwa lə metʁo u lə bys / il prefe헤r kwa le metro u le bys],그는 무엇을 선호하나요, 지하철 아니면 버스?,
+6,73,,Que préfère-il ?,[kə pʁefɛʁ il / ke prefe헤r il],그는 무엇을 선호하나요?,
+7,73,,Qu'est-ce qu'il préfère ?,[kɛs kil pʁefɛʁ / kes kil prefe헤r],그는 무엇을 선호하나요?,
+8,73,,Il préfère le bus.,[il pʁefɛʁ lə bys / il prefe헤r le bys],그는 버스를 선호합니다.,
+9,73,,Vous avez quoi comme dessert ?,[vu z‿ave kwa kɔm desɛʁ / vu zave kwa kom deser],디저트로 무엇이 있으세요?,
+10,73,,Qu'avez-vous comme dessert ?,[kave vu kɔm desɛʁ / kave vu kom deser],디저트로 무엇이 있으세요?,
+11,73,,Qu'est-ce que vous avez comme dessert ?,[kɛs kə vu z‿ave kɔm desɛʁ / kes ke vu zave kom deser],디저트로 무엇이 있으세요?,
+12,73,,Nous avons des tartes et des glaces.,[nu zavɔ̃ de taʁt e de glas / nu zavon de tarte e de glas],타르트와 아이스크림이 있습니다.,
+13,73,,C'est quoi ?,[sɛ kwa / se kwa],그게 뭐야?,
+14,73,,Qu'est-ce que c'est?,[kɛs kə sɛ / kes ke se],그게 뭐야?,
+15,73,,C'est un cadeau.,[sɛ tœ̃ kadɔ / se tœ̃ cadeau],선물이야.,
+16,73,,Ce sont des cadeaux.,[sə sɔ̃ de kadɔ / se song de cadeau],선물들이야.,
+17,73,,Vous parlez de quoi ?,[vu paʁle də kwa / vu parle de kwa],무엇에 대해 이야기하세요?,
+18,73,,De quoi parlez-vous ?,[də kwa paʁle vu / de kwa parle vu],무엇에 대해 이야기하세요?,
+19,73,,De quoi est-ce que vous parlez ?,[də kwa ɛs kə vu paʁle / de kwa es ke vu parle],무엇에 대해 이야기하세요?,
+20,73,,Nous parlons de nos vacances.,[nu paʁlɔ̃ də no vakɑ̃s / nu parlon de no vacance],휴가에 대해 이야기합니다.,
+21,73,,C'est quoi ?,[sɛ kwa / se kwa],그게 뭐야?,
+22,73,,Qu'est-ce que c'est ?,[kɛs kə sɛ / kes ke se],그게 뭐야?,
+23,73,,Tu préfères quoi, le vin ou la bière ?,[ty pʁefɛʁ kwa lə vɛ̃ u la bjɛʁ / ty prefe헤r kwa le vang u la bière],와인과 맥주 중 뭐를 선호해?,
+24,73,,Qu'est-ce que tu préfères, le vin ou la bière ?,[kɛs kə ty pʁefɛʁ lə vɛ̃ u la bjɛʁ / kes ke ty prefe헤r le vang u la bière],와인과 맥주 중 뭐를 선호해?,
+25,73,,Q : Qu'est-ce que tu cherches ? ( tu),[kyɛs kə ty ʃɛʁʃ / Q: kes ke ty cherche],Q: 뭘 찾니? (tu),
+26,73,,R : Je cherche mon sac.,[ɛʁ ʒə ʃɛʁʃ mɔ̃ sak / R: 즈 cherche mon sac],R: 내 가방을 찾아.,
+27,73,,Q : Qu'est-ce qu'il achète ?,[kyɛs kil aʃɛt / Q: kes kil achete],Q: 그는 뭘 사?,
+28,73,,R : Il achète des fleurs.,[ɛʁ il aʃɛt de flœʁ / R: il achete de fleur],R: 꽃을 사.,
+29,73,,Q : Qu'est-ce que c'est ?,[kyɛs kə sɛ / Q: kes ke se],Q: 그게 뭐야?,
+30,73,,R : C'est la Tour Eiffel.,[ɛʁ sɛ la tuʁ ɛfɛl / R: se la Tour Eiffel],R: 에펠탑이야.,
+31,73,,Q : Qu'est-ce que c'est ?,[kyɛs kə sɛ / Q: kes ke se],Q: 이게 뭐야?,
+32,73,,R : Ce sont des stylos.,[ɛʁ sə sɔ̃ de stilo / R: se song de stylo],R: 펜들이야.,

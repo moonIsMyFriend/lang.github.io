@@ -1,64 +1,64 @@
-
-AOC
-CB
-TGV
-SVP
-RF
-UE
-Paris
-Nice
-Dijon
-Lyon
-Tours
-Strasbourg
-café
-crêpe
-café
-là, très, où
-âme, enquête, dîner, hôtel, août
-Noël, égoïste
-français, garçon, reçu
-l’ami, Je t’aime.
-après-midi
-égoïste
-Paris
-restaurant
-cabaret
-rendez-vous
-sac
-bonjour
-chef
-parasol
-France
-chanson
-ensemble
-printemps
-homme
-harmonie
-silhouette
-Hermès
-nuance
-bleu
-Pasteur
-rien
-mon‿amour
-mes‿enfants
-On‿y va !
-un homme et une femme
-un bon vin
-et une bonne cuisine
-le soleil et la lune
-chocolat chaud
-café noir
-femme fatale
-J’aime Paris.
-Je t’aime.
-C’est la vie.
-je vais
-nous allons
-tu vas
-vous allez
-il/elle/on va
-ils/elles vont
-Je t’aime.
-Je lui donne un livre.
+no,group,speaker,original,pron,trans,comment
+1,1,,AOC,[a o se / 아 오 세],AOC (원산지 통제),
+2,1,,CB,[se be / 세 be],CB (신용카드),
+3,1,,TGV,[te ʒe ve / te 제 ve],TGV (고속열차),
+4,1,,SVP,[sil vu plɛ / sil 부 ple],부디 (s'il vous plaît),
+5,1,,RF,[ɛʁ ɛf / er ef],RF (프랑스 공화국),
+6,1,,UE,[y ɛ / y e],EU (유럽연합),
+7,1,,Paris,[paʁi / pa리],파리,
+8,1,,Nice,[nis / nis],니스,
+9,1,,Dijon,[diʒɔ̃ / dij옹],디jon,
+10,1,,Lyon,[ljɔ̃ / li옹],리옹,
+11,1,,Tours,[tuʁ / tour],투르,
+12,1,,Strasbourg,[stʁazbuʁ / st라즈부르],스트라스부르,
+13,1,,café,[kafe / kafe],카페,
+14,1,,crêpe,[kʁɛp / krep],크rep,
+15,1,,café,[kafe / kafe],카페,
+16,1,,"là, très, où",[la tʁɛ u / la tre u],"là(거기), très(매우), où(어디)",
+17,1,,"âme, enquête, dîner, hôtel, août",[am ɑ̃kɛt dine otel u / am 앙ket dine otel u],"âme(영혼), enquête(조사), dîner(저녁식사), hôtel(호텔), août(8월)",
+18,1,,Noël égoïste,[nɔɛl eɡoist / noel egoist],Noël(크리스마스) égoïste(이기적인),
+19,1,,"français, garçon, reçu",[fʁɑ̃sɛ gaʁsɔ̃ ʁəsy / 프랑se ga르s옹 re쉬],français(프랑스어) garçon(소년) reçu(영수증),
+20,1,,l'ami Je t'aime.,[lami ʒə t‿ɛm / lami 즈 tem],l'ami(친구) Je t'aime.(사랑해),
+21,1,,après-midi,[apʁɛ midi / apre midi],après-midi(오후),
+22,1,,égoïste,[eɡoist / egoist],égoïste(이기적인),
+23,1,,Paris,[paʁi / pa리],파리,
+24,1,,restaurant,[ʁɛstɔʁɑ̃ / re스to랑],restaurant(식당),
+25,1,,cabaret,[kabaʁɛ / cabare],cabaret(카바레),
+26,1,,rendez-vous,[ʁɑ̃devu / rangde부],rendez-vous(약속),
+27,1,,sac,[sak / sak],sac(가방),
+28,1,,bonjour,[bɔ̃ʒuʁ / bonjour],bonjour(안녕하세요),
+29,1,,chef,[ʃɛf / chef],chef(주방장),
+30,1,,parasol,[paʁasɔl / pa라sol],parasol(양산),
+31,1,,France,[fʁɑ̃s / 프랑s],France(프랑스),
+32,1,,chanson,[ʃɑ̃sɔ̃ / sh앙s옹],chanson(샹송),
+33,1,,ensemble,[ɑ̃sɑ̃bl / 앙s앙bl],ensemble(함께),
+34,1,,printemps,[pʁɛ̃tɑ̃ / pre앙t앙],printemps(봄),
+35,1,,homme,[ɔm / om],homme(남자),
+36,1,,harmonie,[aʁmɔni / a르모ni],harmonie(조화),
+37,1,,silhouette,[silwɛt / silwет],silhouette(실루엣),
+38,1,,Hermès,[ɛʁmɛs / er메s],Hermès(에르메스),
+39,1,,nuance,[nɥɑ̃s / ny앙s],nuance(뉘앙스),
+40,1,,bleu,[blø / bleu],bleu(파란),
+41,1,,Pasteur,[pastœʁ / pas퇴r],Pasteur(파스퇴르),
+42,1,,rien,[ʁjɛ̃ / ri앙],rien(아무것도),
+43,1,,mon amour,[mɔ̃n‿amuʁ / mon amour],mon amour(나의 사랑),
+44,1,,mes enfants,[me z‿ɑ̃fɑ̃ / me z앙f앙],mes enfants(내 아이들),
+45,1,,On y va !,[ɔ̃n‿i va / on i va],On y va!(가자!),
+46,1,,un homme et une femme,[œ̃n‿ɔm e yn fam / un om e yn fam],남자 한 명과 여자 한 명,
+47,1,,un bon vin,[œ̃ bɔ̃ vɛ̃ / un bon vang],좋은 와인 한 병,
+48,1,,et une bonne cuisine,[e yn bɔn kɥizin / e yn bon 퀴zin],그리고 좋은 요리,
+49,1,,le soleil et la lune,[lə sɔlɛj e la lyn / le sol레i e la lyn],태양과 달,
+50,1,,chocolat chaud,[ʃɔkɔla ʃo / choco라 sho],따뜻한 초콜릿,
+51,1,,café noir,[kafe nwaʁ / kafe nwa르],블랙 커피,
+52,1,,femme fatale,[fam fatal / fam fatal],femme fatale(치명적인 여자),
+53,1,,J'aime Paris.,[ʒɛm paʁi / jem pa리],나는 파리를 사랑한다.,
+54,1,,Je t'aime.,[ʒə t‿ɛm / 즈 tem],사랑해.,
+55,1,,C'est la vie.,[sɛ la vi / se la vi],그게 인생이야.,
+56,1,,je vais,[ʒə vɛ / 즈 ve],나는 간다 (aller),
+57,1,,nous allons,[nu z‿alɔ̃ / nu zal옹],우리는 간다 (aller),
+58,1,,tu vas,[ty va / ty va],너는 간다 (aller),
+59,1,,vous allez,[vu z‿ale / vu zale],당신(들)은 간다 (aller),
+60,1,,il/elle/on va,[il/ɛl/ɔ̃ va / il/el/on va],그/그녀/우리는 간다 (aller),
+61,1,,ils/elles vont,[il/ɛl vɔ̃ / il/el vong],그들/그녀들은 간다 (aller),
+62,1,,Je t'aime.,[ʒə t‿ɛm / 즈 tem],사랑해.,
+63,1,,Je lui donne un livre.,[ʒə lɥi dɔn œ̃ livʁ / 즈 lui don un livre],나는 그/그녀에게 책을 준다.,

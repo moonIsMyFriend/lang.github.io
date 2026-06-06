@@ -1,20 +1,16 @@
-
-J’achète un bon vin.
-Tu achètes des fruits.
-Nous achetons des gâteaux.
-Vous préférez le printemps ou l’automne ?
-On préfère le printemps.
-Ils n’aiment pas le café. Ils préfèrent le thé.
-On appelle la police.
-Vous appelez votre mère ?
-Non, j’appelle ma copine.
-On achète des baguettes ? [acheter]
-Nous achetons des croissants. [acheter]
-Vous préférez le métro ou le bus ? [préférer]
-Les enfants répètent les phrases. [répéter]
-Vous appelez le médecin. [appeler]
-On appelle un taxi ? [appeler]
-
-
-
-
+no,group,speaker,original,pron,trans,comment
+1,71,,J'achète un bon vin.,[ʒaʃɛt œ̃ bɔ̃ vɛ̃ / 제쉐트 엉 본 vang],좋은 와인을 삽니다.,
+2,71,,Tu achètes des fruits.,[ty aʃɛt de fʁɥi / 튀 아쉐트 데 fʁui],과일을 삽니다.,
+3,71,,Nous achetons des gâteaux.,[nu zaʃtɔ̃ de gato / 누 za쉬통 데 gato],케이크들을 삽니다.,
+4,71,,Vous préférez le printemps ou l'automne ?,[vu pʁefeʁe lə pʁɛ̃tɑ̃ u lotɔn / 부 prefe헤re le pre앙t앙 u loton],봄과 가을 중 어느 것을 선호하세요?,
+5,71,,On préfère le printemps.,[ɔ̃ pʁefɛʁ lə pʁɛ̃tɑ̃ / 옹 prefe헤r le pre앙t앙],우리는 봄을 선호합니다.,
+6,71,,Ils n'aiment pas le café. Ils préfèrent le thé.,[il n‿ɛm pa lə kafe. il pʁefɛʁ lə te / il nem pa le kafe. il prefe헤r le te],그들은 커피를 좋아하지 않습니다. 차를 선호합니다.,
+7,71,,On appelle la police.,[ɔ̃ napɛl la polis / 옹 na펠 la polis],경찰을 부릅니다.,
+8,71,,Vous appelez votre mère ?,[vu zaple vɔtʁ mɛʁ / 부 zaple vo트르 me르],어머니께 전화하세요?,
+9,71,,"Non, j'appelle ma copine.",[nɔ̃ ʒapɛl ma kɔpin / nong japele ma kopin],"아니, 여자친구에게 전화해.",
+10,71,,On achète des baguettes ? [acheter],[ɔ̃ naʃɛt de bagɛt / 옹 na쉐트 데 baget],바게트를 살까요? [acheter],
+11,71,,Nous achetons des croissants. [acheter],[nu zaʃtɔ̃ de kʁwasɑ̃ / 누 za쉬통 데 kʁ와s앙],크루아상을 삽니다. [acheter],
+12,71,,Vous préférez le métro ou le bus ? [préférer],[vu pʁefeʁe lə metʁo u lə bys / 부 prefe헤re le metro u le bys],지하철과 버스 중 어느 것을 선호하세요? [préférer],
+13,71,,Les enfants répètent les phrases. [répéter],[le zɑ̃fɑ̃ ʁepɛt le fʁaz / le z앙f앙 repe트 le fʁaz],아이들이 문장을 반복합니다. [répéter],
+14,71,,Vous appelez le médecin. [appeler],[vu zaple lə medsɛ̃ / 부 zaple le medse앙],의사에게 전화합니다. [appeler],
+15,71,,On appelle un taxi ? [appeler],[ɔ̃ napɛl œ̃ taksi / 옹 na펠 엉 taksi],택시를 부를까요? [appeler],

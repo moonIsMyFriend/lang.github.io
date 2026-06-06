@@ -1,23 +1,23 @@
-
-Tu veux du poisson ou de la viande?
-Vous voulez de l’eau?
-Je prends un steak avec des frites.
-Je dois acheter des fruits.
-Il a du courage et de la patience.
-Elle a de la chance !
-J’achète un poulet.
-Je mange du poulet.
-J’aime le poulet.
-J’aime le poulet.
-Vous voulez du poisson ou de la viande ?
-On achète des fruits au marché.
-Elle boit du café au lait au petit-déjeuner.
-Je veux de l'eau.
-Avec ton steak, tu veux du riz ou des frites ?
-Ils ont de l'argent.
-Tu veux du vin ?
-Non, je n’aime pas le vin.
-On préfère la bière.
-Vous voulez du fromage ?
-Nous voulons manger des frites.
-Ils adorent les pommes.
+no,group,speaker,original,pron,trans,comment
+1,103,,Tu veux du poisson ou de la viande?,[ty vø dy pwasɔ̃ u də la vjɑ̃d / 튀 뵈 뒤 프와쏭 우 드 라 비앙드],생선이랑 고기 중 뭐 먹을래?,
+2,103,,Vous voulez de l'eau?,[vu vule də lo / 부 뷸레 드 로],물 드실래요?,
+3,103,,Je prends un steak avec des frites.,[ʒə pʁɑ̃ œ̃ stɛk avɛk de fʁit / 즈 프랑 엉 스테크 아벡 데 프리트],스테이크에 감자튀김 곁들여 주문할게요.,
+4,103,,Je dois acheter des fruits.,[ʒə dwa aʃte de fʁɥi / 즈 두아 아슈테 데 프뤼],과일을 사야 해요.,
+5,103,,Il a du courage et de la patience.,[il a dy kuʁaʒ e də la pasjɑ̃s / 일 아 뒤 쿠라주 에 드 라 파시앙스],그는 용기와 인내심이 있습니다.,
+6,103,,Elle a de la chance !,[ɛl a də la ʃɑ̃s / 엘 아 드 라 썽스],그녀는 운이 좋아요!,
+7,103,,J'achète un poulet.,[ʒaʃt œ̃ pulɛ / 자슈트 엉 풀레],닭 한 마리를 삽니다.,
+8,103,,Je mange du poulet.,[ʒə mɑ̃ʒ dy pulɛ / 즈 망주 뒤 풀레],닭고기를 먹습니다.,
+9,103,,J'aime le poulet.,[ʒɛm lə pulɛ / 잼 르 풀레],닭고기를 좋아합니다.,
+10,103,,J'aime le poulet.,[ʒɛm lə pulɛ / 잼 르 풀레],닭고기를 좋아합니다.,
+11,103,,Vous voulez du poisson ou de la viande ?,[vu vule dy pwasɔ̃ u də la vjɑ̃d / 부 뷸레 뒤 프와쏭 우 드 라 비앙드],생선이랑 고기 중 무엇을 원하세요?,
+12,103,,On achète des fruits au marché.,[ɔ̃ aʃt de fʁɥi o maʁʃe / 옹 아슈트 데 프뤼 오 마르슈],시장에서 과일을 삽니다.,
+13,103,,Elle boit du café au lait au petit-déjeuner.,[ɛl bwa dy kafe o lɛ o pətid eʒøne / 엘 브와 뒤 카페 오 레 오 프티데저네],그녀는 아침에 카페 오 레를 마십니다.,
+14,103,,Je veux de l'eau.,[ʒə vø də lo / 즈 뵈 드 로],물을 원해요.,
+15,103,,Avec ton steak tu veux du riz ou des frites ?,[avɛk tɔ̃ stɛk ty vø dy ʁi u de fʁit / 아벡 통 스테크 튀 뵈 뒤 리 우 데 프리트],스테이크에 밥이랑 감자튀김 중 뭐 먹을래?,
+16,103,,Ils ont de l'argent.,[il zɔ̃ də laʁʒɑ̃ / 일 졍 드 라르장],그들은 돈이 있습니다.,
+17,103,,Tu veux du vin ?,[ty vø dy vɛ̃ / 튀 뵈 뒤 뱅],와인 마실래?,
+18,103,,Non je n'aime pas le vin.,[nɔ̃ ʒə nɛm pa lə vɛ̃ / 논 즈 넴 파 르 뱅],아니요 와인을 좋아하지 않아요.,
+19,103,,On préfère la bière.,[ɔ̃ pʁefɛʁ la bjɛʁ / 옹 프레페르 라 비에르],우리는 맥주를 더 좋아해요.,
+20,103,,Vous voulez du fromage ?,[vu vule dy fʁomaʒ / 부 뷸레 뒤 프로마주],치즈 드실래요?,
+21,103,,Nous voulons manger des frites.,[nu vulɔ̃ mɑ̃ʒe de fʁit / 누 부롱 망제 데 프리트],우리는 감자튀김을 먹고 싶어요.,
+22,103,,Ils adorent les pommes.,[il zadɔʁ le pom / 일 자도르 레 뽐],그들은 사과를 아주 좋아합니다.,

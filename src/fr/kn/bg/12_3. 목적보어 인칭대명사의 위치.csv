@@ -1,37 +1,37 @@
 no,group,speaker,original,pron,trans,comment
-Tu connais Céline ?
-Tu la connais ?
-Tu téléphones à Paul ?
-Tu lui téléphones ?
-Je veux acheter ton vélo.
-Je veux l’acheter.
-On peut inviter les voisins.
-On peut les inviter.
-Voulez-vous parler au médecin ?
-Voulez-vous lui parler ?
-Tu le donnes à tes parents.
-Donne-le à tes parents.
-Vous nous envoyez ce paquet.
-Envoyez-nous ce paquet.
-Tu me présentes ta copine.
-Présente-moi ta copine.
-Tu ne me quittes pas.
-Ne me quitte pas.
-Vous ne leur parlez pas.
-Ne leur parlez pas.
-Vous voulez manger ce gâteau ?
-Oui, nous voulons le manger.
-Tu veux acheter cette robe verte ?
-Oui, je veux l’acheter.
-Il doit téléphoner à son professeur ?
-Oui, il doit lui téléphoner.
-Tu dois finir tes devoirs ce soir ?
-Oui, je dois les finir ce soir.
-Tu le poses sur la table.
-Pose-le sur la table.
-Tu lui envoies cette lettre.
-Envoie-lui cette lettre.
-Vous m’aidez, s’il vous plaît.
-Aidez-moi, s’il vous plaît.
-Tu ne me quittes pas.
-Ne me quitte pas.
+1,123,,Tu connais Céline ?,[ty kɔnɛ selin / 튀 코네 셀린],셀린을 알아?,
+2,123,,Tu la connais ?,[ty la kɔnɛ / 튀 라 코네],그녀를 알아?,
+3,123,,Tu téléphones à Paul ?,[ty telefon a pol / 튀 텔레폰 아 폴],폴에게 전화해?,
+4,123,,Tu lui téléphones ?,[ty lɥi telefon / 튀 르이 텔레폰],그에게 전화해?,
+5,123,,Je veux acheter ton vélo.,[ʒə vø aʃte tɔ̃ velo / 즈 뵈 아슈테 통 벨로],네 자전거를 사고 싶어.,
+6,123,,Je veux l'acheter.,[ʒə vœ laʃte / 즈 뵈 라슈테],그것(자전거)을 사고 싶어.,
+7,123,,On peut inviter les voisins.,[ɔ̃ pø ɛ̃vite le vwazɛ̃ / 옹 뾔 앙비테 레 브와쟁],이웃들을 초대할 수 있어.,
+8,123,,On peut les inviter.,[ɔ̃ pø le zɛ̃vite / 옹 뾔 레 잉비테],그들(이웃들)을 초대할 수 있어.,
+9,123,,Voulez-vous parler au médecin ?,[vule vu paʁle o medsɛ̃ / 뷸레 부 파를르 오 메드썽],의사와 이야기하시겠어요?,
+10,123,,Voulez-vous lui parler ?,[vule vu lɥi paʁle / 뷸레 부 르이 파를르],그/그녀(의사)와 이야기하시겠어요?,
+11,123,,Tu le donnes à tes parents.,[ty lə dɔn a te paʁɑ̃ / 튀 르 돈 아 테 파랑],그것을 부모님께 줘.,
+12,123,,Donne-le à tes parents.,[dɔn lə a te paʁɑ̃ / 돈 르 아 테 파랑],부모님께 그것을 줘.,
+13,123,,Vous nous envoyez ce paquet.,[vu nu zɑ̃vwaje sə pakɛ / 부 누 잉부와예 스 파케],이 소포를 우리에게 보내세요.,
+14,123,,Envoyez-nous ce paquet.,[ɑ̃vwaje nu sə pakɛ / 앙부와예 누 스 파케],이 소포를 우리에게 보내세요.,
+15,123,,Tu me présentes ta copine.,[ty mə pʁezɑ̃t ta kopin / 튀 므 프레장 타 코핀],여자친구를 나에게 소개해.,
+16,123,,Présente-moi ta copine.,[pʁezɑ̃t mwa ta kopin / 프레장 므와 타 코핀],여자친구를 나에게 소개해.,
+17,123,,Tu ne me quittes pas.,[ty nə mə kit pa / 튀 너 므 키트 파],나를 떠나지 마.,
+18,123,,Ne me quitte pas.,[nə mə kit pa / 너 므 키트 파],나를 떠나지 마.,
+19,123,,Vous ne leur parlez pas.,[vu nə lœʁ paʁle pa / 부 너 뢰르 파를르 파],그들에게 말하지 마세요.,
+20,123,,Ne leur parlez pas.,[nə lœʁ paʁle pa / 너 뢰르 파를르 파],그들에게 말하지 마세요.,
+21,123,,Vous voulez manger ce gâteau ?,[vu vule mɑ̃ʒe sə gato / 부 뷸레 망제 스 가토],이 케이크를 드시고 싶으세요?,
+22,123,,Oui nous voulons le manger.,[wi nu vulɔ̃ lə mɑ̃ʒe / 위 누 부롱 르 망제],네 그것(케이크)을 먹고 싶어요.,
+23,123,,Tu veux acheter cette robe verte ?,[ty vø aʃte sɛt ʁɔb vɛʁt / 튀 뵈 아슈테 쎄 트로브 베르트],이 초록 원피스를 사고 싶어?,
+24,123,,Oui je veux l'acheter.,[wi ʒə vœ laʃte / 위 즈 뵈 라슈테],네 그것(원피스)을 사고 싶어.,
+25,123,,Il doit téléphoner à son professeur ?,[il dwa telefone a sɔ̃ pʁɔfesœʁ / 일 두아 텔레포네 아 송 프로페쓰œ],그는 선생님께 전화해야 하나요?,
+26,123,,Oui il doit lui téléphoner.,[wi il dwa lɥi telefon / 위 일 두아 르이 텔레폰],네 그(선생님)에게 전화해야 해요.,
+27,123,,Tu dois finir tes devoirs ce soir ?,[ty dwa finiʁ te dœvwaʁ sə swaʁ / 튀 두아 피니르 테 드부아르 스 수아르],오늘 밤 숙제를 끝내야 해?,
+28,123,,Oui je dois les finir ce soir.,[wi ʒə dwa le finiʁ sə swaʁ / 위 즈 두아 레 피니르 스 수아르],네 오늘 밤 그것들(숙제)을 끝내야 해.,
+29,123,,Tu le poses sur la table.,[ty lə poz syʁ la tabl / 튀 르 포즈 쉬르 라 타블],그것을 테이블 위에 놓아.,
+30,123,,Pose-le sur la table.,[poz lə syʁ la tabl / 포즈 르 쉬르 라 타블],테이블 위에 그것을 놓아.,
+31,123,,Tu lui envoies cette lettre.,[ty lɥi ɑ̃vwa sɛt lɛtʁ / 튀 르이 앙부아 쎄 레트르],그/그녀에게 이 편지를 보내.,
+32,123,,Envoie-lui cette lettre.,[ɑ̃vwa lɥi sɛt lɛtʁ / 앙부아 르이 쎄 레트르],그/그녀에게 이 편지를 보내.,
+33,123,,Vous m'aidez s'il vous plaît.,[vu mɛde sil vu plɛ / 부 메데 실 부 플레],도와주세요.,
+34,123,,Aidez-moi s'il vous plaît.,[ɛde mwa sil vu plɛ / 에데 므와 실 부 플레],도와주세요.,
+35,123,,Tu ne me quittes pas.,[ty nə mə kit pa / 튀 너 므 키트 파],나를 떠나지 마.,
+36,123,,Ne me quitte pas.,[nə mə kit pa / 너 므 키트 파],나를 떠나지 마.,

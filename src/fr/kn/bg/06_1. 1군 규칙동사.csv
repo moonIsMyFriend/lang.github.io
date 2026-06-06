@@ -1,54 +1,50 @@
-
-je chante
-tu chantes
-il/elle chante
-nous chantons
-vous chantez
-ils/elles chantent
-je vais 
-nous allons
-tu vas 
-vous allez
-il/elle va 
-ils/elles vont
-Je regarde la télé.
-Tu regardes la télé.
-Il/Elle regarde la télé.
-Nous regardons la télé.
-Vous regardez la télé.
-Ils/Elles regardent la télé.
-J’écoute la radio.
-Tu écoutes la radio.
-Il/Elle écoute la radio.
-Nous écoutons la radio.
-Vous écoutez la radio.
-Ils/Elles écoutent la radio.
-Je parle coréen.
-Tu parles coréen.
-Il/Elle parle français.
-Nous parlons français.
-Vous parlez anglais.
-Ils/Ellesparlent anglais.
-Vous parlez français ?
-Nous parlons coréen.
-J’habite à Séoul.
-Tu habites à Séoul.
-Il/Elle habite à Paris.
-Nous habitons à Paris.
-Vous habitez à New-York.
-Ils/Elles habitent à New-York.
-J’aime la musique.
-Je déteste le sport.
-Elles aiment les chats.
-Elles adorent les chats.
-Elles détestent les chats.
-Monsieur, vous parlez français ? [parler]
-Mes soeurs habitent à Paris. [habiter]
-Tu aimes le sport ? [aimer]
-J’ adore le café. [adorer]
-Nous regardons la télé dans le salon. [regarder]
-Ma fille écoute la radio dans sa chambre. [écouter]
-
-
-
-
+no,group,speaker,original,pron,trans,comment
+1,61,,je chante,[ʒə ʃɑ̃t / 즈 샹],나는 노래한다 (chanter),
+2,61,,tu chantes,[ty ʃɑ̃t / 튀 샹],너는 노래한다 (chanter),
+3,61,,il/elle chante,[il/ɛl ʃɑ̃t / 일·엘 샹],그/그녀는 노래한다 (chanter),
+4,61,,nous chantons,[nu ʃɑ̃tɔ̃ / 누 샹통],우리는 노래한다 (chanter),
+5,61,,vous chantez,[vu ʃɑ̃te / 부 샹테],당신(들)은 노래한다 (chanter),
+6,61,,ils/elles chantent,[il/ɛl ʃɑ̃t / 일·엘 샹],그들/그녀들은 노래한다 (chanter),
+7,61,,je vais,[ʒə vɛ / 즈 베],나는 간다 (aller),
+8,61,,nous allons,[nu zalɔ̃ / 누 잘롱],우리는 간다 (aller),
+9,61,,tu vas,[ty va / 튀 바],너는 간다 (aller),
+10,61,,vous allez,[vu zale / 부 잘레],당신(들)은 간다 (aller),
+11,61,,il/elle va,[il/ɛl va / 일·엘 바],그/그녀는 간다 (aller),
+12,61,,ils/elles vont,[il/ɛl vɔ̃ / 일·엘 봉],그들/그녀들은 간다 (aller),
+13,61,,Je regarde la télé.,[ʒə rəgaʁd la tele / 즈 헤가르드 라 텔레],나는 TV를 봅니다.,
+14,61,,Tu regardes la télé.,[ty rəgaʁd la tele / 튀 헤가르드 라 텔레],너는 TV를 봅니다.,
+15,61,,Il/Elle regarde la télé.,[il/ɛl rəgaʁd la tele / 일·엘 헤가르드 라 텔레],그/그녀는 TV를 봅니다.,
+16,61,,Nous regardons la télé.,[nu rəgaʁdɔ̃ la tele / 누 헤가르동 라 텔레],우리는 TV를 봅니다.,
+17,61,,Vous regardez la télé.,[vu rəgaʁde la tele / 부 헤가르드 라 텔레],당신(들)은 TV를 봅니다.,
+18,61,,Ils/Elles regardent la télé.,[il/ɛl rəgaʁd la tele / 일·엘 헤가르드 라 텔레],그들/그녀들은 TV를 봅니다.,
+19,61,,J'écoute la radio.,[ʒekut la ʁadjo / 즈 에쿠트 라 라디오],나는 라디오를 듣습니다.,
+20,61,,Tu écoutes la radio.,[ty ekut la ʁadjo / 튀 에쿠트 라 라디오],너는 라디오를 듣습니다.,
+21,61,,Il/Elle écoute la radio.,[il/ɛl ekut la ʁadjo / 일·엘 에쿠트 라 라디오],그/그녀는 라디오를 듣습니다.,
+22,61,,Nous écoutons la radio.,[nu zekutɔ̃ la ʁadjo / 누 제쿠통 라 라디오],우리는 라디오를 듣습니다.,
+23,61,,Vous écoutez la radio.,[vu zekute la ʁadjo / 부 제쿠테 라 라디오],당신(들)은 라디오를 듣습니다.,
+24,61,,Ils/Elles écoutent la radio.,[il/ɛl ekut la ʁadjo / 일·엘 에쿠트 라 라디오],그들/그녀들은 라디오를 듣습니다.,
+25,61,,Je parle coréen.,[ʒə paʁl kɔʁeen / 즈 파를 코헤엔],나는 한국어를 합니다.,
+26,61,,Tu parles coréen.,[ty paʁl kɔʁeen / 튀 파를 코헤엔],너는 한국어를 합니다.,
+27,61,,Il/Elle parle français.,[il/ɛl paʁl fʁɑ̃sɛ / 일·엘 파를 프랑세],그/그녀는 프랑스어를 합니다.,
+28,61,,Nous parlons français.,[nu paʁlɔ̃ fʁɑ̃sɛ / 누 파를롱 프랑세],우리는 프랑스어를 합니다.,
+29,61,,Vous parlez anglais.,[vu paʁle ɑ̃glɛ / 부 파를레 앙글레],당신(들)은 영어를 합니다.,
+30,61,,Ils/Elles parlent anglais.,[il/ɛl paʁl ɑ̃glɛ / 일·엘 파를 앙글레],그들/그녀들은 영어를 합니다.,
+31,61,,Vous parlez français ?,[vu paʁle fʁɑ̃sɛ / 부 파를레 프랑세],프랑스어 하세요?,
+32,61,,Nous parlons coréen.,[nu paʁlɔ̃ kɔʁeen / 누 파를롱 코헤엔],우리는 한국어를 합니다.,
+33,61,,J'habite à Séoul.,[ʒabit a seul / 즈 아비트 아 서울],나는 서울에 삽니다.,
+34,61,,Tu habites à Séoul.,[ty abit a seul / 튀 아비트 아 서울],너는 서울에 삽니다.,
+35,61,,Il/Elle habite à Paris.,[il/ɛl abit a paʁi / 일·엘 아비트 아 파리],그/그녀는 파리에 삽니다.,
+36,61,,Nous habitons à Paris.,[nu zabitɔ̃ a paʁi / 누 자비통 아 파리],우리는 파리에 삽니다.,
+37,61,,Vous habitez à New-York.,[vu zabite a nujɔʁk / 부 자비테 아 뉴욕],당신(들)은 뉴욕에 삽니다.,
+38,61,,Ils/Elles habitent à New-York.,[il/ɛl abit a nujɔʁk / 일·엘 아비트 아 뉴욕],그들/그녀들은 뉴욕에 삽니다.,
+39,61,,J'aime la musique.,[ʒɛm la myzik / 제므 라 뮈지크],나는 음악을 좋아합니다.,
+40,61,,Je déteste le sport.,[ʒə detɛst lə spɔʁ / 즈 데테스트 르 스포르],나는 운동을 싫어합니다.,
+41,61,,Elles aiment les chats.,[ɛl zɛm le ʃa / 엘 제므 레 샤],그녀들은 고양이를 좋아합니다.,
+42,61,,Elles adorent les chats.,[ɛl zadɔʁ le ʃa / 엘 자도르 레 샤],그녀들은 고양이를 아주 좋아합니다.,
+43,61,,Elles détestent les chats.,[ɛl detɛst le ʃa / 엘 데테스트 레 샤],그녀들은 고양이를 싫어합니다.,
+44,61,,"Monsieur, vous parlez français ? [parler]","[məsjø, vu paʁle fʁɑ̃sɛ / 머슈, 부 파를레 프랑세]","선생님, 프랑스어 하세요? [parler]",
+45,61,,Mes soeurs habitent à Paris. [habiter],[me sœʁ zabit a paʁi / 메 쇠르 자비트 아 파리],내 여동생들은 파리에 삽니다. [habiter],
+46,61,,Tu aimes le sport ? [aimer],[ty ɛm lə spɔʁ / 튀 에므 르 스포르],운동 좋아해? [aimer],
+47,61,,J'adore le café. [adorer],[ʒadɔʁ lə kafe / 자도르 르 카페],나는 커피를 아주 좋아해. [adorer],
+48,61,,Nous regardons la télé dans le salon. [regarder],[nu rəgaʁdɔ̃ la tele dɑ̃ lə salɔ̃ / 누 헤가르동 라 텔레 당 르 살롱],우리는 거실에서 TV를 봅니다. [regarder],
+49,61,,Ma fille écoute la radio dans sa chambre. [écouter],[ma fij ekut la ʁadjo dɑ̃ sa ʃɑ̃bʁ / 마 필 에쿠트 라 라디오 당 사 샹브르],내 딸은 자기 방에서 라디오를 듣습니다. [écouter],

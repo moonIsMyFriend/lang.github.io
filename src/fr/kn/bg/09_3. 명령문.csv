@@ -1,49 +1,49 @@
-
-Tu viens chez moi.
-Viens chez moi.
-Vous dormez dans votre chambre.
-Dormez dans votre chambre.
-Nous sortons ce soir.
-Sortons ce soir.
-Tu parles doucement.
-Parle doucement.
-Vous parlez doucement.
-Parlez doucement.
-Nous parlons doucement.
-Parlons doucement.
-Tu vas au supermarché.
-Va au supermarché.
-Vous allez au supermarché.
-Allez au supermarché.
-Nous allons au supermarché.
-Allons au supermarché.
-Tu ouvres les yeux.
-Ouvre les yeux.
-Ouvrez les yeux.
-Vous ouvrez les yeux.
-Nous ouvrons les yeux
-Ouvrons les yeux.
-Tu viens chez moi.
-Viens chez moi.
-Vous dormez bien.
-Dormez bien.
-Nous mangeons ensemble.
-Mangeons ensemble.
-Tu écoutes bien le professeur.
-Écoute bien le professeur.
-Tu vas avec ton père.
-Va avec ton père.
-Vous répétez cette phrase.
-Répétez cette phrase.
-Tu ne finis pas trop tard.
-Ne finis pas trop tard.
-Tu ne quittes pas ta chambre.
-Ne quitte pas ta chambre.
-Tu ne parles pas trop fort.
-Ne parle pas trop fort.
-Vous ne sortez pas dans la rue.
-Ne sortez pas dans la rue.
-Nous n’entrons pas dans la cuisine.
-N’entrons pas dans la cuisine.
-Tu ne touches pas mon gâteau.
-Ne touche pas mon gâteau.
+no,group,speaker,original,pron,trans,comment
+1,93,,Tu viens chez moi.,[ty vjɛ̃ ʃe mwa / 튀 비엔 셰 무아],너는 내 집에 와.,
+2,93,,Viens chez moi.,[vjɛ̃ ʃe mwa / 비엔 셰 무아],내 집에 와.,
+3,93,,Vous dormez dans votre chambre.,[vu dɔʁme dɑ̃ vɔtʁ ʃɑ̃bʁ / 부 도르메 당 보뜨르 샹브르],당신(들)은 자기 방에서 주무세요.,
+4,93,,Dormez dans votre chambre.,[dɔʁme dɑ̃ vɔtʁ ʃɑ̃bʁ / 도르메 당 보뜨르 샹브르],자기 방에서 주무세요.,
+5,93,,Nous sortons ce soir.,[nu sɔʁtɔ̃ sə swaʁ / 누 소르통 스 수아르],우리는 오늘 밤 나갑니다.,
+6,93,,Sortons ce soir.,[sɔʁtɔ̃ sə swaʁ / 소르통 스 수아르],오늘 밤 나가자.,
+7,93,,Tu parles doucement.,[ty paʁl dusmɑ̃ / 튀 파를 두스망],너는 조용히 말해.,
+8,93,,Parle doucement.,[paʁl dusmɑ̃ / 파를 두스망],조용히 말해.,
+9,93,,Vous parlez doucement.,[vu paʁle dusmɑ̃ / 부 파를레 두스망],조용히 말하세요.,
+10,93,,Parlez doucement.,[paʁle dusmɑ̃ / 파를레 두스망],조용히 말하세요.,
+11,93,,Nous parlons doucement.,[nu paʁlɔ̃ dusmɑ̃ / 누 파를롱 두스망],우리는 조용히 말합니다.,
+12,93,,Parlons doucement.,[paʁlɔ̃ dusmɑ̃ / 파를롱 두스망],조용히 말하자.,
+13,93,,Tu vas au supermarché.,[ty va o sypɛʁmaʁʃe / 튀 바 오 슈페르마르셰],너는 슈퍼마켓에 가.,
+14,93,,Va au supermarché.,[va o sypɛʁmaʁʃe / 바 오 슈페르마르셰],슈퍼마켓에 가.,
+15,93,,Vous allez au supermarché.,[vu zale o sypɛʁmaʁʃe / 부 잘레 오 슈페르마르셰],슈퍼마켓에 가세요.,
+16,93,,Allez au supermarché.,[ale o sypɛʁmaʁʃe / 알레 오 슈페르마르셰],슈퍼마켓에 가세요.,
+17,93,,Nous allons au supermarché.,[nu zalɔ̃ o sypɛʁmaʁʃe / 누 잘롱 오 슈페르마르셰],우리는 슈퍼마켓에 갑니다.,
+18,93,,Allons au supermarché.,[alɔ̃ o sypɛʁmaʁʃe / 알롱 오 슈페르마르셰],슈퍼마켓에 가자.,
+19,93,,Tu ouvres les yeux.,[ty uvʁ le zjø / 튀 우브르 레 즈외],눈을 떠.,
+20,93,,Ouvre les yeux.,[uvʁ le zjø / 우브르 레 즈외],눈을 떠.,
+21,93,,Ouvrez les yeux.,[uvʁe le zjø / 우브레 레 즈외],눈을 뜨세요.,
+22,93,,Vous ouvrez les yeux.,[vu nuvʁe le zjø / 부 누브레 레 즈외],눈을 뜨세요.,
+23,93,,Nous ouvrons les yeux.,[nu nuvʁɔ̃ le zjø / 누 누브롱 레 즈외],우리는 눈을 뜹니다.,
+24,93,,Ouvrons les yeux.,[nuvʁɔ̃ le zjø / 누브롱 레 즈외],눈을 뜨자.,
+25,93,,Tu viens chez moi.,[ty vjɛ̃ ʃe mwa / 튀 비엔 셰 무아],너는 내 집에 와.,
+26,93,,Viens chez moi.,[vjɛ̃ ʃe mwa / 비엔 셰 무아],내 집에 와.,
+27,93,,Vous dormez bien.,[vu dɔʁme bjɛ̃ / 부 도르메 비앙],잘 주무세요.,
+28,93,,Dormez bien.,[dɔʁme bjɛ̃ / 도르메 비앙],잘 주무세요.,
+29,93,,Nous mangeons ensemble.,[nu mɑ̃ʒɔ̃ ɑ̃sɑ̃bl / 누 망종 앙쌍블],우리는 함께 먹습니다.,
+30,93,,Mangeons ensemble.,[mɑ̃ʒɔ̃ ɑ̃sɑ̃bl / 망종 앙쌍블],함께 먹자.,
+31,93,,Tu écoutes bien le professeur.,[ty ekut bjɛ̃ lə pʁɔfesœʁ / 튀 에쿠트 비앙 르 프로페쇠르],선생님 말씀 잘 들어.,
+32,93,,Écoute bien le professeur.,[ekut bjɛ̃ lə pʁɔfesœʁ / 에쿠트 비앙 르 프로페쇠르],선생님 말씀 잘 들어.,
+33,93,,Tu vas avec ton père.,[ty va avɛk tɔ̃ pɛʁ / 튀 바 아벡 통 페르],아버지와 함께 가.,
+34,93,,Va avec ton père.,[va avɛk tɔ̃ pɛʁ / 바 아벡 통 페르],아버지와 함께 가.,
+35,93,,Vous répétez cette phrase.,[vu ʁepete sɛt fʁaz / 부 헤페테 세트 프라즈],이 문장을 따라 하세요.,
+36,93,,Répétez cette phrase.,[ʁepete sɛt fʁaz / 헤페테 세트 프라즈],이 문장을 따라 하세요.,
+37,93,,Tu ne finis pas trop tard.,[ty nə fini pa tʁo taʁ / 튀 너 피니 파 트로 타르],너무 늦게 끝내지 마.,
+38,93,,Ne finis pas trop tard.,[nə fini pa tʁo taʁ / 너 피니 파 트로 타르],너무 늦게 끝내지 마.,
+39,93,,Tu ne quittes pas ta chambre.,[ty nə kit pa ta ʃɑ̃bʁ / 튀 너 키트 파 타 샹브르],방에서 나가지 마.,
+40,93,,Ne quitte pas ta chambre.,[nə kit pa ta ʃɑ̃bʁ / 너 키트 파 타 샹브르],방에서 나가지 마.,
+41,93,,Tu ne parles pas trop fort.,[ty nə paʁl pa tʁo fɔʁ / 튀 너 파를 파 트로 포르],너무 크게 말하지 마.,
+42,93,,Ne parle pas trop fort.,[nə paʁl pa tʁo fɔʁ / 너 파를 파 트로 포르],너무 크게 말하지 마.,
+43,93,,Vous ne sortez pas dans la rue.,[vu nə sɔʁte pa dɑ̃ la ʁy / 부 너 소르테 파 당 라 뤼],거리에 나가지 마세요.,
+44,93,,Ne sortez pas dans la rue.,[nə sɔʁte pa dɑ̃ la ʁy / 너 소르테 파 당 라 뤼],거리에 나가지 마세요.,
+45,93,,Nous n'entrons pas dans la cuisine.,[nu nɑ̃tʁɔ̃ pa dɑ̃ la kɥizin / 누 낭트롱 파 당 라 퀴진],부엌에 들어가지 않습니다.,
+46,93,,N'entrons pas dans la cuisine.,[nɑ̃tʁɔ̃ pa dɑ̃ la kɥizin / 낭트롱 파 당 라 퀴진],부엌에 들어가지 말자.,
+47,93,,Tu ne touches pas mon gâteau.,[ty nə tuʃ pa mɔ̃ ɡato / 튀 너 투쉬 파 몽 가토],내 케이크 만지지 마.,
+48,93,,Ne touche pas mon gâteau.,[nə tuʃ pa mɔ̃ ɡato / 너 투쉬 파 몽 가토],내 케이크 만지지 마.,

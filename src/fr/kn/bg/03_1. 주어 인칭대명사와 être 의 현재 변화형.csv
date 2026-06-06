@@ -1,44 +1,44 @@
-
-je suis
-nous sommes
-tu es
-vous êtes
-il est
-ils sont
-elle est
-elles sont
-Monsieur Martin, vous‿êtes prêt?
-Lina, Léo, vous‿êtes prêts?
-Monsieur et Madame Martin, vous‿êtes prêts?
-Louis est grand.
-Il est grand.
-Marie est grande.
-Elle est grande.
-Le sac est grand.
-Il est grand.
-La maison est grande.
-Elle est grande.
-Louis, tu es content ?
-Monsieur Martin, vous êtes content ?
-Madame Martin, vous êtes contente ?
-Louis, Marie, vous êtes contents ?
-Marie est grande.
-Elle est grande.
-Louis et Marie sont grands.
-Ils sont grands.
-Le salon est grand.
-Il est grand.
-La chambre est grande.
-Elle est grande.
-Le salon et la chambre sont grands.
-Ils sont grands.
-La chambre et la cuisine sont grandes.
-Elles sont grandes.
-Je suis Léo.
-Tu es Lina ?
-Nous sommes Léo et Lina.
-Vous êtes Madame Martin ?
-Il est grand.
-Elle est grande ?
-Ils sont grands.
-Elles sont grandes.
+no,group,speaker,original,pron,trans,comment
+1,31,,je suis,[ʒə sɥi / 즈 쉬],나는 ~이다 (être),
+2,31,,nous sommes,[nu sɔm / 누 솜],우리는 ~이다 (être),
+3,31,,tu es,[ty ɛ / 튀 에],너는 ~이다 (être),
+4,31,,vous êtes,[vu z‿ɛt / 부‿제트],당신(들)은 ~이다 (être),
+5,31,,il est,[il ɛ / 일 에],그는 ~이다 (être),
+6,31,,ils sont,[il sɔ̃ / 일 송],그들은 ~이다 (être),
+7,31,,elle est,[ɛl ɛ / 엘 에],그녀는 ~이다 (être),
+8,31,,elles sont,[ɛl sɔ̃ / 엘 송],그녀들은 ~이다 (être),
+9,31,,"Monsieur Martin, vous‿êtes prêt?","[məsjø maʁtɛ̃, vu z‿ɛt pʁɛ / 머슈 마르탱, 부‿제트 프레]","마르탱 씨, 준비되셨나요?",
+10,31,,"Lina, Léo, vous‿êtes prêts?","[lina, leo, vu z‿ɛt pʁɛ / 리나, 레오, 부‿제트 프레]","리나, 레오, 준비됐니?",
+11,31,,"Monsieur et Madame Martin, vous‿êtes prêts?","[məsjø e madam maʁtɛ̃, vu z‿ɛt pʁɛ / 머슈 에 마담 마르탱, 부‿제트 프레]","마르탱 씨 부부, 준비되셨나요?",
+12,31,,Louis est grand.,[lwi ɛ gʁɑ̃ / 루이 에 그랑],루이는 키가 크다.,
+13,31,,Il est grand.,[il ɛ gʁɑ̃ / 일 에 그랑],그는 키가 크다.,
+14,31,,Marie est grande.,[maʁi ɛ gʁɑ̃d / 마리 에 그랑드],마리는 키가 크다.,
+15,31,,Elle est grande.,[ɛl ɛ gʁɑ̃d / 엘 에 그랑드],그녀는 키가 크다.,
+16,31,,Le sac est grand.,[lə sak ɛ gʁɑ̃ / 르 싹 에 그랑],가방이 크다.,
+17,31,,Il est grand.,[il ɛ gʁɑ̃ / 일 에 그랑],그것은 크다.,
+18,31,,La maison est grande.,[la mɛzɔ̃ ɛ gʁɑ̃d / 라 메종 에 그랑드],집이 크다.,
+19,31,,Elle est grande.,[ɛl ɛ gʁɑ̃d / 엘 에 그랑드],그것은 크다.,
+20,31,,"Louis, tu es content ?","[lwi, ty ɛ kɔ̃tɑ̃ / 루이, 튀 에 콩탕]","루이, 기분 좋니?",
+21,31,,"Monsieur Martin, vous êtes content ?","[məsjø maʁtɛ̃, vu z‿ɛt kɔ̃tɑ̃ / 머슈 마르탱, 부‿제트 콩탕]","마르탱 씨, 기분 좋으세요?",
+22,31,,"Madame Martin, vous êtes contente ?","[madam maʁtɛ̃, vu z‿ɛt kɔ̃tɑ̃t / 마담 마르탱, 부‿제트 콩탕트]","마르탱 부인, 기분 좋으세요?",
+23,31,,"Louis, Marie, vous êtes contents ?","[lwi, maʁi, vu z‿ɛt kɔ̃tɑ̃ / 루이, 마리, 부‿제트 콩탕]","루이, 마리, 기분 좋니?",
+24,31,,Marie est grande.,[maʁi ɛ gʁɑ̃d / 마리 에 그랑드],마리는 키가 크다.,
+25,31,,Elle est grande.,[ɛl ɛ gʁɑ̃d / 엘 에 그랑드],그녀는 키가 크다.,
+26,31,,Louis et Marie sont grands.,[lwi e maʁi sɔ̃ gʁɑ̃ / 루이 에 마리 송 그랑],루이와 마리는 키가 크다.,
+27,31,,Ils sont grands.,[il sɔ̃ gʁɑ̃ / 일 송 그랑],그들은 키가 크다.,
+28,31,,Le salon est grand.,[lə salɔ̃ ɛ gʁɑ̃ / 르 살롱 에 그랑],거실이 크다.,
+29,31,,Il est grand.,[il ɛ gʁɑ̃ / 일 에 그랑],그것은 크다.,
+30,31,,La chambre est grande.,[la ʃɑ̃bʁ ɛ gʁɑ̃d / 라 샹브르 에 그랑드],방이 크다.,
+31,31,,Elle est grande.,[ɛl ɛ gʁɑ̃d / 엘 에 그랑드],그것은 크다.,
+32,31,,Le salon et la chambre sont grands.,[lə salɔ̃ e la ʃɑ̃bʁ sɔ̃ gʁɑ̃ / 르 살롱 에 라 샹브르 송 그랑],거실과 방이 크다.,
+33,31,,Ils sont grands.,[il sɔ̃ gʁɑ̃ / 일 송 그랑],그것들은 크다.,
+34,31,,La chambre et la cuisine sont grandes.,[la ʃɑ̃bʁ e la kɥizin sɔ̃ gʁɑ̃d / 라 샹브르 에 라 퀴진 송 그랑드],방과 부엌이 크다.,
+35,31,,Elles sont grandes.,[ɛl sɔ̃ gʁɑ̃d / 엘 송 그랑드],그것들은 크다.,
+36,31,,Je suis Léo.,[ʒə sɥi leo / 즈 쉬 레오],나는 레오예요.,
+37,31,,Tu es Lina ?,[ty ɛ lina / 튀 에 리나],너 리나니?,
+38,31,,Nous sommes Léo et Lina.,[nu sɔm leo e lina / 누 솜 레오 에 리나],우리는 레오와 리나예요.,
+39,31,,Vous êtes Madame Martin ?,[vu z‿ɛt madam maʁtɛ̃ / 부‿제트 마담 마르탱],마르탱 부인이세요?,
+40,31,,Il est grand.,[il ɛ gʁɑ̃ / 일 에 그랑],그는 키가 크다.,
+41,31,,Elle est grande ?,[ɛl ɛ gʁɑ̃d / 엘 에 그랑드],그녀는 키가 크니?,
+42,31,,Ils sont grands.,[il sɔ̃ gʁɑ̃ / 일 송 그랑],그들은 키가 크다.,
+43,31,,Elles sont grandes.,[ɛl sɔ̃ gʁɑ̃d / 엘 송 그랑드],그녀들은 키가 크다.,

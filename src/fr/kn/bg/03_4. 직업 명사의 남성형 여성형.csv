@@ -1,48 +1,45 @@
-
-Il est étudiant.
-Elle est étudiante.
-Il est employé.
-Elle est employée.
-Il est dentiste.
-Il est journaliste.
-Elle est dentiste.
-Elle est journaliste.
-Il est comédien.
-Il est musicien.
-Elle est comedienne.
-Elle est musicienne.
-Il est cuisinier.
-Il est pâtissier.
-Elle est cuisinière.
-Elle est pâtissière.
-Il est danseur.
-Il est serveur.
-Elle est danseuse.
-Elle est serveuse.
-Il est professeur. 
-Elle est professeure.
-Il est acteur.
-Il est directeur.
-Elle est actrice.
-Elle est directrice.
-Il est chanteur. 
-Elle est chanteuse.
-Il est médecin.
-Elle est médecin.
-Il est étudiant. 
-Elle est étudiante.
-Il est employé.
-Elle est employée.
-Il est comédien.
-Elle est comédienne.
-Il est cuisinier.
-Elle est cuisinière.
-Il est serveur.
-Elles sont serveuses.
-Il est journaliste.
-Elles sont journalistes.
-Ils sont professeurs.
-Elle est professeure.
-
-
-
+no,group,speaker,original,pron,trans,comment
+1,34,,Il est étudiant.,[il ɛ etydjɑ̃ / 일 에 에튀디앙],그는 남학생이에요.,
+2,34,,Elle est étudiante.,[ɛl ɛ etydjɑ̃t / 엘 에 에튀디앙트],그녀는 여학생이에요.,
+3,34,,Il est employé.,[il ɛ ɑ̃plwaje / 일 에 앙플로와예],그는 남성 직원이에요.,
+4,34,,Elle est employée.,[ɛl ɛ ɑ̃plwaje / 엘 에 앙플로와예],그녀는 여성 직원이에요.,
+5,34,,Il est dentiste.,[il ɛ dɑ̃tist / 일 에 당티스트],그는 치과의사예요.,
+6,34,,Il est journaliste.,[il ɛ ʒuʁnalist / 일 에 쥐르날리스트],그는 기자예요.,
+7,34,,Elle est dentiste.,[ɛl ɛ dɑ̃tist / 엘 에 당티스트],그녀는 치과의사예요.,
+8,34,,Elle est journaliste.,[ɛl ɛ ʒuʁnalist / 엘 에 쥐르날리스트],그녀는 기자예요.,
+9,34,,Il est comédien.,[il ɛ kɔmedjɛ̃ / 일 에 코메디앙],그는 남배우예요.,
+10,34,,Il est musicien.,[il ɛ myzisjɛ̃ / 일 에 뮈지시앙],그는 음악가예요.,
+11,34,,Elle est comedienne.,[ɛl ɛ kɔmedjɛn / 엘 에 코메디엔],그녀는 여배우예요.,
+12,34,,Elle est musicienne.,[ɛl ɛ myzisjɛn / 엘 에 뮈지시엔],그녀는 음악가예요.,
+13,34,,Il est cuisinier.,[il ɛ kɥizinje / 일 에 퀴지니에],그는 요리사예요.,
+14,34,,Il est pâtissier.,[il ɛ patisje / 일 에 파티시에],그는 제과사예요.,
+15,34,,Elle est cuisinière.,[ɛl ɛ kɥizinjɛʁ / 엘 에 퀴지니에르],그녀는 요리사예요.,
+16,34,,Elle est pâtissière.,[ɛl ɛ patisjɛʁ / 엘 에 파티시에르],그녀는 제과사예요.,
+17,34,,Il est danseur.,[il ɛ dɑ̃sœʁ / 일 에 당써],그는 남성 무용수예요.,
+18,34,,Il est serveur.,[il ɛ sɛʁvœʁ / 일 에 세르버],그는 남자 웨이터예요.,
+19,34,,Elle est danseuse.,[ɛl ɛ dɑ̃søz / 엘 에 당쓰즈],그녀는 여성 무용수예요.,
+20,34,,Elle est serveuse.,[ɛl ɛ sɛʁvøz / 엘 에 세르뷔즈],그녀는 여자 웨이터예요.,
+21,34,,Il est professeur.,[il ɛ pʁɔfesœʁ / 일 에 프로페써],그는 교수예요.,
+22,34,,Elle est professeure.,[ɛl ɛ pʁɔfesœʁ / 엘 에 프로페써],그녀는 여교수예요.,
+23,34,,Il est acteur.,[il ɛ aktœʁ / 일 에 악터],그는 남자 배우예요.,
+24,34,,Il est directeur.,[il ɛ diʁɛktœʁ / 일 에 디렉터],그는 남성 관리자예요.,
+25,34,,Elle est actrice.,[ɛl ɛ aktʁis / 엘 에 악트리스],그녀는 여자 배우예요.,
+26,34,,Elle est directrice.,[ɛl ɛ diʁɛktʁis / 엘 에 디렉트리스],그녀는 여성 관리자예요.,
+27,34,,Il est chanteur.,[il ɛ ʃɑ̃tœʁ / 일 에 샹터],그는 남자 가수예요.,
+28,34,,Elle est chanteuse.,[ɛl ɛ ʃɑ̃tøz / 엘 에 샹트즈],그녀는 여자 가수예요.,
+29,34,,Il est médecin.,[il ɛ medsɛ̃ / 일 에 메드쌍],그는 의사예요.,
+30,34,,Elle est médecin.,[ɛl ɛ medsɛ̃ / 엘 에 메드쌍],그녀는 의사예요.,
+31,34,,Il est étudiant.,[il ɛ etydjɑ̃ / 일 에 에튀디앙],그는 남학생이에요.,
+32,34,,Elle est étudiante.,[ɛl ɛ etydjɑ̃t / 엘 에 에튀디앙트],그녀는 여학생이에요.,
+33,34,,Il est employé.,[il ɛ ɑ̃plwaje / 일 에 앙플로와예],그는 남성 직원이에요.,
+34,34,,Elle est employée.,[ɛl ɛ ɑ̃plwaje / 엘 에 앙플로와예],그녀는 여성 직원이에요.,
+35,34,,Il est comédien.,[il ɛ kɔmedjɛ̃ / 일 에 코메디앙],그는 남배우예요.,
+36,34,,Elle est comédienne.,[ɛl ɛ kɔmedjɛn / 엘 에 코메디엔],그녀는 여배우예요.,
+37,34,,Il est cuisinier.,[il ɛ kɥizinje / 일 에 퀴지니에],그는 요리사예요.,
+38,34,,Elle est cuisinière.,[ɛl ɛ kɥizinjɛʁ / 엘 에 퀴지니에르],그녀는 요리사예요.,
+39,34,,Il est serveur.,[il ɛ sɛʁvœʁ / 일 에 세르버],그는 남자 웨이터예요.,
+40,34,,Elles sont serveuses.,[ɛl sɔ̃ sɛʁvøz / 엘 송 세르뷔즈],그녀들은 여자 웨이터들이에요.,
+41,34,,Il est journaliste.,[il ɛ ʒuʁnalist / 일 에 쥐르날리스트],그는 기자예요.,
+42,34,,Elles sont journalistes.,[ɛl sɔ̃ ʒuʁnalist / 엘 송 쥐르날리스트],그녀들은 기자들이에요.,
+43,34,,Ils sont professeurs.,[il sɔ̃ pʁɔfesœʁ / 일 송 프로페써],그들은 교수들이에요.,
+44,34,,Elle est professeure.,[ɛl ɛ pʁɔfesœʁ / 엘 에 프로페써],그녀는 여교수예요.,

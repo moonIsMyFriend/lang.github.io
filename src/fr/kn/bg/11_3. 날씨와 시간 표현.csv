@@ -1,40 +1,41 @@
-Quel temps fait-il aujourd’hui ?
-Il fait beau.
-Il fait chaud.
-Il fait mauvais.
-Il fait froid.
-Quel temps fait-il aujourd’hui ?
-Il y a du soleil.
-Il y a de la pluie.
-Il y a du vent.
-Il y a des nuages.
-Quel temps fait-il aujourd’hui ?
-Il pleut.
-Il neige.
-Quelle heure est-il ?
-Il est une heure.
-Il est deux heures.
-Quelle heure est-il ?
-Il est cinq heures cinq.
-Il est cinq heures dix.
-Il est cinq heures vingt.
-Quelle heure est-il ?
-Il est cinq heures et quart.
-Il est cinq heures et demie.
-Il est six heures moins le quart.
-Quel jour sommes-nous ?
-Nous sommes lundi.
-Quel jour sommes-nous ?
-Nous sommes jeudi.
-On est jeudi.
-C’est jeudi.
-Quel temps fait-il ?
-Quelle heure est-il ?
-Quel jour sommes-nous ?
-Quel âge avez-vous ?
-Quel temps fait-il ?
-Il fait beau.
-Quelle heure est-il ?
-Il est neuf heures du soir.
-Quel jour sommes-nous ?
-Nous sommes mardi.
+no,group,speaker,original,pron,trans,comment
+1,113,,Quel temps fait-il aujourd'hui ?,[kɛl tɑ̃ fɛ til oʒuʁdɥi / 켈 탕 페 틸 오주르뒤],오늘 날씨가 어때?,
+2,113,,Il fait beau.,[il fɛ bo / 일 페 보],날씨가 좋습니다.,
+3,113,,Il fait chaud.,[il fɛ ʃo / 일 페 쇼],날씨가 덥습니다.,
+4,113,,Il fait mauvais.,[il fɛ movɛ / 일 페 모베],날씨가 나쁩니다.,
+5,113,,Il fait froid.,[il fɛ fʁwa / 일 페 프와],날씨가 춥습니다.,
+6,113,,Quel temps fait-il aujourd'hui ?,[kɛl tɑ̃ fɛ til oʒuʁdɥi / 켈 탕 페 틸 오주르뒤],오늘 날씨가 어때?,
+7,113,,Il y a du soleil.,[il ja dy sɔlɛj / 일리아 뒤 솔레],햇볕이 있습니다.,
+8,113,,Il y a de la pluie.,[il ja də la plɥi / 일리아 드 라 플뤼],비가 옵니다.,
+9,113,,Il y a du vent.,[il ja dy vɑ̃ / 일리아 뒤 방],바람이 붑니다.,
+10,113,,Il y a des nuages.,[il ja de nɥaʒ / 일리아 데 뉘아주],구름이 있습니다.,
+11,113,,Quel temps fait-il aujourd'hui ?,[kɛl tɑ̃ fɛ til oʒuʁdɥi / 켈 탕 페 틸 오주르뒤],오늘 날씨가 어때?,
+12,113,,Il pleut.,[il plø / 일 플러],비가 옵니다.,
+13,113,,Il neige.,[il nɛʒ / 일 네주],눈이 옵니다.,
+14,113,,Quelle heure est-il ?,[kɛl œʁ ɛ til / 켈 으르 에 틸],몇 시예요?,
+15,113,,Il est une heure.,[il ɛ tyn œʁ / 일 에 튄 으르],1시입니다.,
+16,113,,Il est deux heures.,[il ɛ dø zœʁ / 일 에 되 으르],2시입니다.,
+17,113,,Quelle heure est-il ?,[kɛl œʁ ɛ til / 켈 으르 에 틸],몇 시예요?,
+18,113,,Il est cinq heures cinq.,[il ɛ sɛ̃k œʁ sɛ̃k / 일 에 썽크 으르 썽크],5시 5분입니다.,
+19,113,,Il est cinq heures dix.,[il ɛ sɛ̃k œʁ dis / 일 에 썽크 으르 디스],5시 10분입니다.,
+20,113,,Il est cinq heures vingt.,[il ɛ sɛ̃k œʁ vɛ̃ / 일 에 썽크 으르 뱅],5시 20분입니다.,
+21,113,,Quelle heure est-il ?,[kɛl œʁ ɛ til / 켈 으르 에 틸],몇 시예요?,
+22,113,,Il est cinq heures et quart.,[il ɛ sɛ̃k œʁ e kaʁ / 일 에 썽크 으르 에 카르],5시 15분입니다.,
+23,113,,Il est cinq heures et demie.,[il ɛ sɛ̃k œʁ e dami / 일 에 썽크 으르 에 다미],5시 30분입니다.,
+24,113,,Il est six heures moins le quart.,[il ɛ sis œʁ mwɛ̃ lə kaʁ / 일 에 시스 으르 무앙 르 카르],6시 15분 전(5시 45분)입니다.,
+25,113,,Quel jour sommes-nous ?,[kɛl ʒuʁ sɔm nu / 켈 주르 썸 누],오늘 무슨 요일이에요?,
+26,113,,Nous sommes lundi.,[nu sɔm lœ̃di / 누 썸 뤀디],월요일입니다.,
+27,113,,Quel jour sommes-nous ?,[kɛl ʒuʁ sɔm nu / 켈 주르 썸 누],오늘 무슨 요일이에요?,
+28,113,,Nous sommes jeudi.,[nu sɔm ʒødi / 누 썸 저디],목요일입니다.,
+29,113,,On est jeudi.,[ɔ̃ n‿ɛ ʒødi / 옹 네 저디],목요일이에요.,
+30,113,,C'est jeudi.,[sɛ ʒødi / 쎄 저디],목요일입니다.,
+31,113,,Quel temps fait-il ?,[kɛl tɑ̃ fɛ til / 켈 탕 페 틸],날씨가 어때?,
+32,113,,Quelle heure est-il ?,[kɛl œʁ ɛ til / 켈 으르 에 틸],몇 시예요?,
+33,113,,Quel jour sommes-nous ?,[kɛl ʒuʁ sɔm nu / 켈 주르 썸 누],오늘 무슨 요일이에요?,
+34,113,,Quel âge avez-vous ?,[kɛl aʒ avez vu / 켈 아주 아베 부],몇 살이세요?,
+35,113,,Quel temps fait-il ?,[kɛl tɑ̃ fɛ til / 켈 탕 페 틸],날씨가 어때?,
+36,113,,Il fait beau.,[il fɛ bo / 일 페 보],날씨가 좋습니다.,
+37,113,,Quelle heure est-il ?,[kɛl œʁ ɛ til / 켈 으르 에 틸],몇 시예요?,
+38,113,,Il est neuf heures du soir.,[il ɛ nœf œʁ dy swaʁ / 일 에 뇌프 으르 뒤 스와르],저녁 9시입니다.,
+39,113,,Quel jour sommes-nous ?,[kɛl ʒuʁ sɔm nu / 켈 주르 썸 누],오늘 무슨 요일이에요?,
+40,113,,Nous sommes mardi.,[nu sɔm maʁdi / 누 썸 마르디],화요일입니다.,

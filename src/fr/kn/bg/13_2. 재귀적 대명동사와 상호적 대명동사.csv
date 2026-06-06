@@ -1,37 +1,37 @@
 no,group,speaker,original,pron,trans,comment
-réveiller
-se réveiller
-habiller
-s’habiller
-promener
-se promener
-Je réveille mon fils à 7 heures.
-Je me réveille à 6 heures.
-Elle habille sa fille.
-Elle s’habille vite.
-Le soir, ils promènent leur chien.
-Le soir, ils se promènent avec leur chien.
-aimer
-s’aimer
-aider
-s’aider
-téléphoner
-se téléphoner
-Luc aime Céline et Céline aime Luc.
-Luc et Céline s’aiment beaucoup.
-Paul aide Lina et Lina aide Paul.
-Paul et Lina s’aident toujours.
-Luc téléphone à Paul et Paul téléphone à Luc. 
-Luc et Paul se téléphonent souvent.
-Il se regarde dans le miroir.
-Ils se regardent dans les yeux.
-Tu te réveilles tôt le dimanche ? [se réveiller]
-Je me couche tard le samedi. [se coucher]
-Vous vous levez à quelle heure ? [se lever]
-Ils se promènent dans le parc. [se promener]
-Cet enfant ne veut pas se laver. [se laver]
-Elle s’habille vite. [s’habiller]
-Elles se téléphonent tous les jours. [se téléphoner]
-Ils s’aiment à la folie. [s’aimer]
-Vous voulez vous parler? [se parler]
-Nous nous aidons l’un l’autre. [s’aider]
+1,132,,réveiller,[ʁevɛje / 헤베예],깨우다,
+2,132,,se réveiller,[sə ʁevɛje / 스 헤베예],일어나다,
+3,132,,habiller,[abije / 아비예],입히다,
+4,132,,s'habiller,[s‿abije / 사비예],옷을 입다,
+5,132,,promener,[pʁɔməne / 프로므네],산책시키다,
+6,132,,se promener,[sə pʁɔməne / 스 프로므네],산책하다,
+7,132,,Je réveille mon fils à 7 heures.,[ʒə ʁevɛj mɔ̃ fis a sɛt œʁ / 즈 헤베이 몽 피스 아 쎄트 으르],7시에 아들을 깨웁니다.,
+8,132,,Je me réveille à 6 heures.,[ʒə mə ʁevɛj a sis œʁ / 즈 므 헤베이 아 시스 으르],6시에 일어납니다.,
+9,132,,Elle habille sa fille.,[ɛl abij sa fij / 엘 아비 사 필],그녀는 딸을 옷 입힙니다.,
+10,132,,Elle s'habille vite.,[ɛl s‿abij vit / 엘 사비 vite],그녀는 빨리 옷을 입습니다.,
+11,132,,Le soir ils promènent leur chien.,[lə swaʁ il pʁɔmɛn lœʁ ʃjɛ̃ / 르 스와르 일 프로믄 뢰르 씨앙],저녁에 그들은 개를 산책시킵니다.,
+12,132,,Le soir ils se promènent avec leur chien.,[lə swaʁ il sə pʁɔmɛn avɛk lœʁ ʃjɛ̃ / 르 스와르 일 스 프로믄 아벡 뢰르 씨앙],저녁에 그들은 개와 함께 산책합니다.,
+13,132,,aimer,[ɛme / 에메],사랑하다/좋아하다,
+14,132,,s'aimer,[s‿ɛme / 세메],서로 사랑하다,
+15,132,,aider,[ɛde / 에데],돕다,
+16,132,,s'aider,[s‿ɛde / 세데],서로 돕다,
+17,132,,téléphoner,[telefone / 텔레포네],전화하다,
+18,132,,se téléphoner,[sə telefone / 스 텔레포네],서로 전화하다,
+19,132,,Luc aime Céline et Céline aime Luc.,[lyk ɛm selin e selin ɛm lyk / 륙 엠 셀린 에 셀린 엠 륙],뤽은 셀린을 사랑하고 셀린은 뤽을 사랑합니다.,
+20,132,,Luc et Céline s'aiment beaucoup.,[lyk e selin s‿ɛm boku / 륙 에 셀린 세망 보쿠],뤽과 셀린은 서로 많이 사랑합니다.,
+21,132,,Paul aide Lina et Lina aide Paul.,[pol ɛd lina e lina ɛd pol / 폴 에드 리나 에 리나 에드 폴],폴은 리나를 돕고 리나는 폴을 돕습니다.,
+22,132,,Paul et Lina s'aident toujours.,[pol e lina s‿ɛd tuʒuʁ / 폴 에 리나 세당 투주르],폴과 리나는 항상 서로 돕습니다.,
+23,132,,Luc téléphone à Paul et Paul téléphone à Luc.,[lyk telefon a pol e pol telefon a lyk / 륙 텔레폰 아 폴 에 폴 텔레폰 아 륙],뤽은 폴에게 전화하고 폴은 뤽에게 전화합니다.,
+24,132,,Luc et Paul se téléphonent souvent.,[lyk e pol sə telefɔn suvɑ̃ / 륙 에 폴 스 텔레폰 수방],뤽과 폴은 자주 서로 전화합니다.,
+25,132,,Il se regarde dans le miroir.,[il sə ʁəgaʁd dɑ̃ lə miʁwaʁ / 일 스 헤가르드 당 르 미르와르],그는 거울 속 자신을 봅니다.,
+26,132,,Ils se regardent dans les yeux.,[il sə ʁəgaʁd dɑ̃ le zjø / 일 스 헤가르드 당 레 즈외],그들은 서로 눈을 마주 봅니다.,
+27,132,,Tu te réveilles tôt le dimanche ? [se réveiller],[ty tə ʁevɛj to lə dimɑ̃ʃ / 튀 트 헤베이 토 르 디망슈],일요일에 일찍 일어나? [se réveiller],
+28,132,,Je me couche tard le samedi. [se coucher],[ʒə mə kuʃ taʁ lə samdi / 즈 므 쿠쉬 타르 르 샘디],토요일에 늦게 잡니다. [se coucher],
+29,132,,Vous vous levez à quelle heure ? [se lever],[vu vu ləve a kɛl œʁ / 부 부 레베 아 켈 으르],몇 시에 일어나세요? [se lever],
+30,132,,Ils se promènent dans le parc. [se promener],[il sə pʁɔmɛn dɑ̃ lə paʁk / 일 스 프로믄 당 르 파르크],그들은 공원에서 산책합니다. [se promener],
+31,132,,Cet enfant ne veut pas se laver. [se laver],[sɛt nɑ̃fɑ̃ nə vœ pa sə lave / 쎄 낭팡 너 뵈 파 스 라베],이 아이는 씻기 싫어합니다. [se laver],
+32,132,,Elle s'habille vite. [s'habiller],[ɛl s‿abij vit / 엘 사비 vite],그녀는 빨리 옷을 입습니다. [s'habiller],
+33,132,,Elles se téléphonent tous les jours. [se téléphoner],[ɛl sə telefɔn tu le ʒuʁ / 엘 스 텔레폰 투 레 주르],그녀들은 매일 서로 전화합니다. [se téléphoner],
+34,132,,Ils s'aiment à la folie. [s'aimer],[il s‿ɛm a la fɔli / 일 세망 아 라 폴리],그들은 미친 듯이 사랑합니다. [s'aimer],
+35,132,,Vous voulez vous parler? [se parler],[vu vule vu paʁle / 부 뷸레 부 파를르],서로 이야기하고 싶으세요? [se parler],
+36,132,,Nous nous aidons l'un l'autre. [s'aider],[nu nu zɛdɔ̃ lœ̃ lotʁ / 누 누 제동 뤀 로트르],우리는 서로 돕습니다. [s'aider],

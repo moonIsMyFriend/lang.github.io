@@ -1,46 +1,44 @@
-
-le coq
-la poule
-les coqs
-les poules
-l’ami
-l’amie
-l’appartement
-l’hôtel
-l’université
-l’appartement
-les appartements
-l’hôtel
-les hôtels
-l’université
-les universités
-
-un appartement
-l’appartement de Léo
-une voiture
-la voiture de Léa
-un musée
-le Musée Rodin
-une ville
-la ville de Paris
-l’homme
-les hôtels
-les voitures
-la femme
-les maisons
-l’université
-les voitures
-la voiture
-les appartements
-l’appartement
-les sacs 
-le sac
-les hôtels
-l’hôtel
-les villes
-la ville
-les pays
-le pays
-les animaux
-l’animal
-
+no,group,speaker,original,pron,trans,comment
+1,23,,le coq,[lə kɔk / 르 코크],그 수탉,
+2,23,,la poule,[la pul / 라풀],그 암탉,
+3,23,,les coqs,[le kɔk / 레 코크],그 수탉들,
+4,23,,les poules,[le pul / 레풀],그 암탉들,
+5,23,,l’ami,[lami / 라미],그 친구(남),
+6,23,,l’amie,[lami / 라미],그 친구(여),
+7,23,,l’appartement,[lapaʁtəmɑ̃ / 라파르트망],그 아파트,
+8,23,,l’hôtel,[lotɛl / 로텔],그 호텔,
+9,23,,l’université,[lynivɛʁsite / 륀니베르시테],그 대학,
+10,23,,l’appartement,[lapaʁtəmɑ̃ / 라파르트망],그 아파트,
+11,23,,les appartements,[le z‿apaʁtəmɑ̃ / 레‿자파르트망],그 아파트들,
+12,23,,l’hôtel,[lotɛl / 로텔],그 호텔,
+13,23,,les hôtels,[le z‿otɛl / 레‿조텔],그 호텔들,
+14,23,,l’université,[lynivɛʁsite / 륀니베르시테],그 대학,
+15,23,,les universités,[le z‿ynivɛʁsite / 레‿쥬니베르시테],그 대학들,
+16,23,,un appartement,[œ̃ n‿apaʁtəmɑ̃ / 엉‿나파르트망],아파트 한 채,
+17,23,,l’appartement de Léo,[lapaʁtəmɑ̃ də leo / 라파르트망 드 레오],레오의 아파트,
+18,23,,une voiture,[yn vwatyʁ / 윈 브와튀르],자동차 한 대,
+19,23,,la voiture de Léa,[la vwatyʁ də lea / 라 브와튀르 드 레아],레아의 자동차,
+20,23,,un musée,[œ̃ myze / 엉 뮈제],박물관,
+21,23,,le Musée Rodin,[lə myze ʁɔdɛ̃ / 르 뮈제 호댕],로댕 미술관,
+22,23,,une ville,[yn vil / 윈 빌],도시,
+23,23,,la ville de Paris,[la vil də paʁi / 라 빌 드 빠리],파리 시,
+24,23,,l’homme,[lɔm / 롬],그 남자,
+25,23,,les hôtels,[le z‿otɛl / 레‿조텔],그 호텔들,
+26,23,,les voitures,[le vwatyʁ / 레 브와튀르],그 자동차들,
+27,23,,la femme,[la fam / 라 팸],그 여자,
+28,23,,les maisons,[le mɛzɔ̃ / 레 메종],그 집들,
+29,23,,l’université,[lynivɛʁsite / 륀니베르시테],그 대학,
+30,23,,les voitures,[le vwatyʁ / 레 브와튀르],그 자동차들,
+31,23,,la voiture,[la vwatyʁ / 라 브와튀르],그 자동차,
+32,23,,les appartements,[le z‿apaʁtəmɑ̃ / 레‿자파르트망],그 아파트들,
+33,23,,l’appartement,[lapaʁtəmɑ̃ / 라파르트망],그 아파트,
+34,23,,les sacs,[le sak / 레 싹],그 가방들,
+35,23,,le sac,[lə sak / 르 싹],그 가방,
+36,23,,les hôtels,[le z‿otɛl / 레‿조텔],그 호텔들,
+37,23,,l’hôtel,[lotɛl / 로텔],그 호텔,
+38,23,,les villes,[le vil / 레 빌],그 도시들,
+39,23,,la ville,[la vil / 라 빌],그 도시,
+40,23,,les pays,[le pei / 레 페이],그 나라들,
+41,23,,le pays,[lə pei / 르 페이],그 나라,
+42,23,,les animaux,[le z‿animo / 레‿자니모],그 동물들,
+43,23,,l’animal,[lanimal / 라니말],그 동물,

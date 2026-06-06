@@ -1,46 +1,39 @@
 no,group,speaker,original,pron,trans,comment
-je connais
-je sais
-tu connais
-tu sais
-il/elle/on connaît
-il/elle/on sait
-nous connaissons
-nous savons
-vous connaissez
-vous savez
-ils/elles connaissent
-ils/elles savent
-Tu connais son prénom ?
-Vous connaissez Monsieur Lemaire ?
-Je connais Marseille.
-Vous connaissez un bon restaurant chinois dans ce quartier ?
-Tu sais conduire ?
-Ils ne savent pas utiliser l’ordinateur.
-Nous savons bien que ton père est gentil.
-Elle ne sait pas qu’ils partent demain ?
-Nous savons bien qu’il est un bon cuisinier.
-Je sais conduire.
-Vous savez qu’il part demain ?
-"Je sais nager. Mais, aujourd’hui, je suis malade, donc, je ne peux pas nager."
-Tu connais son prénom ?
-Nous ne connaissons pas Madame Lemaire.
-Il connaît bien mes parents.
-Vous connaissez Paris ?
-Que sais-je ?
-Mon enfant sait nager.
-Tu sais que demain, c’est l’anniversaire de ta grand-mère ?
-Nous savons que c’est la fille de Vincent.
-Je connais New-York.
-Elle ne connaît pas mes parents.
-Tu sais utiliser l’ordinateur ?
-Ils savent que nous sommes amis.
-Vous connaissez un bon restaurant italien dans ce
-quartier ?
-Nous savons que ton père est gentil.
-
-
-
-
-
-
+1,121,,je connais,[ʒə kɔnɛ / 즈 코네],나는 안다 (connaître),
+2,121,,je sais,[ʒə sɛ / 즈 세],나는 안다 (savoir),
+3,121,,tu connais,[ty kɔnɛ / 튀 코네],너는 안다 (connaître),
+4,121,,tu sais,[ty sɛ / 튀 세],너는 안다 (savoir),
+5,121,,il/elle/on connaît,[il/ɛl/ɔ̃ kɔnɛ / 일·엘·옹 코네],그/그녀/우리는 안다 (connaître),
+6,121,,il/elle/on sait,[il/ɛl/ɔ̃ sɛ / 일·엘·옹 세],그/그녀/우리는 안다 (savoir),
+7,121,,nous connaissons,[nu kɔnɛsɔ̃ / 누 코네송],우리는 안다 (connaître),
+8,121,,nous savons,[nu savɔ̃ / 누 사봉],우리는 안다 (savoir),
+9,121,,vous connaissez,[vu kɔnɛse / 부 코네세],당신(들)은 안다 (connaître),
+10,121,,vous savez,[vu save / 부 사베],당신(들)은 안다 (savoir),
+11,121,,ils/elles connaissent,[il/ɛl kɔnɛs / 일·엘 코네스],그들/그녀들은 안다 (connaître),
+12,121,,ils/elles savent,[il/ɛl sav / 일·엘 사브],그들/그녀들은 안다 (savoir),
+13,121,,Tu connais son prénom ?,[ty kɔnɛ sɔ̃ pʁenɔ̃ / 튀 코네 송 프헤논],그의 이름을 알아?,
+14,121,,Vous connaissez Monsieur Lemaire ?,[vu kɔnɛse məsjø ləmɛʁ / 부 코네세 므슈 르메르],르메르 씨를 아세요?,
+15,121,,Je connais Marseille.,[ʒə kɔnɛ maʁsɛj / 즈 코네 마르세],마르세유를 알아요.,
+16,121,,Vous connaissez un bon restaurant chinois dans ce quartier ?,[vu kɔnɛse œ̃ bɔ̃ ʁɛstoʁɑ̃ ʃinwa dɑ̃ sə kaʁtje / 부 코네세 엉 봉 헤스토랑 씨누아 당 스 카르티에],이 동네에 좋은 중국 식당 아세요?,
+17,121,,Tu sais conduire ?,[ty sɛ kɔ̃dɥiʁ / 튀 세 콩뒤르],운전할 줄 알아?,
+18,121,,Ils ne savent pas utiliser l'ordinateur.,[il nə sav pa ytilize lɔʁdinatœʁ / 일 너 사브 파 위틸리제 로르디나퇴르],그들은 컴퓨터를 사용할 줄 모릅니다.,
+19,121,,Nous savons bien que ton père est gentil.,[nu savɔ̃ bjɛ̃ kə tɔ̃ pɛʁ ɛ ʒɑ̃ti / 누 사봉 비앙 커 통 페르 에 장티],우리는 네 아버지가 친절하다는 걸 잘 알아.,
+20,121,,Elle ne sait pas qu'ils partent demain ?,[ɛl nə sɛ pa kil paʁt dəmɛ̃ / 엘 너 세 파 킬 파르트 드망],그들이 내일 떠난다는 걸 그녀는 모르나요?,
+21,121,,Nous savons bien qu'il est un bon cuisinier.,[nu savɔ̃ bjɛ̃ kil ɛt œ̃ bɔ̃ kɥizinje / 누 사봉 비앙 킬 에트 엉 봉 퀴지니에],우리는 그가 좋은 요리사라는 걸 잘 알아요.,
+22,121,,Je sais conduire.,[ʒə sɛ kɔ̃dɥiʁ / 즈 세 콩뒤르],운전할 줄 알아요.,
+23,121,,Vous savez qu'il part demain ?,[vu save kil paʁt dəmɛ̃ / 부 사베 킬 파르트 드망],그가 내일 떠난다는 걸 아세요?,
+24,121,,"Je sais nager. Mais, aujourd'hui, je suis malade, donc, je ne peux pas nager.","[ʒə sɛ naʒe. mɛ, oʒuʁdɥi, ʒə sɥi malad, dɔ̃k, ʒə nə pø pa naʒe / 즈 세 나제. 메, 오주르뒤, 즈 쉬 말라드, 동크, 즈 너 뾔 파 나제]","수영할 줄 알아. 하지만 오늘은 아파서 수영할 수 없어.",
+25,121,,Tu connais son prénom ?,[ty kɔnɛ sɔ̃ pʁenɔ̃ / 튀 코네 송 프헤논],그의 이름을 알아?,
+26,121,,Nous ne connaissons pas Madame Lemaire.,[nu nə kɔnɛsɔ̃ pa madam ləmɛʁ / 누 너 코네송 파 마담 르메르],우리는 르메르 부인을 모릅니다.,
+27,121,,Il connaît bien mes parents.,[il kɔnɛ bjɛ̃ me paʁɑ̃ / 일 코네 비앙 메 파랑],그는 우리 부모님을 잘 알아요.,
+28,121,,Vous connaissez Paris ?,[vu kɔnɛse paʁi / 부 코네세 파리],파리를 아세요?,
+29,121,,Que sais-je ?,[kə sɛ ʒə / 커 세 즈],내가 뭘 알겠어?,
+30,121,,Mon enfant sait nager.,[mɔ̃ nɑ̃fɑ̃ sɛ naʒe / 몽 낭팡 세 나제],내 아이는 수영할 줄 알아요.,
+31,121,,Tu sais que demain c'est l'anniversaire de ta grand-mère ?,[ty sɛ kə dəmɛ̃ sɛ lanivɛʁsɛʁ də ta gʁɑ̃mɛʁ / 튀 세 커 드망 쎄 라니베르세르 드 타 그랑메르],내일이 할머니 생신인 거 알아?,
+32,121,,Nous savons que c'est la fille de Vincent.,[nu savɔ̃ kə sɛ la fij də vɛ̃sɑ̃ / 누 사봉 커 쎄 라 필 드 뱅썽],우리는 그녀가 빈센트의 딸이라는 걸 알아요.,
+33,121,,Je connais New-York.,[ʒə kɔnɛ nujɔʁk / 즈 코네 뉴욕],뉴욕을 알아요.,
+34,121,,Elle ne connaît pas mes parents.,[ɛl nə kɔnɛ pa me paʁɑ̃ / 엘 너 코네 파 메 파랑],그녀는 우리 부모님을 모릅니다.,
+35,121,,Tu sais utiliser l'ordinateur ?,[ty sɛ ytilize lɔʁdinatœʁ / 튀 세 위틸리제 로르디나퇴르],컴퓨터 사용할 줄 알아?,
+36,121,,Ils savent que nous sommes amis.,[il sav kə nu sɔm zami / 일 사브 커 누 썸 자미],그들은 우리가 친구라는 걸 알아요.,
+37,121,,Vous connaissez un bon restaurant italien dans ce quartier ?,[vu kɔnɛse œ̃ bɔ̃ ʁɛstoʁɑ̃ italjɛ̃ dɑ̃ sə kaʁtje / 부 코네세 엉 봉 헤스토랑 이탈리앙 당 스 카르티에],이 동네에 좋은 이탈리아 식당 아세요?,
+38,121,,Nous savons que ton père est gentil.,[nu savɔ̃ kə tɔ̃ pɛʁ ɛ ʒɑ̃ti / 누 사봉 커 통 페르 에 장티],우리는 네 아버지가 친절하다는 걸 알아요.,

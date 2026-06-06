@@ -1,51 +1,51 @@
-
-j’ai
-nous avons
-tu as
-vous avez
-il a
-ils ont
-elle a
-elles ont
-Tu as un portable?
-Vous avez une adresse e-mail?
-Nous avons des projets.
-Les Français ont leur Tour Eiffel, leur champagne et leurs fromages!
-J’ai une grande famille : mon père, ma mère, mes trois petites soeurs et moi.
-Vous avez des enfants ?
-Nous avons un garçon et deux filles.
-J’ai vingt ans.
-Ma soeur a seize ans.
-Ce garçon a neuf ans.
-Il a 12 ans.
-Tu as un stylo ?
-Il a une voiture ?
-Vous avez des enfants ?
-Nous avons une bonne idée.
-J’ai une grande famille.
-Elles ont trois chats.
-Tu as un chien ?
-C’est ton chien ?
-J’ai un livre. C’est mon livre.
-Elle a des enfants.
-Ce sont ses enfants.
-Nous avons un appartement.
-C’est notre appartement.
-je suis
-nous sommes
-tues
-vous êtes
-il/elle est
-ils/elles sont
-j’ai
-nous avons
-tu as
-vous avez
-il/elle a
-ils/elles ont
-Vous avez un passeport ?
-Il a trois soeurs.
-Je suis célibataire.
-Elle a quinze ans.
-Tu es français ?
-Nous sommes étudiants.
+no,group,speaker,original,pron,trans,comment
+1,51,,j'ai,[ʒe / 제],나는 ~있다 (avoir),
+2,51,,nous avons,[nu zavɔ̃ / 누 자봉],우리는 ~있다 (avoir),
+3,51,,tu as,[ty a / 튀 아],너는 ~있다 (avoir),
+4,51,,vous avez,[vu zave / 부 자베],당신(들)은 ~있다 (avoir),
+5,51,,il a,[il a / 일 아],그는 ~있다 (avoir),
+6,51,,ils ont,[il zɔ̃ / 일존],그들은 ~있다 (avoir),
+7,51,,elle a,[ɛl a / 엘 아],그녀는 ~있다 (avoir),
+8,51,,elles ont,[ɛl zɔ̃ / 엘존],그녀들은 ~있다 (avoir),
+9,51,,Tu as un portable ?,[ty a œ̃ pɔʁtabl / 튀 아 엉 포르타블],휴대폰 있니?,
+10,51,,Vous avez une adresse e-mail ?,[vu zave yn nadʁɛs imɛl / 부 자베 인 나드레스 이메일],이메일 주소 있으세요?,
+11,51,,Nous avons des projets.,[nu zavɔ̃ de pʁɔʒɛ / 누 자봉 데 프로젤],우리는 계획이 있어요.,
+12,51,,"Les Français ont leur Tour Eiffel, leur champagne et leurs fromages!","[le fʁɑ̃sɛ zɔ̃ lœʁ tuʁ ɛfɛl, lœʁ ʃɑ̃paɲ e lœʁ fʁɔmaʒ / 르 프랑세 존 르흐 투르 에펠, 르흐 샹파냐 에 르흐 프로마주]","프랑스인들은 에펠탑, 샴페인, 치즈가 있어!",
+13,51,,"J'ai une grande famille : mon père, ma mère, mes trois petites soeurs et moi.","[ʒe yn gʁɑ̃d famij : mɔ̃ pɛʁ, ma mɛʁ, me tʁwa pətit suʁ e mwa / 제 인 그랑드 파미 : 몽 페르, 마 메르, 메 트와 쁘티 수르 에 므와]","나는 큰 가족이 있어: 아버지, 어머니, 세 여동생, 그리고 나.",
+14,51,,Vous avez des enfants ?,[vu zave de z‿ɑ̃fɑ̃ / 부 자베 데 잉팡],아이 있으세요?,
+15,51,,Nous avons un garçon et deux filles.,[nu zavɔ̃ œ̃ gaʁsɔ̃ e dø fij / 누 자봉 엉 가르송 에 되 필],우리는 아들 하나와 딸 둘이 있어요.,
+16,51,,J'ai vingt ans.,[ʒe vɛ̃ tɑ̃ / 제 방 탕],나는 스무 살이에요.,
+17,51,,Ma soeur a seize ans.,[ma sœʁ a sɛz ɑ̃ / 마 쇠르 아 세즈 앙],내 여동생은 열여섯 살이에요.,
+18,51,,Ce garçon a neuf ans.,[sə gaʁsɔ̃ a nœf ɑ̃ / 스 가르송 아 뇌프 앙],이 소년은 아홉 살이에요.,
+19,51,,Il a 12 ans.,[il a duz ɑ̃ / 일 아 뒤즈 앙],그는 12살이에요.,
+20,51,,Tu as un stylo ?,[ty a œ̃ stilo / 튀 아 엉 스틸로],펜 있니?,
+21,51,,Il a une voiture ?,[il a yn vwatyʁ / 일 아 인 브와튀르],그는 차가 있니?,
+22,51,,Vous avez des enfants ?,[vu zave de z‿ɑ̃fɑ̃ / 부 자베 데 잉팡],아이 있으세요?,
+23,51,,Nous avons une bonne idée.,[nu zavɔ̃ yn bɔn ide / 누 자봉 인 본 이데],우리는 좋은 아이디어가 있어요.,
+24,51,,J'ai une grande famille.,[ʒe yn gʁɑ̃d famij / 제 인 그랑드 파미],나는 대가족이에요.,
+25,51,,Elles ont trois chats.,[ɛl zɔ̃ tʁwa ʃa / 엘존 트와 샤],그녀들은 고양이 세 마리가 있어요.,
+26,51,,Tu as un chien ?,[ty a œ̃ ʃjɛ̃ / 튀 아 엉 셰앙],개 있니?,
+27,51,,C'est ton chien ?,[sɛ tɔ̃ ʃjɛ̃ / 세 통 셰앙],네 개니?,
+28,51,,J'ai un livre. C'est mon livre.,[ʒe œ̃ livʁ. sɛ mɔ̃ livʁ / 제 엉 리브르. 세 몽 리브르],책이 있어. 내 책이야.,
+29,51,,Elle a des enfants.,[ɛl a de z‿ɑ̃fɑ̃ / 엘 아 데 잉팡],그녀는 아이들이 있어요.,
+30,51,,Ce sont ses enfants.,[sə sɔ̃ se z‿ɑ̃fɑ̃ / 스 송 세 잉팡],그녀의 아이들이에요.,
+31,51,,Nous avons un appartement.,[nu zavɔ̃ œ̃ napartəmɑ̃ / 누 자봉 엉 나파르트먼],우리는 아파트가 있어요.,
+32,51,,C'est notre appartement.,[sɛ nɔtʁ napartəmɑ̃ / 세 노트르 나파르트먼],우리 아파트예요.,
+33,51,,je suis,[ʒə sɥi / 즈 쉬],나는 ~이다 (être),
+34,51,,nous sommes,[nu sɔm / 누 솜],우리는 ~이다 (être),
+35,51,,tu es,[ty ɛ / 튀 에],너는 ~이다 (être),
+36,51,,vous êtes,[vu z‿ɛt / 부 제],당신(들)은 ~이다 (être),
+37,51,,il/elle est,[il/ɛl ɛ / 일·엘 에],그/그녀는 ~이다 (être),
+38,51,,ils/elles sont,[il/ɛl sɔ̃ / 일·엘 송],그들/그녀들은 ~이다 (être),
+39,51,,j'ai,[ʒe / 제],나는 ~있다 (avoir),
+40,51,,nous avons,[nu zavɔ̃ / 누 자봉],우리는 ~있다 (avoir),
+41,51,,tu as,[ty a / 튀 아],너는 ~있다 (avoir),
+42,51,,vous avez,[vu zave / 부 자베],당신(들)은 ~있다 (avoir),
+43,51,,il/elle a,[il/ɛl a / 일·엘 아],그/그녀는 ~있다 (avoir),
+44,51,,ils/elles ont,[il/ɛl zɔ̃ / 일·엘존],그들/그녀들은 ~있다 (avoir),
+45,51,,Vous avez un passeport ?,[vu zave œ̃ paspoʁ / 부 자베 엉 파스포르],여권 있으세요?,
+46,51,,Il a trois soeurs.,[il a tʁwa sœʁ / 일 아 트와 쇠르],그는 여동생이 세 명 있어요.,
+47,51,,Je suis célibataire.,[ʒə sɥi selibatɛʁ / 즈 쉬 셀리바테르],나는 미혼이에요.,
+48,51,,Elle a quinze ans.,[ɛl a kɛ̃z ɑ̃ / 엘 아 캥즈 앙],그녀는 열다섯 살이에요.,
+49,51,,Tu es français ?,[ty ɛ fʁɑ̃sɛ / 튀 에 프랑세],프랑스 남자니?,
+50,51,,Nous sommes étudiants.,[nu sɔm etydjɑ̃ / 누 솜 에튀디앙],우리는 학생이에요.,

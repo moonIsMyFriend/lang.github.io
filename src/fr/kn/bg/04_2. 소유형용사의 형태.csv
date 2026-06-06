@@ -1,40 +1,39 @@
-
-le fils de Daniel
-son fils
-la fille de Daniel
-sa fille
-le fils de Mia
-son fils
-la fille de Mia
-sa fille
-mon adresse
-ton erreur
-son histoire
-Voici mon‿adresse e-mail.
-Cest ton‿erreur.
-Son‿histoire est intéressante.
-mon sac
-mes livres
-mon ami
-mon université
-mon adresse
-ma voiture
-C’est ton appartement ?
-C’est ton portable ?
-C’est ta moto ?
-Ce sont tes parents ?
-C’est ton amie ?
-Ce sont tes enfants ?
-Voici la maison de Paul.
-C’est sa maison.
-Voici le chat de Lisa.
-C’est son chat.
-Voici les amies de Lisa.
-Ce sont ses amies.
-Voilà l’école de Lisa et Nicolas.
-C’est leur école.
-Voilà la mère de Lisa et Nicolas.
-C’est leur mère.
-Voilà les parents de Lisa et Nicolas.
-Ce sont leurs parents.
-
+no,group,speaker,original,pron,trans,comment
+1,42,,le fils de Daniel,[lə fis də danjɛl / 르 필 드 다니엘],다니엘의 아들,
+2,42,,son fils,[sɔ̃ fis / 송 필],그의 아들,
+3,42,,la fille de Daniel,[la fij də danjɛl / 라 필 드 다니엘],다니엘의 딸,
+4,42,,sa fille,[sa fij / 사 필],그의 딸,
+5,42,,le fils de Mia,[lə fis də mja / 르 필 드 미아],미아의 아들,
+6,42,,son fils,[sɔ̃ fis / 송 필],그의 아들,
+7,42,,la fille de Mia,[la fij də mja / 라 필 드 미아],미아의 딸,
+8,42,,sa fille,[sa fij / 사 필],그의 딸,
+9,42,,mon adresse,[mɔ̃ nadʁɛs / 몽 나드레스],내 주소,
+10,42,,ton erreur,[tɔ̃ nɛʁœʁ / 통 네흐],네 실수,
+11,42,,son histoire,[sɔ̃ nistwaʁ / 송 니스투아르],그의 이야기,
+12,42,,Voici mon‿adresse e-mail.,[vwasi mɔ̃ nadʁɛs imɛl / 브와시 몽 나드레스 이메일],여기 내 이메일 주소입니다.,
+13,42,,C'est ton‿erreur.,[sɛ tɔ̃ nɛʁœʁ / 세 통 네흐],네 잘못이야.,
+14,42,,Son‿histoire est intéressante.,[sɔ̃ nistwaʁ ɛ t‿ɛ̃teʁesɑ̃t / 송 니스투아르 에텅테헤싱],그의 이야기는 흥미롭습니다.,
+15,42,,mon sac,[mɔ̃ sak / 몽 삭],내 가방,
+16,42,,mes livres,[me livʁ / 메 리브르],내 책들,
+17,42,,mon ami,[mɔ̃ nami / 몽 나미],내 친구 (남),
+18,42,,mon université,[mɔ̃ nyvɛʁsite / 몽 뉴베헤시테],내 대학,
+19,42,,mon adresse,[mɔ̃ nadʁɛs / 몽 나드레스],내 주소,
+20,42,,ma voiture,[ma vwatyʁ / 마 브와튀르],내 차,
+21,42,,C'est ton appartement ?,[sɛ tɔ̃ napartəmɑ̃ / 세 통 나파르트먼],네 아파트니?,
+22,42,,C'est ton portable ?,[sɛ tɔ̃ pɔʁtabl / 세 통 포르타블],네 휴대폰이니?,
+23,42,,C'est ta moto ?,[sɛ ta moto / 세 타 모토],네 오토바이니?,
+24,42,,Ce sont tes parents ?,[sə sɔ̃ te paʁɑ̃ / 스 송 테 파랑],네 부모님이니?,
+25,42,,C'est ton amie ?,[sɛ tɔ̃ nami / 세 통 나미],네 여자친구니?,
+26,42,,Ce sont tes enfants ?,[sə sɔ̃ te z‿ɑ̃fɑ̃ / 스 송 테 잉팡],네 아이들이니?,
+27,42,,Voici la maison de Paul.,[vwasi la mɛzɔ̃ də pol / 브와시 라 메종 드 폴],여기 폴의 집입니다.,
+28,42,,C'est sa maison.,[sɛ sa mɛzɔ̃ / 세 사 메종],그의 집입니다.,
+29,42,,Voici le chat de Lisa.,[vwasi lə ʃa də liza / 브와시 르 샤 드 리자],여기 리사의 고양이입니다.,
+30,42,,C'est son chat.,[sɛ sɔ̃ ʃa / 세 송 샤],그의 고양이입니다.,
+31,42,,Voici les amies de Lisa.,[vwasi le zami də liza / 브와시 레 자미 드 리자],여기 리사의 여자친구들입니다.,
+32,42,,Ce sont ses amies.,[sə sɔ̃ se zami / 스 송 세 자미],그의 여자친구들입니다.,
+33,42,,Voilà l'école de Lisa et Nicolas.,[vwala lekɔl də liza e nikɔla / 브와라 레콜 드 리자 에 니콜라],저기 리사와 니콜라의 학교입니다.,
+34,42,,C'est leur école.,[sɛ lœʁ ekɔl / 세 르흐 에콜],그들의 학교입니다.,
+35,42,,Voilà la mère de Lisa et Nicolas.,[vwala la mɛʁ də liza e nikɔla / 브와라 라 메르 드 리자 에 니콜라],저기 리사와 니콜라의 어머니입니다.,
+36,42,,C'est leur mère.,[sɛ lœʁ mɛʁ / 세 르흐 메르],그들의 어머니입니다.,
+37,42,,Voilà les parents de Lisa et Nicolas.,[vwala le paʁɑ̃ də liza e nikɔla / 브와라 레 파랑 드 리자 에 니콜라],저기 리사와 니콜라의 부모님입니다.,
+38,42,,Ce sont leurs parents.,[sə sɔ̃ lœʁ paʁɑ̃ / 스 송 르흐 파랑],그들의 부모님입니다.,
