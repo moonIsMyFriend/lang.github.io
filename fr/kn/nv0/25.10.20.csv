@@ -1,0 +1,69 @@
+﻿no,group,speaker,original,pron,trans,comment
+1,0,A,Tu aimes ... ?,튀 엠 ... ?,너는 …을 좋아하니?,선호 묻기
+2,0,B,J’aime beaucoup.,쥄 보꾸,아주 좋아해요.,강한 호감
+3,0,B,J’aime bien.,쥄 비엥,좋아해요 / 꽤 좋아해요.,보통 호감
+4,0,B,J’aime pas beaucoup.,쥄 빠 보꾸,그렇게 좋아하진 않아요.,약한 비호감
+5,0,B,J’aime pas.,쥄 빠,좋아하지 않아요.,비호감
+6,0,B,J’aime pas du tout.,쥄 빠 뒤 투,전혀 좋아하지 않아요.,강한 비호감
+7,0,A,Pourquoi ?,뿌흐꾸아?,왜요?,이유 묻기
+8,0,A,Et toi ?,에 뚜와?,너는?,상대에게 되묻기
+9,0,V,La France,라 프항스,프랑스,나라 이름
+10,0,V,Le Japon,르 자뽕,일본,나라 이름
+11,0,V,Les États-Unis,레 제따쥬니,미국,나라 이름(복수)
+12,0,V,L’Espagne,레스빠뉴,스페인,나라 이름
+13,0,V,La Chine,라 쉰,중국,나라 이름
+14,0,V,La Corée,라 꼬헤,한국,나라 이름
+15,1,A,Tu habites où ?,튀 아빗 우,너 어디 살아?,구어체
+16,1,A,Où habites-tu ?,우 아빗 튀,너 어디에 사니?,문장도치(격식)
+17,1,B,J’habite à Séoul.,자빗 아 세울,저는 서울에 살아요.,도시 앞에는 à
+18,1,A,Elle habite où ?,엘 아빗 우,그녀는 어디에 살아요?,주어 Elle
+19,1,B,Il habite à Paris.,일 아빗 아 파히,그는 파리에 살아요.,도시 예시
+20,2,A,Tu habites au Japon ?,튀 아빗 오 자뽕?,너 일본에 살아?,남성국가: au
+21,2,B,"Non, j’habite pas au Japon.",농 자빗 빠 오 자뽕,"아니요, 일본에 살지 않아요.",구어체 ne 생략
+22,2,B,J’habite en Corée.,자빗 앙 꼬헤,저는 한국에 살아요.,여성국가: en
+23,2,B,J’habite aux États-Unis.,자빗 오 제따쥬니,저는 미국에 살아요.,복수국가: aux
+24,2,B,J’habite au Canada.,자빗 오 카나다,저는 캐나다에 살아요.,남성국가: au
+25,2,B,J’habite en Angleterre.,자빗 앙 앙글레떼흐,저는 영국에 살아요.,여성국가: en
+26,2,B,J’habite en Chine.,자빗 앙 쉰,저는 중국에 살아요.,여성국가: en
+27,2,B,J’habite en France.,자빗 앙 프항스,저는 프랑스에 살아요.,여성국가: en
+28,2,B,J’habite au Brésil.,자빗 오 브헤질,저는 브라질에 살아요.,남성국가: au
+29,3,B,J’habite à Montréal.,자빗 아 몽흐에알,저는 몬트리올에 살아요.,캐나다 도시
+30,3,B,J’habite à Vancouver.,자빗 아 방꾸베흐,저는 밴쿠버에 살아요.,캐나다 도시
+31,3,B,J’habite à Toronto.,자빗 아 또홍또,저는 토론토에 살아요.,캐나다 도시
+32,3,B,J’habite à Londres.,자빗 아 롱드흐,저는 런던에 살아요.,영국 도시
+33,3,B,J’habite à Bordeaux.,자빗 아 보흐도,저는 보르도에 살아요.,프랑스 도시
+34,3,B,J’habite à Lille.,자빗 아 릴,저는 릴에 살아요.,프랑스 도시
+35,3,B,J’habite à Paris.,자빗 아 파히,저는 파리에 살아요.,프랑스 도시
+36,3,B,J’habite à Barcelone.,자빗 아 바흐슬론,저는 바르셀로나에 살아요.,스페인 도시
+37,3,B,J’habite à Séville.,자빗 아 세이뷔이,저는 세비야에 살아요.,스페인 도시
+38,3,B,J’habite à Pékin.,자빗 아 페캉,저는 베이징에 살아요.,중국 도시
+39,3,B,J’habite à Shanghai.,자빗 아 샹하이,저는 상하이에 살아요.,중국 도시
+40,3,B,J’habite à Hong Kong.,자빗 아 옹콩,저는 홍콩에 살아요.,특별행정구
+41,4,A,Tu habites à Bucheon ?,튀 아빗 아 부쑝?,너 부천에 살아?,도시: à
+42,4,B,"Non, j’habite pas à Bucheon.",농 자빗 빠 아 부쑝,"아니요, 부천에 살지 않아요.",구어체 부정
+43,4,B,J’habite à Incheon.,자빗 아 앙숑,저는 인천에 살아요.,도시: à
+44,5,B,"J’habitais au Japon avant, mais maintenant j’habite en Corée.","자비떼 오 자뽕 아방, 메 맹뜨넝 자빗 앙 꼬헤",예전에 일본에 살았지만 지금은 한국에 살아요.,반과거 + 현재
+45,6,B,J’aime le français parce que je l’apprends.,쥄 르 프항세 빠흐스끄 죠 라쁘헝,프랑스어를 배우고 있어서 좋아해요.,이유
+46,6,B,"Moi aussi, j’aime bien.","므와 오씨, 쥄 비엥",저도 좋아요.,동의
+47,6,B,Je veux aller en Espagne.,즈 브 아레 엉 에스빠뉴,스페인에 가고 싶어요.,직설
+48,6,B,J’aimerais aller en Espagne.,줴므헤 알레 엉 에스빠뉴,스페인에 가고 싶어요.,공손
+49,6,B,Je voudrais aller en Espagne.,즈 부드헤 알레 엉 에스빠뉴,스페인에 가고 싶어요.,정중
+50,6,B,Parce que j’aime les vieux bâtiments comme à Kyoto.,빠흐스끄 쥄 레 뷔외 바띠몽 꼼 아 끼오또,교토처럼 옛 건물을 좋아해서요.,이유
+51,6,B,Parce que c’est sûr et propre.,빠흐스끄 쎄 쉬흐 에 프호쁘흐,안전하고 깨끗하니까요.,이유
+52,7,A,Vous parlez chinois ?,부 파흘레 쉬누와?,중국어 할 줄 아세요?,존댓말 질문
+53,7,A,Tu parles chinois ?,튀 파흘 쉬누와?,너 중국어 할 줄 알아?,반말 질문
+54,7,B,"Oui, un peu.",위 엉 쁘,"네, 조금요.",대답
+55,7,B,"Non, pas du tout.",농 빠 뒤 투,"아니요, 전혀요.",대답
+56,7,B,Je l’apprends.,죠 라쁘헝,배우고 있어요.,대답
+57,8,B,C’est impressionnant !,쎄 땅프흐쎄뇽!,대단하네요!,감탄
+58,8,B,C’est magnifique !,쎄 마니픽,정말 멋져요!,감탄
+59,8,B,C’est génial !,쎄 제니알,정말 최고예요!,감탄
+60,8,B,C’est incroyable !,쎄 땅끄호야블,놀라워요!,감탄
+61,8,B,C’est super !,쎄 쉬페흐,정말 좋아요!,감탄
+62,8,B,C’est beau !,쎄 보,예뻐요 / 아름다워요!,감탄
+63,8,B,Bravo !,브하보!,잘했어요!,칭찬
+64,9,B,Je ne déteste pas.,즈 느 데떼스트 빠,싫어하지는 않아요.,완곡한 부정(격식)
+65,9,B,Je déteste pas.,즈 데떼스트 빠,싫어하진 않아.,구어체
+66,10,B,J’habite en Europe.,자빗 앙 러홉,저는 유럽에 살아요.,대륙: en
+67,10,B,J’habite en Asie.,자빗 앙 라지,저는 아시아에 살아요.,대륙: en
+68,10,B,J’habite en Amérique.,자빗 앙 라메휘잌,저는 아메리카에 살아요.,대륙: en

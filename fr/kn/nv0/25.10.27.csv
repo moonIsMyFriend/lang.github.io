@@ -1,0 +1,177 @@
+﻿no,group,speaker,original,pron,trans,comment
+1,2,A,Tu fais quoi dans la vie ?,튜 페 꿔 당 라 비,너는 무슨 일 해? / 직업이 뭐야?,상대의 직업을 묻는 표현
+2,2,B,Je suis étudiant en logistique.,즈 스위 에뛰디앙 앙 로지스틱,나는 물류학 전공 학생이에요.,en + 전공명
+3,2,B,Je suis développeur et étudiant.,즈 스위 디벨로뻬흐 에 에뛰디앙,나는 개발자이자 학생이에요.,남성형
+4,2,B,Je suis développeuse et étudiante.,즈 스위 디벨로뻬우즈 에 에뛰디안뜨,나는 개발자이자 학생이에요.,여성형
+5,2,B,Je suis dev et étudiant.,즈 스위 데브 에 에뛰디앙,나 개발자이자 학생이야.,비격식 줄임
+6,2,B,Je travaille comme développeur et j’étudie à l’université.,즈 뜨하바이 꼼 디벨로뻬흐 에 쥬에튀디 알뤼니베흐시떼,나는 개발자로 일하면서 대학에서 공부해요.,comme = ~로서
+7,2,B,Je suis à la fois développeur et étudiant en informatique.,즈 스위 알라 프와 디벨로뻬흐 에 에뛰디앙 앙 앙포흐마틱,나는 동시에 개발자이자 정보공학을 공부하는 학생이에요.,à la fois = 동시에
+8,3,A,Tu aimes les films d’horreur ?,튜 엠 레 필름 도허흐,너 공포영화 좋아해?,호불호 묻는 표현
+9,3,B,"Oui, j’aime les films d’horreur.","위, 젬 레 필름 도허흐","응, 공포영화 좋아해.",
+10,3,B,"Non, je n’aime pas les films d’horreur.","농, 져 넴 빠 레 필름 도허흐","아니, 공포영화 안 좋아해.",부정형 ne...pas
+11,3,A,Tu aimes quel genre de film ?,튜 엠 껠 쟝흐 드 필름,어떤 장르 영화 좋아해?,
+12,3,B,J’aime les films d’action.,젬 레 필름 닥시옹,나는 액션 영화를 좋아해.,
+13,3,B,J’aime les comédies.,젬 레 꼬메디,나는 코미디를 좋아해.,
+14,3,B,J’aime les films romantiques.,젬 레 필름 호망띡,나는 로맨스 영화를 좋아해.,
+15,3,B,J’aime les films de science-fiction.,젬 레 필름 드 씨앙스 픽시옹,나는 SF 영화를 좋아해.,
+16,3,B,J’aime les films d’animation.,젬 레 필름 다니마시옹,나는 애니메이션 영화를 좋아해.,
+17,3,A,Tu aimes quoi ?,튜 엠 꿔,너 뭐 좋아해?,quoi = 무엇
+18,3,A,Tu aimes quoi comme musique ?,튜 엠 꿔 꼼 뮈지끄,어떤 음악 좋아해?,
+19,3,A,Tu aimes quoi comme film ?,튜 엠 꿔 꼼 필름,어떤 영화 좋아해?,
+20,3,A,Tu aimes quoi manger ?,튜 엠 꿔 몽제,뭐 먹는 거 좋아해?,
+21,3,B,J’aime le café et les films d’animation.,젬 르 카페 에 레 필름 다니마시옹,나는 커피랑 애니메이션 영화 좋아해.,
+22,4,A,Tu étudies quoi ?,튜 에튀디 꿔,너 뭐 공부해?,étudier = 공부하다
+23,4,B,J’étudie l’informatique.,쥬에튀디 랭포흐마틱,나는 정보공학을 공부해.,
+24,4,B,J’étudie la logistique.,쥬에튀디 라 로지스틱,나는 물류학을 공부해.,
+25,4,B,J’étudie le français.,쥬에튀디 르 프헝세,나는 프랑스어를 공부해.,
+26,4,B,J’étudie l’économie.,쥬에튀디 레코노미,나는 경제학을 공부해.,
+27,4,B,J’étudie la musique.,쥬에튀디 라 뮈지끄,나는 음악을 공부해.,
+28,4,A,Tu parles quelles langues ?,튜 빠흘 껠 랑그,너 무슨 언어 할 줄 알아?,langue = 언어(여성명사)
+29,4,B,Je parle coréen et un peu français.,즈 빠흘 꼬헤엥 에 엉 뻬 프헝세,나는 한국어랑 프랑스어 조금 해.,
+30,4,B,"Je parle anglais, coréen et japonais.","즈 빠흘 앙글레, 꼬헤엥 에 자빠네","나는 영어, 한국어, 일본어 해.",
+31,4,A,Tu parles français ?,튜 빠흘 프헝세,프랑스어 할 줄 알아?,
+32,4,A,Tu parles anglais ?,튜 빠흘 앙글레,영어 할 줄 알아?,
+33,4,A,Tu parles bien français !,튜 빠흘 비엥 프헝세,프랑스어 잘하네!,칭찬 표현
+34,5,A,Tu habites où ?,튜 아빗 우,너 어디 살아?,habiter = 살다
+35,5,B,J’habite à 전주.,자빗 아 전주,나는 전주에 살아.,도시 앞에는 à 사용
+36,5,A,Tu habites au Japon ?,튜 아빗 오 자뽕,너 일본에 살아?,남성국가 → au
+37,5,B,"Non, j’habite pas au Japon.","농, 자빗 빠 오 자뽕","아니, 일본에 안 살아.",부정형 ne...pas
+38,5,A,Tu habites en France ?,튜 아빗 앙 프헝스,너 프랑스에 살아?,여성국가 → en
+39,5,B,"Non, j’habite pas en France.","농, 자빗 빠 앙 프헝스","아니, 프랑스에 안 살아.",
+40,5,A,Tu habites aux États-Unis ?,튜 아빗 오제따쥬니,너 미국에 살아?,복수국가 → aux
+41,5,B,"Non, j’habite pas aux États-Unis.","농, 자빗 빠 오제따쥬니","아니, 미국에 안 살아.",
+42,5,A,Tu habites à 전주 ?,튜 아빗 아 전주,전주에 살아?,도시 앞 à
+43,5,B,"Oui, j’habite à 전주.","위, 자빗 아 전주","응, 전주에 살아.",긍정형
+44,5,B,"Non, j’habite pas à 전주.","농, 자빗 빠 아 전주","아니, 전주에 안 살아.",부정형
+45,5,A,C’est 이효리.,쎄 이효리,이효리예요.,C’est = ~이다
+46,5,B,Elle est coréenne.,엘 에 꼬헤엔느,그녀는 한국인이에요.,여성형
+47,5,B,Elle habite à Séoul.,엘 아빗 아 세울,그녀는 서울에 살아요.,
+48,5,B,Elle est née le 10 mai 1979.,엘 에 네 르 디 메 밀네퐁 쏘와쌍 디스뇌프,그녀는 1979년 5월 10일에 태어났어요.,être né(e) = 태어나다
+49,5,A,"Non, elle n’est pas à Busan.","농, 엘 넷 빠 아 부산","아니요, 그녀는 부산에 있지 않아요.",부정형 ne...pas
+50,5,B,"Oui, elle est à Busan.","위, 엘 에 아 부산","네, 그녀는 부산에 있어요.",
+51,5,A,"Non, elle n’est pas à Séoul.","농, 엘 넷 빠 아 세울","아니요, 서울에 있지 않아요.",
+52,5,B,Elle habite à Jeju.,엘 아빗 아 제주,그녀는 제주에 살아요.,
+53,5,A,Tu es né en Espagne.,튀 에 네 앙 에스빠뉴,너 스페인에서 태어났어?,여성국가 → en
+54,5,A,Tu es né en Corée ?,튀 에 네 앙 꼬헤,너 한국에서 태어났어?,
+55,5,A,Tu es né au Japon ?,튀 에 네 오 자뽕,너 일본에서 태어났어?,남성국가 → au
+56,5,A,Tu es né aux États-Unis ?,튀 에 네 오제따쥬니,너 미국에서 태어났어?,복수국가 → aux
+57,5,A,Tu es né à Paris ?,튀 에 네 아 빠히,너 파리에서 태어났어?,도시 앞 à
+58,5,B,Je suis né à Paris.,즈 스위 네 아 빠히,나는 파리에서 태어났어요.,남성형
+59,5,B,Je suis né à Séoul.,즈 스위 네 아 세울,나는 서울에서 태어났어요.,남성형
+60,5,B,Je suis née à Busan.,즈 스위 네 아 부산,나는 부산에서 태어났어요.,여성형
+61,5,B,Je suis prête.,즈 스위 프헷,나 준비됐어(여성).,여성형
+62,5,B,Je suis prêt !,즈 스위 프헤,나 준비됐어(남성).,남성형
+63,5,A,Tu es prêt ?,튜 에 프헤,너 준비됐어?(남자에게),
+64,5,A,Tu es prête ?,튜 에 프헷,너 준비됐어?(여자에게),
+65,5,,l’Europe,러호프,유럽,여성명사 → l’ 사용
+66,5,,en Europe,앙 너호프,"유럽에서, 유럽에",전치사 en 사용
+67,5,,de l’Europe,드 러호프,유럽의,
+68,5,B,J’habite en Europe.,자빗 앙 너호프,나는 유럽에 살아요.,
+69,5,B,Je voyage en Europe.,쥬 보야쥬 앙 너호프,나는 유럽을 여행해요.,
+70,5,B,Les pays de l’Europe.,레 페이 드 러호프,유럽의 나라들.,
+71,5,B,L’Union européenne.,뤼뇽 으호페엥느,유럽연합(EU).,
+72,5,A,Tu habites où ?,튜 아빗 우,너 어디 살아?,반복 확인
+73,5,B,J’habite à 성남.,자빗 아 성남,나는 성남에 살아.,
+74,5,A,Tu es né où ?,튜 에 네 우,너 어디서 태어났어?,
+75,5,B,Je suis né à Valenciennes.,즈 스위 네 아 발랑씨엔느,나는 발랑시엔에서 태어났어요.,
+76,5,B,Je suis née à Valenciennes.,즈 스위 네 아 발랑씨엔느,나는 발랑시엔에서 태어났어요.(여성),
+77,6,A,Tu habites à 성남 depuis quand ?,튜 아빗 아 성남 드뿌이 껑,성남에 언제부터 살고 있어?,depuis quand = 언제부터
+78,6,B,J’habite à 성남 depuis 2 ans.,자빗 아 성남 드뿌이 두쌍,나는 2년 전부터 성남에 살고 있어요.,현재시제와 함께 사용
+79,6,,depuis,드뿌이,"~이래로, ~부터",시작 시점을 나타냄
+80,6,,depuis quand ?,드뿌이 껑,언제부터?,질문형
+81,6,,depuis 2 ans,드뿌이 두쌍,2년 전부터,기간
+82,6,,depuis 3 mois,드뿌이 트후와 무아,3개월 전부터,
+83,6,,depuis une semaine,드뿌이 윤 쓰멘느,일주일 전부터,
+84,6,,depuis mars,드뿌이 마흐스,3월부터,시점
+85,6,,depuis 2009,드뿌이 두밀뇌프,2009년부터,
+86,6,B,J’habite à Séoul depuis 2009.,자빗 아 세울 드뿌이 두밀뇌프,나는 2009년부터 서울에 살고 있어요.,depuis + 시점
+87,6,,depuis 2~3 mois,드뿌이 두 트후와 무아,2~3개월째,
+88,6,,depuis 5 ans,드뿌이 쌍쌍,5년째,
+89,6,,depuis longtemps,드뿌이 롱땅,오랫동안부터,
+90,6,B,J’apprends le français depuis 3 mois.,자프헝 르 프헝세 드뿌이 트후와 무아,나는 3개월째 프랑스어를 배우고 있어요.,현재진행 강조
+91,6,B,J’habite à Séoul depuis 5 ans.,자빗 아 세울 드뿌이 쌍쌍,나는 5년 전부터 서울에 살고 있어요.,
+92,6,A,Pourquoi ?,푸흐꾸아,왜?,의문사
+93,6,A,Pourquoi tu es triste ?,푸흐꾸아 튜 에 트흐이스트,왜 슬퍼?,
+94,6,A,Je pars demain.,져 빠흐 드맹,나 내일 떠나.,
+95,6,B,Pourquoi ?,푸흐꾸아,왜?,반응
+96,6,B,Parce que je suis fatigué.,빠흐스 끄 즈 스위 파띠게,왜냐하면 피곤하거든요.,parce que = 왜냐하면
+97,6,A,Tu habites à Séoul depuis toujours ?,튜 아빗 아 세울 드뿌이 투쥬흐,너 서울에서 줄곧 살아왔어?,toujours = 항상
+98,6,B,"Oui, je suis né ici.","위, 즈 스위 네 이씨","응, 나 여기서 태어났어.",ici = 여기
+99,6,B,"Non, j’ai déménagé il y a 5 ans.","농, 제 데메나제 일리야 쌍쌍","아니, 5년 전에 이사 왔어.",il y a = ~전에
+100,6,A,Tu aimes quoi ?,튜 엠 꿔,너 뭐 좋아해?,복습용 문장
+101,6,B,J’aime la musique.,젬 라 뮈지끄,나는 음악을 좋아해.,
+102,6,B,J’aime les chats.,젬 레 샤,나는 고양이를 좋아해.,
+103,6,B,J’aime beaucoup le café.,젬 보꾸 르 카페,나는 커피를 아주 좋아해.,beaucoup = 많이
+104,6,A,Tu aimes quel genre de musique ?,튜 엠 껠 쟝흐 드 뮈지끄,어떤 종류의 음악 좋아해?,
+105,6,A,Tu aimes quel film ?,튜 엠 껠 필름,어떤 영화 좋아해?,
+106,6,A,Tu aimes quoi manger ?,튜 엠 꿔 몽제,뭐 먹는 거 좋아해?,
+107,6,B,J’aime les chiens.,젬 레 시엥,나는 개들을 좋아해.,
+108,6,B,J’aime les chats.,젬 레 샤,나는 고양이를 좋아해.,
+109,6,B,J’aime beaucoup les animaux.,젬 보꾸 레 자니모,나는 동물을 아주 좋아해.,
+110,6,B,"J’aime les gâteaux, les pâtisseries.","젬 레 가또, 레 빠띠쓰흐이",나는 케이크랑 페이스트리를 좋아해.,"gâteau = 케이크, pâtisserie = 제과류"
+111,6,B,un macaron,엉 마까홍,마카롱 하나,남성명사
+112,6,B,J’aime les macarons.,젬 레 마까홍,나는 마카롱을 좋아해요.,복수형
+113,6,B,Je veux un macaron au chocolat.,즈 브 앙 마까홍 오 쇼꼴라,초콜릿 마카롱 하나 주세요.,
+114,6,B,Les macarons français sont délicieux.,레 마까홍 프헝세 송 들리씨외,프랑스 마카롱은 맛있어요.,
+115,6,B,Depuis toute petite,드뿌이 투뜨쁘띠뜨,아주 어릴 때부터 (여성형),
+116,6,B,Depuis tout petit,드뿌이 투쁘띠,아주 어릴 때부터 (남성형),
+117,6,B,J’aime la musique depuis toute petite.,젬 라 뮈지끄 드뿌이 투뜨쁘띠뜨,나는 어릴 때부터 음악을 좋아했어요.,
+118,6,B,Il aime le foot depuis tout petit.,일 엠 르 푸뜨 드뿌이 투쁘띠,그는 어릴 때부터 축구를 좋아해요.,
+119,6,,depuis le collège,드뿌이 르 꼴레쥬,중학교 때부터,
+120,6,,depuis le lycée,드뿌이 르 리쎄,고등학교 때부터,
+121,6,,depuis l’université,드뿌이 뤼니베흐시떼,대학교 때부터,
+122,6,B,Je joue du piano depuis le collège.,즈 주 뒤 피아노 드뿌이 르 꼴레쥬,나는 중학교 때부터 피아노를 쳐요.,
+123,6,B,Je fais du sport depuis le lycée.,즈 페 뒤 스뽀흐 드뿌이 르 리쎄,나는 고등학교 때부터 운동을 해요.,
+124,6,B,J’apprends le japonais depuis l’université.,자프헝 르 자뽀네 드뿌이 뤼니베흐시떼,나는 대학교 때부터 일본어를 배워요.,
+125,6,A,Tu parles quelles langues ? Anglais et un peu français ?,튜 빠흘 껠 랑그? 앙글레 에 엉 뻬 프헝세?,너 어떤 언어 해? 영어랑 프랑스어 조금?,
+126,6,B,Anglais et un peu français.,앙글레 에 엉 뻬 프헝세,영어랑 프랑스어 조금.,
+127,6,B,Je parle anglais et un peu français.,즈 빠흘 앙글레 에 엉 뻬 프헝세,나는 영어랑 프랑스어 조금 해요.,
+128,6,B,"Je parle coréen, anglais et un peu français.","즈 빠흘 꼬헤엥, 앙글레 에 엉 뻬 프헝세","나는 한국어, 영어, 프랑스어 조금 해요.",
+129,6,,depuis 1 mois,드뿌이 앙 무아,"한 달째, 한 달 전부터",
+130,6,B,J’habite à Séoul depuis 1 mois.,자빗 아 세울 드뿌이 앙 무아,나는 한 달 전부터 서울에 살고 있어요.,
+131,6,B,J’apprends le français depuis 1 mois.,자프헝 르 프헝세 드뿌이 앙 무아,나는 프랑스어를 배운 지 한 달 됐어요.,
+132,6,B,Je travaille ici depuis 1 mois.,즈 뜨하봐이 이씨 드뿌이 앙 무아,나는 여기서 일한 지 한 달 됐어요.,
+133,6,,depuis lundi,드뿌이 렁디,월요일부터,
+134,6,,depuis janvier,드뿌이 쟝비에,1월부터,
+135,6,,depuis un an,드뿌이 앙 낭,1년 전부터,
+136,6,A,Tu étudies le français où ?,튜 에튀디 르 프헝세 우,너 어디서 프랑스어 공부해?,
+137,6,B,J’étudie le français à l’université.,쥬에튀디 르 프헝세 알뤼니베흐시떼,나는 대학교에서 프랑스어를 공부해요.,
+138,6,B,J’étudie le français à la maison.,쥬에튀디 르 프헝세 알라 메종,나는 집에서 프랑스어를 공부해요.,
+139,6,B,J’étudie le français avec une prof en ligne.,쥬에튀디 르 프헝세 아벡 윤 프호프 엉 릉뉴,나는 온라인으로 선생님이랑 프랑스어를 공부해요.,
+140,6,B,J’étudie le français à 방송대.,쥬에튀디 르 프헝세 아 방송대,나는 방송대에서 프랑스어를 공부해요.,한국 학교명 그대로 사용 가능
+141,6,B,J’étudie le français à l’Université Ouverte de Corée.,쥬에튀디 르 프헝세 알뤼니베흐시떼 우베흐 드 꼬헤,나는 한국 방송대학교에서 프랑스어를 공부해요.,공식 번역명
+142,6,A,Tu étudies le français depuis quand ?,튜 에튀디 르 프헝세 드뿌이 껑,너 언제부터 프랑스어 공부하고 있어?,
+143,6,B,Depuis un mois.,드뿌이 앙 무아,한 달 전부터.,
+144,6,B,Depuis trois ans.,드뿌이 트후와 쌍,3년 전부터.,
+145,6,B,Depuis le lycée.,드뿌이 르 리쎄,고등학교 때부터.,
+146,6,B,Depuis 2024.,드뿌이 두밀꽈뜨흐,2024년부터.,
+147,6,B,J’étudie le français depuis un an.,쥬에튀디 르 프헝세 드뿌이 앙 낭,나는 프랑스어를 공부한 지 1년 됐어요.,현재형 사용
+148,7,A,Tu es fatigué ?,튜 에 파띠게,너 피곤해?,남성형
+149,7,B,"Oui, un peu.","위, 앙 뻬","응, 조금.",
+150,7,A,Tu es contente ?,튜 에 콩땅뜨,너 기뻐?,여성형
+151,7,B,"Oui, je suis très contente.","위, 즈 스위 트헤 콩땅뜨","응, 나 정말 기뻐.",très = 매우
+152,7,A,Comment tu vas ?,꼬몽 튜 바,잘 지내?,안부 인사
+153,7,B,"Je vais bien, merci.","즈 베 비엉, 메흐씨","잘 지내요, 고마워요.",정중한 인사
+154,7,A,Tu vas bien ?,튜 바 비엉,잘 지내?,친근한 표현
+155,7,B,"Oui, ça va.","위, 싸 바","응, 괜찮아.",가장 흔한 답변
+156,7,A,Ça va ?,싸 바,괜찮아?,아주 일반적인 인사
+157,7,B,Ça va bien.,싸 바 비엉,좋아요.,긍정 답변
+158,7,A,Tu es libre ce week-end ?,튜 에 리브흐 스 윜앙드,이번 주말에 시간 있어?,libre = 한가한
+159,7,B,"Oui, pourquoi ?","위, 푸흐꾸아","응, 왜?",
+160,7,A,On va au cinéma ?,옹 바 오 씨네마,우리 영화 보러 갈까?,제안 표현
+161,7,B,Bonne idée !,본 이데,좋은 생각이야!,
+162,7,A,À bientôt !,아 비엉또,곧 보자!,헤어질 때 인사
+163,7,B,À demain !,아 드맹,내일 봐!,일상 인사
+164,7,B,Bonne nuit !,본 뉘,잘 자!,밤 인사
+165,7,A,Merci beaucoup.,메흐씨 보꾸,정말 고마워요.,
+166,7,B,De rien.,드 히엥,천만에요.,답변
+167,7,A,Pardon.,빠흐동,미안합니다.,사과 표현
+168,7,B,Ce n’est pas grave.,쓰 네 빠 그하브,괜찮아요.,위로 표현
+169,7,A,Je suis désolé.,즈 스위 데졸레,미안해요.(남성),
+170,7,B,Je suis désolée.,즈 스위 데졸레,미안해요.(여성),
+171,7,A,Je suis heureux.,즈 스위 즈흐흐,나는 행복해요.(남성),
+172,7,B,Je suis heureuse.,즈 스위 즈흐흐즈,나는 행복해요.(여성),
+173,7,A,Tu es triste ?,튜 에 트흐이스트,슬퍼?,감정 묻기
+174,7,B,Un peu...,앙 뻬,조금...,
+175,7,A,Courage !,쿠하주,힘내!,격려 표현
+176,7,B,"Merci, ça va aller.",메흐씨 싸 바 알레,"고마워, 괜찮을 거야.",위로 표현
