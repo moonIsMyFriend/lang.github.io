@@ -21,7 +21,35 @@ def slugify(s):
     return s[:60]  # 파일명 너무 길어지는 것 방지
 
 for title in titles:
-    if not title.startswith('14_'):
+    if title.startswith('01.'):
+        continue
+    if title.startswith('02_'):
+        continue
+    if title.startswith('04_'):
+        continue
+    if title.startswith('03_'):
+        continue
+    if title.startswith('05_'):
+        continue
+    if title.startswith('06_'):
+        continue
+    if title.startswith('07_'):
+        continue
+    if title.startswith('08_'):
+        continue
+    if title.startswith('09_'):
+        continue
+    if title.startswith('10_'):
+        continue
+    if title.startswith('11_'):
+        continue
+    if title.startswith('12_'):
+        continue
+    if title.startswith('13_'):
+        continue
+    if title.startswith('14_'):
+        continue
+    if title.startswith('15_'):
         continue
     CSV_PATH = f"./{title}.csv" 
     # 파일 경로(필요시 절대경로로 수정)
