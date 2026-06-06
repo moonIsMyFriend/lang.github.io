@@ -21,6 +21,8 @@ def slugify(s):
     return s[:60]  # 파일명 너무 길어지는 것 방지
 
 for title in titles:
+    if not title.startswith('14_'):
+        continue
     CSV_PATH = f"./{title}.csv" 
     # 파일 경로(필요시 절대경로로 수정)
     OUT_DIR  = Path(f"./mp3/{title}")              # 출력 폴더
