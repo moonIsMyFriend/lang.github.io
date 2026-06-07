@@ -1,14 +1,14 @@
 no,group,speaker,original,pron,trans,comment
-1,9,word,voyelles,[vwajɛl / 브와이엘],모음,[jɛ]
-2,9,word,consonnes,[kɔ̃sɔn / 꽁쏭],자음,[ɔ̃]
+1,9,word,voyelles,[vwajɛl / 브와이얠],모음,[jɛ]
+2,9,word,consonnes,[kɔ̃sɔn / 꽁쏜ㄴ],자음,[ɔ̃]
 3,9,word,père,[pɛʁ / 빼흐],아버지,[P][t][k]무기음 ㅃㄸㄲ와 유사. ㅍㅌㅋ아님
 4,9,word,terre,[tɛʁ / 때흐],땅,[P][t][k]무기음 ㅃㄸㄲ와 유사. ㅌㅌㅌ아님
-5,9,word,caire,[kɛʁ / 케흐],케르(지명/이름),[P][t][k]무기음 ㅃㄸㄲ와 유사. ㅋㅋㅋ아님
-6,9,word,sac,[sak / 삭],가방,어말자음:약하게 파열(개방)
-7,9,word,crabe,[kʁab / 크하브],게,어말자음:약하게 파열(개방)
+5,9,word,caire,[kɛʁ / 깨흐],케르(지명/이름),[P][t][k]무기음 ㅃㄸㄲ와 유사. ㅋㅋㅋ아님
+6,9,word,sac,[sak / 싹],가방,어말자음:약하게 파열(개방)
+7,9,word,crabe,[kʁab / 끄하브],게,어말자음:약하게 파열(개방)
 8,9,word,bague,[baɡ / 바그],반지,어말자음:약하게 파열(개방)
-9,9,word,table,[tabl / 타블],테이블,영어[t/d/s/z]보다 조음점이 더 앞에 있음
-10,9,word,sable,[sabl / 사블],모래,영어[t/d/s/z]보다 조음점이 더 앞에 있음
+9,9,word,table,[tabl / 타블ㄹ],테이블,영어[t/d/s/z]보다 조음점이 더 앞에 있음
+10,9,word,sable,[sabl / 싸블ㄹ],모래,영어[t/d/s/z]보다 조음점이 더 앞에 있음
 11,9,word,homme,[ɔm / 옴ㅁ],남자,[h muet] 기본적으로 무음. 예외적으로 유음도 존재.
 12,9,word,hôtel,[otɛl / 오땔],호텔,[h muet] 기본적으로 무음. 예외적으로 유음도 존재.
 13,9,word,histoire,[istwaʁ / 이스 뚜아흐],이야기/역사,[h muet] 기본적으로 무음. 예외적으로 유음도 존재.
@@ -17,20 +17,20 @@ no,group,speaker,original,pron,trans,comment
 16,9,word,habitude,[abityd / 아비튀드],습관,[h muet]
 17,9,expression,l'habitude,[labityd / 라비튀드],그 습관,[liaison]
 18,9,expression,les habitudes,[lez abityd / 레자비튀드],습관들,[z liaison]
-19,9,word,herbe,[ɛʁb / 에흐브],풀,[h muet]
-20,9,expression,l'herbe,[lɛʁb / 레흐브],그 풀,[liaison]
-21,9,expression,les herbes,[lez ɛʁb / 레제 흐브],풀들,[z liaison]
+19,9,word,herbe,[ɛʁb / 애흐브],풀,[h muet]
+20,9,expression,l'herbe,[lɛʁb / 래흐브],그 풀,[liaison]
+21,9,expression,les herbes,[lez ɛʁb / 레재 흐브],풀들,[z liaison]
 22,9,word,haut,[o / 오],높은,[h aspiré] 유음
 23,9,word,héros,[eʁo / 에호],영웅,[h aspiré] 유음
-24,9,word,huit,[ɥit / 위뜨],8,[h aspiré] 유음
+24,9,word,huit,[ɥit / 위이뜨],8,[h aspiré] 유음
 25,9,expression,le héros,[lə eʁo / 르 에흐오],그 영웅,[h aspiré] 유음. 축약하지 않음
 26,9,expression,les héros,[le eʁo / 레 에흐오],영웅들,[h aspiré] 유음. 리에종하지 않음
-27,9,word,haricot,[aʁiko / 아휘꼬],강낭콩,[h aspiré] 유음
-28,9,expression,le haricot,[lə aʁiko / 르 아휘꼬],그 강낭콩,[h aspiré] 유음
-29,9,expression,les haricots,[le aʁiko / 레 아휘꼬],강낭콩들,[h aspiré] 유음
-30,9,word,handicap,[ɑ̃dikap / 앙디 깝],장애,[h aspiré] 유음
-31,9,expression,le handicap,[lə ɑ̃dikap / 르 앙디깝],그 장애,[h aspiré] 유음
-32,9,expression,les handicaps,[le ɑ̃dikap / 레 앙디깝],장애들,[h aspiré] 유음
+27,9,word,haricot,[aʁiko / 아히꼬],강낭콩,[h aspiré] 유음
+28,9,expression,le haricot,[lə aʁiko / 르 아히꼬],그 강낭콩,[h aspiré] 유음
+29,9,expression,les haricots,[le aʁiko / 레 아히꼬],강낭콩들,[h aspiré] 유음
+30,9,word,handicap,[ɑ̃dikap / 엉디 꺕],장애,[h aspiré] 유음
+31,9,expression,le handicap,[lə ɑ̃dikap / 르 엉디꺕],그 장애,[h aspiré] 유음
+32,9,expression,les handicaps,[le ɑ̃dikap / 레 엉디꺕],장애들,[h aspiré] 유음
 33,9,word,pharmacie,[faʁmasi / 파흐마씨],약국,[ph]
 34,9,word,chaussure,[ʃosyʁ / 쇼 쒸흐],신발,[ch]
 35,9,word,shampooing,[ʃɑ̃pwɛ̃ / 셩뿌앙],샴푸,[sh]
