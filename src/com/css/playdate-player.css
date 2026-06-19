@@ -436,6 +436,16 @@ body.dark.playdate-quiz-page .dpad-graphic .dpad-body {
   stroke: #777;
 }
 
+body.dark.playdate-quiz-page .dpad-graphic .dpad-icon-left,
+body.dark.playdate-quiz-page .dpad-graphic .dpad-icon-right {
+  fill: rgba(255, 255, 255, 0.42);
+}
+
+body.dark.playdate-quiz-page .dpad-graphic .dpad-icon-up,
+body.dark.playdate-quiz-page .dpad-graphic .dpad-icon-down {
+  stroke: rgba(255, 255, 255, 0.42);
+}
+
 body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(1) {
   stop-color: #4a4946;
 }
