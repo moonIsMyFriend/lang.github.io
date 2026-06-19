@@ -98,7 +98,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <ol>
                             <li>목록에서 학습할 CSV를 선택하세요.</li>
-                            <li>학습 화면에서 장치 왼쪽 <b>M</b> 버튼으로 학습 설정을 변경할 수 있습니다.</li>
+                            <li>학습 화면에서 장치 오른쪽 <b>M</b> 버튼으로 학습 설정을 변경할 수 있습니다.</li>
+                            <li><b>◀</b> 이전 · <b>▶</b> 다음 재생 · D-pad 위/아래 배속 · <b>A</b> 듣기 · <b>B</b> 다음</li>
                         </ol>
                         <p class="footer">CSV는 UTF-8 권장.</p>
                     </div>
@@ -305,7 +306,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             if (m === 'seq') orderQs = '&order=seq';
                         } catch (_) {}
                         // turntable으로 이동; 진행 상태(i, ord)는 turntable에서 주소창에 동기화됨
-                        const studyUrl = `./study_card.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
+                        const studyUrl = `./device.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
                         li.innerHTML = `<a href="${studyUrl}" class="csv-link">${escapeHTML(display)}</a>`;
                         ul.appendChild(li);
                     }
