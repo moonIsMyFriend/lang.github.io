@@ -398,77 +398,50 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
   margin-top: calc(var(--u) * 8);
   padding-top: calc(var(--u) * 10);
   min-height: calc(var(--u) * 34);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28), transparent);
-  border-radius: 0 0 calc(var(--pd-radius) - 4px) calc(var(--pd-radius) - 4px);
+  overflow: visible;
 }
 
-/* 십자 패드 — 좌·세로(↑↓)·우, 가운데 가로 막대 없음 */
+/* 십자 패드 — SVG +형 (크기: --dpad-arm, 위치: --dpad-shift-x/y) */
 .playdate-quiz-page .dpad {
-  --dpad-arm: calc(var(--u) * 8);
-  --dpad-v-h: calc(var(--dpad-arm) * 2);
+  --dpad-arm: calc(var(--u) * 9);
+  --dpad-size: calc(var(--dpad-arm) * 3.08);
+  --dpad-shadow-gap: calc(var(--u) * 1.2);
+  --dpad-shift-x: calc(var(--u) * 1);
+  --dpad-shift-y: calc(var(--u) * 6);
   position: relative;
-  width: calc(var(--dpad-arm) * 3);
-  height: var(--dpad-v-h);
+  width: var(--dpad-size);
+  height: calc(var(--dpad-size) + var(--dpad-shadow-gap));
   flex-shrink: 0;
+  align-self: flex-end;
+  margin-left: var(--dpad-shift-x);
+  margin-bottom: var(--dpad-shift-y);
+  overflow: visible;
 }
 
-.playdate-quiz-page .dpad-face {
+.playdate-quiz-page .dpad-graphic {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  filter: drop-shadow(0 calc(var(--u) * 0.55) 0 var(--pd-btn-shadow));
-}
-
-.playdate-quiz-page .dpad-arm {
-  position: absolute;
-  box-sizing: border-box;
-  background: linear-gradient(145deg, var(--pd-btn-light) 0%, var(--pd-btn-mid) 48%, var(--pd-btn-dark) 100%);
-  border: 1px solid #999;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.75);
-}
-
-.playdate-quiz-page .dpad-arm-left {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--dpad-arm);
-  height: var(--dpad-arm);
-  border-radius: calc(var(--u) * 2.2) 0 0 calc(var(--u) * 2.2);
-  border-right: none;
-}
-
-.playdate-quiz-page .dpad-arm-v {
-  left: var(--dpad-arm);
   top: 0;
-  width: var(--dpad-arm);
-  height: 100%;
-  border-radius: calc(var(--u) * 2.5);
-  border-left: none;
-  border-right: none;
+  left: 0;
+  width: var(--dpad-size);
+  height: var(--dpad-size);
+  pointer-events: none;
+  overflow: visible;
 }
 
-.playdate-quiz-page .dpad-arm-right {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--dpad-arm);
-  height: var(--dpad-arm);
-  border-radius: 0 calc(var(--u) * 2.2) calc(var(--u) * 2.2) 0;
-  border-left: none;
+.playdate-quiz-page .dpad-graphic .dpad-body {
+  paint-order: stroke fill;
 }
 
-.playdate-quiz-page .dpad-pit {
-  position: absolute;
-  left: calc(var(--dpad-arm) * 1.5);
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(var(--dpad-arm) * 0.36);
-  height: calc(var(--dpad-arm) * 0.36);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.07);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.14);
-  z-index: 2;
+body.dark.playdate-quiz-page .dpad-graphic .dpad-body {
+  stroke: #777;
+}
+
+body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(1) {
+  stop-color: #4a4946;
+}
+
+body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
+  stop-color: #2a2926;
 }
 
 .playdate-quiz-page .dpad-zone {
@@ -491,23 +464,21 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
 
 .playdate-quiz-page .dpad-zone.dpad-down {
   left: var(--dpad-arm);
-  bottom: 0;
+  top: calc(var(--dpad-arm) * 2);
   width: var(--dpad-arm);
   height: var(--dpad-arm);
 }
 
 .playdate-quiz-page .dpad-zone.dpad-left {
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: var(--dpad-arm);
   width: var(--dpad-arm);
   height: var(--dpad-arm);
 }
 
 .playdate-quiz-page .dpad-zone.dpad-right {
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: var(--dpad-arm);
   width: var(--dpad-arm);
   height: var(--dpad-arm);
 }
@@ -515,6 +486,16 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
 .playdate-quiz-page .dpad-zone:active,
 .playdate-quiz-page .dpad-zone.pressed {
   background: rgba(0, 0, 0, 0.09);
+}
+
+.playdate-quiz-page .dpad:has(.dpad-zone:active) .dpad-graphic,
+.playdate-quiz-page .dpad:has(.dpad-zone.pressed) .dpad-graphic {
+  transform: translateY(4px);
+}
+
+.playdate-quiz-page .dpad:has(.dpad-zone:active) .dpad-body,
+.playdate-quiz-page .dpad:has(.dpad-zone.pressed) .dpad-body {
+  filter: url(#pdDpadFxPressed);
 }
 
 .playdate-quiz-page .ab {
@@ -609,7 +590,10 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
   }
 
   .playdate-quiz-page .dpad {
-    --dpad-arm: 30px;
+    --dpad-arm: 34px;
+    --dpad-shadow-gap: 5px;
+    --dpad-shift-x: 4px;
+    --dpad-shift-y: 20px;
   }
 
   .playdate-quiz-page .ab .pad {
@@ -657,7 +641,10 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
   }
 
   .playdate-quiz-page .dpad {
-    --dpad-arm: 28px;
+    --dpad-arm: 30px;
+    --dpad-shadow-gap: 4px;
+    --dpad-shift-x: 3px;
+    --dpad-shift-y: 16px;
   }
 
   .playdate-quiz-page .ab .pad {

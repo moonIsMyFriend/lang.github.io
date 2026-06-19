@@ -1170,6 +1170,19 @@ export function initQuizApp() {
 
   });
 
+  function goPrevious() {
+    const cancelled = interruptPronounceForUiNav();
+    toastIfPronounceNavInterrupted(cancelled);
+    const s = state.session;
+    if (!s || s.idx <= 0) return false;
+    stopAudio();
+    s.idx -= 1;
+    renderCurrent();
+    updateUnifiedBar();
+    syncStudyUrl();
+    return true;
+  }
+
   function shouldGoHomeAfterStudySession() {
     if (state.practice !== 'study') return false;
     return !!document.body?.dataset?.quizHomeUrl;
@@ -1841,5 +1854,6 @@ export function initQuizApp() {
     syncStudyUrl,
     clearStudyProgressParams,
     getPronounceSummary,
+    goPrevious,
   };
 }
