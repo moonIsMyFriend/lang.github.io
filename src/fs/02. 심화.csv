@@ -1,16 +1,16 @@
 ﻿no,group,speaker,original,pron,trans,comment
-1,line,2,dedans,드당,안쪽,내측 라인
-2,blade,2,dégagement,드가쥬멍,라인 전환,아래로 라인 변경
-3,line,2,dehors,드오흐,바깥쪽,외측 라인
-4,blade,2,dérobement,데호브멍,회피,블레이드 제어 회피
-5,line,2,dessous,드쑤,아래쪽,하단 라인
-6,line,2,dessus,드쒸,위쪽,상단 라인
-7,defence,2,octave,옥타브,드오르 린느를 막고 있는 자세,하단 외측 방어
-8,defence,2,quarte,캬흐트,드당 린느를 막는 자세,상단 내측 방어
-9,defence,2,quinte,꺄앙트/껭뜨,얼굴과 어깨를 막는 자세,머리 방어
-10,defence,2,septime,셉띰,드쑤 린느를 막는 자세,하단 내측 방어
-11,defence,2,sixte,식스트,드뀌 린느를 막는 자세,상단 외측 방어
-12,rules,2,tête,떼트,머리,사브르 유효면
-13,defence,2,tierce,티에흐스,3번 파리,하단 외측 방어
-14,re-attack,2,Redoublement,르두블르망,압박 재공격,전진 압박 유지하며 다시 공격
-15,distance,2,mesure,므쥐르,거리 감각 / 유효 거리,Distance와 같이 사용
+1,line,2,dedans,[dədɑ̃ / 드당],안쪽,내측 라인
+2,blade,2,dégagement,[degaʒmɑ̃ / 드가쥬멍],라인 전환,아래로 라인 변경
+3,line,2,dehors,[dəɔʁ / 드오흐],바깥쪽,외측 라인
+4,blade,2,dérobement,[deʁɔbmɑ̃ / 데호브멍],회피,블레이드 제어 회피
+5,line,2,dessous,[dəsu / 드쑤],아래쪽,하단 라인
+6,line,2,dessus,[dasy / 드쒸],위쪽,상단 라인
+7,defence,2,octave,[ɔktav / 옥타브],드오르 린느를 막고 있는 자세,하단 외측 방어
+8,defence,2,quarte,[kaʁt / 캬흐트],드당 린느를 막는 자세,상단 내측 방어
+9,defence,2,quinte,[kɛ̃t / 꺄앙트/껭뜨],얼굴과 어깨를 막는 자세,머리 방어
+10,defence,2,septime,[sɛptim / 셉띰],드쑤 린느를 막는 자세,하단 내측 방어
+11,defence,2,sixte,[sist / 식스트],드뀌 린느를 막는 자세,상단 외측 방어
+12,rules,2,tête,[tɛt / 떼트],머리,사브르 유효면
+13,defence,2,tierce,[tjɛʁs / 티에흐스],3번 파리,하단 외측 방어
+14,re-attack,2,Redoublement,[ʁədublmɑ̃ / 르두블르망],압박 재공격,전진 압박 유지하며 다시 공격
+15,distance,2,mesure,[məzyʁ / 므쥐르],거리 감각 / 유효 거리,Distance와 같이 사용

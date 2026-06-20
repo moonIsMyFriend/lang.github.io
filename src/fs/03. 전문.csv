@@ -1,29 +1,29 @@
 ﻿no,group,speaker,original,pron,trans,comment
-1,attack,3,attaque composée,아따끄 콩뽀제,속임을 포함한 연속 공격,속임(feinte)을 먼저 사용해 상대의 parade 반응을 유도한 뒤 다른 라인으로 실제 공격을 이어가는 연속 공격
-2,attack,3,attaque simple,아따끄 삼플,단순 공격,속임(feinte) 없이 한 번의 동작으로 바로 들어가는 공격
-3,footwork,3,bond en avant,봉 엉 아방,전방 도약,앞으로 점프
-4,footwork,3,bond en arrière,봉 엉 아히에흐,후방 도약,뒤로 점프
-5,tactics,3,combat rapproché,콩바 하프호셰,근접 전투,아주 가까운 거리 싸움
-6,tactics,3,contre-offensive,콩트흐 오펑시브,역공,상대 공격에 대한 반공세
-7,tactics,3,contre-riposte,콩트흐 히뽀스트,재반격,리포스트에 대한 재공격
-8,tactics,3,contre-temps,콩트흐 떵,역타이밍,상대 템포를 끊는 동작. 상대 역공격을 유도 후 재공격.
-9,tactics,3,corps à corps,코흐 아 코흐,밀착,접촉으로 중단되는 상황
-10,blade,4,coup croisé,쿠 크후아제,교차 공격,대각선 교차 공격
-11,blade,4,coupé croisé,쿠페 크후아제,넘겨 교차 공격,쿠페 후 교차
-12,attack,3,coup double,쿠 두블,동시 타격,동시에 맞힘
-13,attack,4,attaque au fer,아따끄 오 페흐,칼 제어 공격,제어 후 공격
-14,blade,4,prise de fer,프히즈 드 페흐,칼 제어,지속 접촉 제어
-15,defence,4,mal paré,말 빠헤,불완전 방어,제어 실패 파리
-16,footwork,3,passé avant,파쎄 아방,앞 교차,교차 전진
-17,footwork,3,passé arrière,파쎄 아히에흐,뒤 교차,교차 후퇴
-18,rules,4,actions simultanées,악씨옹 시뮬따네,동시 동작,동시 행동
-19,rules,4,surface valable,쉬흐파스 발라블,유효면,득점 인정 부위
-20,timing,4,temps d’escrime,떵 데스크힘,펜싱 템포,동작 박자. 우선권 판단의 시간 개념.
-21,attack,4,une-deux,윤 드읏,이중 속임,두 번 속임
-22,attack,4,une-deux-trois,윤 드읏 트후아,삼중 속임,세 번 속임
-23,attack,4,pointe en ligne,푸앵 앙 리뉴,먼저 뻗어 우선권을 확보한 칼끝 고정 자세,팔을 완전히 뻗어 칼끝을 상대 유효면에 위협적으로 고정한 상태를 말합니다.이 상태가 공격 시작 이전에 명확히 성립하면 상대가 공격을 하더라도 먼저 **파리(parade)**로 이 포인트를 제거하지 않으면 상대는 우선권을 얻지 못함.
-24,contre-attaque,4,Arrêt avec temps d’escrime,아레 아벡 땅 데스크림,타이밍 저지 공격,상대 공격 도중 템포 선점
-25,contre-attaque,4,Arrêt par opposition,아레 빠르 오뽀지시옹,블레이드 제어 저지 공격,상대 칼을 억제하며 공격
-26,blade,4,Absence de fer,압상스 드 페르,칼 접촉 회피,블레이드 접촉 회피
-27,contre-attaque,3,Fausse attaque,포스 아따끄,허위 공격,가짜 공격
-28,defence,3,Parry-Riposte,패리 리포스트,방어 후 반격,패리 후 반격[영어식 표현]
+1,attack,3,attaque composée,[atak kɔ̃poze / 아따끄 콩뽀제],속임을 포함한 연속 공격,속임(feinte)을 먼저 사용해 상대의 parade 반응을 유도한 뒤 다른 라인으로 실제 공격을 이어가는 연속 공격
+2,attack,3,attaque simple,[atak sɛ̃pl / 아따끄 삼플],단순 공격,속임(feinte) 없이 한 번의 동작으로 바로 들어가는 공격
+3,footwork,3,bond en avant,[bɔ̃ ɑ̃ avɑ̃ / 봉 엉 아방],전방 도약,앞으로 점프
+4,footwork,3,bond en arrière,[bɔ̃ ɑ̃ aʁjɛʁ / 봉 엉 아히에흐],후방 도약,뒤로 점프
+5,tactics,3,combat rapproché,[kɔ̃ba ʁapʁɔʃe / 콩바 하프호셰],근접 전투,아주 가까운 거리 싸움
+6,tactics,3,contre-offensive,[kɔ̃tʁ‿ofɑ̃siv / 콩트흐 오펑시브],역공,상대 공격에 대한 반공세
+7,tactics,3,contre-riposte,[kɔ̃tʁ ʁipost / 콩트흐 히뽀스트],재반격,리포스트에 대한 재공격
+8,tactics,3,contre-temps,[kɔ̃tʁ tɑ̃ / 콩트흐 떵],역타이밍,상대 템포를 끊는 동작. 상대 역공격을 유도 후 재공격.
+9,tactics,3,corps à corps,[kɔʁ‿a kɔʁ / 코흐 아 코흐],밀착,접촉으로 중단되는 상황
+10,blade,4,coup croisé,[ku kʁwaze / 쿠 크후아제],교차 공격,대각선 교차 공격
+11,blade,4,coupé croisé,[kupe kʁwaze / 쿠페 크후아제],넘겨 교차 공격,쿠페 후 교차
+12,attack,3,coup double,[ku dubl / 쿠 두블],동시 타격,동시에 맞힘
+13,attack,4,attaque au fer,[atak o fɛʁ / 아따끄 오 페흐],칼 제어 공격,제어 후 공격
+14,blade,4,prise de fer,[pʁiz də fɛʁ / 프히즈 드 페흐],칼 제어,지속 접촉 제어
+15,defence,4,mal paré,[mal paʁe / 말 빠헤],불완전 방어,제어 실패 파리
+16,footwork,3,passé avant,[pase ɑ̃ avɑ̃ / 파쎄 아방],앞 교차,교차 전진
+17,footwork,3,passé arrière,[pase ɑ̃ aʁjɛʁ / 파쎄 아히에흐],뒤 교차,교차 후퇴
+18,rules,4,actions simultanées,[aksjɔ̃ simyltanɛ / 악씨옹 시뮬따네],동시 동작,동시 행동
+19,rules,4,surface valable,[syʁfas valabl / 쉬흐파스 발라블],유효면,득점 인정 부위
+20,timing,4,temps d'escrime,[tɑ̃ dɛskʁim / 떵 데스크힘],펜싱 템포,동작 박자. 우선권 판단의 시간 개념.
+21,attack,4,une-deux,[yn dø / 윤 드읏],이중 속임,두 번 속임
+22,attack,4,une-deux-trois,[yn dø tʁwa / 윤 드읏 트후아],삼중 속임,세 번 속임
+23,attack,4,pointe en ligne,[pwɛ̃t ɑ̃ liɲ / 푸앵 앙 리뉴],먼저 뻗어 우선권을 확보한 칼끝 고정 자세,팔을 완전히 뻗어 칼끝을 상대 유효면에 위협적으로 고정한 상태를 말합니다.이 상태가 공격 시작 이전에 명확히 성립하면 상대가 공격을 하더라도 먼저 **파리(parade)**로 이 포인트를 제거하지 않으면 상대는 우선권을 얻지 못함.
+24,contre-attaque,4,Arrêt avec temps d'escrime,[aʁɛ avɛk tɑ̃ dɛskʁim / 아레 아벡 땅 데스크림],타이밍 저지 공격,상대 공격 도중 템포 선점
+25,contre-attaque,4,Arrêt par opposition,[aʁɛ paʁ opozisjɔ̃ / 아레 빠르 오뽀지시옹],블레이드 제어 저지 공격,상대 칼을 억제하며 공격
+26,blade,4,Absence de fer,[apsɑ̃s də fɛʁ / 압상스 드 페르],칼 접촉 회피,블레이드 접촉 회피
+27,contre-attaque,3,Fausse attaque,[fos‿atak / 포스 아따끄],허위 공격,가짜 공격
+28,defence,3,Parry-Riposte,[ˈpæri rɪˈpɒst / 패리 리포스트],방어 후 반격,패리 후 반격[영어식 표현]
