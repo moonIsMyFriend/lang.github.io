@@ -106,19 +106,8 @@ body.dark.playdate-quiz-page .device.pd-device {
 }
 
 .playdate-quiz-page .pd-screw {
-  position: absolute;
-  width: calc(var(--u) * 4.5);
-  height: calc(var(--u) * 4.5);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #9a9a96, #5a5a56 55%, #3a3a38);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
-  z-index: 3;
-  pointer-events: none;
+  display: none !important;
 }
-.playdate-quiz-page .pd-screw-tl { top: calc(var(--u) * 3); left: calc(var(--u) * 3); }
-.playdate-quiz-page .pd-screw-tr { top: calc(var(--u) * 3); right: calc(var(--u) * 3); }
-.playdate-quiz-page .pd-screw-bl { bottom: calc(var(--u) * 3); left: calc(var(--u) * 3); }
-.playdate-quiz-page .pd-screw-br { bottom: calc(var(--u) * 3); right: calc(var(--u) * 3); }
 
 /* M 설정 — 디스플레이 아래 둥근 버튼 */
 .playdate-quiz-page .pd-menu-btn {
@@ -138,10 +127,6 @@ body.dark.playdate-quiz-page .device.pd-device {
 /* 상단 헤더·스피커 — 미사용 */
 .playdate-quiz-page .pd-header,
 .playdate-quiz-page .pd-speaker {
-  display: none !important;
-}
-
-.playdate-quiz-page .pd-screw-tr {
   display: none !important;
 }
 
