@@ -1115,6 +1115,10 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
 }
 
 @media (max-width: 767px) {
+  .playdate-quiz-page .dpad {
+    --dpad-arm: clamp(32px, calc(var(--u) * 11), 42px);
+  }
+
   .playdate-quiz-page.turntable-quiz-page .device.pd-device {
     display: flex !important;
     flex-direction: column !important;
@@ -1194,9 +1198,9 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 
   .playdate-quiz-page .dpad {
-    --dpad-arm: clamp(26px, calc(var(--u) * 8.5), 36px);
+    --dpad-arm: clamp(32px, calc(var(--u) * 11), 42px);
     --dpad-shadow-gap: clamp(3px, calc(var(--u) * 1), 5px);
-    flex-shrink: 1;
+    flex-shrink: 0;
     min-width: 0;
   }
 
@@ -1244,7 +1248,7 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 
   .playdate-quiz-page .dpad {
-    --dpad-arm: clamp(26px, calc(var(--u) * 8), 34px);
+    --dpad-arm: clamp(32px, calc(var(--u) * 10.5), 40px);
     --dpad-shadow-gap: 4px;
     --dpad-shift-x: 2px;
     --dpad-shift-y: 0;
