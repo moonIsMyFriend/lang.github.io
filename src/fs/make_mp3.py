@@ -12,11 +12,14 @@ from gtts import gTTS
 ROOT = Path(__file__).resolve().parent
 
 # 처리할 CSV (파일명만, ROOT 기준). 필요 시 목록에 추가.
+# CSV_FILES = [
+#     "00. 입문.csv",
+#     "01. 기본.csv",
+#     "02. 심화.csv",
+#     "03. 전문.csv",
+# ]
 CSV_FILES = [
-    "00. 입문.csv",
-    "01. 기본.csv",
-    "02. 심화.csv",
-    "03. 전문.csv",
+    "99. 심판.csv",
 ]
 
 

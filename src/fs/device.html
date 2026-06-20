@@ -52,27 +52,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <section class="device-wrap">
                         <div class="device pd-device" id="playdate">
                             <span class="pd-screw pd-screw-tl" aria-hidden="true"></span>
-                            <span class="pd-screw pd-screw-tr" aria-hidden="true"></span>
                             <span class="pd-screw pd-screw-bl" aria-hidden="true"></span>
                             <span class="pd-screw pd-screw-br" aria-hidden="true"></span>
-
-                            <button type="button" class="orange-tab pd-menu" id="btnSettings" aria-label="학습 설정" title="학습 설정">M</button>
-
-                            <div class="pd-header">
-                                <div class="pd-record-wrap">
-                                    <div id="pronounceRecProgress" class="pronounce-rec-progress-slot pronounce-rec-progress-in-device" aria-live="polite"></div>
-                                    <button type="button" class="pad record-dot pd-record" id="recordBtn" aria-label="발음 녹음">●</button>
-                                </div>
-                                <div class="pd-speaker" aria-hidden="true">
-                                    <div class="equalizer" id="equalizer" aria-label="레벨 미터">
-                                        <span class="eq-bar"></span>
-                                        <span class="eq-bar"></span>
-                                        <span class="eq-bar"></span>
-                                        <span class="eq-bar"></span>
-                                        <span class="eq-bar"></span>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="pd-screen-zone">
                                 <div class="screen-bezel">
@@ -110,6 +91,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
 
                             <div class="pd-controls-zone">
+                                <div class="pd-controls-row">
                                 <div class="dpad" aria-label="방향 패드">
                                     <svg class="dpad-graphic" viewBox="0 0 150 155" overflow="visible" aria-hidden="true">
                                         <defs>
@@ -161,13 +143,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <button type="button" class="dpad-zone dpad-right" id="padNextDpad" aria-label="다음 재생" title="다음 재생"></button>
                                     <button type="button" class="dpad-zone dpad-down" id="volDown" aria-label="배속 늦추기" title="배속 늦추기"></button>
                                 </div>
-                                <div class="ab">
-                                    <button type="button" class="pad btn-b" id="padNext" aria-label="다음">B</button>
-                                    <button type="button" class="pad btn-a play-symbol" id="padPlay" aria-label="듣기">A</button>
+                                <div class="pd-action-grid" aria-label="기기 단축 버튼">
+                                    <button type="button" id="btnHome" class="pad pd-round-btn pd-list-btn" aria-label="목록" title="목록">
+                                        <svg class="tp-home-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round">
+                                            <line x1="4" y1="5" x2="20" y2="5" />
+                                            <line x1="4" y1="10" x2="20" y2="10" />
+                                            <line x1="4" y1="15" x2="20" y2="15" />
+                                            <line x1="4" y1="20" x2="20" y2="20" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="pad pd-round-btn pd-menu-btn" id="btnSettings" aria-label="학습 설정" title="학습 설정">M</button>
+                                    <button type="button" class="pad pd-round-btn play-symbol" id="padPlay" aria-label="듣기">▶</button>
+                                    <div class="pd-record-cell">
+                                        <div id="pronounceRecProgress" class="pronounce-rec-progress-slot pronounce-rec-progress-in-device" aria-live="polite"></div>
+                                        <button type="button" class="pad pd-round-btn pd-record-btn" id="recordBtn" aria-label="발음 녹음">●</button>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
 
-                            <button type="button" id="btnHome" class="sr-only" tabindex="-1" aria-hidden="true">Home</button>
                             <button type="button" id="btnGrade" class="sr-only" disabled tabindex="-1" aria-hidden="true">Check</button>
 
                             <div class="pd-usb" aria-hidden="true"></div>
