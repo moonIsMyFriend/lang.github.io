@@ -26,11 +26,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @font-face {
             font-family: 'DungGeunMo';
             src: url('./fonts/DungGeunMo.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: block;
         }
     </style>
 </head>
 
-<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html">
+<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html" data-pixel-dir="./images/png">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -72,6 +75,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                     <div id="tpMean" class="study-val" aria-label="뜻">—</div>
                                                     <div id="tpComment" class="study-val" aria-label="comment"></div>
                                                 </div>
+                                            </div>
+                                            <div id="tpPixelWrap" class="tp-pixel-wrap" hidden>
+                                                <img id="tpPixelImg" class="tp-pixel-img" alt="" decoding="async" />
                                             </div>
                                             <div class="tp-display-footer">
                                                 <div id="barWrap" class="tp-bar-wrap tp-bar-wrap--in-display">

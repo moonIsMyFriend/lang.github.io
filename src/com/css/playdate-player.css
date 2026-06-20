@@ -298,10 +298,23 @@ body.dark.playdate-quiz-page .device.pd-device {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  font-family: 'Press Start 2P', 'DungGeunMo', monospace;
+  font-family: 'DungGeunMo', 'Press Start 2P', monospace;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
   text-rendering: geometricPrecision;
+}
+
+.playdate-quiz-page #tpMean,
+.playdate-quiz-page #tpComment,
+.playdate-quiz-page #tpPron .pd-pron-ko,
+.playdate-quiz-page #tpPron .pd-pron-punct {
+  font-family: 'DungGeunMo', monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: geometricPrecision;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 body.pd-display-light.playdate-quiz-page .display.study-display {
@@ -341,9 +354,19 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
 }
 
 .playdate-quiz-page .study-val {
-  font-size: clamp(11px, 3.2vw, 14px);
-  line-height: 1.75;
-  letter-spacing: 0.02em;
+  line-height: 1.25;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.playdate-quiz-page #tpExpr {
+  font-family: 'Press Start 2P', 'DungGeunMo', monospace;
+  font-size: 16px;
+  line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: none;
 }
 
 .playdate-quiz-page .study-meta-scroll {
@@ -352,35 +375,29 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
 }
 
 .playdate-quiz-page .study-meta-scroll #tpPron {
-  line-height: 1.75;
+  line-height: 1.25;
 }
 
 .playdate-quiz-page #tpPron .pd-pron-ipa {
   font-family: 'Noto Serif', 'Charis SIL', 'Lucida Sans Unicode', serif;
-  font-size: clamp(12px, 3.5vw, 15px);
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.4;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
 }
 
 .playdate-quiz-page #tpPron .pd-pron-ko,
 .playdate-quiz-page #tpPron .pd-pron-punct {
-  font-family: 'DungGeunMo', 'Press Start 2P', monospace;
-  font-size: clamp(11px, 3.2vw, 14px);
-  line-height: 1.75;
-  -webkit-font-smoothing: none;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .playdate-quiz-page #tpMean,
 .playdate-quiz-page #tpComment {
-  font-size: clamp(11px, 3.3vw, 14px);
-}
-
-.playdate-quiz-page #tpExpr {
-  font-size: clamp(14px, 4vw, 18px);
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .playdate-quiz-page .tp-display-footer {
@@ -390,6 +407,38 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
   gap: 6px;
 }
 
+.playdate-quiz-page .display.study-display.has-pixel-art {
+  padding-bottom: 88px;
+}
+
+.playdate-quiz-page .tp-pixel-wrap {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 26px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.playdate-quiz-page .tp-pixel-wrap[hidden] {
+  display: none !important;
+}
+
+.playdate-quiz-page .tp-pixel-img {
+  display: block;
+  max-height: min(72px, 24vh);
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .playdate-quiz-page .tp-bar-wrap.tp-bar-wrap--in-display {
   flex: 1 1 0;
   min-width: 0;
@@ -397,7 +446,7 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
 }
 
 .playdate-quiz-page .tp-bar-unified {
-  height: 14px;
+  height: 18px;
   background: #f0f0f0;
   border: 2px solid #111;
   border-radius: 0;
@@ -414,11 +463,18 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
 .playdate-quiz-page .tp-bar-label,
 .playdate-quiz-page .tp-bar-total {
   font-family: 'Press Start 2P', 'DungGeunMo', monospace;
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1;
   -webkit-font-smoothing: none;
   font-variant-numeric: tabular-nums;
+  top: 50%;
+  transform: translateY(-50%);
+  letter-spacing: 0.02em;
+}
+
+.playdate-quiz-page .tp-bar-total {
+  transform: translate(-50%, -50%);
 }
 
 body.pd-display-light.playdate-quiz-page .tp-bar-unified {
@@ -436,12 +492,13 @@ body.pd-display-light.playdate-quiz-page .tp-bar-correct {
 
 body.pd-display-light.playdate-quiz-page .tp-bar-label,
 body.pd-display-light.playdate-quiz-page .tp-bar-total {
-  color: #fff;
+  color: #111;
+  -webkit-text-stroke: 0;
   text-shadow:
-    -1px 0 #000,
-    1px 0 #000,
-    0 -1px #000,
-    0 1px #000;
+    -1px 0 #fff,
+    1px 0 #fff,
+    0 -1px #fff,
+    0 1px #fff;
 }
 
 body.pd-display-light.playdate-quiz-page .tp-speed-display {
@@ -653,22 +710,32 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 
   .playdate-quiz-page.turntable-quiz-page .study-val {
-    font-size: clamp(11px, 3.2vw, 14px);
-    line-height: 1.75;
-  }
-
-  .playdate-quiz-page.turntable-quiz-page .study-meta-scroll #tpPron {
-    font-size: clamp(11px, 3.2vw, 14px);
+    line-height: 1.25;
   }
 
   .playdate-quiz-page.turntable-quiz-page #tpMean,
   .playdate-quiz-page.turntable-quiz-page #tpComment {
-    font-size: clamp(11px, 3.3vw, 14px);
+    font-family: 'DungGeunMo', monospace;
+    font-size: 16px;
+    line-height: 16px;
+    -webkit-font-smoothing: none;
+  }
+
+  .playdate-quiz-page.turntable-quiz-page #tpPron .pd-pron-ipa {
+    font-size: 14px;
+  }
+
+  .playdate-quiz-page.turntable-quiz-page #tpPron .pd-pron-ko,
+  .playdate-quiz-page.turntable-quiz-page #tpPron .pd-pron-punct {
+    font-family: 'DungGeunMo', monospace;
+    font-size: 16px;
+    line-height: 16px;
+    -webkit-font-smoothing: none;
   }
 
   .playdate-quiz-page.turntable-quiz-page #tpExpr {
-    font-size: clamp(14px, 4vw, 18px);
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.25;
   }
 }
 

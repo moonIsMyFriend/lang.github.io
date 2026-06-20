@@ -439,6 +439,67 @@ export function initTurntableQuizUi() {
     setPron(tpPron, pron);
     set(tpMean, mean);
     set(tpComment, com, '');
+    syncPixelImg(expr);
+  }
+
+  const pixelDir = document.body.dataset.pixelDir;
+  const tpPixelWrap = document.querySelector('#tpPixelWrap');
+  const tpPixelImg = document.querySelector('#tpPixelImg');
+  const studyDisplay = document.querySelector('.display.study-display');
+
+  function pixelSlug(text) {
+    return String(text || '')
+      .normalize('NFD')
+      .replace(/\p{M}/gu, '')
+      .toLowerCase()
+      .replace(/['']/g, '')
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_|_$/g, '');
+  }
+
+  function pixelCandidates(no, expr) {
+    const nn = String(no).padStart(2, '0');
+    const files = [`${nn}.png`];
+    const slug = pixelSlug(expr);
+    if (slug) files.push(`${nn}_${slug}.png`);
+    return files;
+  }
+
+  function hidePixelImg() {
+    tpPixelWrap.hidden = true;
+    tpPixelImg.removeAttribute('src');
+    delete tpPixelImg.dataset.src;
+    studyDisplay?.classList.remove('has-pixel-art');
+  }
+
+  function syncPixelImg(expr) {
+    if (!tpPixelWrap || !tpPixelImg || !pixelDir) return;
+    const no = document.querySelector('#selId')?.textContent?.trim();
+    if (!no || no === '—' || !/^\d+$/.test(no)) {
+      hidePixelImg();
+      return;
+    }
+    const base = pixelDir.replace(/\/$/, '');
+    const files = pixelCandidates(no, expr ?? tpExpr?.textContent?.trim());
+    let i = 0;
+
+    const tryNext = () => {
+      if (i >= files.length) {
+        hidePixelImg();
+        return;
+      }
+      const src = `${base}/${files[i++]}`;
+      if (tpPixelImg.dataset.src === src && !tpPixelWrap.hidden) return;
+      tpPixelImg.dataset.src = src;
+      tpPixelImg.onload = () => {
+        tpPixelWrap.hidden = false;
+        studyDisplay?.classList.add('has-pixel-art');
+      };
+      tpPixelImg.onerror = tryNext;
+      tpPixelImg.src = src;
+    };
+
+    tryNext();
   }
 
   const mo = new MutationObserver(syncLines);
@@ -446,6 +507,8 @@ export function initTurntableQuizUi() {
   if (enMask) mo.observe(enMask, { characterData: true, subtree: true, childList: true });
   if (enFull) mo.observe(enFull, { characterData: true, subtree: true, childList: true });
   if (answerWrap) mo.observe(answerWrap, { attributes: true, attributeFilter: ['style'] });
+  const selIdEl = document.querySelector('#selId');
+  if (selIdEl) mo.observe(selIdEl, { characterData: true, childList: true, subtree: true });
   document.addEventListener('learnlang-reset-tp-expr', syncLines);
   syncLines();
 
