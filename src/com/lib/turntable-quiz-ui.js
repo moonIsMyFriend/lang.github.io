@@ -344,6 +344,50 @@ export function initTurntableQuizUi() {
   const tpMean = document.querySelector('#tpMean');
   const tpComment = document.querySelector('#tpComment');
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /** pron CSV: "aʁɛ / 아해" 또는 "[aʁɛ / 아해]" → [ IPA / 한글 ] */
+  function formatPronHtml(raw) {
+    let s = String(raw || '').trim();
+    if (!s || s === '—') return '';
+    s = s.replace(/^\[|\]$/g, '').trim();
+    const slash = s.indexOf('/');
+    const open = '<span class="pd-pron-punct">[</span>';
+    const close = '<span class="pd-pron-punct">]</span>';
+    if (slash >= 0) {
+      const ipa = s.slice(0, slash).trim();
+      const ko = s.slice(slash + 1).trim();
+      if (ipa && ko) {
+        return (
+          open +
+          `<span class="pd-pron-ipa">${escapeHtml(ipa)}</span>` +
+          `<span class="pd-pron-punct"> / </span>` +
+          `<span class="pd-pron-ko">${escapeHtml(ko)}</span>` +
+          close
+        );
+      }
+      if (ko) return open + `<span class="pd-pron-ko">${escapeHtml(ko)}</span>` + close;
+      if (ipa) return open + `<span class="pd-pron-ipa">${escapeHtml(ipa)}</span>` + close;
+    }
+    return open + `<span class="pd-pron-ipa">${escapeHtml(s)}</span>` + close;
+  }
+
+  function setPron(el, v) {
+    if (!el) return;
+    const t = v && String(v).trim();
+    if (!t || t === '—') {
+      el.textContent = '—';
+      return;
+    }
+    el.innerHTML = formatPronHtml(t);
+  }
+
   function syncLines() {
     const ktxt = (ko?.textContent || '').trim();
     let mean = ktxt;
@@ -392,7 +436,7 @@ export function initTurntableQuizUi() {
       if (el) el.textContent = v && String(v).trim() ? v : empty;
     };
     set(tpExpr, expr);
-    set(tpPron, pron);
+    setPron(tpPron, pron);
     set(tpMean, mean);
     set(tpComment, com, '');
   }
