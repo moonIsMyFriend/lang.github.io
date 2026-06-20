@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 
-<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html" data-pixel-dir="./images/png">
+<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html" data-quiz-practice="study" data-pixel-dir="./images/png">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -92,6 +92,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                 <div id="tpSpeed" class="tp-speed-display" aria-label="재생 속도">x1</div>
                                                 <div class="mini-play tp-play-mode-once" id="miniPlay" role="button" tabindex="0" title="1회 재생 (클릭: 반복 재생)" aria-label="1회 재생, 클릭하면 반복 재생">
                                                     <svg class="tp-mini-play-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tpSettingsModal" class="tp-settings-modal tp-settings-modal--in-display hidden" role="dialog"
+                                            aria-modal="true" aria-labelledby="tpSettingsTitle" hidden>
+                                            <div class="tp-settings-backdrop pd-settings-backdrop" data-close-settings tabindex="-1" aria-hidden="true"></div>
+                                            <div class="tp-settings-dialog pd-settings-dialog">
+                                                <div class="pd-settings-head">
+                                                    <h2 id="tpSettingsTitle" class="pd-settings-title">설정</h2>
+                                                </div>
+                                                <div class="pd-settings-body">
+                                                    <fieldset class="pd-settings-group">
+                                                        <legend class="pd-settings-legend">진행 방식</legend>
+                                                        <label class="pd-settings-option"><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
+                                                        <label class="pd-settings-option"><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
+                                                    </fieldset>
+                                                    <div class="pd-settings-row">
+                                                        <label class="pd-settings-option"><input type="checkbox" id="audioLoop" /> 반복 재생</label>
+                                                    </div>
+                                                    <div class="pd-settings-row">
+                                                        <label class="pd-settings-option"><input type="checkbox" id="themeToggle" /> 다크 모드</label>
+                                                    </div>
+                                                </div>
+                                                <div class="pd-settings-foot">
+                                                    <button type="button" class="pd-settings-btn" id="btnApplySettings">확인</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             <line x1="4" y1="20" x2="20" y2="20" />
                                         </svg>
                                     </button>
-                                    <button type="button" class="pad pd-round-btn pd-menu-btn" id="btnSettings" aria-label="학습 설정" title="학습 설정">M</button>
+                                    <button type="button" class="pad pd-round-btn pd-menu-btn" id="btnSettings" aria-label="설정" title="설정">M</button>
                                     <button type="button" class="pad pd-round-btn play-symbol" id="padPlay" aria-label="듣기">▶</button>
                                     <div class="pd-record-cell">
                                         <div id="pronounceRecProgress" class="pronounce-rec-progress-slot pronounce-rec-progress-in-device" aria-live="polite"></div>
@@ -229,51 +254,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </section>
 
-    </div>
-
-    <div id="tpSettingsModal" class="tp-settings-modal hidden" role="dialog" aria-modal="true"
-        aria-labelledby="tpSettingsTitle" hidden>
-        <div class="tp-settings-backdrop" data-close-settings tabindex="-1" aria-hidden="true"></div>
-        <div class="tp-settings-dialog box card">
-            <div class="row tp-settings-head">
-                <h2 id="tpSettingsTitle" style="margin:0">학습 설정</h2>
-                <button type="button" class="ghost" id="btnCloseSettings" aria-label="닫기">✕</button>
-            </div>
-            <div class="box" style="margin-top:12px">
-                <div class="row" style="margin-top:4px">
-                    <span class="muted">문제 출제 방식:</span>
-                    <label><input type="radio" name="mode" id="modeRandom" value="random" checked> 랜덤</label>
-                    <label style="margin-left:12px"><input type="radio" name="mode" id="modeSeq" value="seq"> 순차</label>
-                </div>
-                <div class="row" style="margin-top:8px">
-                    <span class="muted">모드 선택:</span>
-                </div>
-                <div>
-                    <label style="margin-left:12px"><input type="radio" name="practice" id="practiceQuiz" value="quiz"> 퀴즈(빈칸 채우기)</label>
-                </div>
-                <div>
-                    <label style="margin-left:12px"><input type="radio" name="practice" id="practiceStudy" value="study" checked> 학습(번역/정답/발음)</label>
-                </div>
-                <div class="row" style="margin-top:10px">
-                    <label for="level">가리기 난이도: <span id="levelLabel" class="hint">30%</span></label>
-                    <input id="level" class="range" type="range" min="10" max="80" step="5" value="30" />
-                </div>
-                <div class="row" style="margin-top:6px">
-                    <label><input id="keepFirst" type="checkbox" checked /> 단어 첫 글자는 보이기</label>
-                    <label style="margin-left:14px"><input id="minLen" type="number" min="1" max="10" value="3"
-                            style="width:64px;"> 글자 이상만 가리기</label>
-                </div>
-                <div class="row" style="margin-top:10px">
-                    <label><input type="checkbox" id="audioLoop" /> 자동 반복 재생</label>
-                </div>
-                <div class="row" style="margin-bottom:4px">
-                    <label><input type="checkbox" id="themeToggle" /> 다크 모드</label>
-                </div>
-            </div>
-            <div class="row" style="margin-top:14px; justify-content:flex-end">
-                <button type="button" class="primary" id="btnApplySettings">확인</button>
-            </div>
-        </div>
     </div>
 
     <script type="module">

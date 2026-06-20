@@ -520,20 +520,29 @@ export function initTurntableQuizUi() {
   const settingsModal = document.querySelector('#tpSettingsModal');
   const closeBtn = document.querySelector('#btnCloseSettings');
   const applyBtn = document.querySelector('#btnApplySettings');
+  const settingsScreen = settingsModal?.closest('.screen');
 
   function openSettings() {
     if (!settingsModal) return;
     settingsModal.classList.remove('hidden');
     settingsModal.hidden = false;
-    document.body.classList.add('tp-settings-open');
-    closeBtn?.focus();
+    if (settingsScreen) {
+      settingsScreen.classList.add('pd-settings-open');
+    } else {
+      document.body.classList.add('tp-settings-open');
+    }
+    applyBtn?.focus();
   }
 
   function closeSettings() {
     if (!settingsModal) return;
     settingsModal.classList.add('hidden');
     settingsModal.hidden = true;
-    document.body.classList.remove('tp-settings-open');
+    if (settingsScreen) {
+      settingsScreen.classList.remove('pd-settings-open');
+    } else {
+      document.body.classList.remove('tp-settings-open');
+    }
     settingsBtn?.focus();
   }
 
