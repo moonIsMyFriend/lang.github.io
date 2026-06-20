@@ -1,51 +1,51 @@
-no,group,speaker,original,pron,trans,comment
-1,referee,0,arbitre,[aʁbitʁ / 아르비트르],심판,경기를 규칙과 관습에 따라 주관·판정
-2,referee,0,president,[pʁezidɑ̃ / 주심],주심,선수 소집·경기 진행·뚜슈 판정·징계 부여
-3,referee,0,jury,[ʒyʁi / 부심단],부심단,주심 양옆에서 반칙·유효면 가림 등 감시
-4,etiquette,0,En garde !,[ɑ̃ gaʁd / 엉 갸르드],갸르드 자세를 취하시오,경기 시작·재시작 명령. Allez 전까지 정지 유지
-5,etiquette,0,Prêt ? / Êtes-vous prêts ?,[pʁɛ / 프렛],준비되었습니까?,준비 시 oui(위) / 미준비 시 non(농)
+﻿no,group,speaker,original,pron,trans,comment
+1,referee,0,arbitre,[aʁbitʁ / 아흐비트ㅎ],심판,경기를 규칙과 관습에 따라 주관·판정
+2,referee,0,president,[pʁezidɑ̃ / 쁘헤지덩],주심,선수 소집·경기 진행·뚜슈 판정·징계 부여
+3,referee,0,jury,[ʒyʁi / 쥐히],부심단,주심 양옆에서 반칙·유효면 가림 등 감시
+4,etiquette,0,En garde !,[ɑ̃ gaʁd / 엉 갸흐드],갸르드 자세를 취하시오,경기 시작·재시작 명령. Allez 전까지 정지 유지
+5,etiquette,0,Prêt ? / Êtes-vous prêts ?,[pʁɛ / 프헷],준비되었습니까?,준비 시 oui(위) / 미준비 시 non(농)
 6,etiquette,0,Allez !,[ale / 알레],시작,경기를 시작하라는 명령
 7,etiquette,0,Halte !,[alt / 알뜨],정지,경기를 멈추라는 명령
 8,attack,0,Attaque !,[atak / 아따끄],공격,한 선수가 공격했을 때 공격권 인정
-9,defence,0,Parade !,[paʁad / 빠라드],막기,상대 공격을 막았을 때 수비권 인정
+9,defence,0,Parade !,[paʁad / 빠하드],막기,상대 공격을 막았을 때 수비권 인정
 10,defence,0,Riposte !,[ʁipost / 리뽀스트],막고 찌르기,패리 성공 후 곧바로 찌르는 행동
-11,defence,0,Contre-riposte !,[kɔ̃tʁ ʁipost / 꽁뜨르 리뽀스트],재반격,상대 리뽀스트를 되막고 찌르기
-12,contre-attaque,0,Arrêt !,[aʁɛ / 아렛],역공격,패리 없이 상대 공격 중 공격(꽁뜨르 아따끄)
-13,signal,0,contre-attaque,[kɔ̃tʁ‿atak / 꽁뜨르 아따끄],역공격,상대 공격 중 공격·수비공격. 대부분 arrêt
-14,line,0,Pointe en ligne !,[pwɛ̃t ɑ̃ liɲ / 뽀엥뜨  엉 린느],일직선 위협,칼끝이 유효면을 향해 팔을 뻗은 상태. 공격·수비 동작 아님. 상대 공격 전 선제권 확보.
-15,tactics,0,Contre-temps !,[kɔ̃tʁ tɑ̃ / 꽁뜨르 땅],역타이밍,공격 도중 상대 아렛에 막고 찌르기, 상대 꽁뜨르 아따끄를 무산하는 동작.
+11,defence,0,Contre-riposte !,[kɔ̃tʁ ʁipost / 꽁뜨흐 히뽀스트],재반격,상대 리뽀스트를 되막고 찌르기
+12,contre-attaque,0,Arrêt !,[aʁɛ / 아해],역공격,패리 없이 상대 공격 중 공격(꽁뜨르 아따끄)
+13,signal,0,contre-attaque,[kɔ̃tʁ‿atak / 꽁뜨 하따끄],역공격,상대 공격 중 공격·수비공격. 대부분 arrêt
+14,line,0,Pointe en ligne !,[pwɛ̃t ɑ̃ liɲ / 쁘앙 떵 린느],일직선 위협,칼끝이 유효면을 향해 팔을 뻗은 상태. 공격·수비 동작 아님. 상대 공격 전 선제권 확보.
+15,tactics,0,Contre-temps !,[kɔ̃tʁ tɑ̃ / 꽁뜨흐 떵],역타이밍,"공격 도중 상대 아렛에 막고 찌르기, 상대 꽁뜨르 아따끄를 무산하는 동작."
 16,rules,0,Simultanée !,[simyltanɛ / 씨뮐따네],동시 동작, 선수가 동시에 공격·행동 에뻬: 양쪽 득점 / 플뢰레·사브르: 보통 무효 후 재시작
-17,rules,0,Touche(e) !,[tuʃ / 뚜세],유효타,득점으로 인정
+17,rules,0,Touche(e) !,[tuʃ / 뚜슈],유효타,득점으로 인정
 18,rules,0,Non valable !,[nɔ̃ valabl / 농 발라블],무효타,플뢰레에서 무효면을 찌름
-19,rules,0,Point !,[pwɛ̃ / 포엥],점수,득점 부여
-20,rules,0,carte jaune,[kaʁt ʒon / 꺄르똥 존],옐로 카드,경고. 같은 경기에서 두 번이면 상대 1점
-21,rules,0,carte rouge,[kaʁt ʁuʒ / 꺄르똥 루즈],레드 카드,경고. 상대 1점
-22,rules,0,carte noire,[kaʁt nwaʁ / 꺄르똥 놔르],블랙 카드,퇴장
-23,footwork,0,déplacements,[deplasmɑ̃ / 데쁠라스망],이동,거리 조절·공격·수비를 위한 앞뒤 움직임
-24,footwork,0,marche,[maʁʃ / 마르쉬],전진,데쁠라스망의 전진
-25,footwork,0,retraite,[ʁətʁɛt / 르트레트],후퇴,데쁠라스망의 후퇴
-26,distance,0,distances,[distɑ̃s / 디스땅스],거리,두 선수 간 거리
-27,line,0,les lignes,[le liɲ / 린느],라인,칼 잡은 손 자세에 따른 과녁 부분
-28,line,0,dedans,[dədɑ̃ / 드당],왼쪽 높은 라인,린느 용어
+19,rules,0,Point !,[pwɛ̃ / 뿌앙],점수,득점 부여
+20,rules,0,carte jaune,[kaʁt ʒon / 꺄흐트 존],옐로 카드,경고. 같은 경기에서 두 번이면 상대 1점
+21,rules,0,carte rouge,[kaʁt ʁuʒ / 꺄흐트 후즈],레드 카드,경고. 상대 1점
+22,rules,0,carte noire,[kaʁt nwaʁ / 꺄흐트 누와흐],블랙 카드,퇴장
+23,footwork,0,déplacements,[deplasmɑ̃ / 데쁠라쓰멍],이동,거리 조절·공격·수비를 위한 앞뒤 움직임
+24,footwork,0,marche,[maʁʃ / 마흐쉬],전진,데쁠라스망의 전진
+25,footwork,0,retraite,[ʁətʁɛt / 흐트해트],후퇴,데쁠라스망의 후퇴
+26,distance,0,distances,[distɑ̃s / 디스떵스],거리,두 선수 간 거리
+27,line,0,les lignes,[le liɲ / 레 린느],라인,칼 잡은 손 자세에 따른 과녁 부분
+28,line,0,dedans,[dədɑ̃ / 드덩],왼쪽 높은 라인,린느 용어
 29,line,0,dessus,[dasy / 드쒸],오른쪽 높은 라인,린느 용어
 30,line,0,dessous,[dəsu / 드쑤],왼쪽 낮은 라인,린느 용어
-31,line,0,dehors,[dəɔʁ / 드오르],오른쪽 낮은 라인,린느 용어
-32,tactics,2,priorité,[pʁiɔʁite / 프리오리떼],선제권,포엥뜨 엉 린느로 확보. 아따끄 오 페르·프리즈 드 페르 당한 뒤 즉각 공격 시 상실
-33,stance,1,position d'escrime,[pozisjɔ̃ dɛskʁim / 펜싱자세],펜싱 자세,8가지. 플뢰레·에뻬: sixte / 사브르: tierce
-34,blade,1,engagement,[ɑ̃gaʒmɑ̃ / 앙가즈망],칼 맞대기,상대 칼과 접촉한 상태
+31,line,0,dehors,[dəɔʁ / 드오흐],오른쪽 낮은 라인,린느 용어
+32,tactics,2,priorité,[pʁiɔʁite / 프히오히떼],선제권,포엥뜨 엉 린느로 확보. 아따끄 오 페르·프리즈 드 페르 당한 뒤 즉각 공격 시 상실
+33,stance,1,position d'escrime,[pozisjɔ̃ dɛskʁim / 뽀지시용 대스크힘],펜싱 자세,8가지. 플뢰레·에뻬: sixte / 사브르: tierce
+34,blade,1,engagement,[ɑ̃gaʒmɑ̃ / 엉갸즈멍],칼 맞대기,상대 칼과 접촉한 상태
 35,defence,1,tac,[tak / 딱],딱,패리 방식. 칼을 쳐내거나 막는 동작
 36,defence,1,opposition,[opozisjɔ̃ / 오뽀지숑],오뽀지숑,패리·리뽀스트 방식. 상대 칼을 제어하며 막기
-37,defence,1,en cédant,[ɑ̃ sedɑ̃ / 엉 세당],엉 세당,패리·리뽀스트 방식. 양보하며 막는 동작
-38,attack,1,attaque simple,[atak sɛ̃pl / 아따끄 생쁠],단순 공격,coup droit / dégagement / coupé
+37,defence,1,en cédant,[ɑ̃ sedɑ̃ / 엉 세덩],엉 세당,패리·리뽀스트 방식. 양보하며 막는 동작
+38,attack,1,attaque simple,[atak sɛ̃pl / 아따끄 쌍쁘르],단순 공격,coup droit / dégagement / coupé
 39,attack,1,attaque composée,[atak kɔ̃poze / 아따끄 꽁뽀제],복합 공격,연속·속임 포함 공격
-40,attack,2,attaque au fer,[atak o fɛʁ / 아따끄 오 페르],칼 치기 공격,battement / pression / froissement
-41,blade,2,prise de fer,[pʁiz də fɛʁ / 프리즈 드 페르],칼 잡기,opposition / liement / enveloppement / croisé
-42,contre-attaque,2,arrêt,[aʁɛ / 아레],아레,contre-attaque의 대표 형태
-43,contre-attaque,2,arrêt par opposition,[aʁɛ paʁ opozisjɔ̃ / 아레 빠르 오뽀지숑],오뽀지숑 아레,블레이드 제어 저지 공격
-44,contre-attaque,2,arrêt avec temps d'escrime,[aʁɛ avɛk tɑ̃ dɛskʁim / 아레 아벡 땅 데스크림],템포 아레,타이밍 저지 공격
-45,re-attack,2,remise,[ʁəmiz / 르미즈],재공격,팔을 거두지 않고 연속 찌르기
-46,re-attack,2,redoublement,[ʁədublmɑ̃ / 르두블망],압박 재공격,전진 압박 유지하며 다시 공격
-47,re-attack,2,reprise,[ʁəpʁiz / 르프리즈],재정비 후 재공격,거리·타이밍 재설정 후 재공격
-48,judgment,2,phrase d'armes,[fʁaz daʁm / 프라즈 다름],경기 상황,중단 시 주심이 동작을 분석하는 단위
-49,judgment,2,a Attaque,[a atak / a 아따끄],a가 이김,단독 공격 성공
+40,attack,2,attaque au fer,[atak o fɛʁ / 아따끄 오 페흐],칼 치기 공격,battement / pression / froissement
+41,blade,2,prise de fer,[pʁiz də fɛʁ / 쁘히즈 드 패흐],칼 잡기,opposition / liement / enveloppement / croisé
+42,contre-attaque,2,arrêt,[aʁɛ / 아해],역공격,contre-attaque의 대표 형태
+43,contre-attaque,2,arrêt par opposition,[aʁɛ paʁ opozisjɔ̃ / 아해 빠호뽀지숑],오뽀지숑 아레,블레이드 제어 저지 공격
+44,contre-attaque,2,arrêt avec temps d'escrime,[aʁɛ avɛk tɑ̃ dɛskʁim / 아해 아벡떵 대스크힘],템포 아레,타이밍 저지 공격
+45,re-attack,2,remise,[ʁəmiz / 흐미즈],재공격,팔을 거두지 않고 연속 찌르기
+46,re-attack,2,redoublement,[ʁədublmɑ̃ / 흐두블르멍],압박 재공격,전진 압박 유지하며 다시 공격
+47,re-attack,2,reprise,[ʁəpʁiz / 허쁘히즈],재정비 후 재공격,거리·타이밍 재설정 후 재공격
+48,judgment,2,phrase d'armes,[fʁaz daʁm / 프하즈 다흠],경기 상황,중단 시 주심이 동작을 분석하는 단위
+49,judgment,2,a Attaque,[a atak / 아 아따끄],a가 이김,단독 공격 성공
 50,rules,1,touche,[tuʃ / 뚜슈],뚜슈,심판기 신호로 확인. 미신호 시 부여 불가

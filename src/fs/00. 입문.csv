@@ -2,21 +2,21 @@
 1,basic,0,arrêt,[aʁɛ / 아해],시작,
 2,basic,0,attaque,[atak / 아따끄],공격,
 3,tactics,0,contre-attaque,[kɔ̃tʁ‿atak / 꽁트하따끄],역공격. 막지 않고 들어가는 반격,상대가 공격 우선권을 가진 상태에서 parade 없이 공격
-4,attack,0,fente,[fɑ̃t / 펑트],런지자세로 공격,기본 찌르기
-5,stance,0,garde,[gaʁd / 갸흐드],준비 자세,기본 자세
+4,attack,0,fente,[fɑ̃t / 펑트],런지자세로 공격,
+5,stance,0,garde,[gaʁd / 갸흐드],준비 자세,
 6,footwork,0,marche,[maʁʃ / 마흐슈],전진,앞으로 스텝
 7,defence,0,parade,[paʁad / 빠하드],방어,칼로 막기. 패리
-8,field,0,piste,[pist / 삐스트],경기장,펜싱 스트립
+8,field,0,piste,[pist / 삐스트],펜싱 경기장,
 9,defence,0,positions,[pozisjɔ̃ / 뽀지시용],자세,
-10,etiquette,0,salut,[saly / 살뤼],/인사,
+10,etiquette,0,salut,[saly / 살뤼],인사,
 11,rules,0,toucher,[tuʃe / 뚜셰],맞히다/터치,득점 행위
 12,stance,0,en garde,[ɑ̃ gaʁd / 엉갸ㅎ드],준비,심판 구령
 13,weapon,0,fleuret,[flœʁɛ / 플르어해],플뢰레,펜싱종목
-14,etiquette,0,prêt ? / allez !,[pʁɛ ale / 쁘해 알레],경기 시작 구령,심판 구령
-15,footwork,0,Rompez,[ʁɔ̃pe / 홍뻬],뒤로 물러나라,심판 구령
+14,etiquette,0,prêt ? / allez !,[pʁɛ ale / 쁘해 알레],경기 시작 구령,(심판 구령)
+15,footwork,0,Rompez,[ʁɔ̃pe / 홍뻬],뒤로 물러나라,(심판 구령)
 16,defence,0,Parade-Riposte,[paʁad ʁipost / 빠하드 히뽀스트],막고 바로 찌르기,패리 후 반격[프랑스식 표현]
-17,etiquette,0,attention,[atɑ̃sjɔ̃ / 아떵씨용용],차려,
+17,etiquette,0,attention,[atɑ̃sjɔ̃ / 아떵씨용],차려,(심판 구령)
 18,attack,0,allonzes le bras,[alɔ̃ʒe lə bʁa / 알롱줴 르브하],팔 뻗는 동작,
-19,etiquette,0,Etes-vous pret?,[ɛt vu pʁɛ / 에뜨 부 프해],준비됐나요?,
+19,etiquette,0,Etes-vous pret?,[ɛt vu pʁɛ / 에뜨 부 프해],준비됐나요?,(심판 구령) 준비 시 oui(위) / 미준비 시 non(농)
 20,etiquette,0,oui,[wi / 위],예,
-21,etiquette,0,halte,[alt / 알트],정지,
+21,etiquette,0,halte,[alt / 알트],정지,(심판 구령)

@@ -1,28 +1,28 @@
 ﻿no,group,speaker,original,pron,trans,comment
-1,footwork,1,balestra,[balɛstʁa / 발레스트하],도약 스텝,짧은 도약 후 공격 연결
+1,footwork,1,balestra,[balɛstʁa / 발래스트하],도약 스텝,짧은 도약 후 공격 연결
 2,blade,1,battement,[batmɑ̃ / 바트멍],칼 치기,상대 칼을 쳐내는 동작
 3,tactics,1,contre,[kɔ̃tʁ / 콩트흐],대응,상대 동작에 맞서는 개념
-4,blade,1,coupé,[kupe / 쿠페],넘겨 공격,칼 위로 넘겨 공격
-5,style,1,défensive,[defɑ̃siv / 데팡시브],수비적 움직임,수비 위주 전술
-6,distance,1,distance,[distɑ̃s / 디스땅스],거리,두 선수 간 간격
+4,blade,1,coupé,[kupe / 꾸뻬],넘겨 공격,칼 위로 넘겨 공격
+5,style,1,défensive,[defɑ̃siv / 데펑씨브],수비적 움직임,수비 위주 전술
+6,distance,1,distance,[distɑ̃s / 디스떵스],거리,두 선수 간 간격
 7,blade,1,engagement,[ɑ̃gaʒmɑ̃ / 엉가쥬멍],칼 맞대기,공격 전 접촉
-8,defence,1,esquive,[eskiv / 에스키브],회피,몸을 피하는 동작
-9,attack,1,feinte,[fɛ̃t / 페앙트],속임,가짜 공격
-10,blade,1,fer,[fɛʁ / 페흐],칼,블레이드
-11,attack,1,flèche,[flɛʃ / 플레쉬],돌진 공격,연속 보행 돌진
+8,defence,1,esquive,[eskiv / 에스끼브],회피,몸을 피하는 동작
+9,attack,1,feinte,[fɛ̃t / 파앙트],속임,가짜 공격
+10,blade,1,fer,[fɛʁ / 패흐],칼,블레이드
+11,attack,1,flèche,[flɛʃ / 플래쉬],돌진 공격,연속 보행 돌진
 12,blade,1,lame,[lam / 람],블레이드,금속 칼날
 13,blade,1,liement,[ljmɑ̃ / 리이멍],연속 제어,라인 이동 제어
 14,line,1,ligne,[liɲ / 리뉴],라인,공격 경로
-15,offense,1,offensive,[ofɑ̃siv / 오펑시브],공격적인 플레이,공격 위주
-16,attack,1,opposition,[opozisjɔ̃ / 오뽀지시옹],차단 공격,막으며 찌르기
+15,offense,1,offensive,[ofɑ̃siv / 오펑씨브],공격적인 플레이,공격 위주
+16,attack,1,opposition,[opozisjɔ̃ / 오뽀지씨용],차단 공격,막으며 찌르기
 17,attack,1,remise,[ʁəmiz / 허미즈/르미즈],즉시 재공격,즉시 재공격. 팔을 거두지 않고 연속 찌르기.
-18,attack,1,reprise,[ʁəpʁiz / 허프히즈],재정비 후 재공격,거리와 타이밍 재설정
+18,attack,1,reprise,[ʁəpʁiz / 허쁘히즈],재정비 후 재공격,거리와 타이밍 재설정
 19,footwork,1,retraite,[ʁətʁɛt / 허트헤트],후퇴,뒤로 스텝
-20,attack,1,riposte,[ʁipost / ㅎ리뽀스트],받아치기. 반격.,보통 Parade 이후 이어짐
-21,distance,1,rompre,[ʁɑ̃pʁ / 홈프흐],거리 벌리기,후퇴로 거리 증가
+20,attack,1,riposte,[ʁipost / 히뽀스트],받아치기. 반격.,보통 Parade 이후 이어짐
+21,distance,1,rompre,[ʁɑ̃pʁ / 홈쁘흐],거리 벌리기,후퇴로 거리 증가
 22,attack,1,longue fente,[lɔ̃ɡ fɑ̃t / 롱 펑트],롱 런지,긴 사거리 런지
 23,contre-attaque,1,ducking,[ˈdʌkɪŋ / 덕킹],숙여 피하기,사브르에서 자주 사용되는 영어 표현
-24,preparation,1,Préparation,[pʁepaʁasjɔ̃ / 프레빠라시옹],준비 동작,공격 전 세팅
-25,footwork,1,Appel,[apɛl / 아뻴],발구르기,리듬 교란 동작
-26,blade,1,Pression,[pʁesjɔ̃ / 프레시옹],압박,블레이드 접촉 유지
+24,preparation,1,Préparation,[pʁepaʁasjɔ̃ / 프헤빠하씨용],준비 동작,공격 전 세팅
+25,footwork,1,Appel,[apɛl / 아뺄],발구르기,리듬 교란 동작
+26,blade,1,Pression,[pʁesjɔ̃ / 프헤씨용],압박,블레이드 접촉 유지
 27,timing,1,Temps,[tɑ̃ / 떵],타이밍 / 템포,공격 흐름과 리듬
