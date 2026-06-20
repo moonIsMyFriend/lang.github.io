@@ -528,6 +528,72 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
 }
 
 /* ── 모바일 ── */
+/* turntable-quiz-page 공통 모바일 규칙이 Playdate 레이아웃을 덮지 않도록 */
+@media (max-width: 980px) {
+  .playdate-quiz-page.turntable-quiz-page .tp-main.app,
+  .playdate-quiz-page.turntable-quiz-page .device-wrap {
+    width: var(--pd-w) !important;
+    max-width: 100%;
+  }
+
+  .playdate-quiz-page.turntable-quiz-page .device.pd-device {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: unset !important;
+    grid-template-rows: unset !important;
+    width: var(--pd-w) !important;
+    height: var(--pd-h) !important;
+    max-height: min(78dvh, 640px) !important;
+    min-height: 420px;
+  }
+
+  .playdate-quiz-page.turntable-quiz-page .display.study-display {
+    position: absolute !important;
+    inset: 0 !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .playdate-quiz-page.turntable-quiz-page .device.pd-device {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    column-gap: unset !important;
+    row-gap: unset !important;
+    height: var(--pd-h) !important;
+    padding: 14px 14px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .playdate-quiz-page.turntable-quiz-page .study-val {
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+
+  .playdate-quiz-page.turntable-quiz-page .study-meta-scroll #tpPron {
+    font-size: clamp(11px, 3vw, 14px);
+  }
+
+  .playdate-quiz-page.turntable-quiz-page #tpMean,
+  .playdate-quiz-page.turntable-quiz-page #tpComment {
+    font-size: clamp(12px, 3.2vw, 15px);
+  }
+
+  .playdate-quiz-page.turntable-quiz-page #tpExpr {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+}
+
 @media (max-width: 480px) {
   .playdate-quiz-page {
     --pd-w: min(94vw, 320px);
@@ -541,17 +607,34 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 
   .playdate-quiz-page .pd-controls-row {
-    --pd-ctrl-btn: 46px;
-    --pd-ctrl-gap: 10px;
-    padding: 0 2px;
+    --pd-ctrl-btn: clamp(32px, calc(var(--u) * 9), 42px);
+    --pd-ctrl-gap: clamp(6px, calc(var(--u) * 1.5), 10px);
+    min-width: 0;
+    padding: 0;
   }
 
   .playdate-quiz-page .pd-round-btn {
-    font-size: 15px;
+    min-width: 0;
+    min-height: 0;
+    font-size: clamp(11px, calc(var(--u) * 3.5), 15px);
+  }
+
+  .playdate-quiz-page .tp-home-icon {
+    width: clamp(14px, calc(var(--u) * 4), 20px);
+    height: clamp(14px, calc(var(--u) * 4), 20px);
   }
 
   .playdate-quiz-page .pd-action-grid {
-    gap: var(--pd-ctrl-gap) 12px;
+    gap: var(--pd-ctrl-gap) clamp(6px, calc(var(--u) * 1.5), 12px);
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .playdate-quiz-page .dpad {
+    --dpad-arm: clamp(24px, calc(var(--u) * 7.5), 32px);
+    --dpad-shadow-gap: clamp(3px, calc(var(--u) * 1), 5px);
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .playdate-quiz-page .pd-controls-zone {
@@ -559,13 +642,8 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
     margin-top: 24px;
     padding-top: 32px;
     min-height: 112px;
-  }
-
-  .playdate-quiz-page .dpad {
-    --dpad-arm: 34px;
-    --dpad-shadow-gap: 5px;
-    --dpad-shift-x: 2px;
-    --dpad-shift-y: 0;
+    min-width: 0;
+    overflow-x: clip;
   }
 
   .playdate-quiz-page .study-meta-scroll {
@@ -610,7 +688,12 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 
   .playdate-quiz-page .pd-controls-row {
-    --pd-ctrl-btn: 42px;
-    --pd-ctrl-gap: 8px;
+    --pd-ctrl-btn: clamp(30px, calc(var(--u) * 8.5), 38px);
+    --pd-ctrl-gap: 6px;
+  }
+
+  .playdate-quiz-page .dpad {
+    --dpad-arm: clamp(22px, calc(var(--u) * 7), 28px);
+    --dpad-shadow-gap: 3px;
   }
 }
