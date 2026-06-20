@@ -925,10 +925,13 @@ body.dark.pd-display-light.playdate-quiz-page .pd-record-btn {
 
 .playdate-quiz-page .dpad-graphic .dpad-body {
   paint-order: stroke fill;
+  stroke: #808080;
+  stroke-width: 1.5;
 }
 
 body.dark.playdate-quiz-page .dpad-graphic .dpad-body {
-  stroke: #777;
+  stroke: #666;
+  stroke-width: 1.5;
 }
 
 body.dark.playdate-quiz-page .dpad-graphic .dpad-icon-left,
