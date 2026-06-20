@@ -302,6 +302,27 @@ body.dark.playdate-quiz-page .device.pd-device {
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
   text-rendering: geometricPrecision;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  caret-color: transparent;
+}
+
+.playdate-quiz-page .display.study-display .study-val {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  caret-color: transparent;
+}
+
+.playdate-quiz-page #tpExpr.tp-expr-selectable {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: default;
+}
+
+.playdate-quiz-page #tpExpr.tp-expr-selectable::selection {
+  background: color-mix(in srgb, #16a34a 35%, transparent);
 }
 
 .playdate-quiz-page #tpMean,
