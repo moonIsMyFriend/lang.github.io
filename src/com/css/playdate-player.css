@@ -791,6 +791,99 @@ body.pd-display-light.playdate-quiz-page .display .mini-play {
   color: #111;
 }
 
+/* 다크 모드 — 디스플레이 + 우측 4버튼(목록·M·재생·녹음) */
+body.dark.pd-display-light.playdate-quiz-page .screen {
+  background: #0a0a0a;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .screen-glare {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 42%);
+}
+
+body.dark.pd-display-light.playdate-quiz-page .display.study-display {
+  background: #1a1a18;
+  color: #e8e8e6;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .study-val,
+body.dark.pd-display-light.playdate-quiz-page #tpPron .pd-pron-ko,
+body.dark.pd-display-light.playdate-quiz-page #tpPron .pd-pron-punct {
+  color: #e0e0de;
+}
+
+body.dark.pd-display-light.playdate-quiz-page #tpPron .pd-pron-ipa {
+  color: #d8d8d6;
+}
+
+body.dark.pd-display-light.playdate-quiz-page #tpExpr {
+  color: #f2f2f0;
+}
+
+body.dark.pd-display-light.playdate-quiz-page #tpMean,
+body.dark.pd-display-light.playdate-quiz-page #tpComment {
+  color: #d0d0ce;
+}
+
+body.dark.pd-display-light.playdate-quiz-page #tpExpr font[color='green'],
+body.dark.pd-display-light.playdate-quiz-page #tpExpr font[color="green"],
+body.dark.pd-display-light.playdate-quiz-page #tpExpr font[color='GREEN'],
+body.dark.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
+  color: #e8e8e6 !important;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .tp-bar-unified {
+  background: #1a1a18;
+  border-color: #888;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .tp-bar-progress {
+  background: #888;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .tp-bar-correct {
+  background: #e8e8e6;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .tp-bar-label,
+body.dark.pd-display-light.playdate-quiz-page .tp-bar-total {
+  color: #e8e8e6;
+  text-shadow:
+    -1px 0 #111,
+    1px 0 #111,
+    0 -1px #111,
+    0 1px #111;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .tp-speed-display {
+  color: #e8e8e6;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .display .mini-play {
+  color: #e8e8e6;
+}
+
+body.dark.pd-display-light.playdate-quiz-page .pd-round-btn {
+  border-color: #666;
+  color: rgba(255, 255, 255, 0.72);
+  background: linear-gradient(145deg, #4a4946, #2a2926);
+  box-shadow:
+    0 calc(var(--u) * 0.7) 0 #1a1918,
+    inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+body.dark.pd-display-light.playdate-quiz-page .pd-round-btn:active,
+body.dark.pd-display-light.playdate-quiz-page .pd-round-btn.pressed {
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+body.dark.pd-display-light.playdate-quiz-page .pd-list-btn {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body.dark.pd-display-light.playdate-quiz-page .pd-record-btn {
+  color: #ff7070;
+}
+
 /* 하단 컨트롤 — 디스플레이와 버튼 사이 여백 유지 */
 .playdate-quiz-page .pd-controls-zone {
   flex: 0 0 auto;
