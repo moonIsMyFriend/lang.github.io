@@ -188,6 +188,14 @@ body.dark.playdate-quiz-page .device.pd-device {
   color: rgba(0, 0, 0, 0.55);
 }
 
+.playdate-quiz-page .pd-list-btn .tp-home-icon {
+  display: block;
+  flex-shrink: 0;
+  width: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+  height: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+  pointer-events: none;
+}
+
 .playdate-quiz-page .pd-record-cell {
   position: relative;
   display: flex;
@@ -1148,6 +1156,14 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   }
 }
 
+/* turntable-player.css @520px 가 tp-home-icon 34px — playdate 목록 버튼은 버튼 크기에 비례 */
+@media (max-width: 520px) {
+  .playdate-quiz-page.turntable-quiz-page .pd-list-btn .tp-home-icon {
+    width: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+    height: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+  }
+}
+
 @media (max-width: 480px) {
   .playdate-quiz-page {
     --pd-w: min(94vw, 320px);
@@ -1169,11 +1185,6 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
 
   .playdate-quiz-page .pd-round-btn {
     font-size: clamp(11px, calc(var(--u) * 3.5), 15px);
-  }
-
-  .playdate-quiz-page .tp-home-icon {
-    width: clamp(14px, calc(var(--u) * 4), 20px);
-    height: clamp(14px, calc(var(--u) * 4), 20px);
   }
 
   .playdate-quiz-page .pd-action-grid {
