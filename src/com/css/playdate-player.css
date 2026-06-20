@@ -958,6 +958,19 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   cursor: pointer;
   background: transparent;
   box-shadow: none;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.playdate-quiz-page .dpad-zone:focus,
+.playdate-quiz-page .dpad-zone:focus-visible {
+  outline: none;
 }
 
 .playdate-quiz-page .dpad-zone.dpad-up {

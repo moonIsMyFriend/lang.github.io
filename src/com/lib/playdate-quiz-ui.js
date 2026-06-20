@@ -13,7 +13,10 @@ function playCurrentAudio() {
 function bindDpadPressFx(btn) {
   if (!btn) return;
   const press = () => btn.classList.add('pressed');
-  const release = () => btn.classList.remove('pressed');
+  const release = () => {
+    btn.classList.remove('pressed');
+    btn.blur();
+  };
   btn.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     try { btn.setPointerCapture(e.pointerId); } catch (_) {}
