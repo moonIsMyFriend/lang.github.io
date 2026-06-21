@@ -195,10 +195,7 @@ export function initQuizApp() {
     } catch (_) {}
   }
 
-  function readDisplayThemeMode() {
-    const checked = document.querySelector('input[name="displayTheme"]:checked');
-    if (checked) return checked.value;
-    if (themeToggle?.checked) return 'dark';
+  function readStoredDisplayThemeMode() {
     try {
       const saved = localStorage.getItem(LS_DISPLAY_THEME);
       if (saved === 'dark' || saved === 'mint' || saved === 'light') return saved;
@@ -207,9 +204,16 @@ export function initQuizApp() {
     return 'light';
   }
 
+  function readDisplayThemeModeFromUi() {
+    const checked = document.querySelector('input[name="displayTheme"]:checked');
+    if (checked) return checked.value;
+    if (themeToggle?.checked) return 'dark';
+    return readStoredDisplayThemeMode();
+  }
+
   function applyThemeFromToggle() {
     if (displayThemeInputs.length) {
-      applyDisplayTheme(readDisplayThemeMode());
+      applyDisplayTheme(readDisplayThemeModeFromUi());
       return;
     }
     if (!themeToggle) return;
@@ -217,7 +221,7 @@ export function initQuizApp() {
   }
 
   function loadThemeFromStorage() {
-    const mode = readDisplayThemeMode();
+    const mode = readStoredDisplayThemeMode();
     if (displayThemeInputs.length) {
       displayThemeInputs.forEach((el) => {
         el.checked = el.value === mode;
@@ -1080,13 +1084,11 @@ export function initQuizApp() {
     minLen?.addEventListener('input', onMaskControlChange);
   }
 
-  if (themeToggle || displayThemeInputs.length) {
-    loadThemeFromStorage();
-    themeToggle?.addEventListener('change', applyThemeFromToggle);
-    displayThemeInputs.forEach((el) => {
-      el.addEventListener('change', applyThemeFromToggle);
-    });
-  }
+  loadThemeFromStorage();
+  themeToggle?.addEventListener('change', applyThemeFromToggle);
+  displayThemeInputs.forEach((el) => {
+    el.addEventListener('change', applyThemeFromToggle);
+  });
 
   // 파일 선택
   csvInput.addEventListener('change', async (e) => {

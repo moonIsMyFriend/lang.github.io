@@ -5,6 +5,30 @@
     --bd: #D2CFC1;       /* 기본 border */
     --muted: #666666;    /* 보조 텍스트 */
     --text: #333333;     /* 본문 텍스트 */
+    --heading: #333333;
+    --link: #335C99;
+    --surface-input: #FDFBF4;
+    --surface-input-bd: #C0BAAA;
+    --surface-file: #FDFBF4;
+    --surface-file-bd: #C0BAAA;
+    --surface-btn: #F1EFE6;
+    --surface-btn-bd: #B6B2A3;
+    --surface-btn-hover: #E6E2D6;
+    --btn-primary-bg: #D8C69F;
+    --btn-primary-bd: #C4B185;
+    --btn-primary-hover: #CEBA90;
+    --btn-ghost-bd: #C0BAAA;
+    --pill-bg: #EFECE1;
+    --pill-bd: #D4D0C1;
+    --kbd-bg: #F5F1E6;
+    --kbd-bd: #C0BAAA;
+    --footer: #8A8575;
+    --hint: #7D8C5E;
+    --badge: #6C5A2B;
+    --path: #8A8575;
+    --accent: #C4B185;
+    --summary-muted: #8A8575;
+    --summary-hover: #111111;
     --good: #7DA87B;     /* 정답 표시용 부드러운 초록 */
     /* 발음 결과 맞춤 단어: 회색 캡션 옆에서도 잘 보이게 채도 높은 녹색 */
     --pron-match: #047857;
@@ -18,32 +42,88 @@ body.dark {
     --muted: #bfc4d1;
     --card: #0b1220;
     --bd: #1f2937;
+    --heading: #e5e7eb;
+    --link: #93c5fd;
+    --surface-input: #0b1220;
+    --surface-input-bd: #374151;
+    --surface-file: #0b1220;
+    --surface-file-bd: #374151;
+    --surface-btn: #1f2937;
+    --surface-btn-bd: #374151;
+    --surface-btn-hover: #374151;
+    --btn-primary-bg: #374151;
+    --btn-primary-bd: #4b5563;
+    --btn-primary-hover: #4b5563;
+    --btn-ghost-bd: #374151;
+    --pill-bg: #0b1220;
+    --pill-bd: #1f2937;
+    --kbd-bg: #1f2937;
+    --kbd-bd: #374151;
+    --footer: #9ca3af;
+    --hint: #9ca3af;
+    --badge: #d1d5db;
+    --path: #9ca3af;
+    --accent: #6b7280;
+    --summary-muted: #9ca3af;
+    --summary-hover: #f9fafb;
     --pron-match: #34d399;
 }
 
 body.pd-display-mint {
-    --bg: #b8ddd0;
+    --bg: #8ec4b4;
     --text: #0f3d32;
     --muted: #3d6b5c;
     --card: #e8f7f2;
-    --bd: #8ec4b4;
+    --bd: #6aab96;
+    --heading: #0f3d32;
+    --link: #1a5c72;
+    --surface-input: #e8f7f2;
+    --surface-input-bd: #6aab96;
+    --surface-file: #e8f7f2;
+    --surface-file-bd: #6aab96;
+    --surface-btn: #d4ede4;
+    --surface-btn-bd: #6aab96;
+    --surface-btn-hover: #c5e8dc;
+    --btn-primary-bg: #7ab8a6;
+    --btn-primary-bd: #528f7f;
+    --btn-primary-hover: #6aab96;
+    --btn-ghost-bd: #6aab96;
+    --pill-bg: #d4ede4;
+    --pill-bd: #6aab96;
+    --kbd-bg: #e8f7f2;
+    --kbd-bd: #6aab96;
+    --footer: #3d6b5c;
+    --hint: #528f7f;
+    --badge: #2f5f52;
+    --path: #528f7f;
+    --accent: #528f7f;
+    --summary-muted: #528f7f;
+    --summary-hover: #0a2e26;
     --good: #2d8a6e;
     --pron-match: #0d7a5f;
 }
 
-body.pd-display-mint,
-body.pd-display-mint .card,
-body.pd-display-mint .box,
-body.pd-display-mint input,
-body.pd-display-mint button,
-body.pd-display-mint details {
+body.pd-display-mint {
     color: var(--text);
     background: var(--bg);
+}
+
+body.pd-display-mint .card,
+body.pd-display-mint .box,
+body.pd-display-mint details {
+    color: var(--text);
+    background: var(--card);
+    border-color: var(--bd);
+}
+
+body.pd-display-mint input,
+body.pd-display-mint button {
+    color: var(--text);
     border-color: var(--bd);
 }
 
 body.pd-display-mint .row {
-    background: #d4ede4 !important;
+    background: var(--pill-bg) !important;
     color: var(--text) !important;
     border-color: var(--bd) !important;
 }
@@ -60,15 +140,15 @@ body.pd-display-mint #pronounceLocale {
 }
 
 body.pd-display-mint .pill {
-    background: #c5e8dc;
+    background: var(--pill-bg);
     color: var(--text);
-    border-color: var(--bd);
+    border-color: var(--pill-bd);
 }
 
 body.pd-display-mint #pronounceApiKey {
-    background: #f4fbf8;
+    background: var(--surface-input);
     color: var(--text);
-    border-color: var(--bd);
+    border-color: var(--surface-input-bd);
 }
 
 body.dark, 
@@ -90,9 +170,9 @@ body.dark .row {
 
 /* 다크 모드일 때 pill 색 덮어쓰기 */
 body.dark .pill {
-    background: #0b1220;
-    border-color: #1f2937;
-    color: #e5e7eb;
+    background: var(--pill-bg);
+    border-color: var(--pill-bd);
+    color: var(--text);
 }
 
 body.dark #pronounceApiKey {
@@ -308,18 +388,18 @@ body.dark .pronounce-rec-bar-track {
 .folder > .title {
     font-weight:700;
     margin:8px 0;
-    color: #333333;
+    color: var(--heading);
 }
 ul { list-style:none; padding:0; margin:6px 0 }
 a {
-    color:#335C99;               /* 종이색 위에서 잘 보이는 파란색 */
+    color: var(--link);
     text-decoration:none;
 }
 a:hover {
     text-decoration:underline;
 }
 .path {
-    color:#8A8575;
+    color: var(--path);
     font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size:12px;
 }
@@ -327,9 +407,9 @@ a:hover {
     width:100%;
     padding:10px 12px;
     border-radius:12px;
-    border:1px solid #C0BAAA;
-    background:#FDFBF4;
-    color:#333333;
+    border:1px solid var(--surface-input-bd);
+    background: var(--surface-input);
+    color: var(--text);
 }
 
 /* 전체 레이아웃 */
@@ -395,8 +475,8 @@ p.sub {
 /* 파일 입력 */
 input[type="file"] {
     padding: 10px 12px;
-    background: #FDFBF4;
-    border: 1px dashed #C0BAAA;
+    background: var(--surface-file);
+    border: 1px dashed var(--surface-file-bd);
     border-radius: 12px;
     color: var(--muted);
     width: 100%;
@@ -406,19 +486,19 @@ input[type="file"] {
 /* 버튼 (모바일에서는 가로로 2개씩) */
 button {
     appearance:none;
-    border:1px solid #B6B2A3;
+    border:1px solid var(--surface-btn-bd);
     padding:12px 14px;
     border-radius:12px;
     font-weight:700;
     cursor:pointer;
-    background:#F1EFE6;
-    color:#333333;
+    background: var(--surface-btn);
+    color: var(--text);
     flex:1 1 calc(50% - 8px);
     min-height:44px;
     transition: background .15s ease, box-shadow .15s ease, transform .05s ease;
 }
 button:hover {
-    background:#E6E2D6;
+    background: var(--surface-btn-hover);
 }
 button:active {
     transform: translateY(1px);
@@ -426,15 +506,15 @@ button:active {
 }
 
 button.primary {
-    background:#D8C69F;
-    border-color:#C4B185;
+    background: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bd);
 }
 button.primary:hover {
-    background:#CEBA90;
+    background: var(--btn-primary-hover);
 }
 button.ghost {
     background:transparent;
-    border-color:#C0BAAA;
+    border-color: var(--btn-ghost-bd);
 }
 button:disabled {
     opacity:.5;
@@ -448,14 +528,14 @@ button:disabled {
     gap:6px;
     padding:6px 10px;
     border-radius:999px;
-    background:#EFECE1;
-    border:1px solid #D4D0C1;
-    color:#333333;
+    background: var(--pill-bg);
+    border:1px solid var(--pill-bd);
+    color: var(--text);
     font-size:12px;
 }
 .badge {
     font-weight:700;
-    color:#6C5A2B;
+    color: var(--badge);
 }
 
 /* 박스 */
@@ -489,7 +569,7 @@ button:disabled {
 }
 
 .hint {
-    color:#7D8C5E;
+    color: var(--hint);
 }
 
 .id {
@@ -497,19 +577,19 @@ button:disabled {
 }
 
 .range {
-    accent-color:#C4B185;
+    accent-color: var(--accent);
     width:100%;
 }
 
 .footer {
     margin-top:18px;
-    color:#8A8575;
+    color: var(--footer);
     font-size:12px;
 }
 
 .kbd {
-    border:1px solid #C0BAAA;
-    background:#F5F1E6;
+    border:1px solid var(--kbd-bd);
+    background: var(--kbd-bg);
     padding:2px 6px;
     border-radius:6px;
     font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -530,7 +610,7 @@ details > summary{
     cursor:pointer;
     user-select:none;
     font-weight:700;
-    color:#333333;
+    color: var(--heading);
 }
 details > summary::after{
     content:'▾';
@@ -539,7 +619,7 @@ details > summary::after{
     top:50%;
     transform:translateY(-50%) rotate(0deg);
     transition:transform .2s ease;
-    color:#8A8575;
+    color: var(--summary-muted);
 }
 details[open] > summary::after{
     transform:translateY(-50%) rotate(180deg);
@@ -548,7 +628,19 @@ details[open] > summary {
     border-bottom:1px solid var(--bd);
 }
 details > summary:hover{
-    color:#111111;
+    color: var(--summary-hover);
+}
+
+.theme-options {
+    gap: 14px;
+}
+
+.theme-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .content {

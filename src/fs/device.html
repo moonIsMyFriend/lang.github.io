@@ -34,6 +34,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html" data-quiz-practice="study" data-pixel-dir="./images/png">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('learnlang_display_theme');
+          var d = localStorage.getItem('learnlang_theme_dark');
+          document.body.classList.remove('pd-display-light', 'pd-display-mint', 'dark');
+          if (t === 'mint') document.body.classList.add('pd-display-mint');
+          else if (t === 'dark' || d === '1') document.body.classList.add('pd-display-light', 'dark');
+          else document.body.classList.add('pd-display-light');
+        } catch (_) {}
+      })();
+    </script>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
