@@ -1091,13 +1091,15 @@ export function initQuizApp() {
   });
 
   // 파일 선택
-  csvInput.addEventListener('change', async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    state.csvFileName = file.name;
-    const text = await file.text();
-    handleCSV(text);
-  });
+  if (csvInput) {
+    csvInput.addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      state.csvFileName = file.name;
+      const text = await file.text();
+      handleCSV(text);
+    });
+  }
 
 
   // 자동 로드
@@ -1143,18 +1145,20 @@ export function initQuizApp() {
   });
 
   // 데모
-  btnDemo.addEventListener('click', () => {
-    const demo = `일련번호,영문,번역
+  if (btnDemo) {
+    btnDemo.addEventListener('click', () => {
+      const demo = `일련번호,영문,번역
 1,"Learning a new language takes time and practice.","새 언어를 배우려면 시간과 연습이 필요해요."
 2,"Consistency beats intensity when building habits.","습관을 만들 때는 강도보다 꾸준함이 더 중요해요."
 3,"Failure is not the opposite of success; it is part of success.","실패는 성공의 반대가 아니라 성공의 일부예요."
 4,"Small daily improvements lead to stunning long-term results.","작은 일상의 개선이 놀라운 장기적 성과로 이어집니다."`;
-    handleCSV(demo);
-    state.csvFileName = 'test.csv';
-  });
+      handleCSV(demo);
+      state.csvFileName = 'test.csv';
+    });
+  }
 
   // 화면1: 문제 내기 → 화면2
-  btnPick.addEventListener('click', async () => {
+  if (btnPick) btnPick.addEventListener('click', async () => {
     // 중복 클릭 방지(선택)
     btnPick.disabled = true;
 
@@ -1521,7 +1525,7 @@ export function initQuizApp() {
       state.rows = rows.filter(r => (r[enKey] ?? '').toString().trim());
 
       totalCnt.textContent = state.rows.length;
-      btnPick.disabled = false; //!state.rows.length;
+      if (btnPick) btnPick.disabled = false; //!state.rows.length;
 
       // 화면2 버튼 초기화
       btnNext.disabled = !state.rows.length;
