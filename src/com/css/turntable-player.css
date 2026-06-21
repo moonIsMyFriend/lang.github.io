@@ -888,6 +888,17 @@ body.dark.turntable-quiz-page #pronounceLocale {
   border-color: rgba(255, 255, 255, 0.28);
 }
 
+body.pd-display-mint.turntable-quiz-page #pronouncePanel .pron-row {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+body.pd-display-mint.turntable-quiz-page #pronounceLocale {
+  background-color: var(--bg);
+  color: var(--text);
+  border-color: rgba(15, 61, 50, 0.28);
+}
+
 @keyframes tp7-spin {
   from {
     transform: translate(-50%, -50%) rotate(0deg);

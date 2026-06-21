@@ -21,7 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="../com/css/quiz-style.css" />
     <link rel="stylesheet" href="../com/css/turntable-player.css" />
     <link rel="stylesheet" href="../com/css/playdate-player.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
         @font-face {
             font-family: 'DungGeunMo';
@@ -111,9 +111,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                     <div class="pd-settings-row">
                                                         <label class="pd-settings-option"><input type="checkbox" id="audioLoop" /> 반복 재생</label>
                                                     </div>
-                                                    <div class="pd-settings-row">
-                                                        <label class="pd-settings-option"><input type="checkbox" id="themeToggle" /> 다크 모드</label>
-                                                    </div>
+                                                    <fieldset class="pd-settings-group">
+                                                        <legend class="pd-settings-legend">화면 테마</legend>
+                                                        <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeLight" value="light" checked> 기본</label>
+                                                        <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeDark" value="dark"> 다크</label>
+                                                        <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeMint" value="mint"> 민트</label>
+                                                    </fieldset>
                                                 </div>
                                                 <div class="pd-settings-foot">
                                                     <button type="button" class="pd-settings-btn" id="btnApplySettings">확인</button>

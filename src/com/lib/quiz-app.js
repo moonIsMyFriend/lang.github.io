@@ -110,6 +110,7 @@ export function initQuizApp() {
   const LS_MASK_KEEP_FIRST = 'learnlang_mask_keep_first';
   const LS_MASK_MIN_LEN = 'learnlang_mask_min_len';
   const LS_THEME_DARK = 'learnlang_theme_dark';
+  const LS_DISPLAY_THEME = 'learnlang_display_theme';
 
   function readMaskLevelValue() {
     if (level) return Number(level.value) || 30;
@@ -176,24 +177,55 @@ export function initQuizApp() {
   }
 
   const themeToggle = document.querySelector('#themeToggle');
+  const displayThemeInputs = document.querySelectorAll('input[name="displayTheme"]');
 
-  function applyThemeFromToggle() {
-    if (!themeToggle) return;
-    if (themeToggle.checked) document.body.classList.add('dark');
-    else document.body.classList.remove('dark');
+  function applyDisplayTheme(mode) {
+    const theme = mode === 'dark' || mode === 'mint' ? mode : 'light';
+    document.body.classList.remove('dark', 'pd-display-light', 'pd-display-mint');
+    if (theme === 'dark') {
+      document.body.classList.add('pd-display-light', 'dark');
+    } else if (theme === 'mint') {
+      document.body.classList.add('pd-display-mint');
+    } else {
+      document.body.classList.add('pd-display-light');
+    }
     try {
-      localStorage.setItem(LS_THEME_DARK, themeToggle.checked ? '1' : '0');
+      localStorage.setItem(LS_DISPLAY_THEME, theme);
+      localStorage.setItem(LS_THEME_DARK, theme === 'dark' ? '1' : '0');
     } catch (_) {}
   }
 
-  function loadThemeFromStorage() {
-    if (!themeToggle) return;
+  function readDisplayThemeMode() {
+    const checked = document.querySelector('input[name="displayTheme"]:checked');
+    if (checked) return checked.value;
+    if (themeToggle?.checked) return 'dark';
     try {
-      const saved = localStorage.getItem(LS_THEME_DARK);
-      if (saved === '1') themeToggle.checked = true;
-      else if (saved === '0') themeToggle.checked = false;
+      const saved = localStorage.getItem(LS_DISPLAY_THEME);
+      if (saved === 'dark' || saved === 'mint' || saved === 'light') return saved;
+      if (localStorage.getItem(LS_THEME_DARK) === '1') return 'dark';
     } catch (_) {}
-    applyThemeFromToggle();
+    return 'light';
+  }
+
+  function applyThemeFromToggle() {
+    if (displayThemeInputs.length) {
+      applyDisplayTheme(readDisplayThemeMode());
+      return;
+    }
+    if (!themeToggle) return;
+    applyDisplayTheme(themeToggle.checked ? 'dark' : 'light');
+  }
+
+  function loadThemeFromStorage() {
+    const mode = readDisplayThemeMode();
+    if (displayThemeInputs.length) {
+      displayThemeInputs.forEach((el) => {
+        el.checked = el.value === mode;
+      });
+    } else if (themeToggle) {
+      themeToggle.checked = mode === 'dark';
+    }
+    applyDisplayTheme(mode);
   }
 
   /** turntable `#tpExpr` 등에서 표현 줄을 CSV 기준으로 다시 채움 (발음 하이라이트 제거) */
@@ -1048,9 +1080,12 @@ export function initQuizApp() {
     minLen?.addEventListener('input', onMaskControlChange);
   }
 
-  if (themeToggle) {
+  if (themeToggle || displayThemeInputs.length) {
     loadThemeFromStorage();
-    themeToggle.addEventListener('change', applyThemeFromToggle);
+    themeToggle?.addEventListener('change', applyThemeFromToggle);
+    displayThemeInputs.forEach((el) => {
+      el.addEventListener('change', applyThemeFromToggle);
+    });
   }
 
   // 파일 선택

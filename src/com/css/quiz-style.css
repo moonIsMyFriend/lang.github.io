@@ -21,6 +21,56 @@ body.dark {
     --pron-match: #34d399;
 }
 
+body.pd-display-mint {
+    --bg: #b8ddd0;
+    --text: #0f3d32;
+    --muted: #3d6b5c;
+    --card: #e8f7f2;
+    --bd: #8ec4b4;
+    --good: #2d8a6e;
+    --pron-match: #0d7a5f;
+}
+
+body.pd-display-mint,
+body.pd-display-mint .card,
+body.pd-display-mint .box,
+body.pd-display-mint input,
+body.pd-display-mint button,
+body.pd-display-mint details {
+    color: var(--text);
+    background: var(--bg);
+    border-color: var(--bd);
+}
+
+body.pd-display-mint .row {
+    background: #d4ede4 !important;
+    color: var(--text) !important;
+    border-color: var(--bd) !important;
+}
+
+body.pd-display-mint #pronouncePanel .pron-row {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+body.pd-display-mint #pronounceLocale {
+    background-color: var(--bg);
+    color: var(--text);
+    border-color: var(--bd);
+}
+
+body.pd-display-mint .pill {
+    background: #c5e8dc;
+    color: var(--text);
+    border-color: var(--bd);
+}
+
+body.pd-display-mint #pronounceApiKey {
+    background: #f4fbf8;
+    color: var(--text);
+    border-color: var(--bd);
+}
+
 body.dark, 
 body.dark .card,
 body.dark .box,
