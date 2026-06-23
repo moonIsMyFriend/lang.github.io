@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 
 <head>
@@ -17,15 +17,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fencing Study</title>
-    <link rel="stylesheet" href="../com/css/quiz-style.css" />
-    <link rel="stylesheet" href="../com/css/turntable-player.css" />
-    <link rel="stylesheet" href="../com/css/playdate-player.css" />
+    <title>Fencing Terms</title>
+    <link rel="stylesheet" href="../../com/css/quiz-style.css" />
+    <link rel="stylesheet" href="../../com/css/turntable-player.css" />
+    <link rel="stylesheet" href="../../com/css/playdate-player.css" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
         @font-face {
             font-family: 'DungGeunMo';
-            src: url('./fonts/DungGeunMo.woff2') format('woff2');
+            src: url('../fonts/DungGeunMo.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
             font-display: block;
@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 
-<body class="playdate-quiz-page turntable-quiz-page pd-display-light playdate-hub-page playdate-index-page">
+<body class="playdate-quiz-page turntable-quiz-page pd-display-light playdate-hub-page playdate-start-page">
     <script>
       (function () {
         try {
@@ -54,7 +54,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span id="selId" class="sr-only" aria-hidden="true">—</span>
 
             <div class="screen-title">
-                <h1 id="pageTitle">Fencing Study</h1>
+                <h1 id="pageTitle">Fencing Terms</h1>
             </div>
 
             <section id="screen2">
@@ -67,7 +67,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="pd-screen-zone">
                         <div class="screen-bezel">
                             <div class="screen">
-                                <div class="display index-display" id="viewIndex" aria-label="학습 폴더 목록">
+                                <button type="button" class="display start-display" id="viewStart" aria-label="PRESS START — 목록으로 이동">
+                                    <img class="pd-start-bg" src="./png/start.png" alt="" decoding="async" />
+                                    <span class="pd-start-label" aria-hidden="true">PRESS START</span>
+                                </button>
+
+                                <div class="display index-display" id="viewIndex" aria-label="학습 목록" hidden>
                                     <div class="pd-index-head">Index</div>
                                     <div class="pd-index-search">
                                         <input id="q" type="search" placeholder="search" autocomplete="off" spellcheck="false" />
@@ -190,16 +195,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script type="module">
-        let baseTitle = document.querySelector('#pageTitle')?.textContent?.trim() || 'Fencing Study';
+        let baseTitle = document.querySelector('#pageTitle')?.textContent?.trim() || 'Fencing Terms';
 
         const LS_DISPLAY_THEME = 'learnlang_display_theme';
         const LS_THEME_DARK = 'learnlang_theme_dark';
         const LS_QUIZ_MODE = 'learnlang_quiz_mode';
 
+        const viewStart = document.querySelector('#viewStart');
+        const viewIndex = document.querySelector('#viewIndex');
         const settingsModal = document.querySelector('#tpSettingsModal');
         const settingsScreen = settingsModal?.closest('.screen');
         const btnHome = document.querySelector('#btnHome');
-        const listEl = document.querySelector('#list');
 
         function escapeHTML(s = '') {
             return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -271,8 +277,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             } catch (_) {}
         }
 
-        function scrollListToTop() {
-            listEl?.scrollTo({ top: 0, behavior: 'smooth' });
+        function showStartView() {
+            document.body.classList.add('playdate-start-page');
+            document.body.classList.remove('playdate-index-page');
+            viewStart.hidden = false;
+            viewIndex.hidden = true;
+            updateHubPageTitle('\u00a0');
+        }
+
+        function showListView() {
+            document.body.classList.remove('playdate-start-page');
+            document.body.classList.add('playdate-index-page');
+            viewStart.hidden = true;
+            viewIndex.hidden = false;
+            updateHubPageTitle('\u00a0');
         }
 
         function openSettings(e) {
@@ -305,26 +323,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         }
 
-        btnHome?.addEventListener('click', scrollListToTop);
+        viewStart?.addEventListener('click', showListView);
+        btnHome?.addEventListener('click', () => {
+            location.href = '../index.html';
+        });
 
         await initTitle();
-        updateHubPageTitle('\u00a0');
+        if (new URLSearchParams(location.search).get('view') === 'list') {
+            showListView();
+        } else {
+            showStartView();
+        }
         loadThemeFromStorage();
         loadModeFromStorage();
         initSettingsModal();
 
-        (async function initFolders() {
+        (async function initCatalog() {
             const list = document.querySelector('#list');
             const empty = document.querySelector('#empty');
             const q = document.querySelector('#q');
 
             let data = [];
             try {
-                const res = await fetch('./folders.json', { cache: 'no-store' });
+                const res = await fetch('./catalog.json', { cache: 'no-store' });
                 data = await res.json();
             } catch (_) {
-                list.innerHTML = '<p class="pd-index-msg">folders.json을 불러오지 못했습니다.</p>';
+                list.innerHTML = '<p class="pd-index-msg">catalog.json을 불러오지 못했습니다.</p>';
                 return;
+            }
+
+            function groupByDir(arr) {
+                const map = new Map();
+                for (const it of arr) {
+                    const key = it.dir || '';
+                    if (!map.has(key)) map.set(key, []);
+                    map.get(key).push(it);
+                }
+                for (const [, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
+                return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
             }
 
             let view = data.slice();
@@ -337,26 +373,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
                 empty.hidden = true;
 
-                const ul = document.createElement('ul');
-                ul.className = 'pd-index-items';
+                const groups = groupByDir(arr);
+                const frag = document.createDocumentFragment();
 
-                for (const folder of arr) {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    const label = folder.name || folder.path || '';
-                    const href = folder.href || `./${encodeURIComponent(folder.path)}/`;
-                    a.href = href;
-                    a.className = 'pd-index-link';
-                    a.textContent = label;
-                    li.appendChild(a);
-                    ul.appendChild(li);
+                for (const [dir, files] of groups) {
+                    const section = document.createElement('section');
+                    section.className = 'pd-index-folder';
+                    if (dir) {
+                        const title = document.createElement('div');
+                        title.className = 'pd-index-folder-title';
+                        title.textContent = dir;
+                        section.appendChild(title);
+                    }
+
+                    const ul = document.createElement('ul');
+                    ul.className = 'pd-index-items';
+
+                    for (const f of files) {
+                        const li = document.createElement('li');
+                        const display = f.name.replace(/\.csv$/i, '');
+                        let orderQs = '';
+                        try {
+                            if (localStorage.getItem(LS_QUIZ_MODE) === 'seq') orderQs = '&order=seq';
+                        } catch (_) {}
+                        const studyUrl = `./device.html?file=${encodeURIComponent(f.path)}&mode=study${orderQs}`;
+                        const a = document.createElement('a');
+                        a.href = studyUrl;
+                        a.className = 'pd-index-link';
+                        a.textContent = display;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    }
+                    section.appendChild(ul);
+                    frag.appendChild(section);
                 }
 
                 list.innerHTML = '';
-                const section = document.createElement('section');
-                section.className = 'pd-index-folder';
-                section.appendChild(ul);
-                list.appendChild(section);
+                list.appendChild(frag);
             }
 
             render(view);
@@ -364,7 +417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             q?.addEventListener('input', () => {
                 const term = q.value.trim().toLowerCase();
                 view = data.filter((it) => {
-                    const hay = ((it.name || '') + ' ' + (it.path || '')).toLowerCase();
+                    const hay = ((it.dir || '') + '/' + it.name).toLowerCase();
                     return hay.includes(term);
                 });
                 render(view);

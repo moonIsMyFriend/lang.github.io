@@ -18,14 +18,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fencing Terms</title>
-    <link rel="stylesheet" href="../com/css/quiz-style.css" />
-    <link rel="stylesheet" href="../com/css/turntable-player.css" />
-    <link rel="stylesheet" href="../com/css/playdate-player.css" />
+    <link rel="stylesheet" href="../../com/css/quiz-style.css" />
+    <link rel="stylesheet" href="../../com/css/turntable-player.css" />
+    <link rel="stylesheet" href="../../com/css/playdate-player.css" />
     <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
         @font-face {
             font-family: 'DungGeunMo';
-            src: url('./fonts/DungGeunMo.woff2') format('woff2');
+            src: url('../fonts/DungGeunMo.woff2') format('woff2');
             font-weight: 400;
             font-style: normal;
             font-display: block;
@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 
-<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html" data-quiz-practice="study" data-pixel-dir="./images/png">
+<body class="playdate-quiz-page turntable-quiz-page pd-display-light" data-quiz-home-url="./index.html?view=list" data-quiz-practice="study" data-pixel-dir="./images/png">
     <script>
       (function () {
         try {
@@ -272,11 +272,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script type="module">
-        import { initQuizApp } from '../com/lib/quiz-app.js';
-        import { loadPageTitle } from '../com/lib/title.js';
-        import { toast } from '../com/lib/quiz-core.js';
-        import { initPlaydateQuizUi } from '../com/lib/playdate-quiz-ui.js';
-        import { installStudyResultRedirect } from '../com/lib/study-result-redirect.js';
+        import { initQuizApp } from '../../com/lib/quiz-app.js';
+        import { loadPageTitle } from '../../com/lib/title.js';
+        import { toast } from '../../com/lib/quiz-core.js';
+        import { initPlaydateQuizUi } from '../../com/lib/playdate-quiz-ui.js';
+        import { installStudyResultRedirect } from '../../com/lib/study-result-redirect.js';
 
         loadPageTitle();
 
@@ -287,7 +287,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const params = new URLSearchParams(location.search);
             const raw = params.get('file');
             if (!raw || !String(raw).trim()) {
-                location.replace('./index.html');
+                location.replace('./index.html?view=list');
                 return;
             }
 
@@ -302,7 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             } catch (e) {
                 console.error(e);
                 toast('파일을 불러오지 못했습니다. 목록으로 돌아갑니다.');
-                location.replace('./index.html');
+                location.replace('./index.html?view=list');
             }
         });
     </script>
