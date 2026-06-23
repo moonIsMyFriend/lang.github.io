@@ -1,15 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 
 <head>
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T3SXCHL6');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92QMC1YFZM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,129 +19,363 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>YouTube 자막 학습</title>
     <link rel="stylesheet" href="../../com/css/quiz-style.css" />
-    <link rel="stylesheet" href="yt.css" />
+    <link rel="stylesheet" href="../../com/css/turntable-player.css" />
+    <link rel="stylesheet" href="../../com/css/playdate-player.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'DungGeunMo';
+            src: url('../fonts/DungGeunMo.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: block;
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Google Tag Manager (noscript) -->
+<body class="playdate-quiz-page turntable-quiz-page pd-display-light playdate-hub-page playdate-index-page">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('learnlang_display_theme');
+          var d = localStorage.getItem('learnlang_theme_dark');
+          document.body.classList.remove('pd-display-light', 'pd-display-mint', 'dark');
+          if (t === 'mint') document.body.classList.add('pd-display-mint');
+          else if (t === 'dark' || d === '1') document.body.classList.add('pd-display-light', 'dark');
+          else document.body.classList.add('pd-display-light');
+        } catch (_) {}
+      })();
+    </script>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3SXCHL6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+
     <div class="wrap">
-        <div class="card">
+            <span id="totalCnt" class="sr-only" aria-hidden="true">0</span>
+            <span id="selId" class="sr-only" aria-hidden="true">—</span>
+
             <div class="screen-title">
-                <h1 class="screen-title-heading">
-                    <a class="site-brand" href="https://simulavi.com" target="_blank" rel="noopener noreferrer"
-                        aria-label="simulavi.com">
-                        <img src="../../com/img/005.png" alt="" width="36" height="36" decoding="async" />
-                    </a>
-                    YouTube 자막 학습
-                </h1>
-                <div class="row">
-                    <span class="pill">SRT: <span id="totalCnt">0</span></span>
-                </div>
+                <h1 id="pageTitle">YouTube 자막 학습</h1>
             </div>
 
-            <section class="box">
-                <h1 style="margin-top:0">Index</h1>
+            <section id="screen2">
+                    <button type="button" id="btnNext" class="primary sr-only" disabled tabindex="-1" aria-hidden="true">Next</button>
 
-                <div class="row">
-                    <div class="search" style="flex:1">
-                        <input id="q" type="search" placeholder="검색: 파일명">
+                <main class="app tp-main">
+            <section class="device-wrap">
+                <div class="device pd-device" id="playdate">
+
+                    <div class="pd-screen-zone">
+                        <div class="screen-bezel">
+                            <div class="screen">
+                                <div class="display index-display" id="viewIndex" aria-label="YouTube 자막 학습 목록">
+                                    <div class="pd-index-head">Index</div>
+                                    <div class="pd-index-search">
+                                        <input id="q" type="search" placeholder="search" autocomplete="off" spellcheck="false" />
+                                    </div>
+                                    <div id="list" class="pd-index-list" role="list"></div>
+                                    <p id="empty" class="pd-index-empty" hidden>결과가 없습니다.</p>
+                                </div>
+
+                                <div id="tpSettingsModal" class="tp-settings-modal tp-settings-modal--in-display hidden" role="dialog"
+                                    aria-modal="true" aria-labelledby="tpSettingsTitle" hidden>
+                                    <div class="tp-settings-backdrop pd-settings-backdrop" data-close-settings tabindex="-1" aria-hidden="true"></div>
+                                    <div class="tp-settings-dialog pd-settings-dialog">
+                                        <div class="pd-settings-head">
+                                            <h2 id="tpSettingsTitle" class="pd-settings-title">설정</h2>
+                                        </div>
+                                        <div class="pd-settings-body">
+                                            <fieldset class="pd-settings-group">
+                                                <legend class="pd-settings-legend">화면 테마</legend>
+                                                <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeLight" value="light" checked> 기본</label>
+                                                <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeDark" value="dark"> 다크</label>
+                                                <label class="pd-settings-option"><input type="radio" name="displayTheme" id="themeMint" value="mint"> 민트</label>
+                                            </fieldset>
+                                        </div>
+                                        <div class="pd-settings-foot">
+                                            <button type="button" class="pd-settings-btn" id="btnApplySettings">확인</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="screen-glare" aria-hidden="true"></div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="pd-controls-zone">
+                        <div class="pd-controls-row">
+                            <div class="dpad" aria-label="방향 패드">
+                                <svg class="dpad-graphic" viewBox="0 0 150 155" overflow="visible" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="pdDpadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#f9f9f6" />
+                                            <stop offset="100%" stop-color="#bebeb8" />
+                                        </linearGradient>
+                                        <filter id="pdDpadFx" filterUnits="userSpaceOnUse" x="-4" y="-3" width="158" height="165" color-interpolation-filters="sRGB">
+                                            <feDropShadow dx="0" dy="2.5" stdDeviation="0" flood-color="#a7a7a2" result="outer" />
+                                            <feFlood flood-color="#ffffff" flood-opacity="0.7" result="light" />
+                                            <feComposite in="light" in2="SourceAlpha" operator="in" result="innerBase" />
+                                            <feOffset in="innerBase" dx="0" dy="-0.6" result="innerShift" />
+                                            <feGaussianBlur in="innerShift" stdDeviation="0.55" result="innerGlow" />
+                                            <feComposite in="innerGlow" in2="SourceAlpha" operator="in" result="inner" />
+                                            <feMerge>
+                                                <feMergeNode in="outer" />
+                                                <feMergeNode in="inner" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                        <filter id="pdDpadFxPressed" filterUnits="userSpaceOnUse" x="-4" y="-3" width="158" height="165" color-interpolation-filters="sRGB">
+                                            <feDropShadow dx="0" dy="1" stdDeviation="0" flood-color="#a7a7a2" result="outer" />
+                                            <feMerge>
+                                                <feMergeNode in="outer" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    <path class="dpad-body" fill="url(#pdDpadGrad)" stroke="#808080" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" filter="url(#pdDpadFx)" d="M75,0C85.64,0,95,9.36,95,20V55H130C140.64,55,150,64.36,150,75C150,85.64,140.64,95,130,95H95V130C95,140.64,85.64,150,75,150C64.36,150,55,140.64,55,130V95H20C9.36,95,0,85.64,0,75C0,64.36,9.36,55,20,55H55V20C55,9.36,64.36,0,75,0Z" />
+                                    <circle cx="75" cy="75" r="6" fill="rgba(0,0,0,0.08)" />
+                                    <g class="dpad-icon dpad-icon-left" fill="rgba(0,0,0,0.4)">
+                                        <polygon points="14,75 24,67.5 24,82.5" />
+                                        <polygon points="24,75 34,67.5 34,82.5" />
+                                    </g>
+                                    <g class="dpad-icon dpad-icon-right" fill="rgba(0,0,0,0.4)">
+                                        <polygon points="136,75 126,67.5 126,82.5" />
+                                        <polygon points="126,75 116,67.5 116,82.5" />
+                                    </g>
+                                    <g class="dpad-icon dpad-icon-up" stroke="rgba(0,0,0,0.4)" stroke-width="3" stroke-linecap="round">
+                                        <line x1="75" y1="12" x2="75" y2="42" />
+                                        <line x1="63" y1="27" x2="87" y2="27" />
+                                    </g>
+                                    <g class="dpad-icon dpad-icon-down" stroke="rgba(0,0,0,0.4)" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="67" y1="122" x2="83" y2="122" />
+                                    </g>
+                                </svg>
+                                <button type="button" class="dpad-zone dpad-up" id="volUp" aria-label="배속 빠르게" title="배속 빠르게" disabled></button>
+                                <button type="button" class="dpad-zone dpad-left" id="padPrev" aria-label="이전" title="이전" disabled></button>
+                                <button type="button" class="dpad-zone dpad-right" id="padNextDpad" aria-label="다음" title="다음" disabled></button>
+                                <button type="button" class="dpad-zone dpad-down" id="volDown" aria-label="배속 늦추기" title="배속 늦추기" disabled></button>
+                            </div>
+                            <div class="pd-action-grid" aria-label="기기 단축 버튼">
+                                <button type="button" id="btnHome" class="pad pd-round-btn pd-list-btn" aria-label="홈" title="홈">
+                                    <svg class="tp-home-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 10.5 12 3l9 7.5" />
+                                        <path d="M5 9.75V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.75" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="pad pd-round-btn pd-menu-btn" id="btnSettings" aria-label="설정" title="설정">M</button>
+                                <button type="button" class="pad pd-round-btn play-symbol" id="padPlay" aria-label="듣기" disabled>▶</button>
+                                <div class="pd-record-cell">
+                                    <div id="pronounceRecProgress" class="pronounce-rec-progress-slot pronounce-rec-progress-in-device" aria-live="polite"></div>
+                                    <button type="button" class="pad pd-round-btn pd-record-btn" id="recordBtn" aria-label="발음 녹음" disabled>●</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnGrade" class="sr-only" disabled tabindex="-1" aria-hidden="true">Check</button>
+
+                    <div class="pd-usb" aria-hidden="true"></div>
+
+                    <div class="disc" id="disc" hidden aria-hidden="true"><div class="hub"></div></div>
                 </div>
-                <div style="height:12px"></div>
-
-                <div id="list" class="card"></div>
-                <p id="empty" class="muted" style="display:none">결과가 없습니다.</p>
-
             </section>
-        </div>
+                </main>
+            </section>
+
     </div>
 
     <script type="module">
-        import { loadPageTitle } from '../../com/lib/title.js';
-        loadPageTitle();
+        let baseTitle = document.querySelector('#pageTitle')?.textContent?.trim() || 'YouTube 자막 학습';
 
-        const list = document.getElementById('list');
-        const empty = document.getElementById('empty');
-        const totalCnt = document.getElementById('totalCnt');
-        const q = document.getElementById('q');
+        const LS_DISPLAY_THEME = 'learnlang_display_theme';
+        const LS_THEME_DARK = 'learnlang_theme_dark';
 
-        let data = [];
-        try {
-            const res = await fetch('./catalog.json', { cache: 'no-store' });
-            data = await res.json();
-            totalCnt.textContent = String(data.length);
-        } catch (_) {
-            list.innerHTML = '<div class="muted">catalog.json을 불러오지 못했습니다. make_catalog.py를 실행하세요.</div>';
-        }
+        const settingsModal = document.querySelector('#tpSettingsModal');
+        const settingsScreen = settingsModal?.closest('.screen');
+        const btnHome = document.querySelector('#btnHome');
+        const totalCnt = document.querySelector('#totalCnt');
 
         function escapeHTML(s = '') {
-            return s.replace(/[&<>"']/g, (c) =>
-                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
-            );
+            return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
         }
 
-        function groupByDir(arr) {
-            const map = new Map();
-            for (const it of arr) {
-                const key = it.dir || '';
-                if (!map.has(key)) map.set(key, []);
-                map.get(key).push(it);
-            }
-            for (const [, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
-            return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+        function updateHubPageTitle(subtitle) {
+            const h1 = document.querySelector('#pageTitle');
+            if (!h1) return;
+            const sub = subtitle && String(subtitle).trim() ? subtitle : '\u00a0';
+            h1.innerHTML = `<span class="page-title-base">${escapeHTML(baseTitle)}</span><br><span class="page-title-csv">${escapeHTML(sub)}</span>`;
         }
 
-        function openStudy(item) {
+        async function initTitle() {
+            try {
+                const res = await fetch('../title.txt', { cache: 'no-store' });
+                if (res.ok) {
+                    const title = (await res.text()).trim();
+                    if (title) {
+                        baseTitle = title;
+                        document.title = title;
+                    }
+                }
+            } catch (_) {}
+        }
+
+        function applyDisplayTheme(mode) {
+            const theme = mode === 'dark' || mode === 'mint' ? mode : 'light';
+            document.body.classList.remove('dark', 'pd-display-light', 'pd-display-mint');
+            if (theme === 'dark') document.body.classList.add('pd-display-light', 'dark');
+            else if (theme === 'mint') document.body.classList.add('pd-display-mint');
+            else document.body.classList.add('pd-display-light');
+            try {
+                localStorage.setItem(LS_DISPLAY_THEME, theme);
+                localStorage.setItem(LS_THEME_DARK, theme === 'dark' ? '1' : '0');
+            } catch (_) {}
+        }
+
+        function readStoredDisplayThemeMode() {
+            try {
+                const saved = localStorage.getItem(LS_DISPLAY_THEME);
+                if (saved === 'dark' || saved === 'mint' || saved === 'light') return saved;
+                if (localStorage.getItem(LS_THEME_DARK) === '1') return 'dark';
+            } catch (_) {}
+            return 'light';
+        }
+
+        function loadThemeFromStorage() {
+            const mode = readStoredDisplayThemeMode();
+            document.querySelectorAll('input[name="displayTheme"]').forEach((el) => {
+                el.checked = el.value === mode;
+            });
+            applyDisplayTheme(mode);
+        }
+
+        function openSettings(e) {
+            e?.stopPropagation();
+            if (!settingsModal) return;
+            settingsModal.classList.remove('hidden');
+            settingsModal.hidden = false;
+            settingsScreen?.classList.add('pd-settings-open');
+            document.querySelector('#btnApplySettings')?.focus();
+        }
+
+        function closeSettings() {
+            if (!settingsModal) return;
+            settingsModal.classList.add('hidden');
+            settingsModal.hidden = true;
+            settingsScreen?.classList.remove('pd-settings-open');
+        }
+
+        function initSettingsModal() {
+            document.querySelector('#btnSettings')?.addEventListener('click', openSettings);
+            document.querySelector('#btnApplySettings')?.addEventListener('click', () => {
+                const theme = document.querySelector('input[name="displayTheme"]:checked')?.value || 'light';
+                applyDisplayTheme(theme);
+                closeSettings();
+            });
+            settingsModal?.querySelector('[data-close-settings]')?.addEventListener('click', closeSettings);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && settingsModal && !settingsModal.hidden) closeSettings();
+            });
+        }
+
+        function studyUrl(item) {
             const u = new URL('./study_youtube.html', location.href);
             u.searchParams.set('srt', item.path);
             if (item.youtube) u.searchParams.set('url', item.youtube);
-            location.href = u.toString();
+            return u.pathname + u.search;
         }
 
-        function render(arr) {
-            if (!arr.length) {
-                list.innerHTML = '';
-                empty.style.display = 'block';
+        btnHome?.addEventListener('click', () => {
+            location.href = '../index.html';
+        });
+
+        await initTitle();
+        updateHubPageTitle('\u00a0');
+        loadThemeFromStorage();
+        initSettingsModal();
+
+        (async function initCatalog() {
+            const list = document.querySelector('#list');
+            const empty = document.querySelector('#empty');
+            const q = document.querySelector('#q');
+
+            let data = [];
+            try {
+                const res = await fetch('./catalog.json', { cache: 'no-store' });
+                data = await res.json();
+                if (totalCnt) totalCnt.textContent = String(data.length);
+            } catch (_) {
+                list.innerHTML = '<p class="pd-index-msg">catalog.json을 불러오지 못했습니다.</p>';
                 return;
             }
-            empty.style.display = 'none';
-            const frag = document.createDocumentFragment();
 
-            for (const [dir, files] of groupByDir(arr)) {
-                const box = document.createElement('div');
-                box.className = 'folder';
-                const title = dir ? escapeHTML(dir) : '';
-                box.innerHTML = `<div class="title">${title}</div><ul></ul>`;
-                const ul = box.querySelector('ul');
-
-                for (const f of files) {
-                    const li = document.createElement('li');
-                    const display = f.name.replace(/\.srt$/i, '');
-                    li.innerHTML = `<a href="#" class="csv-link">${escapeHTML(display)}</a>`;
-                    li.querySelector('a').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        openStudy(f);
-                    });
-                    ul.appendChild(li);
+            function groupByDir(arr) {
+                const map = new Map();
+                for (const it of arr) {
+                    const key = it.dir || '';
+                    if (!map.has(key)) map.set(key, []);
+                    map.get(key).push(it);
                 }
-                frag.appendChild(box);
+                for (const [, v] of map) v.sort((a, b) => a.name.localeCompare(b.name));
+                return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]));
             }
-            list.innerHTML = '';
-            list.appendChild(frag);
-        }
 
-        let view = data.slice();
-        render(view);
+            let view = data.slice();
 
-        q.addEventListener('input', () => {
-            const term = q.value.trim().toLowerCase();
-            view = data.filter((it) => ((it.dir || '') + '/' + it.name).toLowerCase().includes(term));
+            function render(arr) {
+                if (!arr.length) {
+                    list.innerHTML = '';
+                    empty.hidden = false;
+                    return;
+                }
+                empty.hidden = true;
+
+                const groups = groupByDir(arr);
+                const frag = document.createDocumentFragment();
+
+                for (const [dir, files] of groups) {
+                    const section = document.createElement('section');
+                    section.className = 'pd-index-folder';
+                    if (dir) {
+                        const title = document.createElement('div');
+                        title.className = 'pd-index-folder-title';
+                        title.textContent = dir;
+                        section.appendChild(title);
+                    }
+
+                    const ul = document.createElement('ul');
+                    ul.className = 'pd-index-items';
+
+                    for (const f of files) {
+                        const li = document.createElement('li');
+                        const display = f.name.replace(/\.srt$/i, '');
+                        const a = document.createElement('a');
+                        a.href = studyUrl(f);
+                        a.className = 'pd-index-link';
+                        a.textContent = display;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    }
+                    section.appendChild(ul);
+                    frag.appendChild(section);
+                }
+
+                list.innerHTML = '';
+                list.appendChild(frag);
+            }
+
             render(view);
-        });
+
+            q?.addEventListener('input', () => {
+                const term = q.value.trim().toLowerCase();
+                view = data.filter((it) => {
+                    const hay = ((it.dir || '') + '/' + it.name).toLowerCase();
+                    return hay.includes(term);
+                });
+                render(view);
+            });
+        })();
     </script>
+
 </body>
 
 </html>

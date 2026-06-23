@@ -1,599 +1,408 @@
-.screen-title-heading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    font-size: inherit;
-    line-height: 1.2;
-    min-width: 0;
-    flex: 1 1 auto;
-}
-
-.site-brand {
-    display: inline-flex;
-    flex-shrink: 0;
-    line-height: 0;
-    width: 36px;
-    height: 36px;
-    overflow: hidden;
-    border-radius: 8px;
-    border: none;
-    transition: opacity 0.15s ease;
-}
-
-.site-brand:hover {
-    opacity: 0.85;
-}
-
-.site-brand img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    object-fit: cover;
-    transform: scale(1.12);
-    /* PNG 바깥 흰 여백을 배경색과 합침 */
-    mix-blend-mode: darken;
-}
-
-.box.yt-layout {
-    min-width: 0;
-    max-width: 100%;
-    overflow-x: clip;
-    box-sizing: border-box;
-}
-
-.yt-layout {
-    display: grid;
-    gap: 14px;
-    min-width: 0;
-    max-width: 100%;
-}
-
-.yt-layout > * {
-    min-width: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* 햄버거(목록) + URL + 돋보기 */
-.yt-url-bar {
-    display: flex;
-    align-items: stretch;
-    gap: 8px;
-}
-
-.yt-btn-menu {
-    flex: 0 0 auto;
-    width: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    border: 1px solid #c0baaa;
-    background: #fdfbf4;
-    color: #333;
-    text-decoration: none;
-    transition: opacity 0.12s ease, transform 0.08s ease;
-}
-
-.yt-btn-menu:hover {
-    opacity: 0.85;
-}
-
-.yt-btn-menu:active {
-    transform: scale(0.96);
-}
-
-body.dark .yt-btn-menu {
-    background: #0b1220;
-    color: #e5e7eb;
-    border-color: #374151;
-}
-
-.yt-url-bar input {
-    flex: 1;
-    min-width: 0;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid #c0baaa;
-    background: #fdfbf4;
-    color: #333;
-}
-
-body.dark .yt-url-bar input {
-    background: #0b1220;
-    color: #e5e7eb;
-    border-color: #374151;
+/* ── Playdate 기기 내 YouTube 학습 (device/index 와 동일 디스플레이 박스) ── */
+
+.playdate-yt-page .pd-screen-zone,
+.playdate-yt-page .screen-bezel,
+.playdate-yt-page .screen {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.playdate-yt-page .display.study-display.yt-study-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 6px 6px 8px !important;
+  border-radius: calc(var(--u) * 2) !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+  height: 100%;
+  max-height: 100%;
+}
+
+.playdate-yt-page .yt-device-player-wrap {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #000;
+  border: none;
+  contain: layout paint;
+}
+
+.playdate-yt-page .yt-device-player-wrap #player,
+.playdate-yt-page .yt-device-player-wrap #player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+}
+
+.playdate-yt-page .yt-device-player-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14%;
+  background: #000;
+  pointer-events: auto;
+  z-index: 2;
 }
-
-.yt-btn-search {
-    flex: 0 0 auto !important;
-    width: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0 !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: #d8c69f;
-    border-color: #c4b185;
-}
-
-.yt-btn-search:hover {
-    background: #c9b88d;
-}
-
-.yt-btn-search:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-}
 
-/* 파일 선택 — 아래 빈 공간 제거 */
-.yt-file-label {
-    align-items: center !important;
-    gap: 8px !important;
+.playdate-yt-page .yt-player-hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  pointer-events: none;
+  user-select: none;
 }
 
-.yt-file-label input[type="file"] {
-    width: auto;
-    flex: 1;
-    min-width: 8rem;
-    min-height: 0;
-    margin: 0;
-    padding: 4px 6px;
-    line-height: 1.2;
+.playdate-yt-page .yt-player-hud-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
 }
 
-.yt-player-wrap {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: #111;
-    border: 1px solid var(--bd);
+.playdate-yt-page .yt-player-hud-loop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: rgba(255, 255, 255, 0.42);
 }
 
-.yt-player-wrap::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 20%;
-    background: #000;
-    pointer-events: auto;
-    z-index: 2;
+.playdate-yt-page .yt-player-hud-loop.is-on {
+  color: #e8e8e6;
 }
 
-#player {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+.playdate-yt-page .yt-player-hud-loop-icon-wrap {
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.yt-now-panel {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
+.playdate-yt-page .yt-player-hud-loop:not(.is-on) .yt-player-hud-loop-icon--off,
+.playdate-yt-page .yt-player-hud-loop.is-on .yt-player-hud-loop-icon--on {
+  display: inline-flex;
 }
 
-.yt-now {
-    flex: 1;
-    min-width: 0;
-    min-height: 4.5rem;
-    padding: 16px 18px;
-    border-radius: var(--radius);
-    border: 1px solid var(--bd);
-    background: var(--card);
-    font-size: 1.35rem;
-    line-height: 1.45;
-    font-weight: 600;
+.playdate-yt-page .yt-player-hud-loop-icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  filter: drop-shadow(-1px 0 #000) drop-shadow(1px 0 #000) drop-shadow(0 -1px #000) drop-shadow(0 1px #000);
 }
 
-.yt-now.is-empty {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 1rem;
+.playdate-yt-page .yt-player-hud-speed,
+.playdate-yt-page .yt-player-hud-score {
+  font-family: 'DungGeunMo', 'Press Start 2P', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #fbbf24;
+  text-shadow:
+    -1px 0 #000,
+    1px 0 #000,
+    0 -1px #000,
+    0 1px #000;
 }
 
-.yt-now.is-active {
-    border-color: var(--good);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--good) 35%, transparent);
+.playdate-yt-page .yt-player-hud-score {
+  color: #e8e8e6;
 }
 
-.yt-loop-toggle {
-    flex: 0 0 auto !important;
-    width: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0 !important;
-    align-self: stretch;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+body.dark.playdate-yt-page .yt-player-hud-loop {
+  color: rgba(255, 255, 255, 0.38);
 }
 
-.yt-loop-icon {
-    display: none;
-    align-items: center;
-    justify-content: center;
+body.dark.playdate-yt-page .yt-player-hud-loop.is-on {
+  color: #f3f4f6;
 }
 
-.yt-loop-toggle:not(.is-on) .yt-loop-icon--off {
-    display: inline-flex;
+body.pd-display-mint.playdate-yt-page .yt-player-hud-loop {
+  color: rgba(212, 240, 232, 0.45);
 }
 
-.yt-loop-toggle.is-on .yt-loop-icon--on {
-    display: inline-flex;
+body.pd-display-mint.playdate-yt-page .yt-player-hud-loop.is-on {
+  color: #d4f0e8;
 }
 
-.yt-loop-toggle.is-on {
-    background: var(--good);
-    border-color: var(--good);
-    color: #fff;
+body.dark.playdate-yt-page .yt-player-hud-speed {
+  color: #fcd34d;
 }
 
-.yt-loop-toggle:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
+body.dark.playdate-yt-page .yt-player-hud-score {
+  color: #f3f4f6;
 }
 
-.yt-quiz-buttons {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    gap: 8px;
+body.pd-display-mint.playdate-yt-page .yt-player-hud-speed {
+  color: #ca8a04;
 }
 
-.yt-quiz-btn {
-    flex: 1;
-    min-width: 0;
-    min-height: 4.5rem;
-    padding: 12px 14px;
-    border-radius: var(--radius);
-    border: 1px solid var(--bd);
-    background: var(--card);
-    color: var(--fg);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.08s;
+body.pd-display-mint.playdate-yt-page .yt-player-hud-score {
+  color: #d4f0e8;
+  text-shadow:
+    -1px 0 rgba(0, 0, 0, 0.55),
+    1px 0 rgba(0, 0, 0, 0.55),
+    0 -1px rgba(0, 0, 0, 0.55),
+    0 1px rgba(0, 0, 0, 0.55);
 }
 
-.yt-quiz-btn:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--good) 8%, var(--card));
-    border-color: color-mix(in srgb, var(--good) 50%, var(--bd));
+.playdate-yt-page .yt-device-status {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.55);
+  min-height: 0;
 }
 
-.yt-quiz-btn:active:not(:disabled) {
-    transform: translateY(1px);
+.playdate-yt-page .yt-device-status:not(.sr-only):not(:empty) {
+  padding: 2px 0;
 }
 
-.yt-quiz-btn:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
+.playdate-yt-page .yt-device-status:empty {
+  display: none;
 }
 
-.yt-quiz-btn.is-correct {
-    background: var(--good);
-    border-color: var(--good);
-    color: #fff;
+.playdate-yt-page .yt-device-status.is-error {
+  color: #b91c1c;
 }
 
-.yt-quiz-btn.is-wrong {
-    background: var(--bad, #dc2626);
-    border-color: var(--bad, #dc2626);
-    color: #fff;
+body.dark.playdate-yt-page .yt-device-status {
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.yt-quiz-score {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--fg);
-    padding: 6px 0;
-    font-variant-numeric: tabular-nums;
+body.dark.playdate-yt-page .yt-device-status.is-error {
+  color: #f87171;
 }
 
-.yt-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 12px;
-    align-items: center;
-    font-size: 0.9rem;
-    color: var(--muted);
+.playdate-yt-page .yt-device-score {
+  display: none;
 }
 
-.yt-cue-list {
-    max-height: min(52vh, 520px);
-    overflow: auto;
-    overscroll-behavior: contain;
-    border: 1px solid var(--bd);
-    border-radius: var(--radius);
-    background: var(--card);
+.playdate-yt-page .yt-device-cue-list {
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
 }
 
-.yt-cue-empty {
-    padding: 12px;
-    margin: 0;
+body.dark.playdate-yt-page .yt-device-cue-list {
+  background: transparent;
 }
 
-.yt-cue {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
-    justify-content: start;
-    align-items: baseline;
-    align-items: start;
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--bd);
-    cursor: pointer;
-    transition: background 0.15s;
+.playdate-yt-page .yt-cue-empty {
+  padding: 6px 4px;
+  margin: 0;
+  font-size: 13px;
 }
 
-.yt-cue:last-child {
-    border-bottom: none;
+.playdate-yt-page .yt-cue {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px 8px;
+  align-items: start;
+  padding: 6px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.yt-cue:hover {
-    background: color-mix(in srgb, var(--good) 8%, var(--card));
+body.dark.playdate-yt-page .yt-cue {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
-.yt-cue.is-active {
-    background: color-mix(in srgb, var(--good) 14%, var(--card));
+.playdate-yt-page .yt-cue:last-child {
+  border-bottom: none;
 }
 
-.yt-cue.is-looping {
-    outline: 2px solid var(--good);
-    outline-offset: -2px;
+body.pd-display-light.playdate-yt-page:not(.dark) {
+  --yt-cue-hover: rgba(0, 0, 0, 0.06);
+  --yt-cue-active: rgba(0, 0, 0, 0.11);
+  --yt-cue-loop: #888;
 }
 
-.yt-cue-no {
-    font-variant-numeric: tabular-nums;
-    font-weight: 700;
-    color: var(--fg);
-    min-width: 2.2em;
-    text-align: right;
-    padding-top: 2px;
+body.dark.playdate-yt-page {
+  --yt-cue-hover: rgba(255, 255, 255, 0.06);
+  --yt-cue-active: rgba(255, 255, 255, 0.12);
+  --yt-cue-loop: #aaa;
 }
 
-.yt-cue-time {
-    font-variant-numeric: tabular-nums;
-    font-size: 0.82rem;
-    color: var(--muted);
-    white-space: nowrap;
-    padding-top: 2px;
+body.pd-display-mint.playdate-yt-page {
+  --yt-cue-hover: rgba(15, 61, 50, 0.08);
+  --yt-cue-active: rgba(15, 61, 50, 0.14);
+  --yt-cue-loop: #5a9a88;
 }
 
-.yt-cue-text {
-    line-height: 1.4;
-    word-break: break-word;
+.playdate-yt-page .yt-cue:hover {
+  background: var(--yt-cue-hover, rgba(0, 0, 0, 0.06));
 }
 
-.yt-settings-bar {
-    display: grid;
-    gap: 8px;
+.playdate-yt-page .yt-cue.is-active {
+  background: var(--yt-cue-active, rgba(0, 0, 0, 0.11));
 }
 
-.yt-btn-caption-settings {
-    display: none;
+.playdate-yt-page .yt-cue.is-looping {
+  outline: 2px solid var(--yt-cue-loop, #888);
+  outline-offset: -2px;
 }
 
-.yt-settings-chevron {
-    font-size: 0.75rem;
-    line-height: 1;
-    transition: transform 0.2s ease;
+.playdate-yt-page .yt-cue:not(.is-revealed) .yt-cue-time,
+.playdate-yt-page .yt-cue:not(.is-revealed) .yt-cue-text {
+  display: none;
 }
 
-.yt-btn-caption-settings[aria-expanded="true"] .yt-settings-chevron {
-    transform: rotate(180deg);
+.playdate-yt-page .yt-cue:not(.is-revealed) .yt-cue-no {
+  grid-row: 1;
 }
 
-.yt-toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
+.playdate-yt-page .yt-cue-no {
+  grid-row: 1 / span 2;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  min-width: 1.5em;
+  text-align: right;
+  padding-top: 0;
+  opacity: 0.75;
 }
 
-.yt-toolbar label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.9rem;
+.playdate-yt-page .yt-cue-time {
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  opacity: 0.65;
+  white-space: nowrap;
 }
 
-.yt-toolbar select {
-    padding: 8px 10px;
-    border-radius: 10px;
-    border: 1px solid var(--bd);
-    background: var(--card);
-    color: var(--text);
-    min-width: 8rem;
+.playdate-yt-page .yt-cue-text {
+  grid-column: 2;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-.yt-status {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin: 0;
+/* 하단 + 패드(좌) · 왼쪽 열 2개 + index 동일 2×2(우) */
+.playdate-yt-page .pd-yt-controls-row {
+  align-items: center;
+  justify-content: space-between;
 }
 
-.yt-status:empty {
-    display: none;
+.playdate-yt-page .pd-yt-btn-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, var(--pd-ctrl-btn));
+  grid-template-rows: repeat(2, var(--pd-ctrl-btn));
+  gap: var(--pd-ctrl-gap) calc(var(--u) * 2);
+  justify-items: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
-.yt-hint {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0;
+.playdate-yt-page .pd-yt-quiz-btn,
+.playdate-yt-page .pd-yt-btn-cluster .pd-menu-btn {
+  font-size: clamp(10px, calc(var(--u) * 2.6), 13px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.yt-hint kbd {
-    display: inline-block;
-    padding: 1px 6px;
-    border-radius: 6px;
-    border: 1px solid var(--bd);
-    background: var(--card);
-    font-size: 0.8rem;
+.playdate-yt-page .pd-yt-loop-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.55);
 }
 
-.yt-range-input {
-    width: 5.5rem;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
+body.dark.playdate-yt-page .pd-yt-loop-btn {
+  color: rgba(232, 232, 230, 0.7);
 }
-
-/* 모바일: box.yt-layout 안에서 가로 넘침 방지 */
-@media (max-width: 759px) {
-    .wrap > .card {
-        min-width: 0;
-        max-width: 100%;
-        overflow-x: clip;
-        box-sizing: border-box;
-    }
-
-    .screen-title {
-        min-width: 0;
-        max-width: 100%;
-        gap: 6px;
-    }
-
-    .screen-title-heading {
-        font-size: clamp(1rem, 4.2vw, 1.35rem);
-    }
-
-    .yt-url-bar {
-        width: 100%;
-    }
-
-    .yt-url-bar input {
-        font-size: 16px; /* iOS 줌 방지 */
-    }
-
-    .yt-btn-caption-settings {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        width: 100%;
-        min-height: 0;
-        height: auto;
-        padding: 6px 12px;
-        border-radius: 10px;
-        border: 1px solid #c0baaa;
-        background: #f1efe6;
-        color: #333;
-        font: inherit;
-        font-size: 0.9rem;
-        font-weight: 400;
-        cursor: pointer;
-        flex: 0 0 auto !important;
-    }
-
-    body.dark .yt-btn-caption-settings {
-        background: #0b1220;
-        color: #e5e7eb;
-        border-color: #374151;
-    }
-
-    .yt-caption-settings {
-        display: none;
-    }
-
-    .yt-caption-settings.is-open {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .yt-toolbar,
-    .yt-caption-settings.is-open {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
 
-    .yt-toolbar label,
-    .yt-caption-settings.is-open label {
-        width: 100%;
-        min-width: 0;
-        flex-wrap: wrap;
-    }
-
-    .yt-toolbar select {
-        min-width: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .yt-range-input {
-        width: 100%;
-        flex: 1 1 auto;
-    }
-
-    .yt-file-label {
-        flex-direction: column;
-        align-items: stretch !important;
-    }
-
-    .yt-file-label input[type="file"] {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .yt-now-panel {
-        width: 100%;
-    }
+body.pd-display-mint.playdate-yt-page .pd-yt-loop-btn {
+  color: rgba(15, 61, 50, 0.62);
+}
 
-    .yt-quiz-btn {
-        font-size: clamp(0.95rem, 3.6vw, 1.1rem);
-        min-height: 3.6rem;
-        padding: 10px 8px;
-    }
+.playdate-yt-page .pd-yt-loop-icon-wrap {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  pointer-events: none;
+}
 
-    .yt-meta {
-        width: 100%;
-    }
+.playdate-yt-page .pd-yt-loop-btn:not(.is-on) .pd-yt-loop-icon--on,
+.playdate-yt-page .pd-yt-loop-btn.is-on .pd-yt-loop-icon--off {
+  display: inline-flex;
+}
 
-    .yt-meta span {
-        overflow-wrap: anywhere;
-    }
+.playdate-yt-page .pd-yt-loop-icon {
+  display: block;
+  width: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+  height: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+}
 
-    .yt-hint {
-        overflow-wrap: anywhere;
-        word-break: break-word;
-    }
+.playdate-yt-page .pd-list-btn .tp-home-icon {
+  display: block;
+  width: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+  height: clamp(14px, calc(var(--pd-ctrl-btn) * 0.43), 20px);
+}
 
-    .yt-cue-list {
-        width: 100%;
-        max-width: 100%;
-    }
+/* 설정 모달 */
+.playdate-yt-page .yt-settings-input,
+.playdate-yt-page .pd-settings-dialog select,
+.playdate-yt-page .pd-settings-dialog .yt-range-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font: inherit;
+}
 
-    .yt-cue-text {
-        overflow-wrap: anywhere;
-    }
+.playdate-yt-page .pd-settings-block {
+  display: block;
+  width: 100%;
 }
 
-@media (min-width: 760px) {
-    .yt-btn-caption-settings {
-        display: none !important;
-    }
+.playdate-yt-page .yt-settings-load {
+  width: 100%;
+  margin: 8px 0 4px;
+}
 
-    .yt-caption-settings {
-        display: flex !important;
-    }
+@media (max-width: 420px) {
+  .playdate-yt-page .pd-yt-quiz-btn,
+  .playdate-yt-page .pd-yt-btn-cluster .pd-menu-btn {
+    font-size: 10px;
+  }
 }

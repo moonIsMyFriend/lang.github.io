@@ -27,6 +27,9 @@ html:has(body.pd-display-mint.playdate-quiz-page) {
   --pd-btn-shadow: #a7a7a2;
   --pd-bezel: #0a0a0a;
   --pd-screen-bg: #c8c8c8;
+  --pd-scroll-track: rgba(17, 17, 17, 0.08);
+  --pd-scroll-thumb: rgba(17, 17, 17, 0.26);
+  --pd-scroll-thumb-hover: rgba(17, 17, 17, 0.4);
 }
 
 .playdate-quiz-page.turntable-quiz-page {
@@ -39,12 +42,18 @@ body.dark.playdate-quiz-page.turntable-quiz-page {
   background-color: #121210;
   background-image: radial-gradient(ellipse 120% 80% at 50% 0%, #2a2a28 0%, #121210 60%);
   color: #e8e8e6;
+  --pd-scroll-track: rgba(232, 232, 230, 0.08);
+  --pd-scroll-thumb: rgba(232, 232, 230, 0.24);
+  --pd-scroll-thumb-hover: rgba(232, 232, 230, 0.38);
 }
 
 body.pd-display-mint.playdate-quiz-page.turntable-quiz-page {
   background-color: #8ec4b4;
   background-image: radial-gradient(circle at top, #e8f7f2, #b8ddd0 55%, #8ec4b4);
   color: #0f3d32;
+  --pd-scroll-track: rgba(15, 61, 50, 0.1);
+  --pd-scroll-thumb: rgba(15, 61, 50, 0.3);
+  --pd-scroll-thumb-hover: rgba(15, 61, 50, 0.46);
 }
 
 .playdate-quiz-page .screen-title {
@@ -56,8 +65,17 @@ body.pd-display-mint.playdate-quiz-page.turntable-quiz-page {
 .playdate-quiz-page .screen-title #pageTitle {
   text-align: center;
   color: #222;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  max-width: min(720px, 96vw);
+  margin: 0 auto;
+}
+
+.playdate-quiz-page .screen-title #pageTitle .page-title-base,
+.playdate-quiz-page .screen-title #pageTitle .page-title-csv {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .playdate-quiz-page .screen-title #pageTitle .page-title-csv {
@@ -94,15 +112,17 @@ body.pd-display-mint.playdate-quiz-page .screen-title #pageTitle {
   margin: 0 auto;
 }
 
-/* index (hub) — device.html 과 동일한 기기·메인 영역 위치 */
-.playdate-quiz-page.playdate-hub-page .tp-main.app {
+/* index · YouTube 학습 — device 와 동일한 메인·기기 영역 */
+.playdate-quiz-page.playdate-hub-page .tp-main.app,
+.playdate-quiz-page.playdate-yt-page .tp-main.app {
   width: min(720px, 96vw);
   max-width: 100%;
   margin: 0 auto;
   display: block;
 }
 
-.playdate-quiz-page.playdate-hub-page .device-wrap {
+.playdate-quiz-page.playdate-hub-page .device-wrap,
+.playdate-quiz-page.playdate-yt-page .device-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -638,7 +658,53 @@ body.pd-display-light.playdate-quiz-page #tpExpr font[color="GREEN"] {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 6px 0 4px;
+}
+
+/* 테마 연동 스크롤바 */
+.playdate-quiz-page .pd-settings-body,
+.playdate-quiz-page .display.study-display:not(.yt-study-display),
+.playdate-quiz-page .display.index-display,
+.playdate-quiz-page .pd-index-list,
+.playdate-quiz-page.playdate-yt-page .yt-device-cue-list {
   scrollbar-width: thin;
+  scrollbar-color: var(--pd-scroll-thumb) var(--pd-scroll-track);
+}
+
+.playdate-quiz-page .pd-settings-body::-webkit-scrollbar,
+.playdate-quiz-page .display.study-display:not(.yt-study-display)::-webkit-scrollbar,
+.playdate-quiz-page .display.index-display::-webkit-scrollbar,
+.playdate-quiz-page .pd-index-list::-webkit-scrollbar,
+.playdate-quiz-page.playdate-yt-page .yt-device-cue-list::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.playdate-quiz-page .pd-settings-body::-webkit-scrollbar-track,
+.playdate-quiz-page .display.study-display:not(.yt-study-display)::-webkit-scrollbar-track,
+.playdate-quiz-page .display.index-display::-webkit-scrollbar-track,
+.playdate-quiz-page .pd-index-list::-webkit-scrollbar-track,
+.playdate-quiz-page.playdate-yt-page .yt-device-cue-list::-webkit-scrollbar-track {
+  background: var(--pd-scroll-track);
+  border-radius: 999px;
+}
+
+.playdate-quiz-page .pd-settings-body::-webkit-scrollbar-thumb,
+.playdate-quiz-page .display.study-display:not(.yt-study-display)::-webkit-scrollbar-thumb,
+.playdate-quiz-page .display.index-display::-webkit-scrollbar-thumb,
+.playdate-quiz-page .pd-index-list::-webkit-scrollbar-thumb,
+.playdate-quiz-page.playdate-yt-page .yt-device-cue-list::-webkit-scrollbar-thumb {
+  background: var(--pd-scroll-thumb);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.playdate-quiz-page .pd-settings-body::-webkit-scrollbar-thumb:hover,
+.playdate-quiz-page .display.study-display:not(.yt-study-display)::-webkit-scrollbar-thumb:hover,
+.playdate-quiz-page .display.index-display::-webkit-scrollbar-thumb:hover,
+.playdate-quiz-page .pd-index-list::-webkit-scrollbar-thumb:hover,
+.playdate-quiz-page.playdate-yt-page .yt-device-cue-list::-webkit-scrollbar-thumb:hover {
+  background: var(--pd-scroll-thumb-hover);
 }
 
 .playdate-quiz-page .pd-settings-group {
@@ -1282,6 +1348,12 @@ body.dark.playdate-quiz-page .dpad-graphic #pdDpadGrad stop:nth-child(2) {
   cursor: default;
 }
 
+/* YouTube 학습 — 버튼 비활성 시에만 허브와 동일하게 흐리게 */
+.playdate-quiz-page.playdate-yt-page .dpad:not(:has(.dpad-zone:not(:disabled))) .dpad-graphic {
+  opacity: 0.48;
+  filter: saturate(0.85);
+}
+
 /* 학습(device) — 십자 패드 활성 표시 */
 .playdate-quiz-page:not(.playdate-hub-page) .dpad-graphic .dpad-icon-left,
 .playdate-quiz-page:not(.playdate-hub-page) .dpad-graphic .dpad-icon-right {
@@ -1382,6 +1454,7 @@ body.pd-display-mint.playdate-quiz-page:not(.playdate-hub-page) .dpad-graphic .d
   }
 
   .playdate-quiz-page.turntable-quiz-page .display.study-display,
+  .playdate-quiz-page.playdate-yt-page .display.study-display.yt-study-display,
   .playdate-quiz-page.playdate-hub-page .display.start-display,
   .playdate-quiz-page.playdate-hub-page .display.index-display {
     position: absolute !important;

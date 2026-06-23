@@ -41,7 +41,96 @@
   const btnAnsNon = $('btnAnsNon');
   const btnAnsRight = $('btnAnsRight');
   const quizScoreEl = $('quizScore');
+  const ytSpeedEl = $('ytSpeed');
+  const ytLoopHud = $('ytLoopHud');
+  const volUp = $('volUp');
+  const volDown = $('volDown');
+  const padPrev = $('padPrev');
+  const padNextDpad = $('padNextDpad');
   const quizAnswers = new Map();
+
+  const LS_PLAYBACK_RATE = 'learnlang_playback_rate';
+  const SPEED_STEP = 0.25;
+  const SPEED_MIN = 0.25;
+  const SPEED_MAX = 2;
+  const SPEED_MIN_STEP = SPEED_MIN / SPEED_STEP;
+  const SPEED_MAX_STEP = SPEED_MAX / SPEED_STEP;
+
+  function clampSpeedStep(step) {
+    return Math.min(SPEED_MAX_STEP, Math.max(SPEED_MIN_STEP, step));
+  }
+
+  function stepToRate(step) {
+    return Math.round(step * SPEED_STEP * 100) / 100;
+  }
+
+  function rateToStep(rate) {
+    return clampSpeedStep(Math.round(rate / SPEED_STEP));
+  }
+
+  function loadSpeedStep() {
+    try {
+      const saved = Number(localStorage.getItem(LS_PLAYBACK_RATE));
+      if (Number.isFinite(saved) && saved >= SPEED_MIN && saved <= SPEED_MAX) {
+        return rateToStep(saved);
+      }
+    } catch (_) {}
+    return rateToStep(1);
+  }
+
+  let speedStep = loadSpeedStep();
+
+  function persistSpeed() {
+    try {
+      localStorage.setItem(LS_PLAYBACK_RATE, String(stepToRate(speedStep)));
+    } catch (_) {}
+  }
+
+  function formatSpeed(rate) {
+    const n = stepToRate(rateToStep(rate));
+    return `x${Number.isInteger(n) ? n : String(n)}`;
+  }
+
+  function syncSpeedHud() {
+    if (ytSpeedEl) ytSpeedEl.textContent = formatSpeed(stepToRate(speedStep));
+  }
+
+  function applyPlaybackSpeed() {
+    const rate = stepToRate(speedStep);
+    if (player && typeof player.setPlaybackRate === 'function') {
+      try {
+        player.setPlaybackRate(rate);
+      } catch (_) {}
+    }
+    persistSpeed();
+    syncSpeedHud();
+  }
+
+  function bindDpadPressFx(btn) {
+    if (!btn) return;
+    const press = () => btn.classList.add('pressed');
+    const release = () => {
+      btn.classList.remove('pressed');
+      btn.blur();
+    };
+    btn.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      try { btn.setPointerCapture(e.pointerId); } catch (_) {}
+      press();
+    });
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointercancel', release);
+    btn.addEventListener('lostpointercapture', release);
+  }
+
+  function updateDpadButtons() {
+    const hasPlayer = !!(player && typeof player.setPlaybackRate === 'function');
+    const hasCues = cues.length > 0;
+    if (volUp) volUp.disabled = !hasPlayer;
+    if (volDown) volDown.disabled = !hasPlayer;
+    if (padPrev) padPrev.disabled = !hasCues;
+    if (padNextDpad) padNextDpad.disabled = !hasCues;
+  }
 
   let player = null;
   let cues = [];
@@ -60,8 +149,10 @@
   const LOOP_PAUSE_MS = 1000;
 
   function setStatus(msg, isError) {
+    if (!statusEl) return;
     statusEl.textContent = msg || '';
     statusEl.classList.toggle('is-error', !!isError);
+    statusEl.classList.toggle('sr-only', !isError);
   }
 
   function parseVideoId(input) {
@@ -247,6 +338,16 @@
     return { cues: finalizeCues(raw), youtubeUrl };
   }
 
+  function syncPageSubtitle() {
+    if (typeof window.updateHubPageTitle !== 'function') return;
+    const fromQuery = new URLSearchParams(location.search).get('srt');
+    const path = srtSourcePath || fromQuery || '';
+    const label = path
+      ? decodeURIComponent(String(path)).split('/').pop().replace(/\.srt$/i, '')
+      : '';
+    window.updateHubPageTitle(label || '\u00a0');
+  }
+
   function applyLoadedCues(sourceLabel) {
     applyRangeFilter();
     activeIndex = cues.length > 0 ? 0 : -1;
@@ -262,7 +363,9 @@
       requestAnimationFrame(() => scrollCueIntoView(activeIndex, false));
     }
     updateQuizButtonsEnabled();
-    setStatus(`${sourceLabel} ${cues.length}개 로드됨`);
+    updateDpadButtons();
+    syncPageSubtitle();
+    setStatus('');
   }
 
   async function fetchTranscriptFromBase(base, videoId, lang) {
@@ -338,7 +441,20 @@
     return list.filter((c) => c.start >= start - 0.05 && (!end || c.start < end + 0.05));
   }
 
+  function revealCue(index) {
+    if (!cueList || !cues[index]) return;
+    const row = cueList.querySelector(`[data-index="${index}"]`);
+    if (!row) return;
+    const cue = cues[index];
+    row.classList.add('is-revealed');
+    const timeEl = row.querySelector('.yt-cue-time');
+    const textEl = row.querySelector('.yt-cue-text');
+    if (timeEl) timeEl.textContent = `${formatTime(cue.start)} ~ ${formatTime(cue.end)}`;
+    if (textEl) textEl.textContent = cue.text;
+  }
+
   function renderCueList() {
+    if (!cueList) return;
     cueList.innerHTML = '';
     if (!cues.length) {
       cueList.innerHTML =
@@ -348,16 +464,20 @@
       return;
     }
     if (cueCountEl) cueCountEl.textContent = String(cues.length);
+
     cues.forEach((cue, i) => {
+      const revealed = quizAnswers.get(i) === 'correct';
       const row = document.createElement('div');
       row.className = 'yt-cue';
       row.dataset.index = String(i);
+      row.classList.toggle('is-revealed', revealed);
       if (i === activeIndex) row.classList.add('is-active');
       if (i === loopIndex) row.classList.add('is-looping');
 
       row.innerHTML = `
         <span class="yt-cue-no">${i + 1}.</span>
-        <span class="yt-cue-time">${formatTime(cue.start)} ~ ${formatTime(cue.end)}</span>
+        <span class="yt-cue-time">${revealed ? `${formatTime(cue.start)} ~ ${formatTime(cue.end)}` : ''}</span>
+        <span class="yt-cue-text">${revealed ? escapeHtml(cue.text) : ''}</span>
       `;
 
       row.addEventListener('click', () => {
@@ -379,6 +499,7 @@
   }
 
   function scrollCueIntoView(index, smooth) {
+    if (!cueList) return;
     const row = cueList.querySelector(`[data-index="${index}"]`);
     if (!row) return;
     const listRect = cueList.getBoundingClientRect();
@@ -443,16 +564,6 @@
     updateQuizScore();
   }
 
-  function flashQuizButton(answer, ok) {
-    const btn =
-      answer === 'left' ? btnAnsLeft : answer === 'right' ? btnAnsRight : btnAnsNon;
-    if (!btn) return;
-    btn.classList.remove('is-correct', 'is-wrong');
-    void btn.offsetWidth;
-    btn.classList.add(ok ? 'is-correct' : 'is-wrong');
-    setTimeout(() => btn.classList.remove('is-correct', 'is-wrong'), 700);
-  }
-
   function handleQuizAnswer(answer) {
     const idx = getCurrentQuizIndex();
     if (idx < 0 || !cues[idx]) return;
@@ -460,10 +571,12 @@
     if (!correct) return;
     const ok = answer === correct;
     quizAnswers.set(idx, ok ? 'correct' : 'wrong');
-    flashQuizButton(answer, ok);
     updateQuizScore();
-    if (ok && idx < cues.length - 1) {
-      setTimeout(() => stepCue(1), 600);
+    if (ok) {
+      revealCue(idx);
+      if (idx < cues.length - 1) {
+        setTimeout(() => stepCue(1), 600);
+      }
     }
   }
 
@@ -471,6 +584,7 @@
     if (index === activeIndex) return;
     activeIndex = index;
     updateNowDisplay(index);
+    if (!cueList) return;
     cueList.querySelectorAll('.yt-cue').forEach((row) => {
       const i = parseInt(row.dataset.index, 10);
       row.classList.toggle('is-active', i === index);
@@ -500,23 +614,27 @@
     }
     activeIndex = index;
     updateNowDisplay(index);
-    cueList.querySelectorAll('.yt-cue').forEach((row) => {
-      const i = parseInt(row.dataset.index, 10);
-      row.classList.toggle('is-active', i === index);
-      row.classList.toggle('is-looping', i === loopIndex);
-    });
+    if (cueList) {
+      cueList.querySelectorAll('.yt-cue').forEach((row) => {
+        const i = parseInt(row.dataset.index, 10);
+        row.classList.toggle('is-active', i === index);
+        row.classList.toggle('is-looping', i === loopIndex);
+      });
+    }
     updateLoopToggle();
     requestAnimationFrame(() => scrollCueIntoView(index, true));
   }
 
   function updateLoopToggle() {
-    if (!btnLoopToggle) return;
-    btnLoopToggle.disabled = cues.length === 0;
     const on = loopIndex >= 0;
-    btnLoopToggle.classList.toggle('is-on', on);
-    btnLoopToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
-    btnLoopToggle.setAttribute('aria-label', on ? '구간 반복 끄기' : '구간 반복 켜기');
-    btnLoopToggle.title = on ? '구간 반복 끄기' : '구간 반복 켜기';
+    if (btnLoopToggle) {
+      btnLoopToggle.disabled = cues.length === 0;
+      btnLoopToggle.classList.toggle('is-on', on);
+      btnLoopToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btnLoopToggle.setAttribute('aria-label', on ? '구간 반복 끄기' : '구간 반복 켜기');
+      btnLoopToggle.title = on ? '구간 반복 끄기' : '구간 반복 켜기';
+    }
+    if (ytLoopHud) ytLoopHud.classList.toggle('is-on', on);
   }
 
   function toggleLoop(index) {
@@ -525,9 +643,11 @@
       loopIndex = -1;
       clearLoopHold();
       setStatus('');
-      cueList.querySelectorAll('.yt-cue').forEach((row) => {
-        row.classList.toggle('is-looping', false);
-      });
+      if (cueList) {
+        cueList.querySelectorAll('.yt-cue').forEach((row) => {
+          row.classList.toggle('is-looping', false);
+        });
+      }
       if (player && window.YT) {
         player.playVideo();
       }
@@ -638,6 +758,7 @@
       }
       player = null;
     }
+    updateDpadButtons();
   }
 
   function createPlayer(videoId, startSec) {
@@ -659,6 +780,8 @@
             try { e.target.mute(); } catch (_) { /* ignore */ }
             if (startSec > 0) e.target.seekTo(startSec, true);
             e.target.playVideo();
+            applyPlaybackSpeed();
+            updateDpadButtons();
             startTick();
             resolve();
           },
@@ -750,7 +873,8 @@
     if (cuesFromSrt && cues.length) {
       applyRangeFilter();
       renderCueList();
-      setStatus(`SRT 자막 ${cues.length}개`);
+      syncPageSubtitle();
+      setStatus('');
       return;
     }
     setStatus('자막 불러오는 중…');
@@ -776,7 +900,9 @@
     resetQuizScore();
     renderCueList();
     updateQuizButtonsEnabled();
-    setStatus(`자막 ${cues.length}개 (${data.language_code || ''})`);
+    updateDpadButtons();
+    syncPageSubtitle();
+    setStatus('');
   }
 
   function applyRangeFilter() {
@@ -788,6 +914,7 @@
   }
 
   async function handleLoad() {
+    if (!urlInput) return;
     const input = urlInput.value.trim();
     if (!input) {
       setStatus('YouTube 주소를 입력해 주세요.', true);
@@ -815,7 +942,7 @@
     rangeStart.value = times.start ? formatTime(times.start) : '';
     rangeEnd.value = times.end != null ? formatTime(times.end) : '';
 
-    btnLoad.disabled = true;
+    if (btnLoad) btnLoad.disabled = true;
     setStatus('동영상 로드 중…');
     try {
       localStorage.setItem('yt_last_url', input);
@@ -826,7 +953,7 @@
       console.error(err);
       setStatus(err.message || '로드 실패', true);
     } finally {
-      btnLoad.disabled = false;
+      if (btnLoad) btnLoad.disabled = false;
     }
   }
 
@@ -836,19 +963,19 @@
     const urlParam = params.get('url');
     if (!srtPath) return;
 
-    btnLoad.disabled = true;
+    if (btnLoad) btnLoad.disabled = true;
     setStatus('SRT 불러오는 중…');
     try {
       const fromSrt = await loadSrtFromPath(srtPath);
-      if (urlParam) urlInput.value = urlParam;
-      const playUrl = urlInput.value.trim() || fromSrt;
+      if (urlParam && urlInput) urlInput.value = urlParam;
+      const playUrl = (urlInput?.value.trim()) || fromSrt;
       if (playUrl) await handleLoad();
       else setStatus('SRT에 YouTube URL이 없습니다. 주소를 입력하세요.', true);
     } catch (err) {
       console.error(err);
       setStatus(err.message || 'SRT 로드 실패', true);
     } finally {
-      btnLoad.disabled = false;
+      if (btnLoad) btnLoad.disabled = false;
     }
   }
 
@@ -858,12 +985,12 @@
     const videoId = parseVideoId(input);
     if (!videoId) return;
     try {
-      btnLoad.disabled = true;
+      if (btnLoad) btnLoad.disabled = true;
       await loadCaptions(videoId);
     } catch (err) {
       setStatus(err.message || '자막 로드 실패', true);
     } finally {
-      btnLoad.disabled = false;
+      if (btnLoad) btnLoad.disabled = false;
     }
   }
 
@@ -954,22 +1081,35 @@
     });
   }
 
-  btnLoad.addEventListener('click', handleLoad);
-  btnLoopToggle.addEventListener('click', toggleLoopCurrent);
+  btnLoad?.addEventListener('click', handleLoad);
+  btnLoopToggle?.addEventListener('click', toggleLoopCurrent);
   [btnAnsLeft, btnAnsNon, btnAnsRight].forEach((btn) => {
     if (!btn) return;
     btn.addEventListener('click', () => handleQuizAnswer(btn.dataset.answer));
   });
-  urlInput.addEventListener('keydown', (e) => {
+  [volUp, volDown, padPrev, padNextDpad].forEach(bindDpadPressFx);
+  volUp?.addEventListener('click', () => {
+    speedStep = clampSpeedStep(speedStep + 1);
+    applyPlaybackSpeed();
+  });
+  volDown?.addEventListener('click', () => {
+    speedStep = clampSpeedStep(speedStep - 1);
+    applyPlaybackSpeed();
+  });
+  padPrev?.addEventListener('click', () => stepCue(-1));
+  padNextDpad?.addEventListener('click', () => stepCue(1));
+  urlInput?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') handleLoad();
   });
-  langSelect.addEventListener('change', reloadCaptionsOnly);
-  vttFile.addEventListener('change', () => handleVttUpload(vttFile.files[0]));
+  langSelect?.addEventListener('change', reloadCaptionsOnly);
+  vttFile?.addEventListener('change', () => handleVttUpload(vttFile.files[0]));
 
   const saved = localStorage.getItem('yt_last_url');
-  if (saved && !new URLSearchParams(location.search).get('srt')) {
+  if (saved && urlInput && !new URLSearchParams(location.search).get('srt')) {
     urlInput.value = saved;
   }
   updateLoopToggle();
+  updateDpadButtons();
+  syncSpeedHud();
   bootFromQuery();
 })();

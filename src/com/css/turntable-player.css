@@ -36,9 +36,13 @@ html:has(body.dark.turntable-quiz-page) {
   margin-bottom: 10px;
 }
 
-.turntable-quiz-page .screen-title #pageTitle {
-  overflow-wrap: anywhere;
-  word-break: break-word;
+.turntable-quiz-page .screen-title #pageTitle .page-title-base,
+.turntable-quiz-page .screen-title #pageTitle .page-title-csv {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .turntable-quiz-page .screen-title #pageTitle .page-title-csv {
