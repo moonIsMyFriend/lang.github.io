@@ -43,11 +43,31 @@
   const quizScoreEl = $('quizScore');
   const ytSpeedEl = $('ytSpeed');
   const ytLoopHud = $('ytLoopHud');
+  const ytPlayerMask = $('ytPlayerMask');
   const volUp = $('volUp');
   const volDown = $('volDown');
   const padPrev = $('padPrev');
   const padNextDpad = $('padNextDpad');
   const quizAnswers = new Map();
+
+  function showFatalError(message) {
+    const text = message || '스크립트 오류가 발생했습니다.';
+    if (statusEl) {
+      statusEl.textContent = text;
+      statusEl.classList.add('is-error');
+      statusEl.classList.remove('sr-only');
+    }
+    if (cueList) {
+      cueList.innerHTML = `<p class="muted yt-cue-empty">${escapeHtml(text)}</p>`;
+    }
+  }
+
+  window.addEventListener('error', (event) => {
+    showFatalError(event.message);
+  });
+  window.addEventListener('unhandledrejection', (event) => {
+    showFatalError(event.reason?.message || String(event.reason || 'Promise 오류가 발생했습니다.'));
+  });
 
   const LS_PLAYBACK_RATE = 'learnlang_playback_rate';
   const SPEED_STEP = 0.25;
@@ -136,7 +156,7 @@
   let cues = [];
   let activeIndex = -1;
   let loopIndex = -1;
-  let loopHoldUntil = 0;
+  let loopSeekGuardUntil = 0;
   let tickTimer = null;
   let pendingStart = 0;
   let playEnd = null;
@@ -145,8 +165,9 @@
   let cuesFromSrt = false;
   let lastLoadedVideoId = '';
   let catalogPromise = null;
+  let youtubeApiPromise = null;
 
-  const LOOP_PAUSE_MS = 1000;
+  const LOOP_SEEK_GUARD_MS = 250;
 
   function setStatus(msg, isError) {
     if (!statusEl) return;
@@ -173,7 +194,10 @@
   /** SRT/VTT: 00:00:01,010 or 00:00:01.010 */
   function parseSubRipTime(tok) {
     if (!tok) return 0;
-    const t = String(tok).trim().replace(',', '.');
+    const t = String(tok)
+      .trim()
+      .replace(/\s*([,.])\s*/g, '.')
+      .replace(/\s+/g, '');
     const hms = t.match(/^(\d{1,2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?$/);
     if (hms) {
       const ms = hms[4] ? parseInt(hms[4].padEnd(3, '0').slice(0, 3), 10) / 1000 : 0;
@@ -184,7 +208,7 @@
       const frac = ms2[3] ? parseInt(ms2[3].padEnd(3, '0').slice(0, 3), 10) / 1000 : 0;
       return parseInt(ms2[1], 10) * 60 + parseInt(ms2[2], 10) + frac;
     }
-    return parseTimeToken(tok);
+    return 0;
   }
 
   function parseTimeToken(tok) {
@@ -352,7 +376,7 @@
     applyRangeFilter();
     activeIndex = cues.length > 0 ? 0 : -1;
     loopIndex = activeIndex;
-    clearLoopHold();
+    clearLoopSeekGuard();
     captionTracks = [];
     langSelect.innerHTML = '<option value="">파일</option>';
     langSelect.disabled = true;
@@ -482,7 +506,7 @@
 
       row.addEventListener('click', () => {
         if (loopIndex >= 0) {
-          clearLoopHold();
+          clearLoopSeekGuard();
           loopIndex = i;
           seekToCue(i, true, true);
           setStatus(`구간 반복: ${formatTime(cues[i].start)} ~ ${formatTime(cues[i].end)}`);
@@ -511,8 +535,8 @@
     });
   }
 
-  function clearLoopHold() {
-    loopHoldUntil = 0;
+  function clearLoopSeekGuard() {
+    loopSeekGuardUntil = 0;
   }
 
   function updateNowDisplay(index) {
@@ -605,7 +629,7 @@
     if (!cues[index]) return;
     if (!keepLoop) {
       loopIndex = -1;
-      clearLoopHold();
+      clearLoopSeekGuard();
       updateLoopToggle();
     }
     if (player) {
@@ -641,7 +665,7 @@
     if (!cues[index]) return;
     if (loopIndex === index) {
       loopIndex = -1;
-      clearLoopHold();
+      clearLoopSeekGuard();
       setStatus('');
       if (cueList) {
         cueList.querySelectorAll('.yt-cue').forEach((row) => {
@@ -685,24 +709,18 @@
       if (loopIndex >= 0 && cues[loopIndex]) {
         const cue = cues[loopIndex];
 
-        if (loopHoldUntil > 0) {
-          if (Date.now() < loopHoldUntil) {
-            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-              player.pauseVideo();
-            }
+        if (loopSeekGuardUntil > 0) {
+          if (Date.now() < loopSeekGuardUntil) {
             highlightActive(loopIndex);
             return;
           }
-          clearLoopHold();
-          player.seekTo(cue.start, true);
-          player.playVideo();
-          highlightActive(loopIndex);
-          return;
+          clearLoopSeekGuard();
         }
 
         if (t >= cue.end - 0.05) {
-          loopHoldUntil = Date.now() + LOOP_PAUSE_MS;
-          player.pauseVideo();
+          loopSeekGuardUntil = Date.now() + LOOP_SEEK_GUARD_MS;
+          player.seekTo(cue.start, true);
+          player.playVideo();
           highlightActive(loopIndex);
           return;
         }
@@ -717,14 +735,15 @@
   }
 
   function loadYouTubeApi() {
-    return new Promise((resolve, reject) => {
+    if (window.YT && window.YT.Player) return Promise.resolve();
+    if (youtubeApiPromise) return youtubeApiPromise;
+
+    youtubeApiPromise = new Promise((resolve, reject) => {
       if (window.YT && window.YT.Player) {
         resolve();
         return;
       }
-      const prev = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = () => {
-        if (typeof prev === 'function') prev();
         resolve();
       };
       if (document.querySelector('script[src*="youtube.com/iframe_api"]')) {
@@ -745,11 +764,12 @@
       tag.onerror = () => reject(new Error('YouTube API 스크립트 로드 실패'));
       document.head.appendChild(tag);
     });
+    return youtubeApiPromise;
   }
 
   function destroyPlayer() {
     stopTick();
-    clearLoopHold();
+    clearLoopSeekGuard();
     if (player) {
       try {
         player.destroy();
@@ -761,15 +781,50 @@
     updateDpadButtons();
   }
 
+  function applyMutedAutoplay(target) {
+    if (!target) return;
+    try {
+      if (typeof target.setVolume === 'function') {
+        target.setVolume(100);
+      }
+      if (typeof target.mute === 'function') {
+        target.mute();
+      }
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
   function createPlayer(videoId, startSec) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       destroyPlayer();
+      let settled = false;
+      const readyTimeout = setTimeout(() => {
+        fail(new Error('YouTube 플레이어 준비 시간 초과'));
+      }, 10000);
+      function finish() {
+        if (settled) return;
+        settled = true;
+        clearTimeout(readyTimeout);
+        resolve();
+      }
+      function fail(err) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(readyTimeout);
+        reject(err);
+      }
       player = new YT.Player('player', {
         videoId,
         playerVars: {
           autoplay: 1,
           mute: 1,
           start: Math.floor(startSec || 0),
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          playsinline: 1,
           rel: 0,
           modestbranding: 1,
           cc_load_policy: 1,
@@ -777,13 +832,17 @@
         },
         events: {
           onReady: (e) => {
-            try { e.target.mute(); } catch (_) { /* ignore */ }
-            if (startSec > 0) e.target.seekTo(startSec, true);
-            e.target.playVideo();
-            applyPlaybackSpeed();
-            updateDpadButtons();
-            startTick();
-            resolve();
+            try {
+              applyMutedAutoplay(e.target);
+              if (startSec > 0) e.target.seekTo(startSec, true);
+              e.target.playVideo();
+              applyPlaybackSpeed();
+              updateDpadButtons();
+              startTick();
+              finish();
+            } catch (err) {
+              fail(err);
+            }
           },
           onStateChange: (ev) => {
             if (ev.data === YT.PlayerState.PLAYING) startTick();
@@ -896,7 +955,7 @@
     applyRangeFilter();
     activeIndex = cues.length > 0 ? 0 : -1;
     loopIndex = activeIndex;
-    clearLoopHold();
+    clearLoopSeekGuard();
     resetQuizScore();
     renderCueList();
     updateQuizButtonsEnabled();
@@ -946,9 +1005,9 @@
     setStatus('동영상 로드 중…');
     try {
       localStorage.setItem('yt_last_url', input);
+      await loadCaptions(videoId);
       await loadYouTubeApi();
       await createPlayer(videoId, pendingStart);
-      await loadCaptions(videoId);
     } catch (err) {
       console.error(err);
       setStatus(err.message || '로드 실패', true);
@@ -959,9 +1018,20 @@
 
   async function bootFromQuery() {
     const params = new URLSearchParams(location.search);
-    const srtPath = params.get('srt');
-    const urlParam = params.get('url');
-    if (!srtPath) return;
+    let srtPath = params.get('srt');
+    let urlParam = params.get('url');
+
+    if (!srtPath) {
+      const catalog = await loadCatalog();
+      const first = catalog[0];
+      srtPath = catalogEntryPath(first);
+      urlParam = first?.youtube || urlParam;
+      if (!srtPath) {
+        renderCueList();
+        setStatus('불러올 SRT가 없습니다.', true);
+        return;
+      }
+    }
 
     if (btnLoad) btnLoad.disabled = true;
     setStatus('SRT 불러오는 중…');
@@ -1030,7 +1100,7 @@
     const next = Math.min(cues.length - 1, Math.max(0, (base < 0 ? 0 : base) + delta));
     if (!cues[next]) return;
     if (loopIndex >= 0) {
-      clearLoopHold();
+      clearLoopSeekGuard();
       loopIndex = next;
       seekToCue(next, true, true);
       setStatus(`구간 반복: ${formatTime(cues[next].start)} ~ ${formatTime(cues[next].end)}`);
@@ -1080,6 +1150,24 @@
       if (!isMobileCaptionSettings()) setCaptionSettingsOpen(false);
     });
   }
+
+  function syncPlayerMaskUi(visible) {
+    if (!ytPlayerMask) return;
+    ytPlayerMask.classList.toggle('is-hidden', !visible);
+    ytPlayerMask.setAttribute('aria-pressed', visible ? 'true' : 'false');
+    ytPlayerMask.setAttribute(
+      'aria-label',
+      visible ? 'YouTube 하단 가림 숨기기' : 'YouTube 하단 가림 표시'
+    );
+    ytPlayerMask.title = visible ? '터치하여 하단 가림 숨기기' : '터치하여 하단 가림 표시';
+  }
+
+  ytPlayerMask?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    syncPlayerMaskUi(ytPlayerMask.classList.contains('is-hidden'));
+  });
+  syncPlayerMaskUi(true);
 
   btnLoad?.addEventListener('click', handleLoad);
   btnLoopToggle?.addEventListener('click', toggleLoopCurrent);

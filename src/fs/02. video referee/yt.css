@@ -44,16 +44,24 @@
   border: 0;
 }
 
-.playdate-yt-page .yt-device-player-wrap::after {
-  content: '';
+.playdate-yt-page .yt-player-mask {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 14%;
+  margin: 0;
+  padding: 0;
+  border: none;
   background: #000;
-  pointer-events: auto;
+  cursor: pointer;
   z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.playdate-yt-page .yt-player-mask.is-hidden {
+  background: transparent;
 }
 
 .playdate-yt-page .yt-player-hud {

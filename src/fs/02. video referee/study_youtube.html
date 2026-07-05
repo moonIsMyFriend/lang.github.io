@@ -71,6 +71,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <div class="display study-display yt-study-display" aria-live="polite">
                                         <div class="yt-device-player-wrap">
                                             <div id="player"></div>
+                                            <button type="button" id="ytPlayerMask" class="yt-player-mask"
+                                                aria-pressed="true" aria-label="YouTube 하단 가림 표시/숨김"
+                                                title="터치하여 하단 가림 표시/숨김"></button>
                                             <div class="yt-player-hud">
                                                 <div class="yt-player-hud-left">
                                                     <span id="ytLoopHud" class="yt-player-hud-loop" aria-hidden="true">
@@ -370,7 +373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         updateHubPageTitle(srtLabelFromPath(srtParam) || '\u00a0');
         loadThemeFromStorage();
     </script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20260704-0856"></script>
 </body>
 
 </html>
