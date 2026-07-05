@@ -524,7 +524,8 @@
 
   function scrollCueIntoView(index, smooth) {
     if (!cueList) return;
-    const row = cueList.querySelector(`[data-index="${index}"]`);
+    const scrollIndex = index > 0 ? index - 1 : 0;
+    const row = cueList.querySelector(`[data-index="${scrollIndex}"]`);
     if (!row) return;
     const listRect = cueList.getBoundingClientRect();
     const rowRect = row.getBoundingClientRect();
